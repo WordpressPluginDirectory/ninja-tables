@@ -3,11 +3,12 @@
 namespace NinjaTables\Framework\Database\Query;
 
 use Closure;
-use DateTimePeriod;
+use DatePeriod;
 use LogicException;
 use RuntimeException;
 use DateTimeInterface;
 use InvalidArgumentException;
+use NinjaTables\Framework\Foundation\App;
 use NinjaTables\Framework\Support\Arr;
 use NinjaTables\Framework\Support\Str;
 use NinjaTables\Framework\Support\Helper;
@@ -16,20 +17,21 @@ use NinjaTables\Framework\Support\Collection;
 use NinjaTables\Framework\Pagination\Paginator;
 use NinjaTables\Framework\Support\ForwardsCalls;
 use NinjaTables\Framework\Support\LazyCollection;
-use NinjaTables\Framework\Database\Query\Grammar;
-use NinjaTables\Framework\Database\Query\Processor;
 use NinjaTables\Framework\Database\Query\Expression;
+use NinjaTables\Framework\Database\Query\Grammars\Grammar;
+use NinjaTables\Framework\Database\Query\Processors\Processor;
 use NinjaTables\Framework\Database\Query\ConditionExpression;
 use NinjaTables\Framework\Support\ArrayableInterface;
 use NinjaTables\Framework\Database\ConnectionInterface;
 use NinjaTables\Framework\Database\Concerns\BuildsQueries;
+use NinjaTables\Framework\Database\Concerns\BuildsWhereDateClauses;
 use NinjaTables\Framework\Database\Concerns\ExplainsQueries;
 use NinjaTables\Framework\Database\Orm\Relations\Relation;
 use NinjaTables\Framework\Database\Orm\Builder as OrmBuilder;
 
 class Builder
 {
-    use BuildsQueries, ExplainsQueries, ForwardsCalls, MacroableTrait {
+    use BuildsQueries, BuildsWhereDateClauses, ExplainsQueries, ForwardsCalls, MacroableTrait {
         __call as macroCall;
     }
 
@@ -43,14 +45,14 @@ class Builder
     /**
      * The database query grammar instance.
      *
-     * @var \NinjaTables\Framework\Database\Query\Grammar
+     * @var \NinjaTables\Framework\Database\Query\Grammars\Grammar
      */
     public $grammar;
 
     /**
      * The database query post processor instance.
      *
-     * @var \NinjaTables\Framework\Database\Query\Processor
+     * @var \NinjaTables\Framework\Database\Query\Processors\Processor
      */
     public $processor;
 
@@ -254,8 +256,8 @@ class Builder
      * Create a new query builder instance.
      *
      * @param  \NinjaTables\Framework\Database\ConnectionInterface  $connection
-     * @param  \NinjaTables\Framework\Database\Query\Grammar|null  $grammar
-     * @param  \NinjaTables\Framework\Database\Query\Processor|null  $processor
+     * @param  \NinjaTables\Framework\Database\Query\Grammars\Grammar|null  $grammar
+     * @param  \NinjaTables\Framework\Database\Query\Processors\Processor|null  $processor
      * @return void
      */
     public function __construct(
@@ -798,7 +800,7 @@ class Builder
      *
      * @param  array  $wheres
      * @param  array  $bindings
-     * @return void
+     * @return $this
      */
     public function mergeWheres($wheres, $bindings)
     {
@@ -1020,7 +1022,7 @@ class Builder
     /**
      * Add a basic "where not" clause to the query.
      *
-     * @param  \Closure|string|array|\NinjaTables\Framework\Contracts\Database\Query\Expression  $column
+     * @param  \Closure|string|array|\NinjaTables\Framework\Database\Query\Expression  $column
      * @param  mixed  $operator
      * @param  mixed  $value
      * @param  string  $boolean
@@ -1044,7 +1046,7 @@ class Builder
     /**
      * Add an "or where not" clause to the query.
      *
-     * @param  \Closure|string|array|\NinjaTables\Framework\Contracts\Database\Query\Expression  $column
+     * @param  \Closure|string|array|\NinjaTables\Framework\Database\Query\Expression  $column
      * @param  mixed  $operator
      * @param  mixed  $value
      * @return $this
@@ -1136,7 +1138,7 @@ class Builder
     /**
      * Add a "where like" clause to the query.
      *
-     * @param  \NinjaTables\Framework\Contracts\Database\Query\Expression|string  $column
+     * @param  \NinjaTables\Framework\Database\Query\Expression|string  $column
      * @param  string  $value
      * @param  bool  $caseSensitive
      * @param  string  $boolean
@@ -1152,10 +1154,18 @@ class Builder
     ) {
         $type = 'Like';
 
-        $this->wheres[] = compact('type', 'column', 'value', 'caseSensitive', 'boolean', 'not');
+        $this->wheres[] = compact(
+            'type', 'column', 'value', 'caseSensitive', 'boolean', 'not'
+        );
 
         if (method_exists($this->grammar, 'prepareWhereLikeBinding')) {
-            $value = $this->grammar->prepareWhereLikeBinding($value, $caseSensitive);
+            $value = $this->grammar->prepareWhereLikeBinding(
+                $value, $caseSensitive
+            );
+        }
+
+        if (!str_contains($value, '%')) {
+            $value = '%'.$value.'%';
         }
 
         $this->addBinding($value);
@@ -1166,7 +1176,7 @@ class Builder
     /**
      * Add an "or where like" clause to the query.
      *
-     * @param  \NinjaTables\Framework\Contracts\Database\Query\Expression|string  $column
+     * @param  \NinjaTables\Framework\Database\Query\Expression|string  $column
      * @param  string  $value
      * @param  bool  $caseSensitive
      * @return $this
@@ -1179,7 +1189,7 @@ class Builder
     /**
      * Add a "where not like" clause to the query.
      *
-     * @param  \NinjaTables\Framework\Contracts\Database\Query\Expression|string  $column
+     * @param  \NinjaTables\Framework\Database\Query\Expression|string  $column
      * @param  string  $value
      * @param  bool  $caseSensitive
      * @param  string  $boolean
@@ -1197,7 +1207,7 @@ class Builder
     /**
      * Add an "or where not like" clause to the query.
      *
-     * @param  \NinjaTables\Framework\Contracts\Database\Query\Expression|string  $column
+     * @param  \NinjaTables\Framework\Database\Query\Expression|string  $column
      * @param  string  $value
      * @param  bool  $caseSensitive
      * @return $this
@@ -1205,6 +1215,50 @@ class Builder
     public function orWhereNotLike($column, $value, $caseSensitive = false)
     {
         return $this->whereNotLike($column, $value, $caseSensitive, 'or');
+    }
+
+    /**
+     * Add a "where like" clause to the query.
+     *
+     * @param  \NinjaTables\Framework\Database\Query\Expression|string  $column
+     * @param  string  $value
+     * @param  bool  $caseSensitive
+     * @param  string  $boolean
+     * @param  bool  $not
+     * @return $this
+     */
+    public function whereStartsLike(
+        $column,
+        $value,
+        $caseSensitive = false,
+        $boolean = 'and',
+        $not = false
+    ) {
+        return $this->whereLike(
+            $column, $value.'%', $caseSensitive, $boolean, $not
+        );
+    }
+
+    /**
+     * Add a "where like" clause to the query.
+     *
+     * @param  \NinjaTables\Framework\Database\Query\Expression|string  $column
+     * @param  string  $value
+     * @param  bool  $caseSensitive
+     * @param  string  $boolean
+     * @param  bool  $not
+     * @return $this
+     */
+    public function whereEndsLike(
+        $column,
+        $value,
+        $caseSensitive = false,
+        $boolean = 'and',
+        $not = false
+    ) {
+        return $this->whereLike(
+            $column, '%'.$value, $caseSensitive, $boolean, $not
+        );
     }
 
     /**
@@ -1231,9 +1285,10 @@ class Builder
             $this->addBinding($bindings, 'where');
         }
 
-        // Next, if the value is ArrayableInterface we need to cast it to its raw array form so we
-        // have the underlying array value instead of an Arrayable object which is not
-        // able to be added as a binding, etc. We will then add to the wheres array.
+        // Next, if the value is ArrayableInterface we need to cast it to its raw 
+        // array form so we have the underlying array value instead of an 
+        // Arrayable object which is not able to be added as a binding,
+        // etc. We will then add to the wheres array.
         if ($values instanceof ArrayableInterface) {
             $values = $values->toArray();
         }
@@ -1303,7 +1358,7 @@ class Builder
     {
         $type = $not ? 'NotInRaw' : 'InRaw';
 
-        if ($values instanceof Arrayable) {
+        if ($values instanceof ArrayableInterface) {
             $values = $values->toArray();
         }
 
@@ -1412,7 +1467,7 @@ class Builder
 
         $type = 'between';
 
-        if ($values instanceof DateTimePeriod) {
+        if ($values instanceof DatePeriod) {
             $values = [$values->getStartDate(), $values->getEndDate()];
         }
 
@@ -2278,7 +2333,7 @@ class Builder
     /**
      * Add a "where" clause to the query for multiple columns with "and" conditions between them.
      *
-     * @param  \NinjaTables\Framework\Contracts\Database\Query\Expression[]|string[]  $columns
+     * @param  \NinjaTables\Framework\Database\Query\Expression[]|string[]  $columns
      * @param  mixed  $operator
      * @param  mixed  $value
      * @param  string  $boolean
@@ -2306,7 +2361,7 @@ class Builder
     /**
      * Add an "or where" clause to the query for multiple columns with "and" conditions between them.
      *
-     * @param  \NinjaTables\Framework\Contracts\Database\Query\Expression[]|string[]  $columns
+     * @param  \NinjaTables\Framework\Database\Query\Expression[]|string[]  $columns
      * @param  mixed  $operator
      * @param  mixed  $value
      * @return $this
@@ -2319,7 +2374,7 @@ class Builder
     /**
      * Add a "where" clause to the query for multiple columns with "or" conditions between them.
      *
-     * @param  \NinjaTables\Framework\Contracts\Database\Query\Expression[]|string[]  $columns
+     * @param  \NinjaTables\Framework\Database\Query\Expression[]|string[]  $columns
      * @param  mixed  $operator
      * @param  mixed  $value
      * @param  string  $boolean
@@ -2347,7 +2402,7 @@ class Builder
     /**
      * Add an "or where" clause to the query for multiple columns with "or" conditions between them.
      *
-     * @param  \NinjaTables\Framework\Contracts\Database\Query\Expression[]|string[]  $columns
+     * @param  \NinjaTables\Framework\Database\Query\Expression[]|string[]  $columns
      * @param  mixed  $operator
      * @param  mixed  $value
      * @return $this
@@ -2360,7 +2415,7 @@ class Builder
     /**
      * Add a "where not" clause to the query for multiple columns where none of the conditions should be true.
      *
-     * @param  \NinjaTables\Framework\Contracts\Database\Query\Expression[]|string[]  $columns
+     * @param  \NinjaTables\Framework\Database\Query\Expression[]|string[]  $columns
      * @param  mixed  $operator
      * @param  mixed  $value
      * @param  string  $boolean
@@ -2374,7 +2429,7 @@ class Builder
     /**
      * Add an "or where not" clause to the query for multiple columns where none of the conditions should be true.
      *
-     * @param  \NinjaTables\Framework\Contracts\Database\Query\Expression[]|string[]  $columns
+     * @param  \NinjaTables\Framework\Database\Query\Expression[]|string[]  $columns
      * @param  mixed  $operator
      * @param  mixed  $value
      * @return $this
@@ -2587,7 +2642,7 @@ class Builder
     {
         $type = 'between';
 
-        if ($values instanceof DateTimePeriod) {
+        if ($values instanceof DatePeriod) {
             $values = [$values->getStartDate(), $values->getEndDate()];
         }
 
@@ -3171,6 +3226,7 @@ class Builder
      * @param  array  $columns
      * @param  string  $pageName
      * @param  int|null  $page
+     * @param  int|null  $total
      * @return \NinjaTables\Framework\Pagination\LengthAwarePaginatorInterface
      */
     public function paginate(
@@ -3186,7 +3242,9 @@ class Builder
 
         $perPage = $perPage instanceof Closure ? $perPage($total) : $perPage;
 
-        $results = $total ? $this->forPage($page, $perPage)->get($columns) : Helper::collect();
+        $results = $total
+            ? $this->forPage($page, $perPage)->get($columns)
+            : Helper::collect();
 
         return $this->paginator($results, $total, $perPage, $page, [
             'path' => Paginator::resolveCurrentPath(),
@@ -3205,7 +3263,12 @@ class Builder
      * @param  int|null  $page
      * @return \NinjaTables\Framework\Pagination\PaginatorInterface
      */
-    public function simplePaginate($perPage = 15, $columns = ['*'], $pageName = 'page', $page = null)
+    public function simplePaginate(
+        $perPage = 15,
+        $columns = ['*'],
+        $pageName = 'page',
+        $page = null
+    )
     {
         $page = $page ?: Paginator::resolveCurrentPage($pageName);
 
@@ -3218,9 +3281,11 @@ class Builder
     }
 
     /**
-     * Get a paginator only supporting simple next and previous links.
+     * Get a cursor paginator for efficient pagination of large datasets.
      *
-     * This is more efficient on larger data-sets, etc.
+     * Cursor pagination uses a unique column value (or multiple columns)
+     * as a pointer, allowing for consistent, efficient
+     * navigation without large OFFSETs.
      *
      * @param  int|null  $perPage
      * @param  array  $columns
@@ -3228,9 +3293,16 @@ class Builder
      * @param  \NinjaTables\Framework\Pagination\Cursor|string|null  $cursor
      * @return \NinjaTables\Framework\Pagination\CursorPaginatorInterface
      */
-    public function cursorPaginate($perPage = 15, $columns = ['*'], $cursorName = 'cursor', $cursor = null)
+    public function cursorPaginate(
+        $perPage = 15,
+        $columns = ['*'],
+        $cursorName = 'cursor',
+        $cursor = null
+    )
     {
-        return $this->paginateUsingCursor($perPage, $columns, $cursorName, $cursor);
+        return $this->paginateUsingCursor(
+            $perPage, $columns, $cursorName, $cursor
+        );
     }
 
     /**
@@ -3256,8 +3328,8 @@ class Builder
         };
 
         if ($shouldReverse) {
-            $this->orders = collect($this->orders)->map($reverseDirection)->toArray();
-            $this->unionOrders = collect($this->unionOrders)->map($reverseDirection)->toArray();
+            $this->orders = Helper::collect($this->orders)->map($reverseDirection)->toArray();
+            $this->unionOrders = Helper::collect($this->unionOrders)->map($reverseDirection)->toArray();
         }
 
         $orders = ! empty($this->unionOrders) ? $this->unionOrders : $this->orders;
@@ -3360,7 +3432,31 @@ class Builder
                 $this->toSql(), $this->getBindings(), ! $this->useWritePdo
             );
         }))->map(function ($item) {
-            return $this->applyAfterQueryCallbacks(Helper::collect([$item]))->first();
+            return $this->applyAfterQueryCallbacks(
+                Helper::collect([$item])
+            )->first();
+        })->reject(fn ($item) => is_null($item));
+    }
+
+    /**
+     * Get a lazy collection for the given query.
+     *
+     * @return \NinjaTables\Framework\Support\LazyCollection
+     */
+    public function rawCursor()
+    {
+        if (is_null($this->columns)) {
+            $this->columns = ['*'];
+        }
+
+        return (new LazyCollection(function () {
+            yield from $this->connection->rawCursor(
+                $this->toSql(), $this->getBindings(), ! $this->useWritePdo
+            );
+        }))->map(function ($item) {
+            return $this->applyAfterQueryCallbacks(
+                Helper::collect([$item])
+            )->first();
         })->reject(fn ($item) => is_null($item));
     }
 
@@ -3374,7 +3470,9 @@ class Builder
     protected function enforceOrderBy()
     {
         if (empty($this->orders) && empty($this->unionOrders)) {
-            throw new RuntimeException('You must specify an orderBy clause when using this function.');
+            throw new RuntimeException(
+                'You must specify an orderBy clause when using this function.'
+            );
         }
     }
 
@@ -3429,7 +3527,7 @@ class Builder
             return $column;
         }
 
-        $columnString = $column instanceof ExpressionContract
+        $columnString = $column instanceof Expression
             ? $this->grammar->getValue($column)
             : $column;
 
@@ -4290,7 +4388,7 @@ class Builder
     /**
      * Get the database query processor instance.
      *
-     * @return \NinjaTables\Framework\Database\Query\Processor
+     * @return \NinjaTables\Framework\Database\Query\Processors\Processor
      */
     public function getProcessor()
     {
@@ -4300,7 +4398,7 @@ class Builder
     /**
      * Get the query grammar instance.
      *
-     * @return \NinjaTables\Framework\Database\Query\Grammar
+     * @return \NinjaTables\Framework\Database\Query\Grammars\Grammar
      */
     public function getGrammar()
     {

@@ -4,11 +4,12 @@ namespace NinjaTables\Framework\Foundation;
 
 use InvalidArgumentException;
 use NinjaTables\Framework\Support\Arr;
+use NinjaTables\Framework\Support\Env;
 use NinjaTables\Framework\Http\Client;
 use NinjaTables\Framework\Foundation\Config;
 use NinjaTables\Framework\Container\Container;
 use NinjaTables\Framework\Foundation\ComponentBinder;
-use NinjaTables\Framework\Foundation\FoundationTrait;
+use NinjaTables\Framework\Foundation\Concerns\FoundationTrait;
 
 class Application extends Container
 {
@@ -71,6 +72,13 @@ class Application extends Container
     protected $onReady = [];
 
     /**
+     * Flag to check if components are bound.
+     * 
+     * @var boolean
+     */
+    protected $componentsBound = false;
+
+    /**
      * Construct the application instance
      * 
      * @param string $file The main plugin file's absolute path
@@ -79,6 +87,7 @@ class Application extends Container
     public function __construct($file = null)
     {
         $this->init($file);
+        $this->loadEnvironmentVars();
         $this->setAppLevelNamespace();
         $this->bootstrapApplication();
         $this->callPluginReadyCallbacks();
@@ -96,6 +105,19 @@ class Application extends Container
         $this['__pluginfile__'] = $this->file = $file;
         $this->basePath = plugin_dir_path($this->file);
         $this->baseUrl = plugin_dir_url($this->file);
+    }
+
+    /**
+     * Load the environment bariables from .env file.
+     * 
+     * @param  string $path
+     * @return void
+     */
+    protected function loadEnvironmentVars($path = null)
+    {
+        $path = $path ?: $this->basePath . '.env';
+
+        is_readable($path) && Env::load($path);
     }
 
     /**
@@ -151,7 +173,6 @@ class Application extends Container
         $this->loadConfigIfExists();
         $this->registerTextdomain();
         $this->bindCoreComponents();
-        $this->registerAsyncActions();
         $this->requireCommonFiles($this);
         $this->addRestApiInitAction($this);
     }
@@ -229,6 +250,7 @@ class Application extends Container
 
     /**
      * Resolve the given type from the container.
+     * This method is required for unit testing.
      *
      * @param  string  $abstract
      * @param  array   $parameters
@@ -282,7 +304,10 @@ class Application extends Container
      */
     protected function bindCoreComponents()
     {
-        (new ComponentBinder($this))->bindComponents();
+        if (!$this->componentsBound) {
+            $this->componentsBound = true;
+            (new ComponentBinder($this))->bindComponents();
+        }
     }
 
     /**
@@ -473,24 +498,14 @@ class Application extends Container
     }
 
     /**
-     * Register plugin booted callbacks.
+     * Register plugin ready (booted) callbacks.
      * 
      * @param  callable $callback
      * @return void
      */
-    protected function ready(callable $callback)
+    public function ready(callable $callback)
     {
         $this->onReady[] = $callback;
-    }
-
-    /**
-     * Register Async Actions.
-     * 
-     * @return void
-     */
-    protected function registerAsyncActions()
-    {
-        Client::registerAsyncRequestHandler();
     }
 
     /**

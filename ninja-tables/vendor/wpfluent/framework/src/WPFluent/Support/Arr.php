@@ -567,29 +567,36 @@ class Arr
     /**
      * Determines if an array is associative.
      *
-     * An array is "associative" if it doesn't have sequential numerical keys beginning with zero.
+     * An array is "associative" if it doesn't have
+     * sequential numerical keys beginning with zero.
      *
      * @param  array  $array
      * @return bool
      */
     public static function isAssoc(array $array)
     {
-        $keys = array_keys($array);
-
-        return array_keys($keys) !== $keys;
+        return !static::isList($array);
     }
 
     /**
      * Determines if an array is a list.
      *
-     * An array is a "list" if all array keys are sequential integers starting from 0 with no gaps in between.
+     * An array is a "list" if all array keys are sequential
+     * integers starting from 0 with no gaps in between.
      *
      * @param  array  $array
      * @return bool
      */
     public static function isList($array)
     {
-        return ! self::isAssoc($array);
+        $i = -1;
+        foreach ($array as $k => $v) {
+            ++$i;
+            if ($k !== $i) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -624,6 +631,37 @@ class Arr
     public static function only($array, $keys)
     {
         return array_intersect_key($array, array_flip((array) $keys));
+    }
+
+    /**
+     * Select an array of values from an array.
+     *
+     * @param  array  $array
+     * @param  array|string  $keys
+     * @return array
+     */
+    public static function select($array, $keys)
+    {
+        $keys = static::wrap($keys);
+
+        return array_map(function ($item) use ($keys) {
+            $result = [];
+            
+            $item = (array) $item;
+            
+            foreach ($keys as $key) {
+                
+                if (static::accessible($item) && static::has($item, $key)) {
+                    
+                    [$first] = explode('.', $key);
+
+                    $result[$first] = static::get($item, $first);
+                }
+            }
+
+            return $result;
+
+        }, (array) $array);
     }
 
     /**
@@ -821,12 +859,14 @@ class Arr
      */
     public static function shuffle($array, $seed = null)
     {
-        if (is_null($seed)) {
-            shuffle($array);
-        } else {
+        if (!is_null($seed)) {
             mt_srand($seed);
-            shuffle($array);
+            usort($array, function () {
+                return mt_rand(-1, 1);
+            });
             mt_srand();
+        } else {
+            shuffle($array);
         }
 
         return $array;
@@ -988,7 +1028,11 @@ class Arr
      * @param  bool  $desc
      * @return array
      */
-    public static function sortRecursive($array, $options = SORT_REGULAR, $desc = false)
+    public static function sortRecursive(
+        $array,
+        $options = SORT_REGULAR,
+        $desc = false
+    )
     {
         foreach ($array as &$value) {
             if (is_array($value)) {
@@ -1007,6 +1051,23 @@ class Arr
         }
 
         return $array;
+    }
+
+    /**
+     * Recursively sort an array by keys and values in Descending order.
+     *
+     * @param  array  $array
+     * @param  int  $options
+     * @param  bool  $desc
+     * @return array
+     */
+    public static function sortRecursiveDesc(
+        $array,
+        $options = SORT_REGULAR,
+        $desc = false
+    )
+    {
+        return static::sortRecursive($array, $options, true);
     }
 
     /**
@@ -1039,7 +1100,7 @@ class Arr
      */
     public static function toObject($array)
     {
-        return StdObject::create($array);
+        return Helper::objectCreate($array);
     }
 
     /**
@@ -1675,5 +1736,55 @@ class Arr
     public static function findKey($array, callable $callback)
     {
         return static::find($array, $callback, true);
+    }
+
+    /**
+     * Find similar words in an array.
+     * 
+     * @param  string  $needle
+     * @param  array   $haystack
+     * @param  integer $accuracy
+     * @return string|null         
+     */
+    public static function findSimilar($needle, array $haystack, $accuracy = 60)
+    {
+        $matches = [];
+
+        foreach ($haystack as $item) {
+            if (Str::isSimilar($needle, $item, $accuracy)) {
+                $matches[] = $item;
+            }
+        }
+
+        return $matches ? $matches[0] : null;
+    }
+
+    /**
+     * Pass the items through a series of callbacks.
+     * 
+     * @param  array   $items
+     * @param  array   $callbacks
+     * @param  integer $mode
+     * @return array
+     */
+    public static function passThrough(array $items, array $callbacks, $mode = 0)
+    {
+        foreach ($items as $key => &$item) {
+            reset($callbacks);
+            foreach ($callbacks as $callback) {
+                switch ($mode) {
+                    case 1:
+                        $items[$key] = $callback($key);
+                        break;
+                    case 2:
+                        $items[$key] = $callback($key, $item);
+                        break;
+                    default:
+                        $items[$key] = $callback($item);
+                }
+            }
+        }
+
+        return $items;
     }
 }

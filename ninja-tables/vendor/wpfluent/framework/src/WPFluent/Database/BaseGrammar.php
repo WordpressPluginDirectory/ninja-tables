@@ -2,7 +2,9 @@
 
 namespace NinjaTables\Framework\Database;
 
+use RuntimeException;
 use NinjaTables\Framework\Support\Helper;
+use NinjaTables\Framework\Database\Schema;
 use NinjaTables\Framework\Support\MacroableTrait;
 use NinjaTables\Framework\Database\Query\Expression;
 
@@ -11,11 +13,25 @@ abstract class BaseGrammar
     use MacroableTrait;
 
     /**
+     * Cache of aliased table names.
+     * 
+     * @var array
+     */
+    protected $alias = [];
+
+    /**
      * The connection used for escaping values.
      *
-     * @var \NinjaTables\Framework\Database\Connection
+     * @var \NinjaTables\Framework\Database\ConnectionInterface
      */
     protected $connection;
+
+    /**
+     * The base prefix frpm $wpdb.
+     *
+     * @var string
+     */
+    protected $basePrefix = '';
 
     /**
      * The grammar table prefix.
@@ -23,6 +39,17 @@ abstract class BaseGrammar
      * @var string
      */
     protected $tablePrefix = '';
+
+    /**
+     * Check if the given table is a built-in table.
+     * 
+     * @param  string  $table
+     * @return boolean
+     */
+    public function isAliasedTable($table)
+    {
+        return in_array("`$table`", $this->alias);
+    }
 
     /**
      * Wrap an array of values.
@@ -33,6 +60,35 @@ abstract class BaseGrammar
     public function wrapArray(array $values)
     {
         return array_map([$this, 'wrap'], $values);
+    }
+
+    /**
+     * Wrap a value in keyword identifiers.
+     *
+     * @param  \NinjaTables\Framework\Database\Query\Expression|string  $value
+     * @return string
+     */
+    public function wrap($value)
+    {
+        if ($this->isExpression($value)) {
+            return $this->getValue($value);
+        }
+
+        // If the value being wrapped has a column alias we will need to separate // out the pieces so we can wrap each of the segments of the
+        // expression on its own, and then join these both
+        // back together using the "as" connector.
+        if (stripos($value, ' as ') !== false) {
+            return $this->wrapAliasedValue($value);
+        }
+
+        // If the given value is a JSON selector we will wrap it differently than a
+        // traditional value. We will need to split this path and wrap each part
+        // wrapped, etc. Otherwise, we will simply wrap the value as a string.
+        if ($this->isJsonSelector($value)) {
+            return $this->wrapJsonSelector($value);
+        }
+
+        return $this->wrapSegments(explode('.', $value));
     }
 
     /**
@@ -54,47 +110,56 @@ abstract class BaseGrammar
             return $this->wrapAliasedTable($table);
         }
 
+        $tablePrefix = $this->resolveTablePrefix($table);
+
         // If the table being wrapped has a custom schema name specified, we need to
         // prefix the last segment as the table name then wrap each segment alone
         // and eventually join them both back together using the dot connector.
         if (str_contains($table, '.')) {
-            $table = substr_replace($table, '.'.$this->tablePrefix, strrpos($table, '.'), 1);
+            $table = substr_replace(
+                $table, '.' . $tablePrefix, strrpos($table, '.'), 1
+            );
 
             return Helper::collect(explode('.', $table))
-                ->map(fn($value) => $this->wrapValue($value))
+                ->map(function($value) {
+                    return $this->wrapValue($value);
+                })
                 ->implode('.');
         }
 
-        return $this->wrapValue($this->tablePrefix.$table);
+        if ($this->isAliasedTable($table)) {
+            return $table;
+        }
+
+        return $this->wrapValue($tablePrefix.$table);
     }
 
     /**
-     * Wrap a value in keyword identifiers.
-     *
-     * @param  \NinjaTables\Framework\Database\Query\Expression|string  $value
+     * Resolve the table prefix based on the table name.
+     * 
+     * @param  string $table
      * @return string
      */
-    public function wrap($value)
+    protected function resolveTablePrefix($table)
     {
-        if ($this->isExpression($value)) {
-            return $this->getValue($value);
+        if (!is_multisite()) {
+            return $this->tablePrefix;
         }
 
-        // If the value being wrapped has a column alias we will need to separate out
-        // the pieces so we can wrap each of the segments of the expression on its
-        // own, and then join these both back together using the "as" connector.
-        if (stripos($value, ' as ') !== false) {
-            return $this->wrapAliasedValue($value);
-        }
+        $sharedTables = [
+            'users',
+            'usermeta',
+            'site',
+            'sitemeta',
+            'blogs',
+            'blog_versions',
+            'registration_log',
+            'signups',
+        ];
 
-        // If the given value is a JSON selector we will wrap it differently than a
-        // traditional value. We will need to split this path and wrap each part
-        // wrapped, etc. Otherwise, we will simply wrap the value as a string.
-        if ($this->isJsonSelector($value)) {
-            return $this->wrapJsonSelector($value);
-        }
-
-        return $this->wrapSegments(explode('.', $value));
+        return in_array(
+            $table, $sharedTables
+        ) ? $this->basePrefix : $this->tablePrefix;
     }
 
     /**
@@ -107,7 +172,9 @@ abstract class BaseGrammar
     {
         $segments = preg_split('/\s+as\s+/i', $value);
 
-        return $this->wrap($segments[0]).' as '.$this->wrapValue($segments[1]);
+        return $this->wrap(
+            $segments[0]
+        ) . ' as ' . $this->wrapValue($segments[1]);
     }
 
     /**
@@ -120,7 +187,11 @@ abstract class BaseGrammar
     {
         $segments = preg_split('/\s+as\s+/i', $value);
 
-        return $this->wrapTable($segments[0]).' as '.$this->wrapValue($this->tablePrefix.$segments[1]);
+        $tablePrefix = $this->resolveTablePrefix($segments[0]);
+
+        $this->alias[] = $alias = $this->wrapValue($segments[1]);
+
+        return $this->wrapTable($segments[0]) . ' as ' . $alias;
     }
 
     /**
@@ -131,7 +202,9 @@ abstract class BaseGrammar
      */
     protected function wrapSegments($segments)
     {
-        return Helper::collect($segments)->map(function ($segment, $key) use ($segments) {
+        return Helper::collect($segments)->map(function (
+            $segment, $key
+        ) use ($segments) {
             return $key == 0 && count($segments) > 1
                             ? $this->wrapTable($segment)
                             : $this->wrapValue($segment);
@@ -163,7 +236,9 @@ abstract class BaseGrammar
      */
     protected function wrapJsonSelector($value)
     {
-        throw new RuntimeException('This database engine does not support JSON operations.');
+        throw new RuntimeException(
+            'This database engine does not support JSON operations.'
+        );
     }
 
     /**
@@ -235,7 +310,9 @@ abstract class BaseGrammar
     public function escape($value, $binary = false)
     {
         if (is_null($this->connection)) {
-            throw new RuntimeException("The database driver's grammar implementation does not support escaping values.");
+            throw new RuntimeException(
+                "The database driver's grammar implementation does not support escaping values."
+            );
         }
 
         return $this->connection->escape($value, $binary);
@@ -293,9 +370,11 @@ abstract class BaseGrammar
      * @param  string  $prefix
      * @return $this
      */
-    public function setTablePrefix($prefix)
+    public function setTablePrefix($wpdb)
     {
-        $this->tablePrefix = $prefix;
+        $this->basePrefix = $wpdb->base_prefix;
+
+        $this->tablePrefix = $wpdb->prefix;
 
         return $this;
     }
@@ -303,7 +382,7 @@ abstract class BaseGrammar
     /**
      * Set the grammar's database connection.
      *
-     * @param  \NinjaTables\Framework\Database\Connection  $connection
+     * @param  \NinjaTables\Framework\Database\ConnectionInterface  $connection
      * @return $this
      */
     public function setConnection($connection)
