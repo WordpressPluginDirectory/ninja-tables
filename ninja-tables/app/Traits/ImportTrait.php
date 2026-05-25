@@ -2,6 +2,7 @@
 
 namespace NinjaTables\App\Traits;
 
+use NinjaTables\App\Helper\Helper;
 use NinjaTables\App\Library\Csv\Reader;
 use NinjaTables\App\Modules\DragAndDrop\InitConfig;
 use NinjaTables\Framework\Support\Arr;
@@ -49,6 +50,10 @@ trait ImportTrait
 
     public static function importFromURL($url)
     {
+        if (!Helper::isValidUrl($url)) {
+            return false;
+        }
+
         $file_info     = new \finfo (FILEINFO_MIME_TYPE);
         $remoteContent = ninjaTablesGetRemoteContent($url);
         $fileType      = $file_info->buffer($remoteContent);
@@ -92,7 +97,14 @@ trait ImportTrait
 
     private static function importCSV()
     {
-        $tmpName = Sanitizer::sanitizeTextField(Arr::get($_FILES, 'file.tmp_name')); // phpcs:ignore WordPress.Security.NonceVerification.Missing
+        $tmpName = Arr::get($_FILES, 'file.tmp_name'); // phpcs:ignore WordPress.Security.NonceVerification.Missing
+
+        if (!$tmpName || !is_uploaded_file($tmpName)) {
+            wp_send_json_error(array(
+                'errors'  => array(),
+                'message' => __('Invalid file upload.', 'ninja-tables')
+            ), 423);
+        }
 
         try {
             $reader = Reader::createFromPath($tmpName, 'r');
@@ -108,19 +120,15 @@ trait ImportTrait
 
     private static function importJSON()
     {
-        if (isset($content['table_id']) && isset($content['table_name'])) {
-            return [
-                'table_name'       => $content['table_name'],
-                'table_settings'   => $content['table_settings'],
-                'table_responsive' => $content['table_responsive'],
-                'table_data'       => $content['table_data'],
-                'table_html'       => $content['table_html']
-            ];
-        } else {
-            $tmpName = Sanitizer::sanitizeTextField(Arr::get($_FILES, 'file.tmp_name')); // phpcs:ignore WordPress.Security.NonceVerification.Missing
-            $content = json_decode(file_get_contents($tmpName), true);
+        $tmpName = Arr::get($_FILES, 'file.tmp_name'); // phpcs:ignore WordPress.Security.NonceVerification.Missing
 
-            return $content;
+        if (!$tmpName || !is_uploaded_file($tmpName)) {
+            wp_send_json_error(array(
+                'errors'  => array(),
+                'message' => __('Invalid file upload.', 'ninja-tables')
+            ), 423);
         }
+
+        return json_decode(file_get_contents($tmpName), true);
     }
 }

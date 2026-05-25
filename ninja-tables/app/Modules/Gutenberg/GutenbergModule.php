@@ -2,6 +2,10 @@
 
 namespace NinjaTables\App\Modules\Gutenberg;
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 use NinjaTables\App\App;
 use NinjaTables\App\Models\Post;
 use NinjaTables\Framework\Support\Arr;
@@ -37,10 +41,17 @@ class GutenbergModule
                 'preview_required_scripts' => array(
                     $assets . "css/ninjatables-public.css",
                     $assets . "css/ninja-table-builder-public.css",
-                    includes_url( '/js/dist/vendor/moment.min.js' ),
+                    includes_url('/js/dist/vendor/moment.min.js'),
                     $assets . "libs/footable/js/footable.min.js",
                     $assets . "js/ninja-tables-footable.js",
-//                    $assets . "js/ninja-table-builder-public.js",
+                ),
+                'dt_preview_required_scripts' => array(
+                    $assets . "libs/datatables/datatables.min.css",
+                    $assets . "libs/datatables/responsive.dataTables.min.css",
+                    $assets . "css/ninjatables-datatables.css",
+                    $assets . "libs/datatables/datatables.min.js",
+                    $assets . "libs/datatables/dataTables.responsive.min.js",
+                    $assets . "js/ninja-tables-datatables.js",
                 ),
             ],
         );
@@ -122,12 +133,48 @@ class GutenbergModule
 
         $tableId         = intval(Arr::get($data, 'tableId', 0));
         $rawColumns      = '';
-        $tablePreference = '';
+        $tablePreference = [];
+
+        if (!$tableId) {
+            return;
+        }
+
+        if (get_post_type($tableId) !== 'ninja-table') {
+            return;
+        }
+
+        if (!current_user_can(ninja_table_admin_role())) {
+            return;
+        }
 
         if ($tableSettings) {
             $tablePreference = ninja_tables_sanitize_array($tableSettings);
         }
 
-        Post::updatedSettings($tableId, $rawColumns, $tablePreference);
+        $existingTableSettings = ninja_table_get_table_settings($tableId, 'admin');
+        if (!is_array($existingTableSettings)) {
+            $existingTableSettings = [];
+        }
+
+        // Keep previously saved table settings for keys not present in Gutenberg block settings.
+        $mergedSettings = wp_parse_args($tablePreference, $existingTableSettings);
+        $mergedSettings = wp_parse_args($mergedSettings, ninjaTablesGetDefaultSettings());
+
+        if (!empty($mergedSettings['sorting_column_by'])) {
+            $direction = strtoupper($mergedSettings['sorting_column_by']);
+            if (!in_array($direction, ['ASC', 'DESC'], true)) {
+                $mergedSettings['sorting_column_by'] = 'DESC';
+            }
+        }
+
+        if (!empty($mergedSettings['sorting_column'])) {
+            $mergedSettings['sorting_column'] = sanitize_key($mergedSettings['sorting_column']);
+        }
+
+        if ($mergedSettings === $existingTableSettings) {
+            return;
+        }
+
+        Post::updatedSettings($tableId, $rawColumns, $mergedSettings);
     }
 }

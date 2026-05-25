@@ -3,8 +3,8 @@ Contributors: wpmanageninja, techjewel, adreastrian, heera
 Tags: Table, table builder, datatable, tables, spreadsheet
 Requires at least: 6.0
 Requires PHP: 7.4
-Tested up to: 6.8
-Stable tag: 5.2.3
+Tested up to: 7.0
+Stable tag: 5.2.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -328,7 +328,7 @@ To know more, browse our [documentation](https://ninjatables.com/docs/). For blo
 
 == Contribute and translate ==
 
-Ninja Tables is developed and maintained by [WPManageNinja](https://wpmanageninja.com/), the creators of [Ninja Tables](https://ninjatables.com/), FluentCart, Fluent Forms, FluentCRM, Wp Social Ninja and More. We welcome community contributions — visit our [GitHub Repository](https://github.com/WPManageNinja/ninja-tables) to get involved.
+Ninja Tables is developed and maintained by [WPManageNinja](https://wpmanageninja.com/), the creators of [Ninja Tables](https://ninjatables.com/), FluentCart, Fluent Forms, FluentCRM, Wp Social Ninja and More. We welcome community contributions — visit our [GitHub Repository](https://github.com/WPManageNinja/ninja-tables-develop) to get involved.
 
 Help translate Ninja Tables and make it accessible worldwide at [translate.wordpress.org](https://translate.wordpress.org/projects/wp-plugins/ninja-tables/).
 
@@ -414,6 +414,45 @@ Ninja Tables [customer support](https://wpmanageninja.com/support-tickets/#/) te
 
 == Changelog ==
 We released several updates for Ninja Tables in the years of development. These include improvements to the existing features and some wonderful additions to help you design tables more effectively.
+
+= 5.2.9 (Date: May 25, 2026) =
+  * Fixed: Row query scoping by table_id in manual sort operations
+  * Fixed: Gutenberg block save now validates post type and user role
+  * Fixed: Content filtering for frontend table submissions
+  * Improved: Post-type validation on settings, FluentCart, and column-delete endpoints
+  * Improved: Access control for table row and post-meta operations
+  * Improved: HTML sanitization for frontend table submissions
+  * Improved: Server-side validation for editable column fields
+  * Improved: Authentication checks for license management endpoints
+  * Improved: License management restricted to network admin on multisite
+  * Improved: Directory listing protection across all plugin directories
+  * Improved: Input validation on license key submissions
+
+= 5.2.8 (Date: April 16, 2026) =
+ * Added: DataTables support for table rendering.
+ * Improved: Accessibility for custom filters.
+
+= 5.2.7 (Date: February 04, 2026) =
+* Security: Improved permissions for FluentCart table creation
+
+= 5.2.6 (Date: January 27, 2026) =
+ * Added: Bulk delete for tables
+ * Added: Trash and restore tables
+ * Added: Single-row modal view
+ * Added: Click to copy cell Content
+ * Fixed: Print issues with conditional formatting
+ * Fixed: Print issues with responsive breakpoints
+ * Fixed: FluentForm payment form warnings
+ * Fixed: FluentCart permalink issues
+ * Fixed: Drag & drop color picker issue
+ * Security: Limited ninja_table_info & ninja_table_cell access to public posts.
+
+= 5.2.5 (Date: December 17, 2025) =
+ • Security: Improved OrderBy sanitization to prevent SQL injection.
+
+= 5.2.4 (Date: November 27, 2025) =
+ • Security: Improved REST API sanitization to prevent SQL injection.
+ • Improve: Stock visibility in FluentCart table
 
 = 5.2.3 (Date: November 11, 2025) =
  • Added: Fluent Cart Product Table integration

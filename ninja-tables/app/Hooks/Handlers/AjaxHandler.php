@@ -23,18 +23,11 @@ class AjaxHandler
 
     public function getAllData()
     {
-        if (!isset($_SERVER['HTTP_REFERER'])) {
-            $isAllowed = apply_filters('ninja_tables_allow_public_ajax', true);
-            if (!$isAllowed) {
-                wp_send_json([
-                    'message' => 'You are not allowed to access this page directly.',
-                ], 400);
-            }
-        }
+        $request = ninjaTablesRequest();
 
-        $tableId = intval(Arr::get($_REQUEST, 'table_id')); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        $tableId = intval(Arr::get($request, 'table_id'));
         do_action('ninja_table_doing_ajax_table_data', $tableId);
-        $defaultSorting = sanitize_text_field(Arr::get($_REQUEST, 'default_sorting')); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        $defaultSorting = sanitize_text_field(Arr::get($request, 'default_sorting'));
         $tableSettings  = ninja_table_get_table_settings($tableId, 'public');
         $is_ajax_table  = true;
 
@@ -48,19 +41,27 @@ class AjaxHandler
             wp_send_json_success([], 200);
         }
 
-        $skip  = intval(Arr::get($_REQUEST, 'skip_rows', 0)); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-        $limit = intval(Arr::get($_REQUEST, 'limit_rows', 0)); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        $maxRows = intval(apply_filters('ninja_tables_public_max_rows', 3000));
 
-        if (!$limit && !$skip && isset($_REQUEST['chunk_number'])) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-            $chunkNumber = intval(Arr::get($_REQUEST, 'chunk_number', 0)); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        $skip  = intval(Arr::get($request, 'skip_rows', 0));
+        $limit = intval(Arr::get($request, 'limit_rows', 0));
+
+        if ($skip < 0) {
+            $skip = 0;
+        }
+
+        if (!$limit && !$skip && Arr::get($request, 'chunk_number') !== null) {
+            $chunkNumber = intval(Arr::get($request, 'chunk_number', 0));
             $perChunk    = ninjaTablePerChunk($tableId);
             $skip        = $chunkNumber * $perChunk;
             $limit       = $perChunk;
+        } elseif ($limit <= 0 || $limit > $maxRows) {
+            $limit = $maxRows;
         }
 
         $ownOnly = false;
 
-        if (isset($_REQUEST['own_only']) && sanitize_text_field(wp_unslash($_REQUEST['own_only'])) == 'yes') { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        if (sanitize_text_field(Arr::get($request, 'own_only', '')) == 'yes') {
             $ownOnly = true;
         }
 

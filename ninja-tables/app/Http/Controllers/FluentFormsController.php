@@ -49,6 +49,12 @@ class FluentFormsController extends Controller
         $tableId  = intval(Arr::get($request->all(), 'table_Id'));
         $formId   = intval(Arr::get($request->form, 'id'));
 
+        if ($tableId && get_post_type($tableId) !== 'ninja-table') {
+            return $this->sendError([
+                'data' => ['message' => __('Invalid table.', 'ninja-tables')]
+            ], 423);
+        }
+
         if ( ! $tableId) {
             // Validate Title
             if (empty(Arr::get($request->all(), 'post_title'))) {

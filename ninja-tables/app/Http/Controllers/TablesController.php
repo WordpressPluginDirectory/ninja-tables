@@ -14,6 +14,16 @@ class TablesController extends Controller
 {
     private $cptName = 'ninja-table';
 
+    private function assertNinjaTable($id)
+    {
+        if (get_post_type($id) !== $this->cptName) {
+            return $this->sendError([
+                'message' => __('Invalid table.', 'ninja-tables'),
+            ], 423);
+        }
+        return null;
+    }
+
     public function index(Request $request)
     {
         $perPage = intval(Arr::get($request->all(), 'per_page')) ?: 10;
@@ -22,13 +32,15 @@ class TablesController extends Controller
 
         $skip = $perPage * ($currentPage - 1);
 
+        $postStatus = Sanitizer::sanitizeTextField(Arr::get($request->all(), 'post_status'));
+
         $args = array(
             'posts_per_page' => $perPage,
             'offset'         => $skip,
             'orderby'        => Sanitizer::sanitizeTextField(Arr::get($request->all(), 'orderBy')),
             'order'          => Sanitizer::sanitizeTextField(Arr::get($request->all(), 'order')),
             'post_type'      => $this->cptName,
-            'post_status'    => 'any',
+            'post_status'    => $postStatus,
         );
 
         if (Arr::get($request->all(), 'search') && $request->search) {
@@ -43,20 +55,26 @@ class TablesController extends Controller
             $this->json($tablesRes, 200);
         } catch (\Exception $e) {
             $this->json(array(
-                'message' => $e->getMessage()
+                'message' => __('An error occurred while loading tables.', 'ninja-tables')
             ), 300);
         }
     }
 
     public function store(Request $request)
     {
-        if ( ! Sanitizer::sanitizeTextField(Arr::get($request->all(), 'post_title'))) {
-            $this->sendError(array(
-                'message' => __('The name field is required.', 'ninja-tables')
-            ), 423);
+        if (empty($request->get('post_title'))) {
+            wp_send_json([
+                'message' => __('Title is required', 'ninja-tables')
+            ], 422);
         }
 
         $postId = intval(Arr::get($request->all(), 'tableId'));
+
+        if ($postId && get_post_type($postId) !== $this->cptName) {
+            return $this->sendError([
+                'message' => __('Invalid table.', 'ninja-tables')
+            ], 423);
+        }
 
         $caption = Arr::get($request->all(), 'table_caption');
         update_post_meta($postId, '_ninja_table_caption', Sanitizer::sanitizeTextField($caption));
@@ -68,9 +86,19 @@ class TablesController extends Controller
             'post_status'  => 'publish'
         );
 
+        $tableId = Post::saveTable($attributes, $postId);
+
+        if (!$postId) {
+            do_action('ninja_tables/update_table_settings', $tableId, [
+                'request_data' => $request->all()
+            ]);
+            do_action('ninja_tables/after_table_created', $tableId, [
+                'request_data' => $request->all()
+            ]);
+        }
 
         $this->json(array(
-            'table_id' => Post::saveTable($attributes, $postId),
+            'table_id' => $tableId,
             'message'  => $postId ? __('Table updated successfully', 'ninja-tables') : __('Table saved successfully.', 'ninja-tables')
         ), 200);
     }
@@ -81,19 +109,23 @@ class TablesController extends Controller
 
         $tableExist = get_post($tableId);
 
-        if (get_post_type($tableId) != 'ninja-table') {
-            $this->json(array(
+        if (!$tableExist || get_post_type($tableId) !== 'ninja-table') {
+             return $this->sendError([
                 'message' => __('Invalid Table to Delete', 'ninja-tables')
-            ), 300);
-        }
-
-        if ( ! $tableExist) {
-            $this->sendError(array(
-                'message' => __('Table not found.', 'ninja-tables')
-            ), 404);
+            ], 423);
         }
 
         try {
+            $action = Arr::get($request->all(), 'action', 'delete');
+
+            if ($action === 'trash') {
+                wp_trash_post($tableId);
+
+                $this->json([
+                    'message' => __('Table trashed successfully.', 'ninja-tables')
+                ], 200);
+            }
+
             Post::destroyTable($tableId);
 
             $this->json(array(
@@ -101,7 +133,7 @@ class TablesController extends Controller
             ), 200);
         } catch (\Exception $e) {
             $this->json(array(
-                'message' => $e->getMessage()
+                'message' => __('An error occurred while deleting the table.', 'ninja-tables')
             ), 300);
         }
     }
@@ -139,7 +171,7 @@ class TablesController extends Controller
             ), 200);
         } catch (\Exception $e) {
             $this->json(array(
-                'message' => $e->getMessage()
+                'message' => __('An error occurred while duplicating the table.', 'ninja-tables')
             ), 300);
         }
     }
@@ -185,8 +217,93 @@ class TablesController extends Controller
         ];
     }
 
+    public function bulkDeleteTables(Request $request)
+    {
+        $tableIds = (array) Arr::get($request->all(), 'ids', []);
+        $action   = Arr::get($request->all(), 'action');
+
+        if (empty($tableIds)) {
+            $this->sendError([
+                'message' => __('No table selected.', 'ninja-tables')
+            ], 422);
+        }
+
+        $validTableIds = array_filter($tableIds, function ($tableId) {
+            return get_post_type($tableId) === 'ninja-table';
+        });
+
+        if (!$validTableIds) {
+            return $this->sendError([
+                'message' => __('No valid tables found.', 'ninja-tables')
+            ], 422);
+        }
+
+        if ($action === 'trash') {
+            foreach ($validTableIds as $tableId) {
+                wp_trash_post($tableId);
+            }
+
+            return $this->sendSuccess([
+                'data' => [
+                    'message' => __('Tables trashed successfully.', 'ninja-tables')
+                ]
+            ], 200);
+        } elseif ($action === 'delete') {
+            foreach ($validTableIds as $tableId) {
+                wp_delete_post($tableId, true);
+            }
+
+            NinjaTableItem::whereIn('table_id', $validTableIds)->delete();
+
+            return $this->sendSuccess([
+                'data' => [
+                    'message' => __('Tables deleted successfully.', 'ninja-tables')
+                ]
+            ], 200);
+        }
+    }
+
+    public function bulkRestoreTables(Request $request)
+    {
+        $tableIds = (array) Arr::get($request->all(), 'ids', []);
+
+        if (empty($tableIds)) {
+            return $this->sendError([
+                'message' => __('No table selected.', 'ninja-tables')
+            ], 422);
+        }
+
+        $validTableIds = array_filter($tableIds, function ($tableId) {
+            $post = get_post($tableId);
+            return $post && get_post_type($tableId) === 'ninja-table' && $post->post_status === 'trash';
+        });
+
+        if (!$validTableIds) {
+            return $this->sendError([
+                'message' => __('No valid trashed tables found.', 'ninja-tables')
+            ], 422);
+        }
+
+        foreach ($validTableIds as $tableId) {
+            wp_update_post(array(
+                'ID'          => $tableId,
+                'post_status' => 'publish'
+            ));
+        }
+
+        return $this->sendSuccess([
+            'data' => [
+                'message' => __('Tables restored successfully.', 'ninja-tables')
+            ]
+        ], 200);
+    }
+
     public function bulkDeleteColumns(Request $request, $id)
     {
+        if ($response = $this->assertNinjaTable($id)) {
+            return $response;
+        }
+
         $deletableKeys = Arr::get($request->all(), 'deletable_keys', []);
 
         $getAllColumns = get_post_meta($id, '_ninja_table_columns', true);

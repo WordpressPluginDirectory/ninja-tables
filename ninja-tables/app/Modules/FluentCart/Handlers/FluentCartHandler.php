@@ -2,6 +2,10 @@
 
 namespace NinjaTables\App\Modules\FluentCart\Handlers;
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 use FluentCart\Api\Resource\FrontendResource\CartResource;
 use NinjaTables\App\App;
 use NinjaTables\App\Modules\FluentCart\Traits\FluentCartTrait;
@@ -16,8 +20,23 @@ class FluentCartHandler
 
     private $__queryable_postColumns__ = [];
 
+    private function assertNinjaTable($tableId)
+    {
+        if (get_post_type($tableId) !== 'ninja-table') {
+            wp_send_json_error([
+                'message' => __('No Table Found', 'ninja-tables')
+            ], 423);
+        }
+    }
+
     public function getFluentCartOptions()
     {
+        if (!current_user_can(ninja_table_admin_role())) {
+            wp_send_json_error(['message' => __('You do not have permission to get options.', 'ninja-tables')], 403);
+        }
+
+        ninjaTablesValidateNonce();
+
         $settings = [
             'product-categories' => [
                 'title'       => 'Select Products By Category',
@@ -44,6 +63,12 @@ class FluentCartHandler
 
     public function createFluentCartTable()
     {
+        if (!current_user_can(ninja_table_admin_role())) {
+            wp_send_json_error(['message' => __('You do not have permission to create tables.', 'ninja-tables')], 403);
+        }
+
+        ninjaTablesValidateNonce();
+
         $messages   = array();
         $inputs     = App::getInstance('request')->all();
         $post_title = sanitize_text_field(Arr::get($inputs, 'post_title'));
@@ -85,35 +110,31 @@ class FluentCartHandler
         wp_send_json_success(array('table_id' => $tableId, 'message' => $message), 200);
     }
 
-    public function getTableData()
+    public function getTableData($response = array(array(), 0), $tableId = 0)
     {
         if (!current_user_can(ninja_table_admin_role())) {
             return;
         }
 
-        $inputs = App::getInstance('request')->all();
-        $tableId     = intval(Arr::get($inputs, 'table_id'));
+        $inputs  = ninjaTablesRequest();
+        $tableId = intval($tableId) ?: intval(Arr::get($inputs, 'table_id'));
+
+        $this->assertNinjaTable($tableId);
+
         $perPage     = intval(Arr::get($inputs, 'per_page', 20));
         $currentPage = intval(Arr::get($inputs, 'page', 1));
         $skip        = ($currentPage - 1) * $perPage;
 
         $columns = get_post_meta($tableId, '_ninja_table_columns', true);
 
-        $products      = $this->getProducts($tableId);
+        $total         = $this->getProductCount($tableId);
+        $products      = $this->getProducts($tableId, $perPage, $skip);
         $formattedData = $this->formatProductData($columns, $products);
-        $total         = count($formattedData);
-
-        // Apply pagination
-        $paginatedData = array_slice($formattedData, $skip, $perPage);
-//        $lastPage = ceil($total / $perPage);
 
         $data = [
-            'data'        => $paginatedData,
+            'data'        => $formattedData,
             'data_source' => 'wp_fct',
             'total'       => $total
-//            'current_page' => $currentPage,
-//            'last_page'    => $lastPage,
-//            'per_page'     => $perPage,
         ];
 
         return wp_send_json($data, 200);
@@ -221,6 +242,8 @@ class FluentCartHandler
             wp_send_json_error(array('message' => 'Table not found'), 400);
         }
 
+        $this->assertNinjaTable($tableId);
+
         $data = [
             'query_selections'    => ninja_tables_sanitize_array(Arr::get($inputs, 'query_selections', [])),
             'query_conditions'    => ninja_tables_sanitize_array(Arr::get($inputs, 'query_conditions', [])),
@@ -288,7 +311,10 @@ class FluentCartHandler
     public function getPosts($tableId, $per_page = -1, $offset = 0)
     {
         $frontendColumns = $this->getFrontendColumns($tableId);
-        $products        = $this->getProducts($tableId);
+
+        $limit    = ($per_page > 0) ? $per_page : 0;
+        $offset   = intval($offset);
+        $products = $this->getProducts($tableId, $limit, $offset);
 
         return $this->formatFrontendProductData($frontendColumns, $products);
     }

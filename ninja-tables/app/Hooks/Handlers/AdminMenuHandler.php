@@ -2,6 +2,10 @@
 
 namespace NinjaTables\App\Hooks\Handlers;
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 use NinjaTables\App\App;
 use NinjaTables\App\Modules\I18nStrings;
 use NinjaTables\Framework\Support\Arr;
@@ -290,7 +294,9 @@ class AdminMenuHandler
         $cptName             = 'ninja-table';
         $tableCount          = wp_count_posts($cptName);
         $totalPublishedTable = 0;
+        $totalTrashedTable   = 0;
         $publish             = property_exists($tableCount, "publish") ? $tableCount->publish : 0;
+        $trash               = property_exists($tableCount, "trash") ? $tableCount->trash : 0;
 
         if ($tableCount && $publish > 1) {
             $leadStatus = $app->applyFilters('ninja_tables_show_lead', $leadStatus);
@@ -302,6 +308,10 @@ class AdminMenuHandler
 
         if ($tableCount && $publish > 0) {
             $totalPublishedTable = $publish;
+        }
+
+        if ($tableCount && $trash > 0) {
+            $totalTrashedTable = $trash;
         }
 
         $hasFluentFrom       = defined('FLUENTFORM_VERSION');
@@ -363,6 +373,7 @@ class AdminMenuHandler
             'hasValidLicense'          => get_option('_ninjatables_pro_license_status'),
             'i18n'                     => I18nStrings::getStrings(),
             'published_tables'         => $totalPublishedTable,
+            'trashed_tables'           => $totalTrashedTable,
             'preview_required_scripts' => array(
                 $assets . "css/ninjatables-public.css",
                 $assets . "libs/footable/js/footable.min.js",
@@ -385,7 +396,17 @@ class AdminMenuHandler
             ) : null,
             'ninja_table_admin_nonce' => wp_create_nonce('ninja_table_admin_nonce'),
             'ninja_tables_pro_url'    => defined('NINJATABLESPRO') ? NINJAPROPLUGIN_URL : null,
-            'max_upload_file_size'    => apply_filters('ninja_tables/max_upload_file_size', 1024)
+            'max_upload_file_size'    => apply_filters('ninja_tables/max_upload_file_size', 1024),
+            'dt_preview_required_scripts' => array(
+                $assets . "libs/datatables/datatables.min.css",
+                $assets . "css/ninjatables-datatables.css",
+                $assets . "libs/datatables/responsive.dataTables.min.css",
+                NINJA_TABLES_DIR_URL . "assets/css/ninjatables-datatables-responsive.css",
+                $assets . "libs/datatables/datatables.min.js",
+                $assets . "libs/datatables/dataTables.responsive.min.js",
+                $assets . "js/ninja-tables-datatables.js",
+            ),
+            'dt_ajax_url'             => admin_url('admin-ajax.php')
         ));
 
         // Elementor plugin have a bug where they throw error to parse #url, and I really don't know why they want to parse

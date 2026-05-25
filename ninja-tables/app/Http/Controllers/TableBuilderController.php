@@ -119,7 +119,13 @@ class TableBuilderController extends Controller
 
     public function update(Request $request, $id)
     {
-        $table_id   = intval(Arr::get($request->all(), 'table_id'));
+        $table_id   = intval($id);
+
+        if (!$table_id || get_post_type($table_id) !== 'ninja-table') {
+            return $this->sendError([
+                'data' => ['message' => __('Invalid table.', 'ninja-tables')]
+            ], 423);
+        }
 
         $table_html = ninjaTablesEscapeScript(Arr::get($request->all(), 'table_html'));
         $json       = ninjaTablesEscapeScript(Arr::get($request->all(), 'data'));

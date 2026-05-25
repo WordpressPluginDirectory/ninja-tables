@@ -92,3 +92,5 @@ $app->addAction('wp_ajax_ninja-tables-drag-and-drop-export', [ExportHandler::cla
 (new \NinjaTables\App\Hooks\Handlers\NoticeHandler())->register();
 (new \NinjaTables\App\Modules\FluentCart\FluentCartModule())->register($app);
 (new \NinjaTables\App\Features\Features())->register();
+(new \NinjaTables\App\Hooks\Handlers\SettingHandler())->register();
+(new \NinjaTables\App\Modules\DataTables\DataTablesModule())->register();

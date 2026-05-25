@@ -302,7 +302,7 @@ function ninja_tables_allowed_html_tags()
         'width'           => [],
         'height'          => [],
         'src'             => [],
-        'srcdoc'          => [],
+        // 'srcdoc' removed — allows arbitrary HTML/JS execution
         'title'           => [],
         'frameborder'     => [],
         'allow'           => [],
@@ -311,14 +311,12 @@ function ninja_tables_allowed_html_tags()
         'allowfullscreen' => [],
         'style'           => [],
     ];
-    // form
+    // form — action removed to prevent form hijacking
     $tags['form'] = [
         'target' => [],
-        'action' => [],
         'method' => [],
     ];
-    //button
-    $tags['button']['onclick'] = [];
+    //button — onclick removed to prevent stored XSS
 
     //svg
     if (empty($tags['svg'])) {
@@ -1071,6 +1069,7 @@ if ( ! function_exists('ninjaTablesPrintSafeVar')) {
     {
         if ($esc_func) {
             echo call_user_func($esc_func, $content); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+            return;
         }
         // PHPCS - This content var is hardcoded variable or already escaped the contents by esc_* functions.
         echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -1233,5 +1232,10 @@ function ninjaTablesGetRemoteContent($url)
     }
 
     return wp_remote_retrieve_body($remoteContent);
+}
+
+function ninjaTablesRequest()
+{
+    return \NinjaTables\Framework\Foundation\App::getInstance('request')->all();
 }
 

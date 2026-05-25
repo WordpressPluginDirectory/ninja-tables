@@ -7,11 +7,11 @@ namespace Composer\Autoload;
 class ComposerStaticInite2cc3f91f264b6c9d64346c5247abaa6
 {
     public static $prefixLengthsPsr4 = array (
-        'W' => 
+        'W' =>
         array (
             'WPFluent\\' => 9,
         ),
-        'N' => 
+        'N' =>
         array (
             'NinjaTables\\Framework\\' => 22,
             'NinjaTables\\App\\' => 16,
@@ -19,15 +19,15 @@ class ComposerStaticInite2cc3f91f264b6c9d64346c5247abaa6
     );
 
     public static $prefixDirsPsr4 = array (
-        'WPFluent\\' => 
+        'WPFluent\\' =>
         array (
             0 => __DIR__ . '/..' . '/wpfluent/framework/src/WPFluent',
         ),
-        'NinjaTables\\Framework\\' => 
+        'NinjaTables\\Framework\\' =>
         array (
             0 => __DIR__ . '/..' . '/wpfluent/framework/src/WPFluent',
         ),
-        'NinjaTables\\App\\' => 
+        'NinjaTables\\App\\' =>
         array (
             0 => __DIR__ . '/../..' . '/app',
         ),
@@ -40,7 +40,9 @@ class ComposerStaticInite2cc3f91f264b6c9d64346c5247abaa6
         'NinjaTables\\App\\ComposerScript' => __DIR__ . '/../..' . '/app/ComposerScript.php',
         'NinjaTables\\App\\Features\\Features' => __DIR__ . '/../..' . '/app/Features/Features.php',
         'NinjaTables\\App\\Features\\ProductComparison' => __DIR__ . '/../..' . '/app/Features/ProductComparison.php',
+        'NinjaTables\\App\\Helper\\ColumnHelper' => __DIR__ . '/../..' . '/app/Helper/ColumnHelper.php',
         'NinjaTables\\App\\Helper\\Helper' => __DIR__ . '/../..' . '/app/Helper/Helper.php',
+        'NinjaTables\\App\\Helper\\TableCssHelper' => __DIR__ . '/../..' . '/app/Helper/TableCssHelper.php',
         'NinjaTables\\App\\Hooks\\Handlers\\ActivationHandler' => __DIR__ . '/../..' . '/app/Hooks/Handlers/ActivationHandler.php',
         'NinjaTables\\App\\Hooks\\Handlers\\AdminMenuHandler' => __DIR__ . '/../..' . '/app/Hooks/Handlers/AdminMenuHandler.php',
         'NinjaTables\\App\\Hooks\\Handlers\\AjaxHandler' => __DIR__ . '/../..' . '/app/Hooks/Handlers/AjaxHandler.php',
@@ -53,6 +55,7 @@ class ComposerStaticInite2cc3f91f264b6c9d64346c5247abaa6
         'NinjaTables\\App\\Hooks\\Handlers\\NoticeHandler' => __DIR__ . '/../..' . '/app/Hooks/Handlers/NoticeHandler.php',
         'NinjaTables\\App\\Hooks\\Handlers\\PreviewHandler' => __DIR__ . '/../..' . '/app/Hooks/Handlers/PreviewHandler.php',
         'NinjaTables\\App\\Hooks\\Handlers\\PublicDataHandler' => __DIR__ . '/../..' . '/app/Hooks/Handlers/PublicDataHandler.php',
+        'NinjaTables\\App\\Hooks\\Handlers\\SettingHandler' => __DIR__ . '/../..' . '/app/Hooks/Handlers/SettingHandler.php',
         'NinjaTables\\App\\Hooks\\Handlers\\StyleHandler' => __DIR__ . '/../..' . '/app/Hooks/Handlers/StyleHandler.php',
         'NinjaTables\\App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'NinjaTables\\App\\Http\\Controllers\\FluentFormsController' => __DIR__ . '/../..' . '/app/Http/Controllers/FluentFormsController.php',
@@ -88,6 +91,11 @@ class ComposerStaticInite2cc3f91f264b6c9d64346c5247abaa6
         'NinjaTables\\App\\Modules\\DataProviders\\DefaultProvider' => __DIR__ . '/../..' . '/app/Modules/DataProviders/DefaultProvider.php',
         'NinjaTables\\App\\Modules\\DataProviders\\FluentFormProvider' => __DIR__ . '/../..' . '/app/Modules/DataProviders/FluentFormProvider.php',
         'NinjaTables\\App\\Modules\\DataProviders\\NinjaFooTable' => __DIR__ . '/../..' . '/app/Modules/DataProviders/NinjaFooTable.php',
+        'NinjaTables\\App\\Modules\\DataTables\\DataTablesModule' => __DIR__ . '/../..' . '/app/Modules/DataTables/DataTablesModule.php',
+        'NinjaTables\\App\\Modules\\DataTables\\Database\\DynamicTableManager' => __DIR__ . '/../..' . '/app/Modules/DataTables/Database/DynamicTableManager.php',
+        'NinjaTables\\App\\Modules\\DataTables\\Handlers\\ItemsHandler' => __DIR__ . '/../..' . '/app/Modules/DataTables/Handlers/ItemsHandler.php',
+        'NinjaTables\\App\\Modules\\DataTables\\Handlers\\PublicRenderer' => __DIR__ . '/../..' . '/app/Modules/DataTables/Handlers/PublicRenderer.php',
+        'NinjaTables\\App\\Modules\\DataTables\\Models\\DynamicRow' => __DIR__ . '/../..' . '/app/Modules/DataTables/Models/DynamicRow.php',
         'NinjaTables\\App\\Modules\\DragAndDrop\\InitConfig' => __DIR__ . '/../..' . '/app/Modules/DragAndDrop/InitConfig.php',
         'NinjaTables\\App\\Modules\\DynamicConfig' => __DIR__ . '/../..' . '/app/Modules/DynamicConfig.php',
         'NinjaTables\\App\\Modules\\FluentCart\\FluentCartModule' => __DIR__ . '/../..' . '/app/Modules/FluentCart/FluentCartModule.php',
@@ -103,6 +111,7 @@ class ComposerStaticInite2cc3f91f264b6c9d64346c5247abaa6
         'NinjaTables\\App\\Services\\AutomaticUpgrader' => __DIR__ . '/../..' . '/app/Services/AutomaticUpgrader.php',
         'NinjaTables\\App\\Services\\BackgroundInstaller' => __DIR__ . '/../..' . '/app/Services/BackgroundInstaller.php',
         'NinjaTables\\App\\Services\\PluginInstaller' => __DIR__ . '/../..' . '/app/Services/PluginInstaller.php',
+        'NinjaTables\\App\\Services\\TranslationService' => __DIR__ . '/../..' . '/app/Services/TranslationService.php',
         'NinjaTables\\App\\Traits\\ImportTrait' => __DIR__ . '/../..' . '/app/Traits/ImportTrait.php',
         'NinjaTables\\App\\Traits\\WpPostTrait' => __DIR__ . '/../..' . '/app/Traits/WpPostTrait.php',
         'NinjaTables\\Database\\DBMigrator' => __DIR__ . '/../..' . '/database/DBMigrator.php',

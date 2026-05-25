@@ -2,9 +2,14 @@
 
 namespace NinjaTables\App\Hooks\Handlers;
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 use NinjaTables\App\App;
 use NinjaTables\App\Models\NinjaTableItem;
 use NinjaTables\App\Modules\DataProviders\NinjaFooTable;
+use NinjaTables\App\Modules\DataTables\Handlers\PublicRenderer;
 use NinjaTables\Framework\Support\Arr;
 
 class PublicDataHandler
@@ -48,6 +53,24 @@ class PublicDataHandler
 
         $tableArray = $this->getTableArray($shortCodeData, $content);
 
+        if (!$tableArray || Arr::get($tableArray, 'error')) {
+            $isAdmin = is_user_logged_in() && current_user_can(ninja_table_admin_role());
+            if (!$isAdmin) {
+                return '';
+            }
+
+            $error = Arr::get($tableArray, 'error', 'not_available');
+            if ($error === 'trashed') {
+                return $this->renderAdminNotice(__('This table is currently in trash. Please restore it to display the table.', 'ninja-tables'));
+            } elseif ($error === 'not_found') {
+                return $this->renderAdminNotice(__('This table does not exist or has been permanently deleted.', 'ninja-tables'));
+            } elseif ($error === 'no_columns') {
+                return $this->renderAdminNotice(__('This table has no columns configured. Please add columns to display the table.', 'ninja-tables'));
+            } else {
+                return $this->renderAdminNotice(__('This table is not published. Please publish it to display the table.', 'ninja-tables'));
+            }
+        }
+
         if (Arr::get($tableArray, 'settings.formula_support') == 'yes') {
             do_action('ninja_tables_require_formulajs', $tableArray);
         }
@@ -86,8 +109,9 @@ class PublicDataHandler
 
         $id = absint($id);
         $table = get_post($id);
-        if (!$table) {
-            return;
+
+        if (!$table || $table->post_type !== 'ninja-table' || $table->post_status !== 'publish') {
+            return 'Error: Invalid table ID.';
         }
 
         $validFields = [
@@ -169,6 +193,11 @@ class PublicDataHandler
         }
 
         $id = absint($id);
+
+        if (get_post_type($id) !== 'ninja-table' || get_post_status($id) !== 'publish') {
+            return 'Sorry! The table is not available.';
+        }
+
         $tableSettings = ninja_table_get_table_settings($id, 'public');
 
         if ($row_id) {
@@ -234,8 +263,6 @@ class PublicDataHandler
      */
     public function preRenderTableAssets($tableId)
     {
-        if (isset(NinjaFooTable::$tableCssStatuses[$tableId])) return;
-
         $tableId = intval($tableId);
 
         $atts = [
@@ -247,8 +274,21 @@ class PublicDataHandler
 
         $tableArray = $this->getTableArray($atts, '');
 
-        // No table array means the shortcode ID is invalid.
-        if (!$tableArray) return;
+        // No table array or error means the shortcode ID is invalid.
+        if (!$tableArray || Arr::get($tableArray, 'error')) return;
+
+        $library = Arr::get($tableArray, 'settings.library', 'footable');
+
+        // For DataTables, delegate CSS to PublicRenderer
+        if ($library === 'datatables') {
+            if (isset(PublicRenderer::$tableCssStatuses[$tableId])) return;
+            PublicRenderer::$tableCssStatuses[$tableId] = true;
+            PublicRenderer::generateCustomColorCSSForTable($tableArray);
+            return;
+        }
+
+        // FooTable CSS (existing behavior)
+        if (isset(NinjaFooTable::$tableCssStatuses[$tableId])) return;
 
         $columnContentCss = NinjaFooTable::getColumnsCss($tableArray['table_id'], $tableArray['columns']);
 
@@ -281,7 +321,7 @@ class PublicDataHandler
         }
         $table = get_post($table_id);
 
-        if (!$table || $table->post_type != 'ninja-table') {
+        if (!$table || $table->post_type !== 'ninja-table' || $table->post_status !== 'publish') {
             return;
         }
 
@@ -350,6 +390,23 @@ class PublicDataHandler
         }
     }
 
+    private function renderAdminNotice($message)
+    {
+        return '<div class="ninja-tables-preview-message" style="'
+            . 'width: 100%;'
+            . 'padding: 14px 18px;'
+            . 'background: #f9f9f9;'
+            . 'border-left: 4px solid #dba617;'
+            . 'box-sizing: border-box;'
+            . 'font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, sans-serif;'
+            . 'font-size: 14px;'
+            . 'line-height: 1.5;'
+            . 'color: #3c434a;'
+            . '">'
+            . esc_html($message)
+            . '</div>';
+    }
+
     public function getTableArray($shortCodeData, $content = '')
     {
         extract($shortCodeData);
@@ -362,8 +419,16 @@ class PublicDataHandler
 
         $table = get_post($table_id);
 
-        if (!$table || $table->post_type != 'ninja-table') {
-            return;
+        if (!$table || $table->post_type !== 'ninja-table') {
+            return ['error' => 'not_found'];
+        }
+
+        if ($table->post_status === 'trash') {
+            return ['error' => 'trashed'];
+        }
+
+        if ($table->post_status !== 'publish') {
+            return ['error' => 'not_published'];
         }
 
         $tableSettings = ninja_table_get_table_settings($table_id, 'public');
@@ -375,7 +440,7 @@ class PublicDataHandler
         $tableColumns = ninja_table_get_table_columns($table_id, 'public');
 
         if (!$tableSettings || !$tableColumns) {
-            return;
+            return ['error' => 'no_columns'];
         }
 
         $tableSettings['use_parent_width'] = $use_parent_width;
@@ -436,7 +501,7 @@ class PublicDataHandler
             }
         }
 
-        if ($tableColumn['data_type'] == 'image') {
+        if (!empty($targetColumn) && $targetColumn['data_type'] == 'image') {
             if (function_exists('nt_parse_image_column')) {
                 return nt_parse_image_column($value, $targetColumn);
             }

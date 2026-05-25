@@ -42,21 +42,18 @@ trait FluentCartTrait
         return $formatted_columns;
     }
 
-    public function getProducts($tableId)
+    protected function buildProductQuery($tableId, $withOrdering = true)
     {
         $querySelection  = get_post_meta($tableId, '_ninja_table_fct_query_selections', true);
         $queryConditions = get_post_meta($tableId, '_ninja_table_fct_query_conditions', true);
 
-        $orderBy         = Arr::get($queryConditions, 'order_by');
-        $orderByType     = Arr::get($queryConditions, 'order_by_type');
         $categories      = Arr::get($querySelection, 'product-categories');
         //TODO: rename product-types to product-brands
         $brands          = Arr::get($querySelection, 'product-types');
         $hideOutOfStock  = Arr::get($queryConditions, 'hide_out_of_stock');
 
         $query = Product::where('post_type', 'fluent-products')
-                        ->where('post_status', 'publish')
-                        ->with('variants');
+                        ->where('post_status', 'publish');
 
         if ($hideOutOfStock === 'yes') {
             $query->join('fct_product_details', 'fct_product_details.post_id', '=', 'posts.ID')
@@ -85,26 +82,58 @@ trait FluentCartTrait
             }
         }
 
-        if ($orderBy === 'post_title' || $orderBy === 'post_date') {
-            $query->orderBy($orderBy, $orderByType);
-        } elseif ($orderBy === 'price') {
-            $query->select('posts.*')
-                  ->join('fct_product_variations as fpv', 'posts.ID', '=', 'fpv.post_id')
-                  ->orderByRaw('MIN(fpv.item_price) ' . $orderByType);
-        } elseif ($orderBy === 'stock') {
-            $query->select('posts.*')
-                  ->join('fct_product_variations as fpv', 'posts.ID', '=', 'fpv.post_id')
-                  ->orderByRaw('CASE WHEN SUM(fpv.available) > 0 THEN 0 ELSE 1 END ASC')
-                  ->orderByRaw('SUM(fpv.available) ' . $orderByType);
+        if ($withOrdering) {
+            $orderBy     = Arr::get($queryConditions, 'order_by');
+            $orderByType = strtoupper((string) Arr::get($queryConditions, 'order_by_type'));
+            $orderByType = in_array($orderByType, ['ASC', 'DESC'], true) ? $orderByType : 'DESC';
+
+            if ($orderBy === 'post_title' || $orderBy === 'post_date') {
+                $query->orderBy($orderBy, $orderByType);
+            } elseif ($orderBy === 'price') {
+                $query->select('posts.*')
+                      ->join('fct_product_variations as fpv', 'posts.ID', '=', 'fpv.post_id')
+                      ->orderByRaw('MIN(fpv.item_price) ' . $orderByType);
+            } elseif ($orderBy === 'stock') {
+                $query->select('posts.*')
+                      ->join('fct_product_variations as fpv', 'posts.ID', '=', 'fpv.post_id')
+                      ->orderByRaw('CASE WHEN SUM(fpv.available) > 0 THEN 0 ELSE 1 END ASC')
+                      ->orderByRaw('SUM(fpv.available) ' . $orderByType);
+            }
         }
 
-        $products = $query->groupBy('posts.ID')->get();
+        return $query;
+    }
+
+    public function getProducts($tableId, $limit = 0, $offset = 0)
+    {
+        $query = $this->buildProductQuery($tableId);
+
+        $query->with('variants')->groupBy('posts.ID');
+
+        $offset = intval($offset);
+        if ($offset > 0) {
+            $query->offset($offset);
+        }
+
+        $limit = intval($limit);
+        if ($limit > 0) {
+            $query->limit($limit);
+        }
+
+        $products = $query->get();
 
         if (!$products->count()) {
             return [];
         }
 
         return $products;
+    }
+
+    public function getProductCount($tableId)
+    {
+        return (int) $this->buildProductQuery($tableId, false)
+                          ->distinct()
+                          ->count('posts.ID');
     }
 
     protected function setColumnData($column, $row)
@@ -127,10 +156,8 @@ trait FluentCartTrait
         }
 
         if ($columnKey === 'fct_product_stock') {
-            $value = 0;
-            foreach ($variants as $variant) {
-                $value += intval(Arr::get($variant, 'available', 0));
-            }
+            $firstVariantStock = intval(Arr::get($variants, '0.available', 0));
+            $value = '<span class="nt_fct_product_stock" data-product_stock="' . esc_attr($firstVariantStock) . '">' . esc_attr($firstVariantStock) . '</span>';
         }
 
         if ($columnKey === 'fct_product_quantity') {
@@ -251,12 +278,9 @@ trait FluentCartTrait
             return $this->getVariationsSelect($variants, $row);
         } elseif ($fieldName === 'product_stock') {
             $variants = Arr::get($row, 'variants', []);
-            $value    = 0;
-            foreach ($variants as $variant) {
-                $value += $variant['available'];
-            }
+            $firstVariantStock = intval(Arr::get($variants, '0.available', 0));
 
-            return $value;
+            return '<span class="nt_fct_product_stock" data-product_stock="' . esc_attr($firstVariantStock) . '">' . esc_attr($firstVariantStock) . '</span>';
         } elseif ($fieldName === 'buy_now_button') {
             return $this->getBuyNowButton($column, $row);
         } elseif ($fieldName === 'stock_availability') {
@@ -467,11 +491,12 @@ trait FluentCartTrait
               data-current-compared-price="' . Arr::get($firstVariation, 'compare_price') . '">';
 
             foreach ($variants as $variant) {
-                $value .= '<option value="' . Arr::get($variant, 'item_price') . '" 
+                $value .= '<option value="' . Arr::get($variant, 'item_price') . '"
                   data-variation_id="' . Arr::get($variant, 'id') . '"
                   data-image_src="' . Arr::get($variant, 'media.meta_value.0.url', '') . '"
                   data-formatted_price="' . Arr::get($variant, 'formatted_total') . '"
                   data-compared_price="' . CurrencySettings::getFormattedPrice(Arr::get($variant, 'compare_price')) . '"
+                  data-stock="' . intval(Arr::get($variant, 'available', 0)) . '"
                   class="nt_fct_variation_option">' . Arr::get($variant, 'variation_title') . '</option>';
             }
             $value .= '</select>';
@@ -506,7 +531,7 @@ trait FluentCartTrait
     public function getPostTitle($row, $column)
     {
         $title     = Arr::get($row, 'post_title');
-        $permalink = Arr::get($row, 'guid');
+        $permalink = get_permalink(Arr::get($row, 'ID'));
         $linked    = Arr::get($column, 'permalinked', 'no');
         $target    = Arr::get($column, 'permalink_target') === '_blank' ? 'target="_blank"' : '';
 

@@ -2,9 +2,16 @@
 
 namespace NinjaTables\App\Modules\DataProviders;
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 use NinjaTables\App\App;
+use NinjaTables\App\Helper\ColumnHelper;
 use NinjaTables\App\Helper\Helper;
+use NinjaTables\App\Helper\TableCssHelper;
 use NinjaTables\App\Models\NinjaTableItem;
+use NinjaTables\App\Services\TranslationService;
 use NinjaTables\Framework\Support\Arr;
 use NinjaTablesPro\App\Modules\DataProviders\CsvProvider;
 use NinjaTablesPro\App\Modules\DataProviders\WoocommercePostsProvider;
@@ -34,13 +41,7 @@ class NinjaFooTable
 
         static::enqueuePublicCss();
 
-        if ( ! Arr::get($tableArray, 'settings.table_color_type')) {
-            if (Arr::get($tableArray, 'settings.table_color') == 'ninja_table_custom_color') {
-                $tableArray['settings']['table_color_type'] = 'custom_color';
-            } else {
-                $tableArray['settings']['table_color_type'] = 'pre_defined_color';
-            }
-        }
+        TableCssHelper::normalizeColorType($tableArray['settings']);
 
         $tableArray['table_instance_name'] = $tableInstance;
         $table_provider                    = ninja_table_get_data_provider($tableArray['table_id']);
@@ -70,49 +71,7 @@ class NinjaFooTable
             'ajax_url'                 => admin_url('admin-ajax.php'),
             'tables'                   => array(),
             'ninja_version'            => NINJA_TABLES_VERSION,
-            'i18n'                     => array(
-                'search_in'      => __('Search in', 'ninja-tables'),
-                'search'         => __('Search', 'ninja-tables'),
-                'empty_text'     => __('No Result Found', 'ninja-tables'),
-                'clear_all'      => __('Clear All', 'ninja-tables'),
-                'caption_format' => __('Selected', 'ninja-tables'),
-                'pikaday' => [
-                    'previousMonth' => __('Previous Month', 'ninja-tables'),
-                    'nextMonth'     => __('Next Month', 'ninja-tables'),
-                    'months'        => [
-                        __('January', 'ninja-tables'),
-                        __('February', 'ninja-tables'),
-                        __('March', 'ninja-tables'),
-                        __('April', 'ninja-tables'),
-                        __('May', 'ninja-tables'),
-                        __('June', 'ninja-tables'),
-                        __('July', 'ninja-tables'),
-                        __('August', 'ninja-tables'),
-                        __('September', 'ninja-tables'),
-                        __('October', 'ninja-tables'),
-                        __('November', 'ninja-tables'),
-                        __('December', 'ninja-tables')
-                    ],
-                    'weekdays'      => [
-                        __('Sunday', 'ninja-tables'),
-                        __('Monday', 'ninja-tables'),
-                        __('Tuesday', 'ninja-tables'),
-                        __('Wednesday', 'ninja-tables'),
-                        __('Thursday', 'ninja-tables'),
-                        __('Friday', 'ninja-tables'),
-                        __('Saturday', 'ninja-tables')
-                    ],
-                    'weekdaysShort' => [
-                        __('Sun', 'ninja-tables'),
-                        __('Mon', 'ninja-tables'),
-                        __('Tue', 'ninja-tables'),
-                        __('Wed', 'ninja-tables'),
-                        __('Thu', 'ninja-tables'),
-                        __('Fri', 'ninja-tables'),
-                        __('Sat', 'ninja-tables')
-                    ]
-                ]
-            ),
+            'i18n'                     => TranslationService::getSumoSelectI18n(),
             'ninja_table_public_nonce' => wp_create_nonce('ninja_table_public_nonce'),
             'site_url'                 => site_url(),
             'delay'                    => apply_filters('ninja_tables_footable_init_delay', 0),
@@ -159,87 +118,24 @@ class NinjaFooTable
      */
     public static function generateCustomColorCSS($tableArray, $extra_css = '')
     {
-        $tableId       = intval($tableArray['table_id']);
-        $cellStyles    = array();
-        $tableProvider = ninja_table_get_data_provider($tableId);
-        if ($tableProvider == 'default' && get_option('_ninja_tables_settings_migration')) {
-            ob_start();
-            $cellStyles = NinjaTableItem::select(array('id', 'settings'))
-                                        ->where('table_id', $tableId)
-                                        ->whereNotNull('settings')
-                                        ->get();
-            $maybeError = ob_get_clean();
-        }
+        $tableId    = intval($tableArray['table_id']);
+        $css_prefix = '#footable_' . $tableId;
+        $columns    = Arr::get($tableArray, 'columns', []);
+        $settings   = $tableArray['settings'];
 
-        $css_prefix   = '#footable_' . $tableId;
+        // Shared CSS utilities
+        $cellStyles      = TableCssHelper::getCellStyles($tableId, 'footable');
+        $customColumnCss = TableCssHelper::buildPerColumnColorCss($css_prefix, $columns);
+        $fonts           = TableCssHelper::extractFontSettings($settings);
+        $colors          = TableCssHelper::buildColorPalette($settings);
+
         $hasStackable = false;
-        if (Arr::get($tableArray, 'settings.stackable') == 'yes') {
+        if (Arr::get($settings, 'stackable') == 'yes') {
             $hasStackable = true;
             $stackPrefix  = '#footable_' . $tableId . ' .footable-details';
         }
 
-        $customColumnCss = '';
-        if (defined('NINJATABLESPRO')) {
-            $columns = Arr::get($tableArray, 'columns');
-            foreach ($columns as $index => $column) {
-                $bgColor   = Arr::get($column, 'background_color');
-                $textColor = Arr::get($column, 'text_color');
-                if ($bgColor || $textColor) {
-                    if ($bgColor && $textColor) {
-                        $customColumnCss .= $css_prefix . ' thead tr th.ninja_column_' . $index . ',' . $css_prefix . ' tbody tr td.ninja_column_' . $index . '{ background-color: ' . $bgColor . '; color: ' . $textColor . '; }';
-                    } elseif ($bgColor) {
-                        $customColumnCss .= $css_prefix . ' thead tr th.ninja_column_' . $index . ',' . $css_prefix . ' tbody tr td.ninja_column_' . $index . '{ background-color: ' . $bgColor . '; }';
-                    } elseif ($textColor) {
-                        $customColumnCss .= $css_prefix . ' thead tr th.ninja_column_' . $index . ',' . $css_prefix . ' tbody tr td.ninja_column_' . $index . '{ color: ' . $textColor . '; }';
-                    }
-                }
-            }
-        }
-
-        $colors     = false;
         $custom_css = str_replace('NT_ID', $tableId, get_post_meta($tableId, '_ninja_tables_custom_css', true));
-
-        $fonts = array(
-            'table_font_family' => Arr::get($tableArray, 'settings.table_font_family'),
-            'table_font_size'   => Arr::get($tableArray, 'settings.table_font_size'),
-        );
-        if (Arr::get($tableArray, 'settings.table_color_type') == 'custom_color'
-            && defined('NINJATABLESPRO')
-        ) {
-            $colorSettings = $tableArray['settings'];
-            $colors        = array(
-                'table_color_primary'   => Arr::get($colorSettings, 'table_color_primary'),
-                'table_color_secondary' => Arr::get($colorSettings, 'table_color_secondary'),
-                'table_color_border'    => Arr::get($colorSettings, 'table_color_border'),
-
-                'table_color_primary_hover'   => Arr::get($colorSettings, 'table_color_primary_hover'),
-                'table_color_secondary_hover' => Arr::get($colorSettings, 'table_color_secondary_hover'),
-                'table_color_border_hover'    => Arr::get($colorSettings, 'table_color_border_hover'),
-
-                'table_search_color_primary'   => Arr::get($colorSettings, 'table_search_color_primary'),
-                'table_search_color_secondary' => Arr::get($colorSettings, 'table_search_color_secondary'),
-                'table_search_color_border'    => Arr::get($colorSettings, 'table_search_color_border'),
-
-                'table_header_color_primary'   => Arr::get($colorSettings, 'table_header_color_primary'),
-                'table_color_header_secondary' => Arr::get($colorSettings, 'table_color_header_secondary'),
-                'table_color_header_border'    => Arr::get($colorSettings, 'table_color_header_border'),
-
-                'alternate_color_status' => Arr::get($colorSettings, 'alternate_color_status'),
-
-                'table_alt_color_primary'   => Arr::get($colorSettings, 'table_alt_color_primary'),
-                'table_alt_color_secondary' => Arr::get($colorSettings, 'table_alt_color_secondary'),
-                'table_alt_color_hover'     => Arr::get($colorSettings, 'table_alt_color_hover'),
-
-                'table_alt_2_color_primary'   => Arr::get($colorSettings, 'table_alt_2_color_primary'),
-                'table_alt_2_color_secondary' => Arr::get($colorSettings, 'table_alt_2_color_secondary'),
-                'table_alt_2_color_hover'     => Arr::get($colorSettings, 'table_alt_2_color_hover'),
-
-                'table_footer_bg'     => Arr::get($colorSettings, 'table_footer_bg'),
-                'table_footer_active' => Arr::get($colorSettings, 'table_footer_active'),
-                'table_footer_border' => Arr::get($colorSettings, 'table_footer_border'),
-            );
-        }
-
         $custom_css .= $extra_css . $customColumnCss;
 
         if ( ! $fonts['table_font_size'] && ! $colors && ! $custom_css && ! $cellStyles) {
@@ -268,75 +164,29 @@ class NinjaFooTable
         $customCss = array();
 
         foreach ($columns as $index => $column) {
-            $columnType      = self::getColumnType($column);
-            $cssColumnName   = 'ninja_column_' . $index;
-            $columnClasses   = array($cssColumnName);
-            $columnClasses[] = 'ninja_clmn_nm_' . $column['key'];
-            if (isset($column['classes'])) {
-                $userClasses   = explode(' ', $column['classes']);
-                $columnClasses = array_unique(array_merge($columnClasses, $userClasses));
+            // Get shared base from ColumnHelper
+            $base = ColumnHelper::formatColumnBase($column, $index, $settings, $globalSorting, $sortingType);
+            $formatted_column = $base['formatted_column'];
+
+            // Handle side-effects returned as flags
+            if ($base['enqueue_moment']) {
+                wp_enqueue_script('moment');
             }
+            if ($base['load_lightbox']) {
+                $settings['load_lightbox'] = true;
+                if ($base['iframe_lightbox']) {
+                    $settings['iframe_lightbox'] = true;
+                }
+            }
+
+            // FooTable-specific: width in customCss array
+            $cssColumnName = 'ninja_column_' . $index;
             $customCss[$cssColumnName] = array();
             if ($columnWidth = Arr::get($column, 'width')) {
                 $customCss[$cssColumnName]['width'] = $columnWidth . Arr::get($column, 'maxWidthUnit', 'px');
             }
 
-            $columnTitle = $column['name'];
-            if (Arr::get($column, 'enable_html_content') == 'true') {
-                if ($columnContent = Arr::get($column, 'header_html_content')) {
-                    $columnTitle = do_shortcode($columnContent);
-                }
-            }
-
-            $formatted_column = array(
-                'name'        => $column['key'],
-                'key'         => $column['key'],
-                'title'       => $columnTitle,
-                'breakpoints' => $column['breakpoints'],
-                'type'        => $columnType,
-                'visible'     => ($column['breakpoints'] == 'hidden') ? false : true,
-                'classes'     => $columnClasses,
-                'filterable'  => (isset($column['unfilterable']) && $column['unfilterable'] == 'yes') ? false : true,
-                'sortable'    => (isset($column['unsortable']) && $column['unsortable'] == 'yes') ? false : $globalSorting,
-            );
-
-            // We will remove it after few versions
-            if (defined('NINJAPROPLUGIN_VERSION') && isset($column['transformed_value'])) {
-                $formatted_column['transformed_value'] = $column['transformed_value'];
-            }
-
-            if ($columnType == 'date') {
-                wp_enqueue_script('moment');
-                $formatted_column['formatString']   = $column['dateFormat'] ?: 'MM/DD/YYYY';
-                $formatted_column['showTime']       = isset($column['showTime']) && $column['showTime'] === 'yes';
-                $formatted_column['firstDayOfWeek'] = isset($column['firstDayOfWeek']) && $column['firstDayOfWeek'] ? $column['firstDayOfWeek'] : 0;
-
-                if ($formatted_column['showTime'] && isset($column['timeFormat']) && $column['timeFormat']) {
-                    $formatted_column['formatString'] .= ' ' . $column['timeFormat'];
-                }
-            }
-            if ($sortingType == 'by_column' && $column['key'] == Arr::get($settings, 'sorting_column')) {
-                $formatted_column['sorted']    = true;
-                $formatted_column['direction'] = Arr::get($settings, 'sorting_column_by');
-            }
-
-            if ($columnType == 'numeric') {
-                $formatted_column['thousandSeparator'] = isset($column['thousandSeparator'])
-                    ? $column['thousandSeparator'] : ',';
-                $formatted_column['decimalSeparator']  = isset($column['decimalSeparator'])
-                    ? $column['decimalSeparator'] : '.';
-            }
-
-            if ($columnType == 'image') {
-                $linkType = Arr::get($column, 'link_type');
-                if ($linkType == 'image_light_box' || $linkType == 'iframe_ligtbox') {
-                    $settings['load_lightbox'] = true;
-                    if ($linkType == 'iframe_ligtbox') {
-                        $settings['iframe_lightbox'] = true;
-                    }
-                }
-            }
-
+            // FooTable-specific: Pro provider lightbox check
             if ((Helper::isProviderActiveAndMatches($tableArray, 'wp_woo') || Helper::isProviderActiveAndMatches($tableArray, 'wp_fct')) && Arr::get($column, 'image_permalink_type') == 'lightbox') {
                 $settings['load_lightbox'] = true;
             };
@@ -389,7 +239,8 @@ class NinjaFooTable
             'use_parent_width'      => Arr::get($settings, 'use_parent_width', false),
             'info'                  => Arr::get($tableArray, 'shortCodeData.info', ''),
             'enable_html_cache'     => Arr::get($settings, 'enable_html_cache'),
-            'html_caching_minutes'  => Arr::get($settings, 'html_caching_minutes')
+            'html_caching_minutes'  => Arr::get($settings, 'html_caching_minutes'),
+            'show_row_data_modal'   => Arr::get($settings, 'show_row_data_modal', 'no')
         );
 
         $settings['info'] = Arr::get($tableArray, 'shortCodeData.info', '');
@@ -509,7 +360,8 @@ class NinjaFooTable
             'instance_name'    => $table_instance_name,
             'table_version'    => NINJA_TABLES_VERSION,
             'provider'         => $tableArray['provider'],
-            'uniqueID'         => $uniqueID
+            'uniqueID'         => $uniqueID,
+            'render_engine' => Arr::get($tableArray, 'settings.library')
         );
 
         $table_vars = apply_filters('ninja_table_rendering_table_vars', $table_vars, $table_id, $tableArray);
@@ -534,8 +386,7 @@ class NinjaFooTable
 
             if (Helper::isProviderActiveAndMatches($tableArray, 'fluent-form')) {
                 $ff        = new FluentFormProvider;
-                $rows      = $ff->data([], $table_id, false);
-                $totalSize = count($rows);
+                $totalSize = $ff->getEntryCount($table_id);
             } elseif (($tableArray['provider'] === 'google-csv' || $tableArray['provider'] === 'csv') && defined('NINJATABLESPRO')) {
                 $gc        = new CsvProvider;
                 $rows      = $gc->data([], $table_id, false);
@@ -588,21 +439,7 @@ class NinjaFooTable
      */
     public static function getColumnsCss($tableId, $columns)
     {
-        $columnContentCss = '';
-
-        foreach ($columns as $index => $column) {
-            if ($contentAlign = Arr::get($column, 'contentAlign')) {
-                $columnContentCss .= '#footable_' . $tableId . ' td.ninja_column_' . $index
-                                     . ' { text-align: ' . $contentAlign . '; }';
-            }
-
-            if ($textAlign = Arr::get($column, 'textAlign')) {
-                $columnContentCss .= '#footable_' . $tableId . ' th.ninja_column_' . $index
-                                     . ' { text-align: ' . $textAlign . '; }';
-            }
-        }
-
-        return $columnContentCss;
+        return TableCssHelper::buildColumnAlignmentCss('#footable_' . $tableId, $columns);
     }
 
     public static function getTableHTML($table, $table_vars)
@@ -776,23 +613,7 @@ class NinjaFooTable
 
     public static function getColumnType($column)
     {
-        $type          = (isset($column['data_type'])) ? $column['data_type'] : 'text';
-        $acceptedTypes = array(
-            'text',
-            'number',
-            'date',
-            'html',
-            'image'
-        );
-        if (in_array($type, $acceptedTypes)) {
-            if ($type == 'number') {
-                return 'numeric';
-            }
-
-            return $type;
-        }
-
-        return 'text';
+        return ColumnHelper::getColumnType($column);
     }
 
     private static function getFootableAtrributes($tableVars)
@@ -822,47 +643,16 @@ class NinjaFooTable
 
     public static function getFormattedColumn($column, $index, $settings, $globalSorting, $sortingType)
     {
-        $columnType    = self::getColumnType($column);
-        $cssColumnName = 'ninja_column_' . $index;
-        $columnClasses = array($cssColumnName);
-        if (isset($column['classes'])) {
-            $userClasses   = explode(' ', $column['classes']);
-            $columnClasses = array_unique(array_merge($columnClasses, $userClasses));
-        }
-        $customCss[$cssColumnName] = array();
-        if ($columnWidth = Arr::get($column, 'width')) {
-            $customCss[$cssColumnName]['width'] = $columnWidth . 'px';
-        }
-        if ($textAlign = Arr::get($column, 'textAlign')) {
-            $customCss[$cssColumnName]['textAlign'] = $textAlign;
-        }
-        $columnTitle = $column['name'];
-        if (Arr::get($column, 'enable_html_content') == 'true') {
-            if ($columnContent = Arr::get($column, 'header_html_content')) {
-                $columnTitle = do_shortcode($columnContent);
-            }
-        }
-        $formatted_column = array(
-            'name'        => $column['key'],
-            'key'         => $column['key'],
-            'title'       => $columnTitle,
-            'breakpoints' => $column['breakpoints'],
-            'type'        => $columnType,
-            'sortable'    => $globalSorting,
-            'visible'     => ($column['breakpoints'] == 'hidden') ? false : true,
-            'classes'     => $columnClasses,
-            'filterable'  => (isset($column['unfilterable']) && $column['unfilterable'] == 'yes') ? false : true,
-            'column'      => $column
-        );
-        if ($columnType == 'date') {
-            wp_enqueue_script('moment');
+        $base = ColumnHelper::formatColumnBase($column, $index, $settings, $globalSorting, $sortingType);
+        $formatted_column = $base['formatted_column'];
 
-            $formatted_column['formatString'] = $column['dateFormat'] ?: 'MM/DD/YYYY';
+        // Handle side-effects
+        if ($base['enqueue_moment']) {
+            wp_enqueue_script('moment');
         }
-        if ($sortingType == 'by_column' && $column['key'] == $settings['sorting_column']) {
-            $formatted_column['sorted']    = true;
-            $formatted_column['direction'] = $settings['sorting_column_by'];
-        }
+
+        // This method also returns the raw column for caller use
+        $formatted_column['column'] = $column;
 
         return $formatted_column;
     }

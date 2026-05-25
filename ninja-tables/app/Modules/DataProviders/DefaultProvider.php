@@ -2,6 +2,10 @@
 
 namespace NinjaTables\App\Modules\DataProviders;
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 use NinjaTables\App\Models\NinjaTableItem;
 use NinjaTables\Framework\Support\Arr;
 
@@ -71,7 +75,8 @@ class DefaultProvider
         if ($limit && $limit > 0) {
             $query->limit($limit);
         } elseif ($skip && $skip > 0) {
-            $query->limit(99999);
+            $maxRows = intval(apply_filters('ninja_tables_public_max_rows', 3000));
+            $query->limit($maxRows);
         }
 
         if ($ownOnly) {
@@ -104,14 +109,19 @@ class DefaultProvider
         $columns         = ninja_table_get_table_columns($tableId);
         $sortingColumn   = Arr::get($settings, 'sorting_column');
         $sortingColumnBy = Arr::get($settings, 'sorting_column_by', 'asc');
+        $sortingColumnBy = in_array(strtoupper($sortingColumnBy), ['ASC', 'DESC']) ? $sortingColumnBy : 'DESC';
 
         $column = Arr::first($columns, function ($column) use ($sortingColumn) {
             return Arr::get($column, 'key') === $sortingColumn;
         });
 
-        $dataType = Arr::get($column, 'data_type');
+        if (!$column) {
+            return $query;
+        }
 
-        $dateFormat = Arr::get($column, 'dateFormat');
+        $dataType      = Arr::get($column, 'data_type');
+        $dateFormat    = Arr::get($column, 'dateFormat');
+        $sortingColumn = sanitize_key(Arr::get($column, 'key'));
 
         if ($dataType === 'number') {
             $query->orderByRaw("CAST(JSON_UNQUOTE(JSON_EXTRACT(value, '$.$sortingColumn')) AS SIGNED) " . $sortingColumnBy);

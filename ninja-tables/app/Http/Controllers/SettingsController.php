@@ -12,6 +12,18 @@ class SettingsController extends Controller
 {
     private $cptName = 'ninja-table';
 
+    private function assertNinjaTable($id)
+    {
+        if (get_post_type($id) !== $this->cptName) {
+            return $this->sendError([
+                'message' => __('No Table Found', 'ninja-tables'),
+                'route'   => 'home',
+            ], 423);
+        }
+
+        return null;
+    }
+
     public function getTableSettings(Request $request, $id)
     {
         $tableID = intval($id);
@@ -26,7 +38,7 @@ class SettingsController extends Controller
         $provider = ninja_table_get_data_provider($table->ID);
 
         $table = $this->app->applyFilters('ninja_tables_get_table_' . $provider, $table);
-
+        $table->post_content  = wp_kses_post($table->post_content);
         $table->table_caption = get_post_meta($tableID, '_ninja_table_caption', true);
 
         $table->custom_css = get_post_meta($tableID, '_ninja_tables_custom_css', true);
@@ -44,6 +56,11 @@ class SettingsController extends Controller
     public function updateTableSettings(Request $request, $id)
     {
         $tableId         = intval($id);
+
+        if ($response = $this->assertNinjaTable($tableId)) {
+            return $response;
+        }
+
         $rawColumns      = [];
         $tablePreference = '';
 
@@ -106,14 +123,22 @@ class SettingsController extends Controller
             'javascript:', 'vbscript:', 'data:', 'file:', 'ftp:',
             '<script', '<iframe', '<object', '<embed', '<form',
             'onclick', 'onload', 'onerror', 'onmouseover', 'onfocus', 'onblur',
+            'onchange', 'oninput', 'onkeydown', 'onkeyup', 'onmouseenter',
             'eval(', 'alert(', 'setTimeout', 'setInterval', 'Function(',
             'document.', 'window.', 'location.', 'navigator.',
-            'exec(', 'system(', 'shell_exec', 'passthru(',
+            'exec(', 'system(', 'shell_exec', 'passthru(', 'fetch(',
             '<?php', '<?=', 'constructor', 'prototype'
         ];
 
-        $input = str_ireplace($dangerous, '', $input);
         $input = preg_replace('/[\x00-\x1F\x7F]/', '', $input);
+
+        $maxIterations = 10;
+        $i = 0;
+        do {
+            $before = $input;
+            $input = str_ireplace($dangerous, '', $input);
+            $i++;
+        } while ($input !== $before && $i < $maxIterations);
 
         return trim(substr($input, 0, 2000));
     }
@@ -121,6 +146,11 @@ class SettingsController extends Controller
     public function getButtonSettings(Request $request, $id)
     {
         $tableId             = absint($id);
+
+        if ($response = $this->assertNinjaTable($tableId)) {
+            return $response;
+        }
+
         $tableButtonDefaults = array(
             'csv'              => array(
                 'status'     => 'no',
@@ -160,6 +190,11 @@ class SettingsController extends Controller
     {
         ninja_tables_allowed_css_properties();
         $tableId        = absint($id);
+
+        if ($response = $this->assertNinjaTable($tableId)) {
+            return $response;
+        }
+
         $buttonSettings = ninja_tables_sanitize_array(wp_unslash(Arr::get($request->all(), 'button_settings', [])));
         update_post_meta($tableId, '_ninja_custom_table_buttons', $buttonSettings);
 
@@ -173,6 +208,11 @@ class SettingsController extends Controller
     public function saveCustomCSSJS(Request $request, $id)
     {
         $tableId = intval($id);
+
+        if ($response = $this->assertNinjaTable($tableId)) {
+            return $response;
+        }
+
         $css     = isset($_REQUEST['custom_css']) ? sanitize_textarea_field(wp_unslash($_REQUEST['custom_css'])) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         $css     = wp_strip_all_tags($css);
         update_post_meta($tableId, '_ninja_tables_custom_css', $css);
@@ -189,6 +229,10 @@ class SettingsController extends Controller
     public function getCustomCSSJS(Request $request, $id)
     {
         $tableId = intval($id);
+
+        if ($response = $this->assertNinjaTable($tableId)) {
+            return $response;
+        }
 
         return $this->sendSuccess([
             'data' => [

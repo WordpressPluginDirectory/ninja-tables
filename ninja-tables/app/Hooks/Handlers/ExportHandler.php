@@ -4,6 +4,8 @@ namespace NinjaTables\App\Hooks\Handlers;
 
 use NinjaTables\App\Library\Csv\Writer;
 use NinjaTables\App\Models\NinjaTableItem;
+use NinjaTables\App\Modules\DataTables\Models\DynamicRow;
+use NinjaTables\App\Modules\DataTables\Database\DynamicTableManager;
 use NinjaTables\Framework\Support\Arr;
 use NinjaTables\Framework\Support\Sanitizer;
 
@@ -11,17 +13,24 @@ class ExportHandler
 {
     public function dragAndDropExport()
     {
-        if ( ! current_user_can(ninja_table_admin_role())) {
+        if (!current_user_can(ninja_table_admin_role())) {
             return;
         }
 
-        $tableId = intval(Arr::get($_REQUEST, 'table_id')); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        $request = ninjaTablesRequest();
 
-        if ( ! $tableId) {
+        $nonce = Arr::get($request, '_wpnonce', '');
+        if (!wp_verify_nonce($nonce, 'ninja_table_admin_nonce')) {
+            wp_die(esc_html(__('Security check failed.', 'ninja-tables')), 403);
+        }
+
+        $tableId = intval(Arr::get($request, 'table_id'));
+
+        if (!$tableId) {
             return;
         }
 
-        $format     = Sanitizer::sanitizeTextField(Arr::get($_REQUEST, 'format')); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        $format = Sanitizer::sanitizeTextField(Arr::get($request, 'format'));
         $tableTitle = get_the_title($tableId);
         $fileName   = Sanitizer::sanitizeTitle($tableTitle);
         $tableData  = get_post_meta($tableId, '_ninja_table_builder_table_data', true);
@@ -80,12 +89,21 @@ class ExportHandler
 
     public function defaultExport($externalSource = false)
     {
-        if ( ! current_user_can(ninja_table_admin_role())) {
+        if (!current_user_can(ninja_table_admin_role())) {
             return;
         }
 
-        $tableId = intval(Arr::get($_REQUEST, 'table_id')); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-        $format  = Sanitizer::sanitizeTextField(Arr::get($_REQUEST, 'format')); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        $request = ninjaTablesRequest();
+
+        if (!$externalSource) {
+            $nonce = Arr::get($request, '_wpnonce', '');
+            if (!wp_verify_nonce($nonce, 'ninja_table_admin_nonce')) {
+                wp_die(esc_html(__('Security check failed.', 'ninja-tables')), 403);
+            }
+        }
+
+        $tableId = intval(Arr::get($request, 'table_id'));
+        $format  = Sanitizer::sanitizeTextField(Arr::get($request, 'format'));
 
         $tableTitle = get_the_title($tableId);
 
@@ -95,12 +113,19 @@ class ExportHandler
 
         $tableSettings = ninja_table_get_table_settings($tableId, 'admin');
 
+        // Check if this is a DataTables table
+        $dataProvider = ninja_table_get_data_provider($tableId);
+        $isDataTables = $dataProvider === 'default'
+                        && isset($tableSettings['library'])
+                        && $tableSettings['library'] === 'datatables';
+
         if ($format == 'csv') {
-
-            $sortingType = Arr::get($tableSettings, 'sorting_type', 'by_created_at');
-
-            $tableColumns = ninja_table_get_table_columns($tableId, 'admin');
-            $data         = ninjaTablesGetTablesDataByID($tableId, $tableColumns, $sortingType, true);
+            if ($isDataTables) {
+                $data = static::getDataTablesCsvData($tableId);
+            } else {
+                $sortingType = Arr::get($tableSettings, 'sorting_type', 'by_created_at');
+                $data = ninjaTablesGetTablesDataByID($tableId, $tableColumns, $sortingType, true);
+            }
 
             $header = array();
 
@@ -125,10 +150,11 @@ class ExportHandler
             static::exportAsCSV($exportData, $fileName, array_values($header));
         } elseif ($format == 'json') {
             $table = get_post($tableId);
+            $rows  = array();
 
-            $dataProvider = ninja_table_get_data_provider($tableId);
-            $rows         = array();
-            if ($dataProvider == 'default') {
+            if ($isDataTables) {
+                $rows = static::getDataTablesRows($tableId, $tableColumns);
+            } elseif ($dataProvider == 'default') {
                 $rawRows = NinjaTableItem::selectedRows($tableId);
 
                 foreach ($rawRows as $row) {
@@ -151,7 +177,7 @@ class ExportHandler
             );
 
             foreach ($matas as $metaKey => $metaValue) {
-                if ( ! in_array($metaKey, $excludedMetaKeys)) {
+                if (!in_array($metaKey, $excludedMetaKeys)) {
                     if (isset($metaValue[0])) {
                         $metaValue         = maybe_unserialize($metaValue[0]);
                         $allMeta[$metaKey] = $metaValue;
@@ -186,7 +212,7 @@ class ExportHandler
         $header !== null ? $writer->insertOne($header) : '';
         $writer->insertAll($data);
         $writer->output($fileName);
-        die();
+        wp_die();
     }
 
     private static function exportAsJSON($data, $fileName = null)
@@ -194,11 +220,78 @@ class ExportHandler
         $fileName = ($fileName) ? $fileName . '.json' : 'export-data-' . gmdate('d-m-Y') . '.json';
 
         header('Content-disposition: attachment; filename=' . $fileName);
-
         header('Content-type: application/json');
+        header('X-Content-Type-Options: nosniff');
 
         echo json_encode($data);
 
-        die();
+        wp_die();
+    }
+
+    /**
+     * Get flat row data from DataTables dynamic table for CSV export
+     *
+     * @param int $tableId Table ID
+     *
+     * @return array Array of associative arrays keyed by column key
+     */
+    private static function getDataTablesCsvData($tableId)
+    {
+        $tableManager = new DynamicTableManager($tableId);
+
+        if (!$tableManager->tableExists()) {
+            return [];
+        }
+
+        $dynamicRow = new DynamicRow($tableId);
+        $total      = $dynamicRow->count();
+        $rawRows    = $dynamicRow->getAll(max($total, 1), 1, DynamicTableManager::COL_POSITION, 'ASC');
+
+        $data = [];
+        foreach ($rawRows as $rawRow) {
+            $mapped = $dynamicRow->mapRowToUserKeys($rawRow);
+            $data[] = $mapped['values'];
+        }
+
+        return $data;
+    }
+
+    /**
+     * Get rows from DataTables dynamic table for export
+     *
+     * @param int $tableId Table ID
+     * @param array $tableColumns Column definitions
+     *
+     * @return array Formatted rows for export
+     */
+    private static function getDataTablesRows($tableId, $tableColumns)
+    {
+        $tableManager = new DynamicTableManager($tableId);
+
+        if (!$tableManager->tableExists()) {
+            return [];
+        }
+
+        $dynamicRow = new DynamicRow($tableId);
+        $total      = $dynamicRow->count();
+        $rawRows    = $dynamicRow->getAll(max($total, 1), 1, DynamicTableManager::COL_POSITION, 'ASC');
+
+        $rows = [];
+        foreach ($rawRows as $rawRow) {
+            $mapped = $dynamicRow->mapRowToUserKeys($rawRow);
+
+            // Format to match existing export structure
+            $rows[] = (object)[
+                'id'         => $mapped['id'],
+                'position'   => $mapped['position'] ?? 0,
+                'owner_id'   => $mapped['owner_id'] ?? 0,
+                'value'      => $mapped['values'],
+                'settings'   => !empty($mapped['settings']) ? $mapped['settings'] : null,
+                'created_at' => $mapped['created_at'] ?? '',
+                'updated_at' => $mapped['updated_at'] ?? '',
+            ];
+        }
+
+        return $rows;
     }
 }

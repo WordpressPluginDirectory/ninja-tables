@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 $ninja_tables_table_columns = array_reverse($table_columns);
 $ninja_tables_header_row = '';
 $ninja_tables_counter = 1;
@@ -82,10 +85,16 @@ if ($table_rows && count($ninja_tables_table_columns)):
                     // if colspan counter is greater than 1 then we are adding the colspan into the dom
                 }
 
+                // Add copyable class if enableCopyContent is yes
+                $ninja_tables_copyable_class = '';
+                if (isset($ninja_tables_table_column['original']['enableCopyContent']) && $ninja_tables_table_column['original']['enableCopyContent'] === 'yes') {
+                    $ninja_tables_copyable_class = ' class="nt-copyable"';
+                }
+
                 if ($ninja_tables_columnValueDataAtts) {
-                    $ninja_tables_row = '<td' . $ninja_tables_colspan . ' data-json_values=' . $ninja_tables_columnValueDataAtts . '>' . $ninja_tables_column_value . '</td>' . $ninja_tables_row;
+                    $ninja_tables_row = '<td' . $ninja_tables_colspan . $ninja_tables_copyable_class . ' data-json_values=' . $ninja_tables_columnValueDataAtts . '>' . $ninja_tables_column_value . '</td>' . $ninja_tables_row;
                 } else {
-                    $ninja_tables_row = '<td' . $ninja_tables_colspan . '>' . $ninja_tables_column_value . '</td>' . $ninja_tables_row;
+                    $ninja_tables_row = '<td' . $ninja_tables_colspan . $ninja_tables_copyable_class . '>' . $ninja_tables_column_value . '</td>' . $ninja_tables_row;
                 }
 
                 $ninja_tables_colSpanCounter = 1;

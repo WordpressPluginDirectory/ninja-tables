@@ -73,6 +73,12 @@ class PluginInstallerController extends Controller
 
     public function installNinjaCharts(Request $request)
     {
+        if (!current_user_can('install_plugins')) {
+            return $this->sendError([
+                'message' => 'Insufficient permissions'
+            ], 403);
+        }
+
         $plugin = [
             'name'      => 'Ninja Charts',
             'repo-slug' => 'ninja-charts',

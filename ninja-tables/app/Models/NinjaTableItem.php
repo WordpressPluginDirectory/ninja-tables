@@ -164,8 +164,12 @@ class NinjaTableItem extends Model
 
 
         if ($id = intval($id)) {
+            $existing = $this->where('id', $id)->where('table_id', $tableId)->first();
+            if (!$existing) {
+                return null;
+            }
             do_action('ninja_table_before_update_item', $id, $tableId, $attributes);
-            $this->where('id', $id)->update($attributes);
+            $this->where('id', $id)->where('table_id', $tableId)->update($attributes);
             do_action('ninja_table_after_update_item', $id, $tableId, $attributes);
         } else {
             if ($insertAfterId !== null) {
@@ -198,7 +202,11 @@ class NinjaTableItem extends Model
             do_action('ninja_table_after_add_item', $insertId, $tableId, $attributes);
         }
 
-        $item = $this->find($id);
+        $item = $this->where('id', $id)->where('table_id', $tableId)->first();
+
+        if (!$item) {
+            return null;
+        }
 
         ninjaTablesClearTableDataCache($tableId);
 

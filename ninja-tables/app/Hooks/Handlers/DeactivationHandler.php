@@ -33,9 +33,8 @@ class DeactivationHandler
                 'ninja_doing_action' => 'deactivate'
             );
             wp_remote_post(self::$apiUrl, array(
-                'method'    => 'POST',
-                'sslverify' => false,
-                'body'      => $data
+                'method' => 'POST',
+                'body'   => $data
             ));
         }
     }
@@ -123,11 +122,20 @@ class DeactivationHandler
 
     public function saveDeactivationFeedback()
     {
+        if (!current_user_can('activate_plugins')) {
+            wp_send_json_error(['message' => 'Permission denied.'], 403);
+        }
+
+        $nonce = sanitize_text_field(Arr::get($_REQUEST, '_nonce', '')); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        if (!wp_verify_nonce($nonce, 'ninja_tables_deactivate_feedback')) {
+            wp_send_json_error(['message' => 'Invalid nonce.'], 403);
+        }
+
         if ($this->isLocalhost()) {
             return;
         }
 
-        $requestData    = ninja_tables_sanitize_array($_REQUEST); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        $requestData    = ninja_tables_sanitize_array($_REQUEST);
         $reason         = Arr::get($requestData, 'reason', 'other');
         $reason_message = Arr::get($requestData, 'custom_message', '');
 
@@ -147,7 +155,6 @@ class DeactivationHandler
 
         wp_remote_post(static::$apiUrl, array(
             'method' => 'POST',
-            'sslverify' => false,
             'body' => $data
         ));
 
