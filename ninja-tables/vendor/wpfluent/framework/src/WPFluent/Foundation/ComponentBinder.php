@@ -6,9 +6,10 @@ use NinjaTables\Framework\Support\Arr;
 use NinjaTables\Framework\View\View;
 use NinjaTables\Framework\Cache\Cache;
 use NinjaTables\Framework\Http\URL;
-use NinjaTables\Framework\Http\Router;
+use NinjaTables\Framework\Http\UrlGenerator;
 use NinjaTables\Framework\Support\Mail;
 use NinjaTables\Framework\Support\Pipeline;
+use NinjaTables\Framework\Http\Router;
 use NinjaTables\Framework\Http\Request\Request;
 use NinjaTables\Framework\Http\Response\Response;
 use NinjaTables\Framework\Events\Dispatcher;
@@ -16,7 +17,9 @@ use NinjaTables\Framework\Encryption\Encrypter;
 use NinjaTables\Framework\Database\Orm\Model;
 use NinjaTables\Framework\Validator\Validator;
 use NinjaTables\Framework\Foundation\RequestGuard;
-use NinjaTables\Framework\Database\DBManager;
+use NinjaTables\Framework\Foundation\Exceptions\ExceptionHandler;
+use NinjaTables\Framework\Database\DatabaseManager;
+use NinjaTables\Framework\Database\DatabaseTransactionsManager;
 use NinjaTables\Framework\Database\ConnectionResolver;
 use NinjaTables\Framework\Database\Query\WPDBConnection;
 use NinjaTables\Framework\Pagination\AbstractCursorPaginator;
@@ -53,6 +56,7 @@ class ComponentBinder
         'Mail',
         'Paginator',
         'Pipeline',
+        'ExceptionHandler',
     ];
 
     /**
@@ -84,6 +88,17 @@ class ComponentBinder
         $this->registerResolvingEvent($this->app);
     }
 
+    public function resolveDatabaseTransactionsManager()
+    {
+        if (!$this->app->bound('db.transactions')) {
+            $this->app->singleton('db.transactions', function ($app) {
+                return new DatabaseTransactionsManager;
+            });
+        }
+
+        return $this->app->make('db.transactions');
+    }
+
     /**
      * Register resolving event into the container.
      * @param  \NinjaTables\Framework\Foundation\Application $app
@@ -92,15 +107,17 @@ class ComponentBinder
     protected function registerResolvingEvent($app)
     {
         $app->resolving(RequestGuard::class, function($request) use ($app) {
+            
+            $request->setRequestInstance($app->request);
 
             if (method_exists($request, 'authorize')) {
                 if(!$request->authorize()) throw new Status401;
             }
 
-            $request->merge($request->beforeValidation());
+            $request->merge((array) $request->beforeValidation());
             $request->validate();
             $request->merge((array) $request->afterValidation(
-                $app->make('validator')
+                $request->getValidator()
             ));
         });
     }
@@ -127,7 +144,7 @@ class ComponentBinder
         $method = $this->getBindingMethod('singleton');
 
         $this->app->$method(Request::class, function ($app) {
-            return new Request($app, $_GET, $_POST, $_FILES);
+            return $this->resolveRequest($app);
         });
 
         $this->app->alias(Request::class, 'request');
@@ -200,7 +217,9 @@ class ComponentBinder
     protected function bindEvents()
     {
         $this->app->singleton(Dispatcher::class, function($app) {
-            return new Dispatcher($app);
+            return (new Dispatcher($app))->setTransactionManagerResolver(
+                fn () => $this->resolveDatabaseTransactionsManager()
+            );
         });
 
         $this->app->alias(Dispatcher::class, 'events');
@@ -226,31 +245,36 @@ class ComponentBinder
      */
     protected function bindDB()
     {
+        $connection = new WPDBConnection($GLOBALS['wpdb']);
+
         $resolver = new ConnectionResolver([
-            'mysql' => new WPDBConnection(
-                $GLOBALS['wpdb']
-            ),
+            'mysql' => $connection,
+            'sqlite' => $connection,
         ]);
 
         $resolver->setDefaultConnection('mysql');
+
+        $resolver->connection()->setTransactionManager(
+            $this->resolveDatabaseTransactionsManager()
+        );
 
         Model::setConnectionResolver($resolver);
         
         Model::setEventDispatcher($this->app['events']);
 
         $this->app->singletonIf('db', function($app) use ($resolver) {
-            return new DBManager($resolver);
+            return new DatabaseManager($resolver);
         });
     }
 
     /**
-     * Bind the URL instance into the container.
+     * Bind the Url instance into the container.
      * @return null
      */
-    protected function bindURL()
+    protected function bindUrl()
     {
         $this->app->bind(URL::class, function($app) {
-            return new URL($app->make(Encrypter::class));
+            return new URL('', new UrlGenerator($app));
         });
 
         $this->app->alias(URL::class, 'url');
@@ -276,7 +300,7 @@ class ComponentBinder
     protected function bindMail()
     {
         $this->app->bind(Mail::class, function($app) {
-            return new Mail($app);
+            return new Mail();
         });
 
         $this->app->alias(Mail::class, 'mail');
@@ -321,7 +345,26 @@ class ComponentBinder
             return new Pipeline($app);
         });
 
-        $this->app->alias(Pipeline::class, 'pipeline');  
+        $this->app->alias(Pipeline::class, 'pipeline');
+    }
+
+    /**
+     * Bind the exception-handler registry into the container.
+     *
+     * Default is the bare `Foundation\Exceptions\ExceptionHandler` (no
+     * renderables registered). Plugins override by re-binding their own
+     * subclass to the same key from `boot/bindings.php` BEFORE the first
+     * request hits Route.
+     *
+     * @return null
+     */
+    protected function bindExceptionHandler()
+    {
+        $this->app->singleton(ExceptionHandler::class, function ($app) {
+            return new ExceptionHandler();
+        });
+
+        $this->app->alias(ExceptionHandler::class, 'exception.handler');
     }
 
     /**
@@ -386,5 +429,51 @@ class ComponentBinder
         }
         
         return implode('\\', $pieces);
+    }
+
+    /**
+     * Resolve the appropriate request instance.
+     * 
+     * @param  $app
+     * @return Request|object (Anonymous Class)
+     */
+    protected function resolveRequest($app)
+    {
+        return new Request($app, $_GET, $_POST);
+    }
+
+    /**
+     * Check if the request is of the plugin.
+     * 
+     * @return boolean
+     */
+    protected function isRequestOfPlugin()
+    {
+        if (str_starts_with($this->app->env(), 'testing')) {
+            return true;
+        }
+
+        $slug = $this->app->config->get('app.slug');
+
+        if (get_option('permalink_structure')) {
+            $route = $_SERVER['REQUEST_URI'] ?? '';
+        } else {
+            $route = $_GET['rest_route'] ?? '';
+        }
+
+        $parsedUrl = parse_url($route);
+
+        $path = $parsedUrl['path'] ?? '';
+
+        $path = str_replace('/wp-json', '', $path);
+
+        if (is_admin()) {
+            $page = $_GET['page'] ?? '';
+            if ($slug === $page) {
+                $path = $page;
+            }
+        }
+
+        return str_starts_with(ltrim($path, '/'), $slug);
     }
 }

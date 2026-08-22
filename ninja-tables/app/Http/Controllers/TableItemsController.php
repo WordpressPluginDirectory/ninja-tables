@@ -121,7 +121,11 @@ class TableItemsController extends Controller
         $created_at    = Arr::get($request->all(), 'created_at');
         $insertAfterId = Arr::get($request->all(), 'insert_after_id');
         $settings      = Arr::get($request->all(), 'settings');
-        $rowId         = intval(Arr::get($request->all(), 'id'));
+        // Read the row id from the BODY only. The router merges the route's
+        // {id} — the TABLE id — into the general inputs as 'id', so reading it
+        // from all() makes an id-less insert look like an update of a
+        // nonexistent row and 404s. post() never carries the route parameter.
+        $rowId         = intval($request->post('id'));
 
         if ($rowId) {
             $row = NinjaTableItem::where('id', $rowId)->where('table_id', $tableId)->first();
@@ -178,13 +182,17 @@ class TableItemsController extends Controller
         }
 
         $columnKey   = Sanitizer::sanitizeTextField(Arr::get($data, 'column_key'));
-        $columnValue = Sanitizer::sanitizeTextField(Arr::get($data, 'column_value'));
+        $columnValue = Arr::get($data, 'column_value', '');
+
+        if (is_string($columnValue)) {
+            $columnValue = Sanitizer::sanitizeTextField($columnValue);
+        }
 
         NinjaTableItem::editSingleCell($rowId, $row, $columnKey, $columnValue);
 
         return $this->sendSuccess([
             'data' => [
-                'message' => 'Cell successfully updated'
+                'message' => __('Cell successfully updated', 'ninja-tables')
             ]
         ], 200);
     }

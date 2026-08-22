@@ -30,7 +30,7 @@ trait QueriesRelationships
      *
      * @throws \RuntimeException
      */
-    public function has($relation, $operator = '>=', $count = 1, $boolean = 'and', Closure $callback = null)
+    public function has($relation, $operator = '>=', $count = 1, $boolean = 'and', ?Closure $callback = null)
     {
         if (is_string($relation)) {
             if (str_contains($relation, '.')) {
@@ -123,7 +123,7 @@ trait QueriesRelationships
      * @param  \Closure|null  $callback
      * @return \NinjaTables\Framework\Database\Orm\Builder|static
      */
-    public function doesntHave($relation, $boolean = 'and', Closure $callback = null)
+    public function doesntHave($relation, $boolean = 'and', ?Closure $callback = null)
     {
         return $this->has($relation, '<', 1, $boolean, $callback);
     }
@@ -148,7 +148,7 @@ trait QueriesRelationships
      * @param  int  $count
      * @return \NinjaTables\Framework\Database\Orm\Builder|static
      */
-    public function whereHas($relation, Closure $callback = null, $operator = '>=', $count = 1)
+    public function whereHas($relation, ?Closure $callback = null, $operator = '>=', $count = 1)
     {
         return $this->has($relation, $operator, $count, 'and', $callback);
     }
@@ -164,7 +164,7 @@ trait QueriesRelationships
      * @param  int  $count
      * @return \NinjaTables\Framework\Database\Orm\Builder|static
      */
-    public function withWhereHas($relation, Closure $cb = null, $operator = '>=', $count = 1)
+    public function withWhereHas($relation, ?Closure $cb = null, $operator = '>=', $count = 1)
     {
         return $this->whereHas(Str::before($relation, ':'), $cb, $operator, $count)
             ->with($cb ? [$relation => function ($query) use ($cb) { $cb($query); }] : $relation);
@@ -179,7 +179,7 @@ trait QueriesRelationships
      * @param  int  $count
      * @return \NinjaTables\Framework\Database\Orm\Builder|static
      */
-    public function orWhereHas($relation, Closure $callback = null, $operator = '>=', $count = 1)
+    public function orWhereHas($relation, ?Closure $callback = null, $operator = '>=', $count = 1)
     {
         return $this->has($relation, $operator, $count, 'or', $callback);
     }
@@ -191,7 +191,7 @@ trait QueriesRelationships
      * @param  \Closure|null  $callback
      * @return \NinjaTables\Framework\Database\Orm\Builder|static
      */
-    public function whereDoesntHave($relation, Closure $callback = null)
+    public function whereDoesntHave($relation, ?Closure $callback = null)
     {
         return $this->doesntHave($relation, 'and', $callback);
     }
@@ -203,7 +203,7 @@ trait QueriesRelationships
      * @param  \Closure|null  $callback
      * @return \NinjaTables\Framework\Database\Orm\Builder|static
      */
-    public function orWhereDoesntHave($relation, Closure $callback = null)
+    public function orWhereDoesntHave($relation, ?Closure $callback = null)
     {
         return $this->doesntHave($relation, 'or', $callback);
     }
@@ -219,7 +219,7 @@ trait QueriesRelationships
      * @param  \Closure|null  $callback
      * @return \NinjaTables\Framework\Database\Orm\Builder|static
      */
-    public function hasMorph($relation, $types, $operator = '>=', $count = 1, $boolean = 'and', Closure $callback = null)
+    public function hasMorph($relation, $types, $operator = '>=', $count = 1, $boolean = 'and', ?Closure $callback = null)
     {
         if (is_string($relation)) {
             $relation = $this->getRelationWithoutConstraints($relation);
@@ -302,7 +302,7 @@ trait QueriesRelationships
      * @param  \Closure|null  $callback
      * @return \NinjaTables\Framework\Database\Orm\Builder|static
      */
-    public function doesntHaveMorph($relation, $types, $boolean = 'and', Closure $callback = null)
+    public function doesntHaveMorph($relation, $types, $boolean = 'and', ?Closure $callback = null)
     {
         return $this->hasMorph($relation, $types, '<', 1, $boolean, $callback);
     }
@@ -329,7 +329,7 @@ trait QueriesRelationships
      * @param  int  $count
      * @return \NinjaTables\Framework\Database\Orm\Builder|static
      */
-    public function whereHasMorph($relation, $types, Closure $callback = null, $operator = '>=', $count = 1)
+    public function whereHasMorph($relation, $types, ?Closure $callback = null, $operator = '>=', $count = 1)
     {
         return $this->hasMorph($relation, $types, $operator, $count, 'and', $callback);
     }
@@ -344,7 +344,7 @@ trait QueriesRelationships
      * @param  int  $count
      * @return \NinjaTables\Framework\Database\Orm\Builder|static
      */
-    public function orWhereHasMorph($relation, $types, Closure $callback = null, $operator = '>=', $count = 1)
+    public function orWhereHasMorph($relation, $types, ?Closure $callback = null, $operator = '>=', $count = 1)
     {
         return $this->hasMorph($relation, $types, $operator, $count, 'or', $callback);
     }
@@ -357,7 +357,7 @@ trait QueriesRelationships
      * @param  \Closure|null  $callback
      * @return \NinjaTables\Framework\Database\Orm\Builder|static
      */
-    public function whereDoesntHaveMorph($relation, $types, Closure $callback = null)
+    public function whereDoesntHaveMorph($relation, $types, ?Closure $callback = null)
     {
         return $this->doesntHaveMorph($relation, $types, 'and', $callback);
     }
@@ -370,7 +370,7 @@ trait QueriesRelationships
      * @param  \Closure|null  $callback
      * @return \NinjaTables\Framework\Database\Orm\Builder|static
      */
-    public function orWhereDoesntHaveMorph($relation, $types, Closure $callback = null)
+    public function orWhereDoesntHaveMorph($relation, $types, ?Closure $callback = null)
     {
         return $this->doesntHaveMorph($relation, $types, 'or', $callback);
     }
@@ -539,7 +539,7 @@ trait QueriesRelationships
      * Add a "belongs to" relationship where clause to the query.
      *
      * @param  \NinjaTables\Framework\Database\Orm\Model  $related
-     * @param  string  $relationship
+     * @param  string  $relationshipName
      * @param  string  $boolean
      * @return $this
      *
@@ -560,22 +560,28 @@ trait QueriesRelationships
         }
 
         if ($relationshipName === null) {
-            $relationshipName = Str::camel(class_basename($related));
+            $relationshipName = Str::camel(static::classBasename($related));
         }
 
         try {
             $relationship = $this->model->{$relationshipName}();
         } catch (BadMethodCallException $e) {
-            throw RelationNotFoundException::make($this->model, $relationshipName);
+            throw RelationNotFoundException::make(
+                $this->model, $relationshipName
+            );
         }
 
         if (! $relationship instanceof BelongsTo) {
-            throw RelationNotFoundException::make($this->model, $relationshipName, BelongsTo::class);
+            throw RelationNotFoundException::make(
+                $this->model, $relationshipName, BelongsTo::class
+            );
         }
 
         $this->whereIn(
             $relationship->getQualifiedForeignKeyName(),
-            $relatedCollection->pluck($relationship->getOwnerKeyName())->toArray(),
+            $relatedCollection->pluck(
+                $relationship->getOwnerKeyName()
+            )->toArray(),
             $boolean,
         );
 
@@ -586,7 +592,7 @@ trait QueriesRelationships
      * Add an "BelongsTo" relationship with an "or where" clause to the query.
      *
      * @param  \NinjaTables\Framework\Database\Orm\Model  $related
-     * @param  string  $relationship
+     * @param  string  $relationshipName
      * @return $this
      *
      * @throws \RuntimeException
@@ -695,7 +701,7 @@ trait QueriesRelationships
      * Get the relation hashed column name for the given column and relation.
      *
      * @param  string  $column
-     * @param  \Illuminate\Database\Eloquent\Relations\Relation<*, *, *>  $relation
+     * @param  \NinjaTables\Framework\Database\Orm\Relations\Relation<*, *, *>  $relation
      * @return string
      */
     protected function getRelationHashedColumn($column, $relation)

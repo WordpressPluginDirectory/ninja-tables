@@ -23,6 +23,12 @@ use NinjaTables\Framework\Database\Orm\Relations\Concerns\AsPivot;
 use NinjaTables\Framework\Database\Orm\Collection as OrmCollection;
 use NinjaTables\Framework\Database\ConnectionResolverInterface as Resolver;
 
+/**
+ * Model forwards unknown instance/static calls to a new Orm Builder
+ * (see __call/__callStatic), which itself proxies to the Query Builder.
+ *
+ * @mixin \NinjaTables\Framework\Database\Orm\Builder
+ */
 abstract class Model implements ArrayableInterface, ArrayAccess, CanBeEscapedWhenCastToString, JsonableInterface, JsonSerializable, UrlRoutable
 {
     use HelperFunctionsTrait;
@@ -32,6 +38,7 @@ abstract class Model implements ArrayableInterface, ArrayAccess, CanBeEscapedWhe
         Concerns\HasGlobalScopes,
         Concerns\HasRelationships,
         Concerns\HasTimestamps,
+        Concerns\HasUniqueIds,
         Concerns\HidesAttributes,
         Concerns\GuardsAttributes,
         ForwardsCalls;
@@ -295,8 +302,10 @@ abstract class Model implements ArrayableInterface, ArrayAccess, CanBeEscapedWhe
      */
     protected function initializeTraits()
     {
-        foreach (static::$traitInitializers[static::class] as $method) {
-            $this->{$method}();
+        if (isset(static::$traitInitializers[static::class])) {
+            foreach (static::$traitInitializers[static::class] as $method) {
+                $this->{$method}();
+            }
         }
     }
 
@@ -1614,15 +1623,17 @@ abstract class Model implements ArrayableInterface, ArrayAccess, CanBeEscapedWhe
      */
     public function replicate(?array $except = null)
     {
-        $defaults = [
+        $defaults = array_values(array_filter([
             $this->getKeyName(),
             $this->getCreatedAtColumn(),
             $this->getUpdatedAtColumn(),
-        ];
+            ...$this->uniqueIds(),
+            'laravel_through_key',
+        ]));
 
-        $attributes = Arr::except(
-            $this->getAttributes(), $except ? array_unique(array_merge($except, $defaults)) : $defaults
-        );
+        $excludeKeys = array_unique(array_merge($except ?? [], $defaults));
+        
+        $attributes = Arr::except($this->getAttributes(), $excludeKeys);
 
         return Helper::tap(new static, function ($instance) use ($attributes) {
             $instance->setRawAttributes($attributes);

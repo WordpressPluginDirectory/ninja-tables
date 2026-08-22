@@ -3,7 +3,9 @@
 namespace NinjaTables\Framework\Support;
 
 use Exception;
+use Traversable;
 use JsonException;
+use RuntimeException;
 use NinjaTables\Framework\Foundation\App;
 use NinjaTables\Framework\Support\Helper;
 use NinjaTables\Framework\Support\Stringable;
@@ -46,8 +48,8 @@ class Str
     }
 
     /**
-     * Makes an acronum from a string of words
-     * 
+     * Makes an acronym from a string of words
+     *
      * @param  string $string
      * @param  string $delimiter
      * @return string
@@ -393,13 +395,26 @@ class Str
      * Determine if a given string contains a given substring.
      *
      * @param  string  $haystack
-     * @param  string|string[]  $needles
+     * @param  string|iterable<string>  $needles
+     * @param  bool  $ignoreCase
      * @return bool
      */
-    public static function contains($haystack, $needles)
+    public static function contains($haystack, $needles, $ignoreCase = false)
     {
-        foreach ((array) $needles as $needle) {
-            if ($needle !== '' && mb_strpos($haystack, $needle) !== false) {
+        if ($ignoreCase) {
+            $haystack = mb_strtolower($haystack);
+        }
+
+        if (! is_iterable($needles)) {
+            $needles = (array) $needles;
+        }
+
+        foreach ($needles as $needle) {
+            if ($ignoreCase) {
+                $needle = mb_strtolower($needle);
+            }
+
+            if ($needle !== '' && str_contains($haystack, $needle)) {
                 return true;
             }
         }
@@ -411,13 +426,14 @@ class Str
      * Determine if a given string contains all array values.
      *
      * @param  string  $haystack
-     * @param  string[]  $needles
+     * @param  iterable<string>  $needles
+     * @param  bool  $ignoreCase
      * @return bool
      */
-    public static function containsAll($haystack, array $needles)
+    public static function containsAll($haystack, $needles, $ignoreCase = false)
     {
         foreach ($needles as $needle) {
-            if (! static::contains($haystack, $needle)) {
+            if (! static::contains($haystack, $needle, $ignoreCase)) {
                 return false;
             }
         }
@@ -444,16 +460,21 @@ class Str
      * Determine if a given string ends with a given substring.
      *
      * @param  string  $haystack
-     * @param  string|string[]  $needles
+     * @param  array|string  $needles
      * @return bool
      */
     public static function endsWith($haystack, $needles)
     {
-        foreach ((array) $needles as $needle) {
-            if (
-                $needle !== '' && $needle !== null
-                && substr($haystack, -strlen($needle)) === (string) $needle
-            ) {
+        if (! is_iterable($needles)) {
+            $needles = (array) $needles;
+        }
+
+        if (is_null($haystack)) {
+            return false;
+        }
+
+        foreach ($needles as $needle) {
+            if ((string) $needle !== '' && str_ends_with($haystack, $needle)) {
                 return true;
             }
         }
@@ -520,8 +541,9 @@ class Str
     }
 
     /**
-     * Converts a non-boolean value to boolean
-     * @param  string|int $str
+     * Converts a non-boolean value to boolean (case-insensitive).
+     * Returns null when the value is not a recognized boolean word.
+     * @param  string|int|bool $str
      * @return bool|null
      */
     public static function toBool($str)
@@ -529,7 +551,11 @@ class Str
         if (is_bool($str)) {
             return $str;
         }
-      
+
+        if (is_string($str)) {
+            $str = strtolower(trim($str));
+        }
+
         $truthy = ['yes', 'on', 'true', '1', 1];
 
         $falsy = ['no', 'off', 'false', '0', 0, ''];
@@ -556,21 +582,34 @@ class Str
     /**
      * Checks if the word(s) are in capitalized form.
      * @param  string $str
-     * @param  boolean $onlyFirst if true, checks only the first charatcer
+     * @param  boolean $onlyFirst if true, checks only the first character
      * @return boolean
      */
     public static function isCapitalized($str, $onlyFirst = false)
     {
-        if ($onlyFirst) {
-            return static::isUpper($str[0]);
+        if ((string) $str === '') {
+            return false;
         }
 
-        if ($words = mb_split('\s', $str)) {
-            foreach ($words as $word) {
-                $isCap[] = static::isUpper($word[0]) && static::isLower(mb_substr($word, 1));
-            }
-            return count(array_filter($isCap)) === count($isCap);
+        if ($onlyFirst) {
+            return static::isUpper(mb_substr($str, 0, 1));
         }
+
+        $words = preg_split('/\s+/u', $str, -1, PREG_SPLIT_NO_EMPTY);
+
+        if (empty($words)) {
+            return false;
+        }
+
+        foreach ($words as $word) {
+            if (! static::isUpper(mb_substr($word, 0, 1))
+                || ! static::isLower(mb_substr($word, 1))
+            ) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**
@@ -585,8 +624,8 @@ class Str
     }
 
     /**
-     * Checks if the chracters are in upper case
-     * 
+     * Checks if the characters are in upper case
+     *
      * @param string $str
      * @return boolean
      */
@@ -596,8 +635,8 @@ class Str
     }
 
     /**
-     * Checks if the chracters are in lower case
-     * 
+     * Checks if the characters are in lower case
+     *
      * @param string $str
      * @return boolean
      */
@@ -634,12 +673,12 @@ class Str
     }
 
     /**
-     * Checks if two words are similar
-     * 
+     * Gets the similarity of two words as a percentage.
+     *
      * @param string $str1
      * @param string $str2
-     * 
-     * @return bool
+     *
+     * @return float
      */
     public static function similarityOf($str1, $str2)
     {
@@ -716,11 +755,25 @@ class Str
      * Determine if a given string is a valid UUID.
      *
      * @param  string  $value
+     * @param  int|null  $version Optional UUID version (e.g. 4 or 7) to
+     *                            require; null accepts any version.
      * @return bool
      */
-    public static function isUuid($value)
+    public static function isUuid($value, $version = null)
     {
-        return wp_is_uuid($value);
+        if (is_null($version)) {
+            return wp_is_uuid($value);
+        }
+
+        if (! is_string($value)) {
+            return false;
+        }
+
+        $pattern = '/^[0-9a-f]{8}-[0-9a-f]{4}-'
+            . intval($version)
+            . '[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/D';
+
+        return preg_match($pattern, $value) === 1;
     }
 
     /**
@@ -763,17 +816,17 @@ class Str
         $value, $limit = 100, $end = '...', $preserveWords = false
     )
     {
-        if (mb_strwidth($value, 'UTF-8') <= $limit) {
+        if (mb_strlen($value, 'UTF-8') <= $limit) {
             return $value;
         }
 
         if (! $preserveWords) {
-            return rtrim(mb_strimwidth($value, 0, $limit, '', 'UTF-8')).$end;
+            return rtrim(mb_substr($value, 0, $limit, 'UTF-8')).$end;
         }
 
         $value = trim(preg_replace('/[\n\r]+/', ' ', strip_tags($value)));
 
-        $trimmed = rtrim(mb_strimwidth($value, 0, $limit, '', 'UTF-8'));
+        $trimmed = rtrim(mb_substr($value, 0, $limit, 'UTF-8'));
 
         if (mb_substr($value, $limit, 1, 'UTF-8') === ' ') {
             return $trimmed.$end;
@@ -981,8 +1034,8 @@ class Str
     }
 
     /**
-     * Parse a floasting point number from a string.
-     * 
+     * Parse a floating point number from a string.
+     *
      * @param  string $value
      * @return float|null
      */
@@ -1087,6 +1140,23 @@ class Str
     }
 
     /**
+     * Escape SQL LIKE wildcards (% and _) in a user-supplied search term.
+     *
+     * Pairs with `where('col', 'LIKE', '%'.Str::likeEscape($term).'%')` or
+     * `whereLike($col, $term)`. Uses `\` as the escape character — works as
+     * a no-op for MySQL/MariaDB (default LIKE escape is `\`); on SQLite or
+     * PostgreSQL, also append `ESCAPE '\\'` to the LIKE clause so the
+     * escapes take effect.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public static function likeEscape($value)
+    {
+        return addcslashes((string) $value, '%_\\');
+    }
+
+    /**
      * Replace a given value in the string sequentially with an array.
      *
      * @param  string  $search
@@ -1110,14 +1180,29 @@ class Str
     /**
      * Replace the given value in the given string.
      *
-     * @param  string|string[]  $search
-     * @param  string|string[]  $replace
-     * @param  string|string[]  $subject
-     * @return string
+     * @param  string|iterable<string>  $search
+     * @param  string|iterable<string>  $replace
+     * @param  string|iterable<string>  $subject
+     * @param  bool  $caseSensitive
+     * @return string|string[]
      */
-    public static function replace($search, $replace, $subject)
+    public static function replace($search, $replace, $subject, $caseSensitive = true)
     {
-        return str_replace($search, $replace, $subject);
+        if ($search instanceof Traversable) {
+            $search = (new Collection($search))->all();
+        }
+
+        if ($replace instanceof Traversable) {
+            $replace = (new Collection($replace))->all();
+        }
+
+        if ($subject instanceof Traversable) {
+            $subject = (new Collection($subject))->all();
+        }
+
+        return $caseSensitive
+                ? str_replace($search, $replace, $subject)
+                : str_ireplace($search, $replace, $subject);
     }
 
     /**
@@ -1223,7 +1308,7 @@ class Str
      */
     public static function replaceMatches($pattern, $replace, $subject, $limit = -1)
     {
-        if ($replace instanceof Closure) {
+        if ($replace instanceof \Closure) {
             return preg_replace_callback($pattern, $replace, $subject, $limit);
         }
 
@@ -1412,57 +1497,80 @@ class Str
     }
 
     /**
-     * Remove all whitespace from both ends of a string.
+     * Remove whitespace (including special Unicode spaces) from a string.
      *
-     * @param  string  $value
-     * @param  string|null  $charlist
-     * @return string
+     * Supports trimming from left, right, or both ends, and allows
+     * specifying additional characters to trim.
+     *
+     * @param string      $value    The string to trim.
+     * @param string|null $charlist Optional additional characters to trim.
+     * @param string      $mode     One of 'both' (default), 'left', 'right'.
+     *
+     * @return string The trimmed string.
      */
-    public static function trim($value, $charlist = null)
+    protected static function _unicodeTrim(string $value, ?string $charlist = null, string $mode = 'both'): string
     {
-        if ($charlist === null) {
-            $trimDefaultCharacters = " \n\r\t\v\0";
+        $defaultChars = " \n\r\t\v"; // \0 omitted to avoid null byte errors
 
-            return preg_replace('~^[\s\x{FEFF}\x{200B}\x{200E}'.$trimDefaultCharacters.']+|[\s\x{FEFF}\x{200B}\x{200E}'.$trimDefaultCharacters.']+$~u', '', $value) ?? trim($value);
+        $chars = $charlist ?? $defaultChars;
+        $quoted = preg_quote($chars, '~');
+
+        // Unicode invisible spaces we want to include
+        $unicodeSpaces = '\s\x{FEFF}\x{200B}\x{200E}';
+
+        switch ($mode) {
+            case 'left':
+                $pattern = '~^[' . $unicodeSpaces . $quoted . ']+~u';
+                break;
+            case 'right':
+                $pattern = '~[' . $unicodeSpaces . $quoted . ']+$~u';
+                break;
+            case 'both':
+            default:
+                $pattern = '~^[' . $unicodeSpaces . $quoted . ']+|[' . $unicodeSpaces . $quoted . ']+$~u';
+                break;
         }
 
-        return trim($value, $charlist);
+        return preg_replace($pattern, '', $value) ?? $value;
     }
 
     /**
-     * Remove all whitespace from the beginning of a string.
+     * Remove all whitespace (including special Unicode spaces) from both ends of a string.
      *
-     * @param  string  $value
-     * @param  string|null  $charlist
-     * @return string
+     * @param string      $value    The string to trim.
+     * @param string|null $charlist Optional additional characters to trim.
+     *
+     * @return string The trimmed string.
      */
-    public static function ltrim($value, $charlist = null)
+    public static function trim(string $value, ?string $charlist = null): string
     {
-        if ($charlist === null) {
-            $ltrimDefaultCharacters = " \n\r\t\v\0";
-
-            return preg_replace('~^[\s\x{FEFF}\x{200B}\x{200E}'.$ltrimDefaultCharacters.']+~u', '', $value) ?? ltrim($value);
-        }
-
-        return ltrim($value, $charlist);
+        return static::_unicodeTrim($value, $charlist, 'both');
     }
 
     /**
-     * Remove all whitespace from the end of a string.
+     * Remove all whitespace (including special Unicode spaces) from the beginning of a string.
      *
-     * @param  string  $value
-     * @param  string|null  $charlist
-     * @return string
+     * @param string      $value    The string to trim.
+     * @param string|null $charlist Optional additional characters to trim.
+     *
+     * @return string The trimmed string.
      */
-    public static function rtrim($value, $charlist = null)
+    public static function ltrim(string $value, ?string $charlist = null): string
     {
-        if ($charlist === null) {
-            $rtrimDefaultCharacters = " \n\r\t\v\0";
+        return static::_unicodeTrim($value, $charlist, 'left');
+    }
 
-            return preg_replace('~[\s\x{FEFF}\x{200B}\x{200E}'.$rtrimDefaultCharacters.']+$~u', '', $value) ?? rtrim($value);
-        }
-
-        return rtrim($value, $charlist);
+    /**
+     * Remove all whitespace (including special Unicode spaces) from the end of a string.
+     *
+     * @param string      $value    The string to trim.
+     * @param string|null $charlist Optional additional characters to trim.
+     *
+     * @return string The trimmed string.
+     */
+    public static function rtrim(string $value, ?string $charlist = null): string
+    {
+        return static::_unicodeTrim($value, $charlist, 'right');
     }
 
     /**
@@ -1479,13 +1587,21 @@ class Str
     /**
      * Determine if a given string starts with a given substring.
      *
-     * @param  string  $haystack
-     * @param  string|string[]  $needles
+     * @param string                 $haystack
+     * @param string|iterable<string> $needles
      * @return bool
      */
     public static function startsWith($haystack, $needles)
     {
-        foreach ((array) $needles as $needle) {
+        if (!is_iterable($needles)) {
+            $needles = [$needles];
+        }
+
+        if ($haystack === null) {
+            return false;
+        }
+
+        foreach ($needles as $needle) {
             if ((string) $needle !== '' && strncmp($haystack, $needle, strlen($needle)) === 0) {
                 return true;
             }
@@ -1668,14 +1784,16 @@ class Str
     }
 
     /**
-     * Get the number of words a string contains.
+     * Count the number of words in a UTF-8 string.
      *
-     * @param  string  $string
+     * @param string $string
      * @return int
      */
-    public static function wordCount($string)
+    public static function wordCount(string $string)
     {
-        return str_word_count($string);
+        $words = preg_split('/[^\p{L}\p{N}]+/u', $string, -1, PREG_SPLIT_NO_EMPTY);
+
+        return count($words);
     }
 
     /**
@@ -1718,6 +1836,54 @@ class Str
     public static function uuid()
     {
         return wp_generate_uuid4();
+    }
+
+    /**
+     * Generate a UUID (version 7) per RFC 9562 — time-ordered.
+     *
+     * The leading 48 bits encode the creation time in milliseconds, so
+     * values sort chronologically as plain strings. Use this for sortable
+     * identifiers (log/event ids, filenames, correlation ids); use uuid()
+     * for opaque tokens, as uuid7 exposes its creation time.
+     *
+     * @return string
+     * @throws \RuntimeException When PHP integers are not 64-bit.
+     */
+    public static function uuid7()
+    {
+        if (PHP_INT_SIZE < 8) {
+            throw new RuntimeException('Str::uuid7() requires 64-bit PHP.');
+        }
+
+        $entropy = random_bytes(10);
+
+        // UUID byte 6 = entropy byte 0: force the version nibble to 0111 (7).
+        $entropy[0] = chr((ord($entropy[0]) & 0x0f) | 0x70);
+
+        // UUID byte 8 = entropy byte 2: force the variant bits to 10.
+        $entropy[2] = chr((ord($entropy[2]) & 0x3f) | 0x80);
+
+        $hex = str_pad(
+            dechex((int) (microtime(true) * 1000)), 12, '0', STR_PAD_LEFT
+        ) . bin2hex($entropy);
+
+        return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split($hex, 4));
+    }
+
+    /**
+     * Extract the embedded creation time from a version 7 UUID.
+     *
+     * @param  string  $uuid
+     * @return int|null Unix timestamp in milliseconds,
+     *                  or null if not a valid UUIDv7.
+     */
+    public static function uuid7Time($uuid)
+    {
+        if (! is_string($uuid) || ! static::isUuid($uuid, 7)) {
+            return null;
+        }
+
+        return (int) hexdec(substr(str_replace('-', '', $uuid), 0, 12));
     }
 
     /**

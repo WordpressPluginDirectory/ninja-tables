@@ -123,12 +123,12 @@ class DeactivationHandler
     public function saveDeactivationFeedback()
     {
         if (!current_user_can('activate_plugins')) {
-            wp_send_json_error(['message' => 'Permission denied.'], 403);
+            wp_send_json_error(['message' => __('Permission denied.', 'ninja-tables')], 403);
         }
 
         $nonce = sanitize_text_field(Arr::get($_REQUEST, '_nonce', '')); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         if (!wp_verify_nonce($nonce, 'ninja_tables_deactivate_feedback')) {
-            wp_send_json_error(['message' => 'Invalid nonce.'], 403);
+            wp_send_json_error(['message' => __('Invalid nonce.', 'ninja-tables')], 403);
         }
 
         if ($this->isLocalhost()) {
@@ -159,7 +159,7 @@ class DeactivationHandler
         ));
 
         wp_send_json_success(array(
-            'message' => 'Deactivating',
+            'message' => __('Deactivating', 'ninja-tables'),
             'data'    => $data
         ));
     }

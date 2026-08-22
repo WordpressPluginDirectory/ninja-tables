@@ -89,7 +89,7 @@ class Response implements \JsonSerializable
     /**
      * Throw an exception based on the response status code.
      *
-     * @throws \WpOrg\Requests\Exception\Http\Status
+     * @throws \WpOrg\Requests\Exception
      */
     public function throw()
     {

@@ -2,7 +2,10 @@
 
 namespace NinjaTables\Framework\Support;
 
-Class Sanitizer
+use Closure;
+use NinjaTables\Framework\Support\DateTime;
+
+class Sanitizer
 {
     /**
      * Sanitize an email address.
@@ -51,12 +54,22 @@ Class Sanitizer
     /**
      * Sanitize meta data.
      *
-     * @param string $arg
-     * @return string
+     * @param string $metaKey       Meta key.
+     * @param mixed  $metaValue     Meta value to sanitize.
+     * @param string $objectType    Type of object the meta is registered to
+     * (e.g., 'post', 'term', 'user').
+     * @param string $objectSubtype Optional. Subtype of the object type (e.g., custom post type). Default ''.
+     *
+     * @return mixed Sanitized meta value.
      */
-    public static function sanitizeMeta($arg)
+    public static function sanitizeMeta(
+        $metaKey,
+        $metaValue,
+        $objectType = 'post',
+        $objectSubtype = ''
+    )
     {
-        return sanitize_meta($arg);
+        return sanitize_meta($metaKey, $metaValue, $objectType, $objectSubtype);
     }
 
     /**
@@ -71,14 +84,15 @@ Class Sanitizer
     }
 
     /**
-     * Sanitize an option.
+     * Sanitize an option value.
      *
-     * @param string $arg
-     * @return string
+     * @param string $option The option name.
+     * @param mixed  $value  The option value to sanitize.
+     * @return mixed
      */
-    public static function sanitizeOption($arg)
+    public static function sanitizeOption(string $option, $value)
     {
-        return sanitize_option($arg);
+        return sanitize_option($option, $value);
     }
 
     /**
@@ -93,6 +107,28 @@ Class Sanitizer
     }
 
     /**
+     * Sanitize an integer.
+     * 
+     * @param  string $arg
+     * @return integer
+     */
+    public static function sanitizeInt($arg)
+    {
+        return intval($arg);
+    }
+
+    /**
+     * Sanitize an float.
+     * 
+     * @param  string $arg
+     * @return float
+     */
+    public static function sanitizeFloat($arg)
+    {
+        return floatval($arg);
+    }
+
+    /**
      * Sanitize a text field.
      *
      * @param string $arg
@@ -101,6 +137,17 @@ Class Sanitizer
     public static function sanitizeTextField($arg)
     {
         return sanitize_text_field($arg);
+    }
+
+    /**
+     * Sanitize a text field.
+     *
+     * @param string $arg
+     * @return string
+     */
+    public static function sanitizeText($arg)
+    {
+        return static::sanitizeTextField($arg);
     }
 
     /**
@@ -247,14 +294,22 @@ Class Sanitizer
     }
 
     /**
-     * Kses (sanitization function).
+     * Sanitize content with KSES.
      *
-     * @param string $arg
-     * @return string
+     * @param string       $string      Content to sanitize.
+     * @param array|string $allowedHtml Allowed HTML tags. Can be an array of
+     * tags/attributes,or a context string accepted by wp_kses_allowed_html().
+     * Defaults to 'post'.
+     * 
+     * @return string Sanitized content with only allowed HTML.
      */
-    public static function kses($arg)
+    public static function kses($string, $allowedHtml = 'post')
     {
-        return wp_kses($arg);
+        if (is_string($allowedHtml)) {
+            $allowedHtml = wp_kses_allowed_html($allowedHtml);
+        }
+
+        return wp_kses($string, $allowedHtml);
     }
 
     /**
@@ -324,25 +379,46 @@ Class Sanitizer
     }
 
     /**
-     * Escape HTML with context.
+     * Escape HTML with translation context.
      *
-     * @param string $arg
+     * @param string $text     Text to escape and translate.
+     * @param string $context  Context information for translators.
+     * @param string $domain   Optional. Text domain. Default 'default'.
      * @return string
      */
-    public static function escHtmlX($arg)
+    public static function escHtmlX($text, $context, $domain = 'default')
     {
-        return esc_html_x($arg);
+        return esc_html_x($text, $context, $domain);
     }
 
     /**
-     * Escape attribute with context.
+     * Escape attribute with translation context.
      *
-     * @param string $arg
+     * @param string $text     Text to escape and translate.
+     * @param string $context  Context information for translators.
+     * @param string $domain   Optional. Text domain. Default 'default'.
      * @return string
      */
-    public static function escAttrX($arg)
+    public static function escAttrX($text, $context, $domain = 'default')
     {
-        return esc_attr_x($arg);
+        return esc_attr_x($text, $context, $domain);
+    }
+
+    /**
+     * Returns a DateTime object.
+     *
+     * @param  string       $key
+     * @param  string|null  $format
+     * @param  string|null|\DateTimeZone  $tz
+     * @return \NinjaTables\Framework\Support\DateTime|null
+     */
+    public static function sanitizeDate($value, $format, $tz)
+    {
+        $result = is_null($format)
+            ? DateTime::parse($value, $tz)
+            : DateTime::createFromFormat($format, $value, $tz);
+
+        return $result ?: null;
     }
 
     /**
@@ -352,81 +428,89 @@ Class Sanitizer
      * @param array $rules
      * @return array
      */
-    public static function sanitize(array $data = [], array $rules = [])
+    public static function sanitize($data = [], $rules = [])
     {
-        $array = $result = [];
+        $result = [];
+        $expandedRules = [];
 
+        // Expand rules first (handle wildcards)
         foreach ($rules as $key => $callbacks) {
-
-            if (!$callbacks) continue;
+            if (!$callbacks) {
+                continue;
+            }
 
             $callbacks = is_array($callbacks) ? $callbacks : [$callbacks];
 
-            $array[$key] = $callbacks;
-
             if (str_contains($key, '*')) {
-                $array = static::substituteWildcardKeys($array, $key, $data);
-            }
-
-            foreach ($array as $k => $callbacks) {
-
-                $callbacks = static::mayBeFixCallbacks($callbacks);
-
-                if (($value = Arr::get($data, $k)) !== null) {
-                    $callbacks = is_callable($callbacks) ? [$callbacks] : $callbacks;
-
-                    while ($callback = static::getCallback(array_shift($callbacks))) {
-                        if (is_array($value)) {
-                            $value = array_map($callback, $value);
-                        } else {
-                            $value = $callback($value);
-                        }
-                    }
-
-                    Arr::set($result, $k, $value);
-                }
+                $expandedRules = array_merge(
+                    $expandedRules,
+                    static::substituteWildcardKeys(
+                        [$key => $callbacks], $key, $data
+                    )
+                );
+            } else {
+                $expandedRules[$key] = $callbacks;
             }
         }
 
-        return $result;
+        // Apply sanitization
+        foreach ($expandedRules as $k => $callbacks) {
+            $callbacks = static::mayBeFixCallbacks($callbacks);
+
+            if (($value = Arr::get($data, $k)) !== null) {
+                
+                foreach ($callbacks as $cb) {
+                    if ($cb = static::getCallback($cb)) {
+                        $value = $cb($value);
+                    }
+                }
+
+                Arr::Set($data, $k, $value);
+            }
+        }
+
+        return $data;
     }
 
-    /**
-     * Normalize wildcard rules to dotted rule.
-     * 
-     * @param array $array
-     * @param string $field
-     * @param array $data
-     * @return array
-     */
-    protected static function substituteWildcardKeys($array, $field, $data)
+    public static function substituteWildcardKeys($array, $field, $data)
     {
         $callback = $array[$field];
-
-        $keys = array_map(function($v) {
-            return trim($v, '.');
-        }, explode('*', $field));
-
-        $key = array_shift($keys);
         
-        if ($key && ($val = Arr::get($data, $key)) && is_array($val)) {
-            
-            $dotted = array_keys(Arr::dot($val, $key . '.'));
-            
-            foreach ($dotted as $dottedField) {
-                
-                $r = preg_replace('/[0-9]+/', '*', $dottedField);
-                
-                if (preg_match("/{$field}/", $r)) {
-                    
-                    $array[$dottedField] = $callback;
-                    
-                    if (isset($array[$field])) {
-                        unset($array[$field]);
-                    }
+        unset($array[$field]);
+
+        $expand = function (
+            $data,
+            $segments,
+            $prefix = ''
+        ) use (
+            &$expand,
+            $callback,
+            &$array
+        ) {
+            $segment = array_shift($segments);
+
+            if ($segment === null) {
+                $array[$prefix] = $callback;
+                return;
+            }
+
+            if ($segment === '*') {
+                if (!is_array($data)) return;
+
+                foreach ($data as $key => $child) {
+                    $newPrefix = $prefix === '' ? $key : $prefix . '.' . $key;
+                    $expand($child, $segments, $newPrefix);
+                }
+            } else {
+                if (is_array($data) && array_key_exists($segment, $data)) {
+                    $newPrefix = $prefix === '' ? $segment : $prefix . '.' . $segment;
+                    $expand($data[$segment], $segments, $newPrefix);
                 }
             }
-        }
+        };
+
+        $segments = explode('.', $field);
+        $expand($data, $segments);
 
         return $array;
     }
@@ -438,27 +522,19 @@ Class Sanitizer
      * @param array|string $callbacks
      * @return array
      */
-    protected static function mayBeFixCallbacks($callbacks)
+    public static function mayBeFixCallbacks($callbacks)
     {
-        $nonFunctionCallables = $functionCallables = [];
-            
-        foreach ($callbacks as $cb) {
-            if (is_callable($cb)) {
-                $nonFunctionCallables[] = $cb;
-            } elseif (is_string($cb)) {
-                 $functionCallables[] = explode('|', $cb);
-            } elseif (is_array($cb) && !str_contains($cb[0], '::')) {
-                $functionCallables[] = $cb[0];
-            } elseif (is_array($cb) && str_contains($cb[0], '::')) {
-                $nonFunctionCallables[] = explode('::', $cb[0]);
+        $normalized = [];
+
+        foreach ((array)$callbacks as $cb) {
+            if (is_string($cb)) {
+                $normalized = array_merge($normalized, explode('|', $cb));
+            } elseif (is_callable($cb)) {
+                $normalized[] = $cb;
             }
         }
 
-        $callbacks = array_merge(
-            Arr::flatten($functionCallables), $nonFunctionCallables
-        );
-
-        return $callbacks;
+        return $normalized;
     }
 
     /**
@@ -470,7 +546,8 @@ Class Sanitizer
     protected static function getCallback($callback)
     {
         if ($callback) {
-            
+            if ($callback instanceof Closure) return $callback;
+
             if ($cb = static::methodExists($callback)) {
                 $callback = $cb;
             }

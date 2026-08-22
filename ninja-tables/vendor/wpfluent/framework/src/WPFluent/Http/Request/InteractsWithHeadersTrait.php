@@ -16,8 +16,10 @@ trait InteractsWithHeadersTrait
     {
         !$this->headers && $this->setHeaders();
 
+        $key = str_replace('-', '_', strtoupper($key ?? ''));
+
         return $key ? Arr::get(
-        	$this->headers, strtoupper($key), $default
+            $this->headers, $key, $default
         ) : $this->headers;
     }
 

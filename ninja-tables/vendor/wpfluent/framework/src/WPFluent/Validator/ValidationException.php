@@ -20,7 +20,7 @@ class ValidationException extends Exception
      * @param Exception|null $previous
      * @param array          $errors
      */
-    public function __construct($message = "", $code = 0 , Exception $previous = NULL, $errors = [])
+    public function __construct($message = "", $code = 0 , ?Exception $previous = null, $errors = [])
     {
         $this->errors = $errors;
 

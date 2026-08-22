@@ -328,6 +328,31 @@ class Grammar extends BaseGrammar
     }
 
     /**
+     * Compile the SQL for a phonetic "sounds like" (SOUNDEX) comparison.
+     *
+     * Both the column and the bound search term are encoded with the
+     * database engine's native SOUNDEX() function.
+     *
+     * @param  \NinjaTables\Framework\Database\Query\Expression|string  $column
+     * @return string
+     */
+    public function compileSoundsLike($column)
+    {
+        return 'soundex('.$this->wrap($column).') = soundex(?)';
+    }
+
+    /**
+     * Prepare the bound value for a "sounds like" comparison.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function prepareSoundsLikeBinding($value)
+    {
+        return $value;
+    }
+
+    /**
      * Compile a "where in" clause.
      *
      * @param  \NinjaTables\Framework\Database\Query\Builder  $query
@@ -788,6 +813,22 @@ class Grammar extends BaseGrammar
     }
 
     /**
+     * Compile a full-text relevance score expression.
+     *
+     * Returns a [sql, bindings] tuple where the sql is a "MATCH ... AGAINST"
+     * expression with "?" placeholders and bindings are the values for them.
+     *
+     * @param  array  $columns
+     * @param  array  $options
+     * @param  string  $value
+     * @return array
+     */
+    public function compileRelevance($columns, array $options, $value)
+    {
+        throw new RuntimeException('This database engine does not support fulltext relevance ranking.');
+    }
+
+    /**
      * Compile a clause based on an expression.
      *
      * @param  \NinjaTables\Framework\Database\Query\Builder  $query
@@ -1028,7 +1069,7 @@ class Grammar extends BaseGrammar
         $limit = (int) $query->groupLimit['value'];
         $offset = $query->offset;
 
-        if (isset($offset)) {
+        if ($offset !== null) {
             $offset = (int) $offset;
             $limit += $offset;
 
@@ -1051,7 +1092,7 @@ class Grammar extends BaseGrammar
 
         $sql = 'select * from ('.$sql.') as '.$table.' where '.$row.' <= '.$limit;
 
-        if (isset($offset)) {
+        if ($offset !== null) {
             $sql .= ' and '.$row.' > '.$offset;
         }
 
@@ -1486,6 +1527,18 @@ class Grammar extends BaseGrammar
     {
         return 'ROLLBACK TO SAVEPOINT '.$name;
     }
+
+    /**
+     * Compile the SQL statement to release a savepoint.
+     *
+     * @param string $name
+     * @return string
+     */
+    public function compileSavepointRelease($name)
+    {
+        return 'RELEASE SAVEPOINT ' . $name;
+    }
+
 
     /**
      * Wrap the given JSON selector for boolean values.

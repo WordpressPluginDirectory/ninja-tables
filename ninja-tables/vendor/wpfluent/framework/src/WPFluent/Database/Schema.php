@@ -9,9 +9,16 @@ class Schema
 	use MaintainsDatabase;
 
 	/**
+	 * Keep track of custom tables when unit testing
+	 * 
+	 * @var array
+	 */
+	public static $customTempTables = [];
+
+	/**
 	 * Get the global $wpdb instance
 	 * 
-	 * @return global $wpdb instance
+	 * @return \wpdb The global $wpdb
 	 */
 	public static function db()
 	{
@@ -27,15 +34,34 @@ class Schema
 	{
 		$db = static::db();
 
+		if (static::isSqlite()) {
+			$info = [
+			    'dbname' => 'sqlite',
+			    'prefix' => $db->prefix,
+			    'dbhost' => '',
+			    'username' => '',
+			    'password' => '',
+			    'charset' => 'utf8',
+			    'collation' => '',
+			    'tables' => static::getTableList(),
+			];
+
+			return $key ? ($info[$key] ?? null) : $info;
+		}
+
 		$info = [
-			'dbname' => $db->dbname,
-			'prefix' => $db->prefix,
-			'dbhost' => $db->dbhost,
+		    // @phpstan-ignore-next-line
+		    'dbname' => $db->dbname,
+		    'prefix' => $db->prefix,
+		    // @phpstan-ignore-next-line
+		    'dbhost' => $db->dbhost,
+		    // @phpstan-ignore-next-line
 		    'username' => $db->dbuser,
+		    // @phpstan-ignore-next-line
 		    'password' => $db->dbpassword,
 		    'charset' => $db->charset,
 		    'collation' => $db->collate,
-		    'tables' => static::getTableList()
+		    'tables' => static::getTableList(),
 		];
 
 		return $key ? $info[$key] : $info;
@@ -54,9 +80,9 @@ class Schema
 	{
 		if (!$sql && is_array($table)) {
 			$result = [];
-			foreach ($table as $t => $sql) {
+			foreach ($table as $t => $s) {
 				$result = array_merge(
-					$result, (array) static::createTable($t, $sql)
+					$result, (array) static::createTable($t, $s)
 				);
 			}
 			return $result;
@@ -125,14 +151,16 @@ class Schema
 		// error will be not shown if there is no temporary
 		// table, then restore the error state.
 		$isErrorSuppressed = $wpdb->suppress_errors;
-		
+
 		$wpdb->suppress_errors = true;
 
-		$result = static::query("SELECT 1 FROM %{$table}% WHERE 0");
+		static::query("SELECT 1 FROM %{$table}% WHERE 0");
+
+		$hasError = !empty($wpdb->last_error);
 
 		$wpdb->suppress_errors = $isErrorSuppressed;
 
-		return $result === 0;
+		return !$hasError;
 	}
 
 	/**
@@ -177,6 +205,34 @@ class Schema
         return $sql;
     }
 
+    /**
+     * Clean the sql string by removing the comments.
+     * 
+     * @param  string $sql
+     * @return string
+     */
+	public static function cleanUp($sql)
+	{
+	    $sql = static::sql($sql);
+
+	    // Remove inline -- comments
+	    $sql = preg_replace('/--.*$/m', '', $sql);
+
+	    // Remove inline # comments
+	    $sql = preg_replace('/#.*$/m', '', $sql);
+
+	    // Remove block /* ... */
+	    $sql = preg_replace('/\/\*.*?\*\//s', '', $sql);
+
+	    // Collapse multiple spaces & newlines
+	    // $sql = preg_replace('/\s+/', ' ', $sql);
+
+	    // Remove dangling commas before closing parenthesis
+	    $sql = preg_replace('/,\s*\)/', ')', $sql);
+
+	    return trim($sql);
+	}
+
 	/**
 	 * Creates a new table using dbDelta function or alters the table if exists.
 	 * 
@@ -190,7 +246,11 @@ class Schema
 	{
 		$table = static::table($table);
 
-		$sql = static::sql($sql);
+		$sql = static::cleanUp($sql);
+
+		if (static::isSqlite()) {
+            $sql = preg_replace('/\bjson\b/i', 'longtext', $sql);
+        }
 
         $collate = static::db()->get_charset_collate();
 
@@ -219,26 +279,73 @@ class Schema
 
 	/**
 	 * Alters an existing table
-	 * 
+	 *
 	 * @param  string $table The table name without the prefix
 	 * @param  string $sql   The sql to create table or an absolute path of a
 	 * .sql file containing the column definations for creating the new table.
-	 * 
+	 *
 	 * @return string message
 	 */
 	public static function alterTable($table, $sql)
 	{
 		$table = static::table($table);
 
-		$sql = static::sql($sql);
+		$sql = static::cleanUp($sql);
 
-		$sql = array_map(function($i) { return trim($i);}, explode(',', $sql));
-        
+		if (static::isSqlite()) {
+            $sql = preg_replace('/\bjson\b/i', 'longtext', $sql);
+        }
+
+		$parts = array_filter(array_map('trim', static::splitAlterClauses($sql)));
+
+		if (static::isSqlite()) {
+			// SQLite only supports one ALTER TABLE operation per statement.
+			$result = null;
+			foreach ($parts as $part) {
+				$result = static::query("ALTER TABLE $table {$part};");
+			}
+			return $result;
+		}
+
         $sql = "ALTER TABLE $table ".PHP_EOL.rtrim(
-        	trim(implode(','.PHP_EOL, $sql)), ';'
+        	trim(implode(','.PHP_EOL, $parts)), ';'
         ).";";
 
         return static::query($sql);
+	}
+
+	/**
+	 * Split a comma-separated ALTER TABLE clause list, respecting parentheses
+	 * so that DECIMAL(10,2) and similar types are not split mid-definition.
+	 *
+	 * @param  string $sql
+	 * @return string[]
+	 */
+	protected static function splitAlterClauses($sql)
+	{
+		$parts = [];
+		$depth = 0;
+		$current = '';
+
+		for ($i = 0, $len = strlen($sql); $i < $len; $i++) {
+			$char = $sql[$i];
+			if ($char === '(') {
+				$depth++;
+			} elseif ($char === ')') {
+				$depth--;
+			} elseif ($char === ',' && $depth === 0) {
+				$parts[] = $current;
+				$current = '';
+				continue;
+			}
+			$current .= $char;
+		}
+
+		if ($current !== '') {
+			$parts[] = $current;
+		}
+
+		return $parts;
 	}
 
 	/**
@@ -261,50 +368,139 @@ class Schema
 	 */
 	public static function updateTable($table, $sql)
 	{
-		$result = static::createTable(
-			$table, implode(",\n", array_map('trim', explode(',', $sql)))
-		);
+	    $sql = static::cleanUp($sql);
 
-		if ($existingColumns = static::getColumns($table)) {
+	    if (static::isSqlite()) {
+            $sql = preg_replace('/\bjson\b/i', 'longtext', $sql);
+        }
 
-			$columns = array_map(function($l) {
-				if (preg_match('/(\S+)/', $l, $matches)) return $matches[1];
-			}, array_map('trim', explode(',', $sql)));
+	    $columnsDefinitions = array_map('trim', static::splitAlterClauses($sql));
+	    $schemaSql = implode(",\n", $columnsDefinitions);
 
-			foreach ($existingColumns as $column) {
-				if (!in_array($column, $columns)) {
-					$tbl = static::table($table);
-					static::query("alter table $tbl drop column $column");
-					$tblColumn = $tbl.'.'.$column;
-					$result[$tblColumn] = "Dropped column {$tblColumn}";
-				}
-			}
-		}
+	    // Extract desired column names (skip constraint/index clauses)
+	    $columns = [];
+	    foreach ($columnsDefinitions as $definition) {
+	        if (preg_match('/^(?:PRIMARY\s+KEY|UNIQUE(?:(?:\s+KEY|\s+INDEX))?|KEY|INDEX|CONSTRAINT|FOREIGN\s+KEY|FULLTEXT|SPATIAL)\b/i', ltrim($definition))) {
+	            continue;
+	        }
 
-		return $result;
+	        if (preg_match('/^`?(\w+)`?\s+/i', $definition, $matches)) {
+	            $columns[$matches[1]] = $definition;
+	        }
+	    }
+
+	    $tbl = static::table($table);
+
+	    // SQLite cannot drop PRIMARY KEY columns or columns referenced by indexes
+	    // via native ALTER TABLE DROP COLUMN.
+	    //
+	    // Workarounds:
+	    //   - Indexed columns: drop the index first with DROP INDEX,
+	    //     then drop the column.
+	    //   - PRIMARY KEY columns: use CHANGE COLUMN to rebuild the table without
+	    //     the PK attribute (renaming the column to a temp name), then drop
+	    //     the renamed column.
+	    if (static::isSqlite()) {
+	        // Collect PRIMARY KEY columns and per-column index key names.
+	        $indexRows     = (array) static::db()->get_results("SHOW INDEX FROM {$tbl}");
+	        $pkColumns     = [];
+	        $columnIndexes = []; // column_name => [key_name, ...]
+	        foreach ($indexRows as $row) {
+	            if ($row->Key_name === 'PRIMARY') {
+	                $pkColumns[] = $row->Column_name;
+	            } else {
+	                $columnIndexes[$row->Column_name][] = $row->Key_name;
+	            }
+	        }
+
+	        $existingColumns = static::getColumns($table) ?: [];
+
+	        // 1. Add any desired columns not yet in the table.
+	        foreach ($columns as $colName => $definition) {
+	            if (!in_array($colName, $existingColumns)) {
+	                static::db()->query("ALTER TABLE {$tbl} ADD COLUMN {$definition}");
+	            }
+	        }
+
+	        // 2. Drop every column that is not in the desired schema.
+	        foreach ($existingColumns as $column) {
+	            if (isset($columns[$column])) {
+	                continue; // desired — keep it
+	            }
+
+	            // Drop non-primary indexes referencing this column first, otherwise
+	            // native SQLite ALTER TABLE DROP COLUMN fails.
+	            foreach ($columnIndexes[$column] ?? [] as $keyName) {
+	                static::db()->query("ALTER TABLE {$tbl} DROP INDEX {$keyName}");
+	            }
+
+	            if (in_array($column, $pkColumns)) {
+	                // Native SQLite ALTER TABLE DROP COLUMN rejects PRIMARY KEY columns.
+	                // Use CHANGE COLUMN to trigger an internal table rebuild that strips
+	                // the PK attribute, then drop the (now ordinary) renamed column.
+	                $tmpCol = $column . '_wpf_drop';
+	                static::db()->query("ALTER TABLE {$tbl} CHANGE COLUMN {$column} {$tmpCol} INT NULL");
+	                static::db()->query("ALTER TABLE {$tbl} DROP COLUMN {$tmpCol}");
+	            } else {
+	                static::db()->query("ALTER TABLE {$tbl} DROP COLUMN {$column}");
+	            }
+	        }
+
+	        return [$tbl => "Updated table structure"];
+	    }
+
+	    // MySQL path: use dbDelta to create/update, then drop extra columns.
+	    $result = static::createTable($table, $schemaSql);
+	    $existingColumns = static::getColumns($table) ?: [];
+
+	    // Add missing columns
+	    foreach ($columns as $colName => $definition) {
+	        if (!in_array($colName, $existingColumns)) {
+	            static::query("ALTER TABLE $tbl ADD COLUMN $definition");
+	            $result[$tbl.'.'.$colName] = "Added column {$tbl}.{$colName}";
+	        }
+	    }
+
+	    // Drop extra columns
+	    foreach ($existingColumns as $column) {
+	        if (!isset($columns[$column])) {
+	            static::query("ALTER TABLE $tbl DROP COLUMN $column");
+	            $result[$tbl.'.'.$column] = "Dropped column {$tbl}.{$column}";
+	        }
+	    }
+
+	    return $result;
 	}
+
+	/**
+	 * Drops/deletes an existing table.
+	 * 
+	 * @param string $table The table name without the prefix
+     * @param bool $disableForeignKeyCheck Optional.
+     * @return bool
+	 */
+	public static function dropTable($table, $disableForeignKeyCheck = true)
+    {
+        return static::db()->query('DROP TABLE ' . static::table($table));
+    }
 
     /**
      * Drops/deletes an existing table if exists
      *
      * @param string $table The table name without the prefix
-     * @param bool $disableForeignKeyCheck Optional. Whether to disable foreign key checks before dropping the table. Default is true.     *
+     * @param bool $disableForeignKeyCheck Optional.
      * @return bool
      */
-
     public static function dropTableIfExists($table, $disableForeignKeyCheck = true)
     {
         if (static::hasTable($table)) {
-            if ($disableForeignKeyCheck) {
-                static::db()->query("ALTER TABLE " . static::table($table) . " DISABLE KEYS;");
-            }
-            return static::db()->query('DROP TABLE ' . static::table($table));
+            return static::dropTable($table, $disableForeignKeyCheck);
         }
     }
 
 	/**
 	 * Truncate a table.
-	 * 
+	 *
 	 * @param  string $table
 	 * @return bool
 	 */
@@ -312,12 +508,21 @@ class Schema
 	{
 		$table = static::table($table);
 
-		return static::db()->query("TRUNCATE TABLE $table");
+		$result = static::db()->query("TRUNCATE TABLE $table");
+
+		if (static::isSqlite()) {
+			// SQLite translates TRUNCATE TABLE to DELETE FROM, which does NOT reset
+			// the auto-increment counter. Manually clear the sqlite_sequence row so
+			// that the next INSERT starts at id=1 (matching MySQL TRUNCATE behaviour).
+			static::db()->query("DELETE FROM sqlite_sequence WHERE name='{$table}'");
+		}
+
+		return $result;
 	}
 
 	/**
 	 * Truncate a table if exists.
-	 * 
+	 *
 	 * @param  string $table
 	 * @return bool
 	 */
@@ -351,7 +556,60 @@ class Schema
 	 */
 	public static function dropIndex($table, $index)
 	{
+		if (static::isSqlite()) {
+			$tbl = static::table($table);
+			return static::db()->query("ALTER TABLE {$tbl} DROP INDEX {$index}");
+		}
+
 		return drop_index(static::table($table), $index);
+	}
+
+	/**
+	 * Add a FULLTEXT index to the given columns, required by the query
+	 * builder's relevance ranking (selectRelevance/orderByRelevance and the
+	 * Searchable relevanceSearch scope). No-ops on SQLite, which has no
+	 * native FULLTEXT support and degrades to LIKE-based matching.
+	 *
+	 * @param  string  $table   Table name without prefix
+	 * @param  string|array  $columns
+	 * @param  string|null  $name  Optional index name
+	 * @return mixed
+	 */
+	public static function fullText($table, $columns, $name = null)
+	{
+		if (static::isSqlite()) {
+			return false;
+		}
+
+		$columns = is_array($columns)
+			? $columns
+			: array_map('trim', explode(',', $columns));
+
+		$tbl = static::table($table);
+		$name = $name ?: ('ft_' . implode('_', $columns));
+		$list = implode(', ', $columns);
+
+		return static::db()->query(
+			"ALTER TABLE {$tbl} ADD FULLTEXT {$name} ({$list})"
+		);
+	}
+
+	/**
+	 * Drop a FULLTEXT index by name.
+	 *
+	 * @param  string  $table  Table name without prefix
+	 * @param  string  $name   Index name
+	 * @return mixed
+	 */
+	public static function dropFullText($table, $name)
+	{
+		if (static::isSqlite()) {
+			return false;
+		}
+
+		$tbl = static::table($table);
+
+		return static::db()->query("ALTER TABLE {$tbl} DROP INDEX {$name}");
 	}
 
 	/**
@@ -359,33 +617,37 @@ class Schema
 	 * and can form a full table name including the table prefix if
 	 * the table name is wrapped like: %table_name% in the query.
 	 * 
-	 * @param  straing $query
+	 * @param  string $query
 	 * @return mixed
 	 */
 	public static function query($query)
 	{
-		if (preg_match('/%.*%/', $query, $m)) {
-			$query = str_replace(
-				$m[0], static::table(trim($m[0], '%')), $query
-			);
-		}
+		$query = preg_replace_callback('/(?<![\'"])%([a-zA-Z0-9_-]+)%(?![\'"])/', function ($matches) {
+			return static::table($matches[1]);
+		}, $query);
+
+		if (preg_match('/^(SELECT|SHOW|DESCRIBE|EXPLAIN)\s+/i', trim($query))) {
+	        return static::db()->get_results($query, OBJECT);
+	    }
 
 		return static::db()->query($query);
 	}
 
 	/**
 	 * Get a list of all columns from the given table name.
-	 * 
+	 *
 	 * @param  string $table The table name without the prefix
-	 * @return array
+	 * @return array|null
 	 */
 	public static function getColumns($table)
 	{
-		if (static::hasTable($table)) {
-			return static::db()->get_col(
-	            'DESC ' . static::table($table), 0
-	        );
+		if (!static::hasTable($table)) {
+			return null;
 		}
+
+		return static::db()->get_col(
+            'DESCRIBE ' . static::table($table), 0
+        );
 	}
 
 	/**
@@ -394,12 +656,50 @@ class Schema
 	 * @param  string $table The table name without the prefix
 	 * @return array
 	 */
-	public static function getColumnsWithTypes($table)
+	protected static function protectedGetColumnsWithTypes($table)
 	{
 		if (!static::hasTable($table)) return;
-		
-		$db = static::db()->dbname;
+
 		$table = static::table($table);
+
+		if (static::isSqlite()) {
+			// INFORMATION_SCHEMA is not available in SQLite.
+			// Use DESCRIBE which the WP SQLite plugin translates with
+			// proper MySQL type mapping from its data type cache.
+			$columns = (array) static::db()->get_results("DESCRIBE {$table}");
+			return array_map(function ($col, $pos) {
+				$extra = $col->Extra ?? '';
+				// SQLite INTEGER PRIMARY KEY is auto_increment but DESCRIBE
+				// doesn't report it in Extra — detect from Key + Type.
+				if (empty($extra) && ($col->Key ?? '') === 'PRI') {
+					$type = strtoupper($col->Type ?? '');
+					if (in_array($type, ['INTEGER', 'BIGINT', 'BIGINT(20)', 'BIGINT(20) UNSIGNED', 'INT'])) {
+						$extra = 'auto_increment';
+					}
+				}
+
+				return [
+					'column_name' => $col->Field,
+					'ordinal_position' => $pos + 1,
+					'column_default' => $col->Default,
+					'is_nullable' => ($col->Null === 'YES' ? 'YES' : 'NO'),
+					'data_type' => strtolower(
+						preg_replace('/\(.*/', '', $col->Type)
+					),
+					'character_maximum_length' => preg_match(
+						'/\((\d+)\)/', $col->Type, $matches
+					) ? (int)$matches[1] : null,
+					'numeric_precision' => null,
+					'numeric_scale' => null,
+					'column_key' => $col->Key ?? '',
+					'extra' => $extra,
+				];
+			}, $columns, array_keys($columns));
+		}
+
+		// @phpstan-ignore-next-line
+		$db = static::db()->dbname;
+
 		$fields = [
 			'COLUMN_NAME',
 			'ORDINAL_POSITION',
@@ -412,7 +712,7 @@ class Schema
 			'COLUMN_KEY',
 			'EXTRA',
 		];
-		
+
 		$sql = "SELECT " . implode(',', $fields) . " FROM INFORMATION_SCHEMA.COLUMNS";
 		$sql .= " WHERE TABLE_NAME = '".$table."' AND TABLE_SCHEMA = '".$db."'";
 
@@ -422,7 +722,107 @@ class Schema
 				$item[strtolower($key)] = $value;
 			}
 			return $item;
-		}, static::db()->get_results($sql));
+		}, (array) static::db()->get_results($sql));
+	}
+
+	public static function getColumnsWithTypes($table)
+	{
+	    $columns = static::protectedGetColumnsWithTypes($table);
+
+	    if (!empty($columns)) {
+	    	return $columns;
+	    }
+
+		if (static::isSqlite()) {
+			return [];
+		}
+
+	    $columns = static::db()->get_results(
+	    	'SHOW COLUMNS FROM `'.static::table($table).'`'
+	    );
+
+        return array_map(function ($col) {
+            return [
+                'column_name' => $col->Field,
+                'ordinal_position' => null,
+                'column_default' => $col->Default,
+                'is_nullable' => ($col->Null === 'YES' ? 'YES' : 'NO'),
+                'data_type' => strtolower(
+                	preg_replace('/\(.*/', '', $col->Type)
+                ),
+                'character_maximum_length' => preg_match(
+                	'/\((\d+)\)/', $col->Type, $matches
+                ) ? (int)$matches[1] : null,
+                'numeric_precision' => null,
+                'numeric_scale' => null,
+                'column_key' => $col->Key,
+                'extra' => $col->Extra,
+            ];
+        }, (array) $columns);
+	}
+
+	/**
+	 * Gets a list of all columns including column information
+	 * 
+	 * @param  string $table The table name without the prefix
+	 * @return array
+	 */
+	public static function describeTable($table)
+	{
+		return static::getColumnsWithTypes($table);
+	}
+
+	/**
+	 * Gets a list of all foreign keys from the given table name.
+	 * 
+	 * @param  string $table
+	 * @return array
+	 */
+	public static function getTableForeignKeys($table)
+	{
+	    $table = static::table($table);
+
+	    if (static::isSqlite()) {
+	        // Parse foreign keys from the CREATE TABLE statement in sqlite_master
+	        // since PRAGMA queries cannot go through $wpdb.
+	        $row = static::db()->get_row(
+	            "SELECT sql FROM sqlite_master WHERE type='table' AND name='{$table}'"
+	        );
+	        if (!$row || empty($row->sql)) {
+	            return [];
+	        }
+	        $fks = [];
+	        if (preg_match_all(
+	            '/FOREIGN\s+KEY\s*\(\s*[`"]?(\w+)[`"]?\s*\)\s*REFERENCES\s+[`"]?(\w+)[`"]?\s*\(\s*[`"]?(\w+)[`"]?\s*\)/i',
+	            $row->sql, $matches, PREG_SET_ORDER
+	        )) {
+	            foreach ($matches as $m) {
+	                $fks[] = [
+	                    'column_name'       => $m[1],
+	                    'referenced_table'  => $m[2],
+	                    'referenced_column' => $m[3],
+	                ];
+	            }
+	        }
+	        return $fks;
+	    }
+
+		// @phpstan-ignore-next-line
+	    $db = static::db()->dbname;
+
+	    $sql = "SELECT COLUMN_NAME, REFERENCED_TABLE_NAME, REFERENCED_COLUMN_NAME
+	            FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE
+	            WHERE TABLE_NAME = '{$table}'
+	              AND TABLE_SCHEMA = '{$db}'
+	              AND REFERENCED_TABLE_NAME IS NOT NULL";
+
+	    return array_map(function ($i) {
+	        return [
+	            'column_name'       => $i->COLUMN_NAME,
+	            'referenced_table'  => $i->REFERENCED_TABLE_NAME,
+	            'referenced_column' => $i->REFERENCED_COLUMN_NAME,
+	        ];
+	    }, (array) static::db()->get_results($sql));
 	}
 
 	/**
@@ -460,13 +860,76 @@ class Schema
 	 */
 	public static function getTableList($dbname = null)
 	{
+		if (static::isSqlite()) {
+			return array_map(function ($i) {
+				return $i->name;
+			}, (array) static::db()->get_results(
+				"SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'"
+			));
+		}
+
+		// @phpstan-ignore-next-line
 		$dbname = $dbname ?: static::db()->dbname;
 		$sql = "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES";
 		$sql .= " WHERE TABLE_SCHEMA = '".$dbname."'";
-		
+
 		return array_map(function($i) {
 			return $i->TABLE_NAME;
-		}, static::db()->get_results($sql));
+		}, (array) static::db()->get_results($sql));
+	}
+
+	/**
+	 * Retrieves the list of all available views in the database.
+	 *
+	 * @param  string $dbname optional
+	 * @return array
+	 */
+	public static function getViews($dbname = null)
+	{
+		if (static::isSqlite()) {
+			return array_map(function ($i) {
+				return $i->name;
+			}, (array) static::db()->get_results(
+				"SELECT name FROM sqlite_master WHERE type='view'"
+			));
+		}
+
+		// @phpstan-ignore-next-line
+		$dbname = $dbname ?: static::db()->dbname;
+		$sql = "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.VIEWS";
+		$sql .= " WHERE TABLE_SCHEMA = '".$dbname."'";
+
+		return array_map(function ($i) {
+			return $i->TABLE_NAME;
+		}, (array) static::db()->get_results($sql));
+	}
+
+	/**
+	 * Retrieves the SQL definition of a specific view.
+	 *
+	 * @param  string $name   The view name
+	 * @param  string $dbname optional
+	 * @return string|null
+	 */
+	public static function getView($name, $dbname = null)
+	{
+		if (static::isSqlite()) {
+			$result = static::db()->get_row(
+				"SELECT sql FROM sqlite_master WHERE type='view' AND name='".$name."'"
+			);
+
+			return $result ? $result->sql : null;
+		}
+
+		// @phpstan-ignore-next-line
+		$dbname = $dbname ?: static::db()->dbname;
+		$result = static::db()->get_row(
+			"SELECT VIEW_DEFINITION FROM INFORMATION_SCHEMA.VIEWS"
+			. " WHERE TABLE_SCHEMA = '".$dbname."'"
+			. " AND TABLE_NAME = '".$name."'"
+		);
+
+		return $result ? $result->VIEW_DEFINITION : null;
 	}
 
 	/**
@@ -486,6 +949,10 @@ class Schema
      */
     public static function isMaria()
     {
+        if (static::isSqlite()) {
+            return false;
+        }
+
         return str_contains(
         	static::db()->get_var('SELECT VERSION()'), 'MariaDB'
         );
@@ -499,6 +966,10 @@ class Schema
 	 */
 	public static function getEngine($table)
 	{
+		if (static::isSqlite()) {
+			return 'sqlite';
+		}
+
 		return static::db()->get_var(
             'SELECT ENGINE FROM information_schema.TABLES WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = "' . static::table($table) . '"'
         );
@@ -516,6 +987,23 @@ class Schema
 			require (ABSPATH . 'wp-admin/includes/upgrade.php');
 		}
 
-		return dbDelta($sql);
+		$result = dbDelta($sql);
+
+		if (php_sapi_name() === 'cli') {
+			$key = array_key_first($result);
+			if ($key && !str_contains($key, '.')) {
+				static::$customTempTables[] = $key;
+			}
+		}
+
+		return $result;
 	}
+
+	/**
+     * Helper to get the driver-specific JSON type.
+     */
+    public static function jsonType()
+    {
+        return static::isSqlite() ? 'longtext' : 'json';
+    }
 }

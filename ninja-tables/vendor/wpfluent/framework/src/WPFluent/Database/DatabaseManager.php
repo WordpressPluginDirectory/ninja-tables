@@ -5,7 +5,7 @@ namespace NinjaTables\Framework\Database;
 use BadMethodCallException;
 use NinjaTables\Framework\Support\Arr;
 
-class DBManager
+class DatabaseManager
 {
     protected $resolver;
 

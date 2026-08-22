@@ -3,12 +3,13 @@
 namespace NinjaTables\Framework\View;
 
 use Exception;
+use LogicException;
 
 class View
 {
 	/**
      * Application Instance
-     * @var NinjaTables\Framework\Foundation\Application
+     * @var \NinjaTables\Framework\Foundation\Application $app
      */
 	protected $app;
 
@@ -33,7 +34,7 @@ class View
 
 	/**
 	 * Construct the view instamce
-	 * @param [type] $app [description]
+	 * @param \NinjaTables\Framework\Foundation\Application $app
 	 */
 	public function __construct($app)
 	{
@@ -62,34 +63,21 @@ class View
 	public function make($path, $data = [])
 	{
 		$path = str_replace('.php', '', $path);
-		
-		if (file_exists($this->path = $path .'.php')) {
-			$this->data = array_merge($this->data, static::$sharedData, $data);
-			return $this;
+
+		// If full path is given, then just use it
+		if (file_exists($this->path = $path . '.php')) {
+			return $this->prepareData($data);
 		}
 
-		if (strpos($path, ':')) {
-			return $this->loadViewFrom($path, $data);
+        if (strpos($path, ':')) {
+            return $this->loadViewFrom($path, $data);
+        }
+
+		if (file_exists($this->resolveFilePath($path))) {
+			return $this->prepareData($data);
 		}
 
-		if (strpos($path = str_replace('.', '/', $path), '/') !== false) {
-			if (file_exists($this->path = $path .'.php')) {
-				$this->data = array_merge($this->data, static::$sharedData, $data);
-				return $this;
-			}
-		}
-
-		if (file_exists($this->path = ($path . '.php'))) {
-			$this->data = array_merge($this->data, static::$sharedData, $data);
-			return $this;
-		}
-
-		if (file_exists($this->path = $this->resolveFilePath($path))) {
-			$this->data = array_merge($this->data, static::$sharedData, $data);
-			return $this;
-		}
-
-		throw new Exception("The view file [{$this->path}] doesn't exists!");
+		$this->handleViewNotFoundException($this->path);
 	}
 
 	/**
@@ -104,25 +92,50 @@ class View
 	{
 		$pieces = explode(':', $path);
 		
-		$ns = reset($pieces);
+		$pluginRoot = reset($pieces);
 		
-		if (is_dir($root = WP_PLUGIN_DIR . '/' . $ns)) {
+		if (is_dir($root = WP_PLUGIN_DIR . '/' . $pluginRoot)) {
+            
+            if (is_dir($views = $root . '/app/Views')) {
 
-			if (is_dir($views = $root . '/app/Views')) {
+                $path = $views . '/' . end($pieces);
+        
+                $path = str_replace('.', DIRECTORY_SEPARATOR, $path);
 
-				$path = $views . '/' . end($pieces);
-				
-				$path = str_replace('.', DIRECTORY_SEPARATOR, $path);
-
-				if (file_exists($this->path = ($path . '.php'))) {
-					$this->data = array_merge($this->data, static::$sharedData, $data);
-					return $this;
-				}
-			}
-		}
-
-		throw new Exception("The view file [{$this->path}] doesn't exists!");
+                if (file_exists($this->path = ($path . '.php'))) {
+                    return $this->prepareData($data);
+                }       
+            }
+        }
+		
+        $this->handleViewNotFoundException($path);
 	}
+
+    /**
+     * Throw view not found exception.
+     * 
+     * @return void
+     * @throws \Exception
+     */
+    protected function handleViewNotFoundException($path)
+    {
+        throw new Exception("The view file [{$path}] doesn't exists!");
+    }
+
+    /**
+     * Prepare data for view.
+     * 
+     * @param  array $data
+     * @return self
+     */
+    protected function prepareData($data)
+    {
+        $this->data = array_merge(
+            $this->data, static::$sharedData, $data
+        );
+
+        return $this;
+    }
 
 	/**
 	 * Resolve the view file path
@@ -133,22 +146,35 @@ class View
 	{
         $path = str_replace('.', DIRECTORY_SEPARATOR, $path);
 
-        return $this->app['path.views'] . $path .'.php';
+        return $this->path = $this->app['path.views'] . $path .'.php';
 	}
 
 	/**
 	 * Evaluate the view file
-	 * @param  string $path
-	 * @param  string $data
+	 * @param  \NinjaTables\Framework\Foundation\Application $app
 	 * @return $this
 	 */
 	protected function renderContent($app)
 	{
 		ob_start();
 		extract($this->data, EXTR_SKIP);
-		require $this->path;
+		require $this->getNormalizedPath();
 		return ltrim(ob_get_clean());
 	}
+
+    /**
+     * Get normalized path.
+     * 
+     * @return string
+     */
+    protected function getNormalizedPath()
+    {
+        $ds = DIRECTORY_SEPARATOR;
+
+        $path = str_replace($ds.$ds, $ds, $this->path);
+
+        return $path;
+    }
 
 	/**
 	 * Share global data for any view
@@ -162,8 +188,18 @@ class View
 	}
 
 	/**
+	 * Reset all shared view data (useful for test isolation).
+	 * 
+	 * @return void
+	 */
+	public static function resetSharedData()
+	{
+		static::$sharedData = [];
+	}
+
+	/**
 	 * Provides a fluent interface to set data
-	 * @param  mixed $key
+	 * @param  array|string $name
 	 * @param  mixed $data
 	 * @return $this
 	 */
@@ -181,8 +217,9 @@ class View
 	}
 
 	/**
-	 * Set view path (used for micro)
-	 * @param [type] $path [description]
+	 * Set view path (used for micro).
+	 * 
+	 * @param string $path
 	 */
 	public function setViewPath($path)
 	{
@@ -190,9 +227,19 @@ class View
 	}
 
 	/**
-	 * Getter for the view
+	 * Get the resolved view path.
+	 * 
+	 * @return string
+	 */
+	public function getResolvedPath()
+	{
+		return $this->path;
+	}
+
+	/**
+	 * Getter for the view.
+	 * 
 	 * @param string $key
-	 * @param mixed $value
 	 */
 	public function __get($key)
 	{
@@ -212,11 +259,49 @@ class View
 	}
 
 	/**
-	 * Dump the view result
+	 * Return the view data.
+	 * 
+	 * @return array
+	 */
+	public function toArray()
+	{
+		return $this->data;
+	}
+
+	/**
+	 * Dump the view result.
+	 * 
 	 * @return string
 	 */
 	public function __toString()
 	{
 		return $this->renderContent($this->app);
 	}
+
+    /**
+     * Prevent unserialization (legacy PHP <7.4)
+     */
+    public function __wakeup()
+    {
+        $this->handleUnserializeNotAllowedException();
+    }
+
+    /**
+     * Prevent unserialization (PHP >=7.4)
+     */
+    public function __unserialize(array $data)
+    {
+        $this->handleUnserializeNotAllowedException();
+    }
+
+    /**
+     * Handle unserialization error.
+     * 
+     * @return void
+     * @throws \LogicException
+     */
+    protected function handleUnserializeNotAllowedException()
+    {
+        throw new LogicException(static::class . ' cannot be unserialized.');
+    }
 }

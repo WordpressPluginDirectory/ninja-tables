@@ -8,7 +8,7 @@ trait MaintainsDatabase
 	 * Check the table.
 	 * 
 	 * @param  string $table
-	 * @return stdClass
+	 * @return \stdClass
 	 */
 	public static function check($table)
 	{
@@ -31,38 +31,54 @@ trait MaintainsDatabase
 	 * Analyze the table.
 	 * 
 	 * @param  string $table
-	 * @return stdClass
+	 * @return \stdClass
 	 */
 	public static function analyze($table)
 	{
-		if (static::hasTable($table)) {
-			$result = static::db()->get_row(
-	            'ANALYZE TABLE ' . static::table($table)
-	        );
-
-	        if ($result->Msg_text === 'OK') {
-	        	$result->status = true;
-	        } else {
-	        	$result->status = false;
-	        }
-
-	        return $result;
+		if (!static::hasTable($table)) {
+			return;
 		}
+
+		if (static::isSqlite()) {
+			$result = new \stdClass();
+			$result->status = true;
+			$result->Msg_text = 'OK';
+			return $result;
+		}
+
+		$result = static::db()->get_row(
+            'ANALYZE TABLE ' . static::table($table)
+        );
+
+        if ($result->Msg_text === 'OK') {
+        	$result->status = true;
+        } else {
+        	$result->status = false;
+        }
+
+        return $result;
 	}
 
 	/**
 	 * Repair or rebuild the table based on the storage engine.
 	 * 
 	 * @param  string $table
-	 * @return stdClass
+	 * @return \stdClass
 	 */
 	public static function repair($table)
-	{   
+	{
 	    if (!static::hasTable($table)) {
 	        return;
 	    }
 
-	    if ($engine = static::getEngine($table) === 'InnoDB') {
+	    if (static::isSqlite()) {
+	        $result = new \stdClass();
+	        $result->status = true;
+	        $result->Msg_text = 'OK';
+	        return $result;
+	    }
+
+	    if (($engine = static::getEngine($table)) === 'InnoDB') {
             $result = static::repairInnoDB(static::table($table));
         } elseif ($engine === 'MyISAM') {
             $result = static::repairMyISAM(static::table($table));
@@ -71,7 +87,7 @@ trait MaintainsDatabase
             $result->status = false;
             $result->Msg_text = 'Unsupported table engine for repair';
         }
-    	
+
     	return $result;
 	}
 
@@ -79,7 +95,7 @@ trait MaintainsDatabase
 	 * Repair the InnoDB table.
 	 * 
 	 * @param  string $table
-	 * @return stdClass
+	 * @return \stdClass
 	 */
 	public static function repairInnoDB($table)
 	{
@@ -110,7 +126,7 @@ trait MaintainsDatabase
 	 * Repair the MYISAM table.
 	 * 
 	 * @param  string $table
-	 * @return stdClass
+	 * @return \stdClass
 	 */
 	public static function repairMyISAM($table)
 	{
@@ -133,12 +149,19 @@ trait MaintainsDatabase
 	 * Optimize the table.
 	 * 
 	 * @param  string $table
-	 * @return stdClass
+	 * @return \stdClass
 	 */
 	public static function optimize($table)
 	{
 		if (!static::hasTable($table)) {
 			return;
+		}
+
+		if (static::isSqlite()) {
+			$result = new \stdClass();
+			$result->status = true;
+			$result->Msg_text = 'OK';
+			return $result;
 		}
 
 		$result = static::db()->get_row(

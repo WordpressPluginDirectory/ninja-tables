@@ -9,7 +9,7 @@ class HasMany extends HasOneOrMany
     /**
      * Convert the relationship to a "has one" relationship.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne<TRelatedModel, TDeclaringModel>
+     * @return \NinjaTables\Framework\Database\Orm\Relations\HasOne
      */
     public function one()
     {

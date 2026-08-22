@@ -3,232 +3,216 @@
 namespace NinjaTables\Framework\Http\Request;
 
 use NinjaTables\Framework\Support\Arr;
-use NinjaTables\Framework\Support\DateTime;
+use NinjaTables\Framework\Support\Sanitizer;
 
 trait InputHelperMethodsTrait
 {
     /**
-     * Get an item from the request filtering by the callback
+     * Get an item from the request filtering by the callback(s).
      *
      * @param  string|array|null $key
-     * @param  callable $callback
+     * @param  callable|array|string|null $callback
      * @param  mixed $default
      * @return mixed
      */
     public function getSafe($key, $callback = null, $default = null)
     {
+        $originalKey = $key;
         $array = $result = [];
-        
         $expectsArray = true;
 
-        if(!is_array($key)) {
+        if (!is_array($key)) {
             $key = [$key];
             $expectsArray = false;
         }
 
-        // Normalize all to ['field' => ['cb1', 'cb2']] style array
         if ($callback) {
             $callback = is_array($callback) ? $callback : [$callback];
-            foreach ($key as $k => $field) {
+            
+            foreach ($key as $field) {
                 $array[$field] = $callback;
-                if (str_contains($field, '*')) {
-                    $array = $this->substituteWildcardKeys($array, $field);
-                }
             }
         } else {
             foreach ($key as $k => $v) {
-                // Add a simple closure to normalize when
-                // there's no callback given for a field
                 if (is_int($k)) {
                     $k = $v;
-                    $v = function($v) { return $v; };
+                    $v = fn($v) => $this->sanitizeByType($v);
                 }
 
                 $array[$k] = is_array($v) ? $v : [$v];
-
-                $array = $this->substituteWildcardKeys($array, $k);
             }
         }
 
-        // Sanitize all the fields using given callbacks
-        foreach ($array as $field => $callbacks) {
-            // In case someone used 'cb1|cb2|cb3' style callbacks
-            $callbacks = $this->mayBeFixCallbacks($callbacks);
+        $result = Sanitizer::sanitize($this->all(), $array);
 
-            if (($value = $this->get($field, $default)) !== null) {
-                $callbacks = is_callable($callbacks) ? [$callbacks] : $callbacks;
+        $result = $this->pickKeys(array_keys($array), $result);
 
-                while ($callback = array_shift($callbacks)) {
-                    if (is_array($value)) {
-                        $value = array_map($callback, $value);
-                    } else {
-                        $value = $callback($value);
-                    }
-                }
-
-                Arr::set($result, $field, $value);
-            }
+        if (is_array($originalKey)) {
+            return $expectsArray ? $result : reset($result);
         }
 
-        // Return the first item if only one item in the array
-        // because some one asked for one field, otherwise all.
-        return $expectsArray ? $result : reset($result);
+        // return Arr::get($result, $originalKey, $result);
+
+        $rootKey = strstr($originalKey, '.', true) ?: $originalKey;
+        return $result[$rootKey] ?? $default;
+    }
+
+    protected function sanitizeByType($value)
+    {
+        if (is_array($value)) {
+            foreach ($value as $k => $v) {
+                $value[$k] = $this->sanitizeByType($v);
+            }
+            return $value;
+        } elseif (is_int($value)) {
+            return intval($value);
+        } elseif (is_float($value)) {
+            return floatval($value);
+        } elseif (is_bool($value)) {
+            return boolval($value);
+        } elseif (is_string($value)) {
+            if (str_contains($value, "\n") || str_contains($value, "\r")) {
+                return sanitize_textarea_field($value);
+            }
+            return sanitize_text_field($value);
+        }
+
+        return $value;
     }
 
     /**
-     * Normalize wildcard rules to dotted rule, i.e:
-     * key_one.*.key_two.*.key_three becomes:
-     * key_one.0.key_two.0.key_three.0
-     * key_one.0.key_two.1.key_three.0
-     * depending on the data array.
-     * 
-     * @param  array $array
-     * @param  string $field
+     * Pick only the given keys from data.
+     *
+     * @param array $keys
+     * @param array $allData
      * @return array
      */
-    protected function substituteWildcardKeys($array, $field)
+    public function pickKeys($keys, $allData, $default = null)
     {
-        $callback = $array[$field];
+        $result = [];
 
-        $keys = array_map(function($v) {
-            return trim($v, '.');
-        }, explode('*', $field));
+        $walk = function ($data, $segments, &$res) use (&$walk, $default) {
+            $segment = array_shift($segments);
 
-        $key = array_shift($keys);
-        
-        if ($key && ($data = $this->get($key)) && is_array($data)) {
-            
-            $dotted = array_keys(Arr::dot($data, $key . '.'));
-            
-            foreach ($dotted as $dottedField) {
-                
-                $r = preg_replace('/[0-9]+/', '*', $dottedField);
-                
-                if (preg_match("/{$field}/", $r)) {
-                    
-                    $array[$dottedField] = $callback;
-                    
-                    if (isset($array[$field])) {
-                        unset($array[$field]);
+            if ($segment === null) {
+                if (is_array($data)) {
+                    $res = array_merge_recursive($res ?? [], $data);
+                } else {
+                    $res = $data ?? $default;
+                }
+                return;
+            }
+
+            if ($segment === '*') {
+                if (!is_array($data)) return;
+
+                foreach ($data as $index => $value) {
+                    $res[$index] ??= [];
+                    $walk($value, $segments, $res[$index]);
+                }
+            } else {
+                if (is_array($data) && array_key_exists($segment, $data)) {
+                    $res[$segment] ??= [];
+                    $walk($data[$segment], $segments, $res[$segment]);
+                } else {
+                    if (empty($segments)) {
+                        $res[$segment] = $default;
                     }
                 }
             }
+        };
+
+        foreach ($keys as $k) {
+            if (is_array($k)) {
+                $k = implode('.', $k);
+            }
+
+            $segments = explode('.', $k);
+            $walk($allData, $segments, $result);
         }
 
-        return $array;
+        return $result;
     }
 
     /**
-     * Check and fix if callbacks are given
-     * as: callback1|callback2\callback3.
-     * 
-     * @param  array|string $callbacks
-     * @return array
+     * Returns a sanitized integer.
+     *
+     * @param  string $key
+     * @param  string $default
+     * @return int
      */
-    protected function mayBeFixCallbacks($callbacks)
+    public function getInt($key, $default = null)
     {
-        $nonFunctionCallables = $functionCallables = [];
-            
-        foreach ($callbacks as $cb) {
-            if (is_callable($cb)) {
-                $nonFunctionCallables[] = $cb;
-            } elseif (is_string($cb)) {
-                 $functionCallables[] = explode('|', $cb);
-            } elseif (is_array($cb) && !str_contains($cb[0], '::')) {
-                $functionCallables[] = $cb[0];
-            } elseif (is_array($cb) && str_contains($cb[0], '::')) {
-                $nonFunctionCallables[] = explode('::', $cb[0]);
-            }
-        }
-
-        $callbacks = array_merge(
-            Arr::flatten($functionCallables), $nonFunctionCallables
-        );
-
-        return $callbacks;
+        return Sanitizer::sanitizeInt($this->get($key, $default));
     }
 
-	/**
-	 * Returns an sanitized integer
-	 * @param  string $key
-	 * @param  string $dafault
-	 * @return [type]  using intval function
-	 */
-	public function getInt($key, $dafault = null)
-	{
-		return intval($this->get($key, $dafault));
-	}
-
-	/**
+    /**
      * Retrieve input as a float value.
      *
-     * @param  string|null  $key
-     * @param  float  $default
+     * @param  string|null $key
+     * @param  float $default
      * @return float
      */
     public function getFloat($key, $default = null)
     {
-        return floatval($this->get($key, $default));
+        return Sanitizer::sanitizeFloat($this->get($key, $default));
     }
 
-	/**
-	 * Returns a sanitized string
-	 * @param  string $key
-	 * @param  string $dafault
-	 * @return string using sanitize_text_field function
-	 */
-	public function getText($key, $dafault = null)
-	{
-		return sanitize_text_field($this->get($key, $dafault));
-	}
-
-	/**
-	 * Returns a string as title
-	 * @param  string $key
-	 * @param  string $dafault
-	 * @return string using sanitize_title function
-	 */
-	public function getTitle($key, $dafault = null)
-	{
-		return sanitize_title($this->get($key, $dafault));
-	}
-
-	/**
-	 * Returns sanitized email
-	 * 
-	 * @param  string $key
-	 * @param  string $dafault
-	 * @return string using sanitize_email function
-	 */
-	public function getEmail($key, $dafault = null)
-	{
-		return sanitize_email($this->get($key, $dafault));
-	}
-
-	/**
-	 * Returns boolean value
-	 * 
-	 * @param  string $key
-	 * @param  string $dafault
-	 * @return bool TRUE for "1", "true", "on" and "yes"
-	 * @return bool FALSE for "0", "false", "off" and "no"
-	 */
-	public function getBool($key, $dafault = null)
-	{
-		return filter_var(
-			$this->get($key, $dafault),
-			FILTER_VALIDATE_BOOLEAN,
-			FILTER_NULL_ON_FAILURE
-		);
-	}
+    /**
+     * Returns a sanitized string.
+     *
+     * @param  string $key
+     * @param  string $default
+     * @return string
+     */
+    public function getText($key, $default = null)
+    {
+        return Sanitizer::sanitizeTextField($this->get($key, $default));
+    }
 
     /**
-     * Returns a NinjaTables\Framework\Framework\Support\Date object.
-     * 
-     * @param  string $key 
-     * @param  string $format
-     * @param  string $tz
-     * @return NinjaTables\Framework\Framework\Support\Date
+     * Returns a string as title.
+     *
+     * @param  string $key
+     * @param  string $default
+     * @return string
+     */
+    public function getTitle($key, $default = null)
+    {
+        return Sanitizer::sanitizeTitle($this->get($key, $default));
+    }
+
+    /**
+     * Returns sanitized email.
+     *
+     * @param  string $key
+     * @param  string $default
+     * @return string
+     */
+    public function getEmail($key, $default = null)
+    {
+        return Sanitizer::sanitizeEmail($this->get($key, $default));
+    }
+
+    /**
+     * Returns boolean value.
+     *
+     * @param  string $key
+     * @param  string $default
+     * @return bool|null TRUE for "1", "true", "on", "yes"; FALSE for "0", "false", "off", "no"; NULL otherwise
+     */
+    public function getBool($key, $default = null)
+    {
+        return Sanitizer::sanitizeBool($this->get($key, $default));
+    }
+
+    /**
+     * Returns a DateTime object.
+     *
+     * @param  string $key
+     * @param  string|null $format
+     * @param  string|null $tz
+     * @return \NinjaTables\Framework\Support\DateTime|null
      */
     public function getDate($key, $format = null, $tz = null)
     {
@@ -236,10 +220,6 @@ trait InputHelperMethodsTrait
             return null;
         }
 
-        if (is_null($format)) {
-            return DateTime::parse($value, $tz);
-        }
-
-        return DateTime::createFromFormat($format, $value, $tz);
+        return Sanitizer::sanitizeDate($value, $format, $tz);
     }
 }

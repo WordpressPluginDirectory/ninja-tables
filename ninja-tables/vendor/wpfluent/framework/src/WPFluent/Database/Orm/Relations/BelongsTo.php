@@ -119,8 +119,8 @@ class BelongsTo extends Relation
     /**
      * Gather the keys from an array of related models.
      *
-     * @param  array<int, TDeclaringModel>  $models
-     * @return array
+     * @param  \NinjaTables\Framework\Database\Orm\Model[]  $models  Array of related model instances.
+     * @return array  Array of keys.
      */
     protected function getEagerModelKeys(array $models)
     {
@@ -181,12 +181,14 @@ class BelongsTo extends Relation
     /**
      * Associate the model instance to the given parent.
      *
-     * @param  TRelatedModel|int|string|null  $model
-     * @return TDeclaringModel
+     * @param  \NinjaTables\Framework\Database\Orm\Model|int|string|null  $model  The related model or its key.
+     * @return \NinjaTables\Framework\Database\Orm\Model  Returns the child model instance.
      */
     public function associate($model)
     {
-        $ownerKey = $model instanceof Model ? $model->getAttribute($this->ownerKey) : $model;
+        $ownerKey = $model instanceof Model ? $model->getAttribute(
+            $this->ownerKey
+        ) : $model;
 
         $this->child->setAttribute($this->foreignKey, $ownerKey);
 
@@ -202,7 +204,7 @@ class BelongsTo extends Relation
     /**
      * Dissociate previously associated model from the given parent.
      *
-     * @return TDeclaringModel
+     * @return \NinjaTables\Framework\Database\Orm\Model
      */
     public function dissociate()
     {
@@ -214,7 +216,7 @@ class BelongsTo extends Relation
     /**
      * Alias of "dissociate" method.
      *
-     * @return TDeclaringModel
+     * @return \NinjaTables\Framework\Database\Orm\Model
      */
     public function disassociate()
     {
@@ -236,10 +238,10 @@ class BelongsTo extends Relation
     /**
      * Add the constraints for a relationship query on the same table.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder<TRelatedModel>  $query
-     * @param  \Illuminate\Database\Eloquent\Builder<TDeclaringModel>  $parentQuery
+     * @param  \NinjaTables\Framework\Database\Orm\Builder<\NinjaTables\Framework\Database\Orm\Model>  $query
+     * @param  \NinjaTables\Framework\Database\Orm\Builder<\NinjaTables\Framework\Database\Orm\Model>  $parentQuery
      * @param  array|mixed  $columns
-     * @return \Illuminate\Database\Eloquent\Builder<TRelatedModel>
+     * @return \NinjaTables\Framework\Database\Orm\Builder<\NinjaTables\Framework\Database\Orm\Model>
      */
     public function getRelationExistenceQueryForSelfRelation(Builder $query, Builder $parentQuery, $columns = ['*'])
     {
@@ -268,8 +270,8 @@ class BelongsTo extends Relation
     /**
      * Make a new related instance for the given model.
      *
-     * @param  TDeclaringModel  $parent
-     * @return TRelatedModel
+     * @param  \NinjaTables\Framework\Database\Orm\Model  $parent
+     * @return \NinjaTables\Framework\Database\Orm\Model
      */
     protected function newRelatedInstanceFor(Model $parent)
     {
@@ -279,7 +281,7 @@ class BelongsTo extends Relation
     /**
      * Get the child of the relationship.
      *
-     * @return TDeclaringModel
+     * @return \NinjaTables\Framework\Database\Orm\Model
      */
     public function getChild()
     {
@@ -339,7 +341,7 @@ class BelongsTo extends Relation
     /**
      * Get the value of the model's foreign key.
      *
-     * @param  TRelatedModel  $model
+     * @param \NinjaTables\Framework\Database\Orm\Model $model
      * @return int|string
      */
     protected function getRelatedKeyFrom(Model $model)
@@ -350,7 +352,7 @@ class BelongsTo extends Relation
     /**
      * Get the value of the model's foreign key.
      *
-     * @param  TDeclaringModel  $model
+     * @param \NinjaTables\Framework\Database\Orm\Model $model
      * @return mixed
      */
     protected function getForeignKeyFrom(Model $model)

@@ -410,7 +410,7 @@ abstract class Relation
     protected function whereInEager(
         string $whereIn,
         string $key, array $modelKeys,
-        Builder $query = null
+        ?Builder $query = null
     ) {
         ($query ?? $this->query)->{$whereIn}($key, $modelKeys);
 
@@ -476,7 +476,7 @@ abstract class Relation
      * @param  bool  $merge
      * @return array
      */
-    public static function morphMap(array $map = null, $merge = true)
+    public static function morphMap(?array $map = null, $merge = true)
     {
         $map = static::buildMorphMapFromModels($map);
 
@@ -494,7 +494,7 @@ abstract class Relation
      * @param  string[]|null  $models
      * @return array|null
      */
-    protected static function buildMorphMapFromModels(array $models = null)
+    protected static function buildMorphMapFromModels(?array $models = null)
     {
         if (is_null($models) || Arr::isAssoc($models)) {
             return $models;

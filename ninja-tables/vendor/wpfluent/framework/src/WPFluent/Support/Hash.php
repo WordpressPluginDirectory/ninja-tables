@@ -56,4 +56,16 @@ class Hash
     {
         return password_verify($value, $hash);
     }
+
+    /**
+     * Check if two given hashes match.
+     * 
+     * @param  string $hash1
+     * @param  string $hash2
+     * @return bool
+     */
+    public static function compare($hash1, $hash2)
+    {
+        return hash_equals($hash1, $hash2);
+    }
 }

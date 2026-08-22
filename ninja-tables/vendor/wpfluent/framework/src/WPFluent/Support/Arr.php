@@ -17,7 +17,7 @@ class Arr
      * Makes a collection from array
      * 
      * @param  array $array
-     * @return NinjaTables\Framework\Support\Collection
+     * @return \NinjaTables\Framework\Support\Collection
      */
     public static function of(array $array)
     {
@@ -315,7 +315,7 @@ class Arr
      * @param array $array
      * @param mixed $value
      * @param bool $ci (false for case insensitive search, true otherwise)
-     * @return array|null
+     * @return string|null
      */
     public static function findPath($array, $value, $ci = false)
     {
@@ -328,7 +328,7 @@ class Arr
             if ($val === $value) {
                 return $key;
             } elseif (is_array($val) && $path = static::findPath($val, $value, $ci)) {
-                return $key.'.'.$path;
+                return $key . '.' . $path;
             }
         }
     }
@@ -379,7 +379,7 @@ class Arr
      * Flatten a multi-dimensional array into a single level.
      *
      * @param  iterable  $array
-     * @param  int  $depth
+     * @param  int|float  $depth
      * @return array
      */
     public static function flatten($array, $depth = INF)
@@ -556,7 +556,7 @@ class Arr
      * Alias of contains.
      *
      * @param  array $array
-     * @param  string|array  $values
+     * @param  string|array  $value
      * @return bool
      */
     public static function inArray($array, $value)
@@ -887,9 +887,10 @@ class Arr
     /**
      * Sort an array in descending order.
      *
-     * @param  array  $array
-     * @param  Flags
+     * @param  array       $array  The input array.
+     * @param  int-mask-of<SORT_REGULAR|SORT_NUMERIC|SORT_STRING|SORT_LOCALE_STRING|SORT_NATURAL|SORT_FLAG_CASE>  $flags
      * @return array
+     * 
      * @see https://www.php.net/manual/en/function.rsort.php
      */
     public static function rsort($array, $flags = SORT_REGULAR)
@@ -902,7 +903,7 @@ class Arr
      * Sort an array in ascending order and maintain index association.
      *
      * @param  array  $array
-     * @param  Flags
+     * @param  int-mask-of<SORT_REGULAR|SORT_NUMERIC|SORT_STRING|SORT_LOCALE_STRING|SORT_NATURAL|SORT_FLAG_CASE>  $flags
      * @return array
      * @see https://www.php.net/manual/en/function.asort.php
      */
@@ -916,7 +917,7 @@ class Arr
      * Sort an array in descending order and maintain index association.
      *
      * @param  array  $array
-     * @param  Flags
+     * @param  int-mask-of<SORT_REGULAR|SORT_NUMERIC|SORT_STRING|SORT_LOCALE_STRING|SORT_NATURAL|SORT_FLAG_CASE>  $flags
      * @return array
      * @see https://www.php.net/manual/en/function.arsort.php
      */
@@ -930,7 +931,7 @@ class Arr
      * Sort an array by key in ascending order.
      *
      * @param  array  $array
-     * @param  Flags
+     * @param  int-mask-of<SORT_REGULAR|SORT_NUMERIC|SORT_STRING|SORT_LOCALE_STRING|SORT_NATURAL|SORT_FLAG_CASE>  $flags
      * @return array
      * @see https://www.php.net/manual/en/function.ksort.php
      */
@@ -944,7 +945,7 @@ class Arr
      * Sort an array by key in descending order.
      *
      * @param  array  $array
-     * @param  Flags
+     * @param  int-mask-of<SORT_REGULAR|SORT_NUMERIC|SORT_STRING|SORT_LOCALE_STRING|SORT_NATURAL|SORT_FLAG_CASE>  $flags
      * @return array
      * @see https://www.php.net/manual/en/function.krsort.php
      */
@@ -1353,7 +1354,7 @@ class Arr
     /**
      * Return matching items from array (similar to mysql's %LIKE%)
      * 
-     * @param  string|regex $pattern
+     * @param  string $pattern (plain string or regex)
      * @param  array $array
      * @return array|false
      */
@@ -1369,7 +1370,7 @@ class Arr
     /**
      * Return non-matching items from array (similar to mysql's NOT %LIKE%)
      * 
-     * @param  string|regex $pattern
+     * @param  string $pattern (plain string or regex)
      * @param  array $array
      * @return array|false
      */
@@ -1385,7 +1386,7 @@ class Arr
     /**
      * Return matching starting of items from array (similar to mysql's %LIKE)
      * 
-     * @param  string|regex $pattern
+     * @param  string $pattern (plain string or regex)
      * @param  array $array
      * @return array|false
      */
@@ -1401,7 +1402,7 @@ class Arr
     /**
      * Return non-matching starting of items from array (similar to mysql's NOT %LIKE)
      * 
-     * @param  string|regex $pattern
+     * @param  string $pattern (plain string or regex)
      * @param  array $array
      * @return array|false
      */
@@ -1417,7 +1418,7 @@ class Arr
     /**
      * Return matching ending of items from array (similar to mysql's LIKE%)
      * 
-     * @param  string|regex $pattern
+     * @param  string $pattern (plain string or regex)
      * @param  array $array
      * @return array|false
      */
@@ -1433,7 +1434,7 @@ class Arr
     /**
      * Return non-matching ending of items from array (similar to mysql's NOT LIKE%)
      * 
-     * @param  string|regex $pattern
+     * @param  string $pattern (plain string or regex)
      * @param  array $array
      * @return array|false
      */
@@ -1449,7 +1450,7 @@ class Arr
     /**
      * Return matching items from array by keys
      * 
-     * @param  string|regex $pattern
+     * @param  string $pattern (plain string or regex)
      * @param  array $array
      * @return array|false
      */
@@ -1473,7 +1474,7 @@ class Arr
     /**
      * Return non-matching items from array by keys
      * 
-     * @param  string|regex $pattern
+     * @param  string $pattern (plain string or regex)
      * @param  array $array
      * @return array|false
      */
@@ -1497,7 +1498,7 @@ class Arr
     /**
      * Return matching starting of items from array by keys
      * 
-     * @param  string|regex $pattern
+     * @param  string $pattern (plain string or regex)
      * @param  array $array
      * @return array|false
      */
@@ -1521,7 +1522,7 @@ class Arr
     /**
      * Return non-matching starting of items from array by keys
      * 
-     * @param  string|regex $pattern
+     * @param  string $pattern (plain string or regex)
      * @param  array $array
      * @return array|false
      */
@@ -1545,7 +1546,7 @@ class Arr
     /**
      * Return matching ending of items from array by keys
      * 
-     * @param  string|regex $pattern
+     * @param  string $pattern (plain string or regex)
      * @param  array $array
      * @return array|false
      */
@@ -1569,7 +1570,7 @@ class Arr
     /**
      * Return non-matching ending of items from array by keys
      * 
-     * @param  string|regex $pattern
+     * @param  string $pattern (plain string or regex)
      * @param  array $array
      * @return array|false
      */
@@ -1649,7 +1650,8 @@ class Arr
      * @param  mixed $newValue
      * @return array $newArray
      */
-    public static function insertAfter($array, $key, $newKey, $newValue): array {
+    public static function insertAfter($array, $key, $newKey, $newValue)
+    {
         $newArray = [];
         $keyFound = false;
 
@@ -1777,10 +1779,10 @@ class Arr
                         $items[$key] = $callback($key);
                         break;
                     case 2:
-                        $items[$key] = $callback($key, $item);
+                        $items[$key] = $callback($key, $item ?? '');
                         break;
                     default:
-                        $items[$key] = $callback($item);
+                        $items[$key] = $callback($item ?? '');
                 }
             }
         }

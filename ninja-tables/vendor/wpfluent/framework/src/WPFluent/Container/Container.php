@@ -715,7 +715,9 @@ class Container implements ArrayAccess, ContainerContract
     protected function retry($module)
     {
         $pieces = explode('\\', __NAMESPACE__);
-        array_pop($pieces) && $prefix = implode('\\', $pieces);
+        array_pop($pieces);
+        $prefix = implode('\\', $pieces);
+
         return $prefix . '\\' . str_replace('.', '\\', $module);
     }
 
@@ -1110,7 +1112,7 @@ class Container implements ArrayAccess, ContainerContract
      * Throw an exception that the concrete is not instantiable.
      *
      * @param  string  $concrete
-     * @return void
+     * @return never
      *
      * @throws \NinjaTables\Framework\Container\Contracts\BindingResolutionException
      */

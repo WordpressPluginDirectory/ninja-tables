@@ -42,6 +42,7 @@ class UrlWindow
      */
     public function get()
     {
+        // @phpstan-ignore-next-line
         $onEachSide = $this->paginator->onEachSide;
 
         if ($this->paginator->lastPage() < ($onEachSide * 2) + 8) {

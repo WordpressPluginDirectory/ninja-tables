@@ -82,6 +82,18 @@ class NinjaFooTable
         }
 
         wp_localize_script('footable_init', 'ninja_footables', $localizeData);
+
+        /*
+         * Pro's bundle extends FooTable (e.g. the "~min:max" range filter), so it must load after
+         * FooTable. Add the dependency only here, in the FooTable render path, so DataTables pages
+         * (where 'footable' is never enqueued) don't drop the Pro bundle.
+         */
+        if (wp_script_is('ninja-tables-pro', 'registered')) {
+            $proScript = wp_scripts()->registered['ninja-tables-pro'];
+            if ( ! in_array('footable', $proScript->deps, true)) {
+                $proScript->deps[] = 'footable';
+            }
+        }
     }
 
     /**
@@ -200,6 +212,31 @@ class NinjaFooTable
             $pagingSettings = false;
         } else {
             $pagingSettings = Arr::get($settings, 'perPage', 20);
+        }
+
+        // The filter shortcode filters in the browser, so a row limit cannot be
+        // applied while fetching: it would cut rows away before they are
+        // filtered and the table would show fewer matches than asked for, or
+        // none at all. The rows are fetched unlimited (see
+        // generateLegacyTableHTML) and the limit becomes the page size instead.
+        // FooTable pages after it filters, so the table shows the first N
+        // matching rows. The pager is hidden so the limit acts as a cap.
+        $limitRows = intval(Arr::get($settings, 'limit_rows', 0));
+
+        // $default_filter is the canonical filter value, set on the table array
+        // by the ninja_table_js_config filter. The decision is made here, where
+        // that value is in scope, and carried on the render data so
+        // generateLegacyTableHTML() does not have to re-derive it.
+        $deferRowLimit = $limitRows && ! empty($default_filter);
+
+        if ($deferRowLimit) {
+            $pagingSettings         = $limitRows;
+            $settings['show_pager'] = false;
+            // Ajax render fetches rows via AjaxHandler; zero the fetch limit/skip
+            // there too so the browser filter sees every row (matches the legacy
+            // path). The page size above still caps what's visible.
+            $settings['limit_rows'] = 0;
+            $settings['skip_rows']  = 0;
         }
 
         $enableSearch = Arr::get($settings, 'enable_search', false);
@@ -356,6 +393,7 @@ class NinjaFooTable
             'original_columns' => $columns,
             'settings'         => $configSettings,
             'render_type'      => $renderType,
+            'defer_row_limit'  => $deferRowLimit,
             'custom_css'       => $customCss,
             'instance_name'    => $table_instance_name,
             'table_version'    => NINJA_TABLES_VERSION,
@@ -479,13 +517,18 @@ class NinjaFooTable
             }
         }
 
+        // The filter shortcode filters in the browser, so the rows are fetched
+        // unlimited and the limit caps them afterwards as the page size set in
+        // render(). Limiting here would cut rows away before they are filtered.
+        $clientSideLimit = (bool)Arr::get($table_vars, 'defer_row_limit');
+
         $formatted_data = ninjaTablesGetTablesDataByID(
             $tableId,
             $tableColumns,
             $table_vars['settings']['default_sorting'],
             false,
-            $limitRows,
-            $skipRows,
+            $clientSideLimit ? 0 : $limitRows,
+            $clientSideLimit ? 0 : $skipRows,
             $ownOnly
         );
 

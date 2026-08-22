@@ -8,7 +8,7 @@ trait AjaxTrait
      * Add ajax action
      * 
      * @param string $action
-     * @param string|Closure $handler
+     * @param string|\Closure $handler
      * @param int $priority
      * @param string $scope
      * @return void
@@ -27,7 +27,7 @@ trait AjaxTrait
     /**
      * Add ajax actions including non_prive
      * @param string $action
-     * @param string|Closure $handler
+     * @param string|\Closure $handler
      * @param int $priority
      * @return void
      */
@@ -40,7 +40,7 @@ trait AjaxTrait
     /**
      * Add ajax action for privilaged user
      * @param string $action
-     * @param string|Closure $handler
+     * @param string|\Closure $handler
      * @param int $priority
      * @return void
      */
@@ -52,7 +52,7 @@ trait AjaxTrait
     /**
      * Add ajax action for non-privilaged user
      * @param string $action
-     * @param string|Closure $handler
+     * @param string|\Closure $handler
      * @param int $priority
      * @return void
      */

@@ -4,7 +4,9 @@ namespace NinjaTables\Framework\Support;
 
 use Closure;
 use stdClass;
+use Iterator;
 use ArrayIterator;
+use IteratorIterator;
 use DateTimeInterface;
 use IteratorAggregate;
 use NinjaTables\Framework\Support\Helper;
@@ -368,7 +370,7 @@ class LazyCollection implements CanBeEscapedWhenCastToString, Enumerable
      * @param  callable|null  $callback
      * @return static
      */
-    public function filter(callable $callback = null)
+    public function filter(?callable $callback = null)
     {
         if (is_null($callback)) {
             $callback = function ($value) {
@@ -392,7 +394,7 @@ class LazyCollection implements CanBeEscapedWhenCastToString, Enumerable
      * @param  mixed  $default
      * @return mixed
      */
-    public function first(callable $callback = null, $default = null)
+    public function first(?callable $callback = null, $default = null)
     {
         $iterator = $this->getIterator();
 
@@ -416,7 +418,7 @@ class LazyCollection implements CanBeEscapedWhenCastToString, Enumerable
     /**
      * Get a flattened list of the items in the collection.
      *
-     * @param  int  $depth
+     * @param  int|float  $depth
      * @return static
      */
     public function flatten($depth = INF)
@@ -633,7 +635,7 @@ class LazyCollection implements CanBeEscapedWhenCastToString, Enumerable
      * @param  mixed  $default
      * @return mixed
      */
-    public function last(callable $callback = null, $default = null)
+    public function last(?callable $callback = null, $default = null)
     {
         $needle = $placeholder = new stdClass;
 
@@ -1502,7 +1504,7 @@ class LazyCollection implements CanBeEscapedWhenCastToString, Enumerable
     /**
      * Get the values iterator.
      *
-     * @return \Traversable
+     * @return \Iterator
      */
     #[\ReturnTypeWillChange]
     public function getIterator()
@@ -1529,12 +1531,19 @@ class LazyCollection implements CanBeEscapedWhenCastToString, Enumerable
      * Make an iterator from the given source.
      *
      * @param  mixed  $source
-     * @return \Traversable
+     * @return \Iterator
      */
     protected function makeIterator($source)
     {
         if ($source instanceof IteratorAggregate) {
-            return $source->getIterator();
+            $iterator = $source->getIterator();
+
+            // IteratorAggregate::getIterator() is only guaranteed to return a
+            // Traversable; wrap a bare one so callers always get a real Iterator
+            // (valid()/current()/next()/key()).
+            return $iterator instanceof Iterator
+                ? $iterator
+                : new IteratorIterator($iterator);
         }
 
         if (is_array($source)) {

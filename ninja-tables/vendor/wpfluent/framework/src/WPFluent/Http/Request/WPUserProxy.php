@@ -2,6 +2,9 @@
 
 namespace NinjaTables\Framework\Http\Request;
 
+use WP_User;
+use BadMethodCallException;
+use InvalidArgumentException;
 use NinjaTables\Framework\Support\Str;
 
 /**
@@ -35,155 +38,167 @@ use NinjaTables\Framework\Support\Str;
 class WPUserProxy
 {
     /**
-     * The WP_User instance.
-     * @var \WP_User
+     * User identifier: ID, email, or WP_User instance
+     *
+     * @var int|string|WP_User
      */
-    protected $wpUser;
+    protected $userIdentifier;
 
     /**
-     * Methods to proxy.
+     * Method aliases to pass through to WP_User
+     *
      * @var array
      */
     protected $passthrough = [
-	    'can' => 'has_cap',
+        'can' => 'has_cap',
     ];
 
     /**
-     * User Meta.
-     * @var array
-     */
-    protected $meta = null;
-
-    /**
-     * Construct the proxy.
-     * 
-     * @param \WP_User $wpUser
+     * Store the user identifier (ID, email, or WP_User instance)
+     *
+     * @param int|string|WP_User $wpUser
      */
     public function __construct($wpUser)
     {
-        if (is_int($wpUser)) {
-            $wpUser = get_user_by('id', $wpUser);
-        } elseif (is_string($wpUser) && str_contains($wpUser, '@')) {
-            $wpUser = get_user_by('email', $wpUser);
-        }
-
-        if (!$wpUser instanceof \WP_User) {
-            throw new \InvalidArgumentException('Invalid user');
-        }
-
-        $this->wpUser = $wpUser;
+        $this->userIdentifier = $wpUser;
     }
 
     /**
-     * Retrieve the ID of the current user.
-     * 
+     * Resolve the latest WP_User instance
+     *
+     * @return WP_User
+     * @throws InvalidArgumentException
+     */
+    protected function wpUser()
+    {
+        $wpUser = $this->userIdentifier;
+
+        if (is_int($wpUser)) {
+            $wpUser = get_user_by('id', $wpUser);
+        } elseif (is_string($wpUser) && strpos($wpUser, '@') !== false) {
+            $wpUser = get_user_by('email', $wpUser);
+        }
+
+        if (!$wpUser instanceof WP_User) {
+            throw new InvalidArgumentException('Invalid user');
+        }
+
+        return $wpUser;
+    }
+
+    /**
+     * Get the user ID
+     *
      * @return int
      */
     public function id()
     {
-        return $this->wpUser->ID;
+        return $this->wpUser()->ID;
     }
 
     /**
-     * Retrieve the email of the current user.
-     * 
+     * Get the user email
+     *
      * @return string
      */
     public function email()
     {
-        return $this->wpUser->user_email;
+        return $this->wpUser()->user_email;
     }
 
     /**
-     * Retrieve the user_login of the current user.
-     * 
+     * Get the user login
+     *
      * @return string
      */
     public function login()
     {
-        return $this->wpUser->user_login;
+        return $this->wpUser()->user_login;
     }
 
     /**
-     * Retrieve the user_nicename of the current user.
-     * 
+     * Get the user nicename
+     *
      * @return string
      */
     public function nicename()
     {
-        return $this->wpUser->user_nicename;
+        return $this->wpUser()->user_nicename;
     }
 
     /**
-     * Retrieve the user_status of the current user.
-     * 
+     * Get the user status
+     *
      * @return int
      */
     public function status()
     {
-        return $this->wpUser->user_status;
+        return $this->wpUser()->user_status;
     }
 
     /**
-     * Retrieve the display_name of the current user.
-     * 
+     * Get the display name
+     *
      * @return string
      */
     public function displayName()
     {
-        return $this->wpUser->display_name;
+        return $this->wpUser()->display_name;
     }
-    
+
     /**
-     * Get the roles of the current user.
-     * 
+     * Get user roles
+     *
      * @return array
      */
     public function getRoles()
     {
-        return $this->wpUser->roles;
+        return $this->wpUser()->roles;
     }
 
     /**
-     * Get the permissions of the current user.
-     * 
+     * Get user capabilities / permissions
+     *
      * @return array
      */
     public function getPermissions()
     {
-        $getPermissions = [];
-
-        foreach ($this->wpUser->get_role_caps() as $permission => $value) {
-            if ($value) $permissions[] = $permission;
+        $permissions = [];
+        foreach ($this->wpUser()->get_role_caps() as $cap => $value) {
+            if ($value) {
+                $permissions[] = $cap;
+            }
         }
-
         return $permissions;
     }
 
     /**
-     * Get the meta value(s) of the current user.
-     * 
+     * Get user meta (fresh from database)
+     *
+     * @param string|null $metaKey
+     * @param mixed|null $default
      * @return mixed
      */
     public function getMeta($metaKey = null, $default = null)
     {
-        if (is_null($this->meta)) {
-            foreach (get_user_meta($this->wpUser->ID) as $key => $value) {
-                if ($key === 'session_tokens') continue;
-                $this->meta[$key] = maybe_unserialize($value[0]);
-            }
+        $meta = [];
+
+        foreach (get_user_meta($this->wpUser()->ID) as $key => $value) {
+            if ($key === 'session_tokens') continue;
+            
+            $meta[$key] = maybe_unserialize($value[0]);
         }
 
-        if (!$metaKey) {
-            return $this->meta;
+        if ($metaKey === null) {
+            return $meta;
         }
 
-        return $this->meta[$metaKey] ?: $default;
+        return $meta[$metaKey] ?? $default;
     }
 
     /**
-     * Set the meta value of the current user.
-     * 
+     * Set user meta
+     *
      * @param string $key
      * @param mixed $value
      * @return bool
@@ -194,106 +209,117 @@ class WPUserProxy
             $value = maybe_serialize($value);
         }
 
-        return update_user_meta($this->wpUser->ID, $key, $value);
+        return update_user_meta($this->wpUser()->ID, $key, $value);
     }
 
     /**
-     * Get the underlying WP_User instance.
-     * @return [type] [description]
+     * Get the underlying WP_User instance
+     *
+     * @return WP_User
      */
     public function toBase()
     {
-        return $this->wpUser;
+        return $this->wpUser();
     }
 
     /**
-     * Checks if super admin (in multi-site)
-     * 
-     * @return boolean
+     * Check if the user is a super admin
+     *
+     * @return bool
      */
     public function isSuperAdmin()
     {
-    	return is_super_admin($this->wpUser->ID);
+        return is_super_admin($this->wpUser()->ID);
     }
 
     /**
-     * Check if the currently logged in user is an admin.
-     * 
-     * @return boolean
+     * Check if the user is an administrator
+     *
+     * @return bool
      */
     public function isAdmin()
     {
-        return in_array('administrator',  $this->roles);
+        return $this->is('administrator');
     }
 
     /**
-     * Get a property from the WP_User instance.
-     * 
-     * @param  string $key
+     * Check if the user has a specific role
+     *
+     * @param string $role
+     * @return bool
+     */
+    public function is($role)
+    {
+        return in_array($role, $this->wpUser()->roles);
+    }
+
+    /**
+     * Dynamically get a WP_User property
+     *
+     * @param string $key
      * @return mixed
-     * @throws \OutOfBoundsException
      */
     public function __get($key)
     {
-        return $this->wpUser->{$key};
+        return $this->wpUser()->{$key};
     }
 
     /**
-     * Set a property on the WP_User instance.
-     * 
+     * Dynamically set a WP_User property
+     *
      * @param string $key
      * @param mixed $value
      */
     public function __set($key, $value)
     {
-        $this->wpUser->{$key} = $value;
+        $this->wpUser()->{$key} = $value;
     }
 
     /**
-     * Checks if a property exists on the WP_User instance.
-     * 
-     * @param  string  $key
-     * @return boolean
+     * Check if a WP_User property exists
+     *
+     * @param string $key
+     * @return bool
      */
     public function __isset($key)
     {
-        return isset($this->wpUser->$key);
+        return isset($this->wpUser()->{$key});
     }
 
     /**
-     * Unsets a property from the WP_User instance.
-     * 
+     * Unset a WP_User property
+     *
      * @param string $key
      */
     public function __unset($key)
     {
-        unset($this->wpUser->$key);
+        unset($this->wpUser()->{$key});
     }
 
     /**
-     * Handles method calls on the WP_User instance.
-     * 
-     * @param  string $method
-     * @param  array $args
+     * Dynamically call WP_User methods with passthrough and snake_case support
+     *
+     * @param string $method
+     * @param array $args
      * @return mixed
-     * @throws \BadMethodCallException
+     * @throws BadMethodCallException
      */
     public function __call($method, $args)
     {
-    	if (!method_exists($this->wpUser, $method)) {
-    		if (array_key_exists($method, $this->passthrough)) {
-	            $method = $this->passthrough[$method];
-	        } else {
-	        	$method = Str::snake($method);
-	        }
+        $original = $method;
+
+        if (array_key_exists($method, $this->passthrough)) {
+            $method = $this->passthrough[$method];
+        } elseif (method_exists($this->wpUser(), Str::snake($method))) {
+            $method = Str::snake($method);
         }
 
-        if (method_exists($this->wpUser, $method)) {
-            return $this->wpUser->{$method}(...$args);
+        if (method_exists($this->wpUser(), $method)) {
+            return call_user_func_array([$this->wpUser(), $method], $args);
         }
 
-        throw new \BadMethodCallException(
-        	"Method {$method} does not exist on WP_User"
+        throw new BadMethodCallException(
+            "Call to undefined method " . static::class . "::{$original}()"
         );
     }
 }

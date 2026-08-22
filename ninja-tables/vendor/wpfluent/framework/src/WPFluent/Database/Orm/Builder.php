@@ -13,6 +13,7 @@ use NinjaTables\Framework\Support\Helper;
 use NinjaTables\Framework\Pagination\Paginator;
 use NinjaTables\Framework\Support\ForwardsCalls;
 use NinjaTables\Framework\Support\ArrayableInterface;
+use NinjaTables\Framework\Support\HelperFunctionsTrait;
 use NinjaTables\Framework\Database\Query\Expression;
 use NinjaTables\Framework\Database\Concerns\BuildsQueries;
 use NinjaTables\Framework\Database\RecordsNotFoundException;
@@ -27,9 +28,13 @@ use NinjaTables\Framework\Database\Query\Builder as QueryBuilder;
  * @property-read HigherOrderBuilderProxy $orWhere
  *
  * @mixin \NinjaTables\Framework\Database\Query\Builder
+ *
+ * @template TModel of \NinjaTables\Framework\Database\Orm\Model
  */
 class Builder
 {
+    use HelperFunctionsTrait;
+    
     use BuildsQueries, ForwardsCalls, QueriesRelationships {
         BuildsQueries::sole as baseSole;
     }
@@ -224,7 +229,7 @@ class Builder
      * @param  array|null  $scopes
      * @return $this
      */
-    public function withoutGlobalScopes(array $scopes = null)
+    public function withoutGlobalScopes(?array $scopes = null)
     {
         if (! is_array($scopes)) {
             $scopes = array_keys($this->scopes);
@@ -523,7 +528,7 @@ class Builder
     {
         $result = $this->find($id, $columns);
 
-        $id = $id instanceof Arrayable ? $id->toArray() : $id;
+        $id = $id instanceof ArrayableInterface ? $id->toArray() : $id;
 
         if (is_array($id)) {
             if (count($result) !== count(array_unique($id))) {
@@ -568,13 +573,9 @@ class Builder
      * @param  mixed  $id
      * @param  (\Closure(): TValue)|list<string>|string  $columns
      * @param  (\Closure(): TValue)|null  $callback
-     * @return (
-     *     $id is (\NinjaTables\Framework\Support\ArrayableInterface<array-key, mixed>|array<mixed>)
-     *     ? \NinjaTables\Framework\Database\Orm\Collection<int, TModel>
-     *     : TModel|TValue
-     * )
+     * @return TModel|TValue|\NinjaTables\Framework\Database\Orm\Collection
      */
-    public function findOr($id, $columns = ['*'], Closure $callback = null)
+    public function findOr($id, $columns = ['*'], ?Closure $callback = null)
     {
         if ($columns instanceof Closure) {
             $callback = $columns;
@@ -679,7 +680,7 @@ class Builder
      * @param  \Closure|null  $callback
      * @return \NinjaTables\Framework\Database\Orm\Model|static|mixed
      */
-    public function firstOr($columns = ['*'], Closure $callback = null)
+    public function firstOr($columns = ['*'], ?Closure $callback = null)
     {
         if ($columns instanceof Closure) {
             $callback = $columns;
@@ -2123,6 +2124,7 @@ class Builder
         }
 
         if ($method === 'mixin') {
+            // @phpstan-ignore-next-line
             return static::registerMixin($parameters[0], $parameters[1] ?? true);
         }
 

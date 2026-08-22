@@ -17,10 +17,14 @@ $ninja_tables_hasImageFunction = function_exists('nt_parse_image_column');
             continue;
         }
         $ninja_tables_colspan = '';
+        // A th spanning multiple columns is a header for a group of columns,
+        // so it must use scope="colgroup" (scope="col" is only valid for a single column).
+        $ninja_tables_scope = 'col';
         if ($ninja_tables_counter > 1) {
             $ninja_tables_colspan = 'colspan="' . $ninja_tables_counter . '"';
+            $ninja_tables_scope = 'colgroup';
         }
-        $ninja_tables_header_row = '<th scope="col" ' . $ninja_tables_colspan . ' class="' . implode(' ', (array)$ninja_tables_table_column['classes']) . ' ' . $ninja_tables_table_column['breakpoints'] . '">' . do_shortcode($ninja_tables_table_column['title']) . '</th>' . $ninja_tables_header_row;
+        $ninja_tables_header_row = '<th scope="' . $ninja_tables_scope . '" ' . $ninja_tables_colspan . ' class="' . implode(' ', (array)$ninja_tables_table_column['classes']) . ' ' . $ninja_tables_table_column['breakpoints'] . '">' . do_shortcode($ninja_tables_table_column['title']) . '</th>' . $ninja_tables_header_row;
         ?>
         <?php $ninja_tables_counter = 1; endforeach; ?>
     <?php ninjaTablesPrintSafeVar($ninja_tables_header_row); // the $header_row html attributes from admins are already escaped and sanitized ?>

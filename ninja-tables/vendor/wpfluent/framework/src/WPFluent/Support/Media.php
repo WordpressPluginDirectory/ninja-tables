@@ -138,7 +138,7 @@ class Media
     /**
      * Checks if a string is base64 encoded.
      * 
-     * @param  string
+     * @param  string $string
      * @return boolean
      */
     protected function isBase64($string)
@@ -188,7 +188,7 @@ class Media
      * Delete the temporary file and throw an exception on failure.
      * 
      * @param  string $tmp
-     * @param  int|WP_Error $attachmentId
+     * @param  int|\WP_Error $attachmentId
      * @return void
      */
     protected function cleanup($tmp, $attachmentId)

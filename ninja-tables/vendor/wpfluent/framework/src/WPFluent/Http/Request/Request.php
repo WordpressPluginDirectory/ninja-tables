@@ -15,6 +15,7 @@ class Request
         InteractsWithHeadersTrait,
         InputHelperMethodsTrait,
         InteractsWithFilesTrait,
+        InteractsWithIPTrait,
         MacroableTrait {
             __call as macroCall;
         }
@@ -24,6 +25,13 @@ class Request
      * @var \NinjaTables\Framework\Foundation\Application
      */
     protected $app = null;
+
+    /**
+     * Validator instance.
+     * 
+     * @var \NinjaTables\Framework\Validator\Validator
+     */
+    protected $validator = null;
 
     /**
      * PHP header variables
@@ -42,6 +50,12 @@ class Request
      * @var array
      */
     protected $cookie = [];
+
+    /**
+     * The content of the request
+     * @var mixed
+     */
+    protected $content = null;
 
     /**
      * The JSON payload of the request
@@ -63,12 +77,6 @@ class Request
     protected $post = [];
 
     /**
-     * PHP $_FILES Superglobal
-     * @var array
-     */
-    protected $files = [];
-
-    /**
      * PHP $_GET and $_POST Superglobals
      * @var array
      */
@@ -76,7 +84,7 @@ class Request
 
     /**
      * WP_REST_Request instance
-     * @var WP_REST_Request
+     * @var \WP_REST_Request
      */
     protected $wpRestRequest = false;
 
@@ -98,11 +106,10 @@ class Request
     /**
      * Construct the request instance
      * @param \NinjaTables\Framework\Foundation\Application $app
-     * @param array/$_GET $get
-     * @param array/$_POST $post
-     * @param array/$_FILES $files
+     * @param $_GET $get
+     * @param $_POST $post
      */
-    public function __construct(Application $app, $get, $post, $files)
+    public function __construct(Application $app, $get, $post)
     {
         $this->app = $app;
         $this->server = $_SERVER;
@@ -112,8 +119,6 @@ class Request
             $this->get = $this->clean($get),
             $this->post = $this->clean($post)
         );
-
-        $this->files = $this->prepareFiles($files);
     }
 
     /**
@@ -140,7 +145,7 @@ class Request
 
     /**
      * Any variable exists and has truthy value
-     * @param  string $key
+     * @param  array|string $keys
      * @return bool
      */
     public function hasAny($keys)
@@ -202,7 +207,8 @@ class Request
     /**
      * Set an item into the request inputs
      * @param string $key
-     * @param mixed
+     * @param mixed $value
+     * @return self
      */
     public function set($key, $value)
     {
@@ -260,6 +266,14 @@ class Request
 
             if (!empty($requestBody)) {
                 $this->json = json_decode($requestBody, true);
+                $isJson = json_last_error() === JSON_ERROR_NONE;
+            }
+        }
+
+        if (!$isJson) {
+            $requestBody = file_get_contents('php://input');
+            if (!empty($requestBody)) {
+                json_decode($requestBody);
                 $isJson = json_last_error() === JSON_ERROR_NONE;
             }
         }
@@ -340,12 +354,23 @@ class Request
      */
     public function json($key = null, $default = null)
     {
-        if (!$this->isJson()) return;
-        
-        if (!isset($this->json)) {
+        if (!$this->isJson()) {
+            return [];
+        }
+
+        if (empty($this->json)) {
             $json = $this->get_json_params() ?: $this->getContent();
             
-            $this->json = (array) json_decode($json, true);
+            if (!is_array($json)) {
+                $decoded = json_decode($json, true);
+                if (json_last_error() !== JSON_ERROR_NONE) {
+                    $this->json = [];
+                } else {
+                    $this->json = (array) $decoded;
+                }
+            } else {
+                $this->json = $json;
+            }
         }
 
         if (is_null($key)) {
@@ -367,18 +392,47 @@ class Request
     }
 
     /**
-     * Retrieve an item from the cookie
-     * @param  string $key
-     * @param  mixed $default
+     * Retrieve an item from the cookie jar.
+     *
+     * Returns the raw cookie value, with one exception: if the value is a
+     * valid strict-base64 string AND the decoded bytes parse as JSON, the
+     * decoded value is returned instead. This keeps backwards compatibility
+     * with callers that stored base64(json(...)) payloads, while normal
+     * cookies (utm_*, UUIDs, hex hashes, JWTs, plain strings) pass through
+     * unchanged because they fail one of the two gates.
+     *
+     * @param  string|null $key      Cookie name, or null for the full array
+     * @param  mixed       $default  Returned when $key is set but absent
      * @return mixed
      */
     public function cookie($key = null, $default = null)
     {
-        $cookie = $key ? Arr::get(
-            $this->cookie, $key, $default
-        ) : $this->cookie;
+        if ($key === null) {
+            return $this->cookie;
+        }
 
-        return json_decode(base64_decode($cookie, true));
+        $raw = Arr::get($this->cookie, $key, $default);
+
+        // Pass through defaults, non-strings, and empty strings unchanged
+        if ($raw === $default || !is_string($raw) || $raw === '') {
+            return $raw;
+        }
+
+        // Auto-detect base64(json(...)) payloads. Both gates must pass;
+        // otherwise return the raw cookie. Strict mode rejects values
+        // containing characters outside the base64 alphabet (e.g. '-'),
+        // and most plain values fail the JSON parse on the decoded bytes.
+        $decoded = base64_decode($raw, true);
+        if ($decoded === false) {
+            return $raw;
+        }
+
+        $parsed = json_decode($decoded, true);
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            return $raw;
+        }
+
+        return $parsed;
     }
 
     /**
@@ -474,13 +528,11 @@ class Request
     /**
      * Returns the request body content.
      *
-     * @param bool $asResource If true, a resource will be returned
-     *
-     * @return string|resource
+     * @return mixed
      */
     public function getContent()
     {
-        if (null === $this->content || false === $this->content) {
+        if (!$this->content) {
             $this->content = file_get_contents('php://input');
         }
 
@@ -515,7 +567,7 @@ class Request
     /**
      * Merge the headers from the WP_REST_Request.
      * 
-     * @param  WP_REST_Request $wpRestRequest
+     * @param  \WP_REST_Request $wpRestRequest
      * @return void
      */
     protected function mergerHeaders($wpRestRequest)
@@ -572,8 +624,14 @@ class Request
     {
         if (!$this->wpRestRequest) {
             if ($this->app->bound('wprestrequest')) {
+                // @phpstan-ignore-next-line
                 $this->mergeInputsFromRestRequest($this->app->wprestrequest);
             }
+        }
+
+        if (empty($this->json) && $json = $this->json()) {
+            $this->post = array_merge($this->post, $json);
+            $this->request = array_merge($this->request, $json);
         }
 
         return $this->safe === true ? $this->validated : $this->request;
@@ -591,23 +649,6 @@ class Request
         $clone->safe = true;
 
         return $clone;
-    }
-
-    /**
-     * Get user ip address
-     * @return string
-     */
-    public function getIp()
-    {
-        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-            $ip = $this->server('HTTP_CLIENT_IP');
-        } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-            $ip = $this->server('HTTP_X_FORWARDED_FOR');
-        } else {
-            $ip = $this->server('REMOTE_ADDR');
-        }
-
-        return $ip;
     }
 
     /**
@@ -643,24 +684,36 @@ class Request
     /**
      * Validate the request.
      *
-     * @param  string $key
+     * @param  array $rules
+     * @param  array $messages
      * @return mixed
+     * @throws \NinjaTables\Framework\Validator\ValidationException
      */
     public function validate(array $rules, array $messages = [])
     {
-        $instance = $this->app->make('validator');
+        $this->validator = $this->app->make('validator')->make(
+            $data = $this->all(), $rules, $messages
+        );
 
-        $validator = $instance->make($data = $this->all(), $rules, $messages);
-
-        if ($validator->validate()->fails()) {
+        if ($this->validator->validate()->fails()) {
             throw new ValidationException(
-                'Unprocessable Entity!', 422, null, $validator->errors()
+                'Unprocessable Entity!', 422, null, $this->validator->errors()
             );
         }
 
-        $this->validated = $validator->validated();
+        $this->validated = $this->validator->validated();
 
         return $data;
+    }
+
+    /**
+     * Get the validator instance.
+     * 
+     * @return \NinjaTables\Framework\Validator\Validator
+     */
+    public function getValidator()
+    {
+        return $this->validator;
     }
 
     /**
@@ -693,10 +746,12 @@ class Request
             $status = 403;
         }
 
-        $message = $message ?: 'Request has benn aborted.';
+        $message = $message ?: "{$status} Request has been aborted.";
 
         return new \WP_REST_Response(
-            is_array($message) ? $message : ['message' => (string) $message], $status
+            is_array($message) ? $message : [
+                'message' => (string) $message
+            ], $status
         );
     }
 
@@ -717,7 +772,7 @@ class Request
         }
 
         $message = $message
-            ?: "Request has benn terminated with status {$status}.";
+            ?: "Request has been terminated with status {$status}.";
 
         return wp_send_json(
             is_array($message) ? $message : ['message' => (string) $message], $status
@@ -728,7 +783,7 @@ class Request
      * Throw a validation exception if status is validation exception.
      * @param  mixed $status
      * @return void
-     * @throws \NinjaTables\Framework\Http\Request\ValidationException
+     * @throws \NinjaTables\Framework\Validator\ValidationException
      */
     protected function maybeThrowValidationException($status)
     {
@@ -749,7 +804,11 @@ class Request
      */
     public function __get($key)
     {
-        return $this->get($key);
+        if ($value = $this->get($key)) {
+            return $value;
+        }
+
+        return $this->file($key);
     }
 
     /**
@@ -776,12 +835,15 @@ class Request
 
         if ($method == 'route') {
             if ($params) {
+                // @phpstan-ignore-next-line
                 return $this->app->route->{$params[0]};
             }
+            // @phpstan-ignore-next-line
             return $this->app->route;
         }
         
         if ($this->app->bound('wprestrequest')) {
+            // @phpstan-ignore-next-line
             if (!method_exists($this->app->wprestrequest, $method)) {
                 $method = strtolower(
                     preg_replace([
@@ -791,6 +853,7 @@ class Request
             }
 
             return call_user_func_array([
+                // @phpstan-ignore-next-line
                 $this->app->wprestrequest, $method], $params
             );
         }

@@ -728,6 +728,10 @@ abstract class AbstractPaginator
      */
     public function __toString()
     {
-        return (string) $this->toArray();
+        if (method_exists($this, 'render')) {
+            return $this->render();
+        }
+
+        return get_class($this);
     }
 }

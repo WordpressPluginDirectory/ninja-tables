@@ -1,4 +1,13 @@
 <?php
+/**
+ * @package WPFluent
+ * @author  Sheikh Heera <heera.sheikh77@gmail.com> (https://heera.it)
+ * @author  Sheikh Heera <mail@heera.it>
+ * @author  Sheikh Heera <heera@authlab.io>
+ * @link    https://github.com/wpfluent/framework2x
+ * @license MIT https://opensource.org/licenses/MIT
+ * @license GPL-2.0-or-later https://www.gnu.org/licenses/gpl-2.0.html
+ */
 
 namespace NinjaTables\Framework\Foundation;
 
@@ -11,6 +20,31 @@ use NinjaTables\Framework\Container\Container;
 use NinjaTables\Framework\Foundation\ComponentBinder;
 use NinjaTables\Framework\Foundation\Concerns\FoundationTrait;
 
+/**
+ * Application — service container with magic property access via __get.
+ *
+ * Properties below are bound in {@see ComponentBinder::bindComponents()} and
+ * {@see Application::init()}/{@see Application::setAppLevelNamespace()}. Each
+ * `@property` declaration teaches PHPStan about a runtime container binding so
+ * `$app->view->render(...)` and similar access can be type-checked.
+ *
+ * @property \NinjaTables\Framework\Foundation\Config        $config
+ * @property \NinjaTables\Framework\View\View                $view
+ * @property \NinjaTables\Framework\Cache\Cache              $cache
+ * @property \NinjaTables\Framework\Http\Router\Router       $router
+ * @property \NinjaTables\Framework\Http\Request\Request     $request
+ * @property \NinjaTables\Framework\Http\Response\Response   $response
+ * @property \NinjaTables\Framework\Validator\Validator      $validator
+ * @property \NinjaTables\Framework\Events\Dispatcher        $events
+ * @property \NinjaTables\Framework\Encryption\Encrypter     $encrypter
+ * @property \NinjaTables\Framework\Encryption\Encrypter     $crypt
+ * @property \NinjaTables\Framework\Database\DatabaseManager $db
+ * @property \NinjaTables\Framework\Http\URL                 $url
+ * @property \NinjaTables\Framework\Support\Mail             $mail
+ * @property \NinjaTables\Framework\Support\Pipeline         $pipeline
+ * @property string                             $__pluginfile__
+ * @property string                             $__namespace__
+ */
 class Application extends Container
 {
     use FoundationTrait;
@@ -55,7 +89,7 @@ class Application extends Container
      * 
      * @var string
      */
-    protected $permissionNamespace = null;
+    protected $policyNamespace = null;
 
     /**
      * Composer JSON
@@ -171,6 +205,7 @@ class Application extends Container
         $this->bindAppInstance();
         $this->bindPathsAndUrls();
         $this->loadConfigIfExists();
+        $this->registerMiddleware();
         $this->registerTextdomain();
         $this->bindCoreComponents();
         $this->requireCommonFiles($this);
@@ -237,15 +272,45 @@ class Application extends Container
      */
     protected function loadConfigIfExists()
     {
-        $data = [];
+        $files = [];
 
         if (is_dir($this['path.config'])) {
             foreach (glob($this['path.config'] . '*.php') as $file) {
-                $data[basename($file, '.php')] = require($file);
+                // middleware.php lives under app/Http/ now; it ships closures
+                // that don't belong in Config storage.
+                if (basename($file) === 'middleware.php') {
+                    continue;
+                }
+                $files[basename($file, '.php')] = $file;
             }
         }
 
-        $this->instance('config', new Config($data));
+        $this->instance('config', new Config([], $files));
+    }
+
+    /**
+     * Register the HTTP middleware stack as a lazy container binding.
+     *
+     * Resolves from `app/Http/middleware.php` (canonical). Falls back to
+     * `config/middleware.php` so un-migrated plugins keep working.
+     *
+     * @return void
+     */
+    protected function registerMiddleware()
+    {
+        $this->singleton('http.middleware', function ($app) {
+            $new = $app['path.http'] . 'middleware.php';
+            if (is_file($new)) {
+                return require $new;
+            }
+
+            $legacy = $app['path.config'] . 'middleware.php';
+            if (is_file($legacy)) {
+                return require $legacy;
+            }
+
+            return [];
+        });
     }
 
     /**
@@ -325,9 +390,9 @@ class Application extends Container
 
         require_once $this->basePath . 'app/Hooks/actions.php';
         require_once $this->basePath . 'app/Hooks/filters.php';
-
-        if (file_exists($includes = $this->basePath . 'app/Hooks/includes.php')) {
-            require_once $includes;
+        
+        if (file_exists($f = $this->basePath . 'app/Hooks/includes.php')) {
+            require_once $f;
         }
     }
 
@@ -335,9 +400,9 @@ class Application extends Container
      * Handler for rest_pre_serve_request filter.
      * 
      * @param  bool $served  (default: false)
-     * @param  \WP_Rest_Response $result
-     * @param  \WP_Rest_Request  $request
-     * @param  \WP_Rest_Server   $server
+     * @param  \WP_REST_Response $result
+     * @param  \WP_REST_Request  $request
+     * @param  \WP_REST_Server   $server
      * @return bool (false to intercept, otherwise true)
      */
     public function preServeRequest($served, $result, $request, $server)
@@ -350,6 +415,7 @@ class Application extends Container
                 if ($this->isRequestForEndpoints($route)) {
                     status_header(200);
                     $result->set_status(200);
+                    // @phpstan-ignore-next-line
                     $result->set_data($this->endpoints);
                 } else {
                     $result->set_data(
@@ -417,8 +483,8 @@ class Application extends Container
     /**
      * Prepare a custom not found response.
      * 
-     * @param  \WP_Rest_Response $result
-     * @param  \WP_Rest_Request  $request
+     * @param  \WP_REST_Response $result
+     * @param  \WP_REST_Request  $request
      * 
      * @return array
      */
@@ -477,10 +543,11 @@ class Application extends Container
      * 
      * @param \NinjaTables\Framework\Http\Router $router
      * 
-     * @return null
+     * @return void
      */
     protected function registerRestRoutes($router)
     {
+        // @phpstan-ignore-next-line
         $router->registerRoutes(
             $this->requireRouteFile($router)
         );
@@ -511,13 +578,14 @@ class Application extends Container
     /**
      * Execute plugin booted callbacks.
      * 
-     * @param  callable $callback
      * @return void
      */
     protected function callPluginReadyCallbacks()
     {
-        while ($callback = array_shift($this->onReady)) {
-            $callback($this);
-        }
+        $this->addAction('init', function() {
+            while ($callback = array_pop($this->onReady)) {
+                $callback($this);
+            }
+        });
     }
 }

@@ -2,11 +2,18 @@
 
 namespace NinjaTables\Framework\Http\Request;
 
+use NinjaTables\Framework\Http\Request\File;
 use NinjaTables\Framework\Support\Helper;
 use NinjaTables\Framework\Support\Collection;
 
 trait InteractsWithFilesTrait
 {
+    /**
+     * Processed $_FILES array
+     * @var array
+     */
+    protected $files = [];
+
     /**
      * Prepares HTTP files for Request
      *
@@ -129,7 +136,7 @@ trait InteractsWithFilesTrait
      *
      * @param  string|null  $key
      * @param  mixed  $default
-     * @return \NinjaTables\Framework\Request\File|array|null
+     * @return \NinjaTables\Framework\Http\Request\File|array|null
      */
     public function file($key = null, $default = null)
     {
@@ -143,6 +150,10 @@ trait InteractsWithFilesTrait
      */
     public function files($key = null)
     {
+        if (empty($this->files)) {
+            $this->files = $this->prepareFiles($_FILES);
+        }
+
         return Helper::dataGet($this->files, $key, $this->files);
     }
 
@@ -190,7 +201,40 @@ trait InteractsWithFilesTrait
                 // For $request->fileCollection('images')
                 // [0 => File, 1 => File] will be returned.
                 return $file->save($path);
-            })->all();
+            });
         });
+    }
+
+    /**
+     * Determine if the request contains a valid uploaded file for the given key.
+     *
+     * @param  string  $key
+     * @return bool
+     */
+    public function hasFile($key)
+    {
+        $file = $this->file($key);
+
+        if (is_array($file)) {
+            foreach ($file as $f) {
+                if ($f instanceof File && $f->isValid()) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        return $file instanceof File && $file->isValid();
+    }
+
+    /**
+     * Alias for hasFile().
+     *
+     * @param  string  $key
+     * @return bool
+     */
+    public function isValidFile($key)
+    {
+        return $this->hasFile($key);
     }
 }

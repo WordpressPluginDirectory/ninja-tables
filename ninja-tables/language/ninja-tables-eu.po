@@ -1,963 +1,5874 @@
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Ninja Tables 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/ninja-tables\n"
-"POT-Creation-Date: 2019-07-10 10:35+0000\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-07-23T12:13:04+00:00\n"
 "PO-Revision-Date: 2023-01-12 06:38+0000\n"
 "Last-Translator: Shahjahan Jewel <cep.jewel@gmail.com>\n"
 "Language-Team: Basque\n"
 "Language: eu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.2.2; wp-5.2.2"
+"X-Loco-Version: 2.2.2; wp-5.2.2\n"
 
-#: admin/NinjaTablesAdmin.php:566
-msgid " successfully."
-msgstr "Arrakastaz."
-
-#: admin/NinjaTablesAdmin.php:185
-msgid "<span style=\"color:#f39c12;\">Get Pro</span>"
-msgstr "<span style=\"color:#f39c12;\">Get Pro</span>"
-
-#: admin/table-builder/config/setting.php:112
-msgid "Accessibility"
+#. Plugin Name of the plugin
+#: ninja-tables.php
+msgid "Ninja Tables – Easy Data Table Builder"
 msgstr ""
 
-#: includes/I18nStrings.php:36
-msgid "Activate Ninja Tables Pro"
-msgstr "Aktibatu Ninja Tables Pro"
-
-#: includes/I18nStrings.php:29
-msgid "Activate Ninja Tables Pro Add-on plugin to unlock this feature"
-msgstr "Aktibatu Ninja Tables Pro Add-on plugina funtzio hau desblokeatzeko"
-
-#: includes/I18nStrings.php:51
-msgid "Add"
-msgstr "Add"
-
-#: admin/NinjaTablesAdmin.php:177
-msgid "Add Chart"
-msgstr ""
-
-#: includes/I18nStrings.php:72
-msgid "Add Column"
-msgstr "Add Column"
-
-#: includes/I18nStrings.php:49
-msgid "Add Data"
-msgstr "Gehitu datuak"
-
-#: includes/I18nStrings.php:13 admin/NinjaTablesAdmin.php:88
-msgid "Add New Table"
-msgstr "Gehitu Taula Berria"
-
-#: includes/I18nStrings.php:11 admin/NinjaTablesAdmin.php:87
-msgid "Add Table"
-msgstr "Gehitu Taula"
-
-#: includes/I18nStrings.php:99
-msgid "Additional CSS"
-msgstr "CSS osagarria"
-
-#: admin/table-builder/config/component.php:159
-msgid "Advanced"
-msgstr ""
-
-#: includes/I18nStrings.php:10 admin/NinjaTablesAdmin.php:1678
-msgid "All Tables"
-msgstr "Taula Guztiak"
-
-#: includes/I18nStrings.php:62
-msgid "Always show in all devices"
-msgstr "Always show in all devices"
-
-#: includes/I18nStrings.php:48
-msgid "Apply"
-msgstr "Apply"
-
-#: admin/table-builder/config/setting.php:159
-msgid "Apply Inner Border"
-msgstr ""
-
-#: includes/I18nStrings.php:56
-msgid "Are you sure to delete this?"
-msgstr "Are you sure to delete this?"
-
-#: includes/I18nStrings.php:71
-msgid "Available Columns"
-msgstr "Available Columns"
-
-#: admin/table-builder/config/setting.php:73
-msgid "Background"
-msgstr ""
-
-#: admin/table-builder/config/setting.php:142
-msgid "Border"
-msgstr ""
-
-#: admin/table-builder/config/setting.php:154
-msgid "Border Color"
-msgstr ""
-
-#: includes/I18nStrings.php:46
-msgid "Bulk Actions"
-msgstr "Bulk Actions"
-
-#: admin/table-builder/config/component.php:31
-msgid "Button"
-msgstr ""
-
-#: includes/I18nStrings.php:50
-msgid "Cancel"
-msgstr "Utzi"
-
-#: includes/I18nStrings.php:57
-msgid "cancel"
-msgstr "cancel"
-
-#: admin/table-builder/config/responsive.php:147
-#: admin/table-builder/config/responsive.php:163
-#: admin/table-builder/config/setting.php:10
-msgid "Cell Padding"
-msgstr ""
-
-#: admin/table-builder/config/responsive.php:32
-#: admin/table-builder/config/responsive.php:79
-msgid "Cell Stack Direction"
-msgstr ""
-
-#: admin/NinjaTablesAdmin.php:165 admin/NinjaTablesAdmin.php:171
-msgid "Charts"
-msgstr ""
-
-#: includes/I18nStrings.php:30
-msgid "Check all"
-msgstr "Begiratu guztiak"
-
-#: includes/libs/TableDrivers/NinjaFooTable.php:67
-msgid "Clear All"
-msgstr "Garbitu guztiak"
-
-#: includes/I18nStrings.php:54
-msgid "Click here"
-msgstr "Klikatu hemen"
-
-#: admin/table-builder/config/setting.php:221
-msgid "Color"
-msgstr ""
-
-#: includes/I18nStrings.php:74
-msgid "Column Key"
-msgstr "Column Key"
-
-#: includes/I18nStrings.php:73
-msgid "Column Name"
-msgstr "Column Name"
-
-#: admin/table-builder/config/templates.php:57
-msgid "Comparison Table Four"
-msgstr ""
-
-#: admin/table-builder/config/templates.php:39
-msgid "Comparison Table One"
-msgstr ""
-
-#: admin/table-builder/config/templates.php:51
-msgid "Comparison Table Three"
-msgstr ""
-
-#: admin/table-builder/config/templates.php:45
-msgid "Comparison Table Two"
-msgstr ""
-
-#: admin/table-builder/config/templates.php:35
-msgid "Comparison Tables"
-msgstr ""
-
-#: includes/I18nStrings.php:58
-msgid "confirm"
-msgstr "berretsi"
-
-#: includes/I18nStrings.php:20
-msgid "CSV - Comma-separated values"
-msgstr "CSV - Comma-separated values"
-
-#: includes/NinjaTableImport.php:288
-msgid "CSV File is not valid"
-msgstr "CSV fitxategia ez da baliozkoa"
-
-#: includes/I18nStrings.php:104
-msgid "CSV Header Structure"
-msgstr "CSV goiburuaren egitura"
-
-#: includes/I18nStrings.php:43
-msgid "Custom CSS"
-msgstr "CSS pertsonalizatua"
-
-#: includes/I18nStrings.php:75
-msgid "Data Type"
-msgstr "Datu mota"
-
-#: includes/I18nStrings.php:68
-msgid "Date Field"
-msgstr "Date Field"
-
-#: includes/I18nStrings.php:78
-msgid "Date Format"
-msgstr "Date Format"
-
-#: includes/I18nStrings.php:33
-msgid "Deactivate License"
-msgstr "Lizentzia desaktibatu"
-
-#: includes/I18nStrings.php:19
-msgid "Delete"
-msgstr "ezabatu"
-
-#: includes/I18nStrings.php:47
-msgid "Delete Entries"
-msgstr "Ezabatu sarrerak"
-
-#: admin/table-builder/config/responsive.php:26
-#: admin/table-builder/config/responsive.php:73
-msgid "Disable Breakpoint"
-msgstr ""
-
-#: includes/I18nStrings.php:39
-msgid "Documentation"
-msgstr "Dokumentazio"
-
-#: includes/I18nStrings.php:37
-msgid "Documentation and Help"
-msgstr ""
-
-#: includes/I18nStrings.php:105
-msgid "Download Sample CSV"
-msgstr "Deskargatu Sample CSV"
-
-#: includes/I18nStrings.php:18
-msgid "Duplicate"
-msgstr "bikoiztua"
-
-#: includes/I18nStrings.php:16 admin/NinjaTablesAdmin.php:89
-#: public/views/frameless/show_ntb_preview.php:31
-#: public/views/frameless/show_preview.php:29
-msgid "Edit"
-msgstr "Editatu"
-
-#: admin/NinjaTablesAdmin.php:90 public/views/table_builder_html.php:38
-#: includes/libs/TableDrivers/views/ninja_foo_table.php:44
-msgid "Edit Table"
-msgstr "Editatu Taula"
-
-#: admin/table-builder/config/templates.php:70
-msgid "Employee Table One"
-msgstr ""
-
-#: admin/table-builder/config/templates.php:82
-msgid "Employee Table Three"
-msgstr ""
-
-#: admin/table-builder/config/templates.php:76
-msgid "Employee Table Two"
-msgstr ""
-
-#: admin/table-builder/config/templates.php:66
-msgid "Employee Tables"
-msgstr ""
-
-#: admin/table-builder/config/responsive.php:10
-msgid "Enable Responsive Table"
-msgstr ""
-
-#: includes/I18nStrings.php:91
-msgid "Enable sorting of the table by the visitor"
-msgstr "Gaitu bisitariaren taula ordenatzea"
-
-#: includes/I18nStrings.php:90
-msgid "Enable the visitor to filter or search the table."
-msgstr "Gaitu bisitaria taula iragazi edo bilatzeko."
-
-#: includes/I18nStrings.php:35
-msgid "Enter your license key"
-msgstr "Enter your license key"
-
-#: admin/table-builder/config/setting.php:83
-msgid "Even Row Background"
-msgstr ""
-
-#: includes/I18nStrings.php:100
-msgid "Export Table"
-msgstr "Esportatu taula"
-
-#: includes/I18nStrings.php:82
-msgid "Extra Classes"
-msgstr "Extra Classes"
-
-#: includes/I18nStrings.php:95
-msgid "Extra CSS Class for the table"
-msgstr "Extra CSS Class for the table"
-
-#: includes/I18nStrings.php:86
-msgid "Filterable"
-msgstr "Filterable"
-
-#: admin/table-builder/config/setting.php:105
-msgid "First Column Sticky"
-msgstr ""
-
-#: admin/table-builder/config/setting.php:100
-msgid "First Row Sticky"
-msgstr ""
-
-#: admin/table-builder/config/setting.php:226
-msgid "Font Family"
-msgstr ""
-
-#: admin/table-builder/config/setting.php:214
-msgid "Font Size"
-msgstr ""
-
-#: includes/I18nStrings.php:98
-msgid "Footer Colors"
-msgstr "Oinarrizko koloreak"
-
-#: includes/I18nStrings.php:38
-msgid ""
-"For any type of query which was not covered in our documentation, Please "
-"submit a support ticket ticket"
-msgstr ""
-"Gure dokumentazioan estalita ez dagoen edozein kontsulta egiteko, bidali "
-"laguntza txartelaren txartela"
-
-#: admin/table-builder/config/component.php:12
-#: admin/table-builder/config/responsive.php:5
-#: admin/table-builder/config/setting.php:5
-msgid "General"
-msgstr ""
-
-#: admin/table-builder/config/setting.php:195
-msgid "Global Style"
-msgstr ""
-
-#: admin/table-builder/config/responsive.php:61
-#: admin/table-builder/config/responsive.php:108
-msgid "Group Separator"
-msgstr ""
-
-#: admin/table-builder/config/setting.php:78
-msgid "Header Background"
-msgstr ""
-
-#: includes/I18nStrings.php:87
-msgid "Header HTML Content"
-msgstr "Goiburuko HTML edukia"
-
-#: admin/table-builder/config/setting.php:164
-msgid "Header Inner Border"
-msgstr ""
-
-#: includes/I18nStrings.php:9 admin/NinjaTablesAdmin.php:218
-msgid "Help"
-msgstr "Laguntza"
-
-#: includes/I18nStrings.php:7
-msgid "Home"
-msgstr "Home"
-
-#: admin/table-builder/config/component.php:117
-msgid "HTML"
-msgstr ""
-
-#: includes/I18nStrings.php:66
-msgid "HTML Field"
-msgstr "HTML Field"
-
-#. Author URI of the plugin
-msgid "https://ninjatables.com/"
-msgstr ""
-
-#. URI of the plugin
+#. Plugin URI of the plugin
+#: ninja-tables.php
 msgid "https://wpmanageninja.com/downloads/ninja-tables-pro-add-on/"
 msgstr "https://wpmanageninja.com/downloads/ninja-tables-pro-add-on/"
 
-#: admin/table-builder/config/component.php:68
-msgid "Icon"
-msgstr ""
-
-#: admin/table-builder/config/component.php:140
-msgid "Image"
-msgstr ""
-
-#: includes/I18nStrings.php:23 admin/NinjaTablesAdmin.php:148
-msgid "Import"
-msgstr "Inportazio"
-
-#: includes/I18nStrings.php:44
-msgid "Import - Export"
-msgstr "Import - Export"
-
-#: includes/I18nStrings.php:28
-msgid "Import Format:"
-msgstr "Import Format:"
-
-#: includes/I18nStrings.php:103
-msgid "Import from CSV"
-msgstr "Inportatu CSV-tik"
-
-#: includes/I18nStrings.php:12
-msgid "Import Table"
-msgstr "Inportatu taula"
-
-#: includes/I18nStrings.php:101
-msgid "Import Table Data"
-msgstr "Inportatu taula-datuak"
-
-#: includes/I18nStrings.php:59
-msgid "Initial Hidden Mobile"
-msgstr "Initial Hidden Mobile"
-
-#: includes/I18nStrings.php:60
-msgid "Initial Hidden Mobile and Tab"
-msgstr "Initial Hidden Mobile and Tab"
-
-#: includes/I18nStrings.php:61
-msgid "Initial Hidden Mobile, Tab and Regular Computers"
-msgstr "Initial Hidden Mobile, Tab and Regular Computers"
-
-#: admin/table-builder/config/setting.php:169
-msgid "Inner Border Color"
-msgstr ""
-
-#: admin/table-builder/config/setting.php:174
-msgid "Inner Border Size"
-msgstr ""
-
-#: admin/NinjaTablesAdmin.php:1188
-msgid "Insert Ninja Tables Shortcode"
-msgstr "Txertatu Ninja Taulen Shortcodea"
-
-#: admin/NinjaTablesAdmin.php:1190
-msgid "Insert Shortcode"
-msgstr "Txertatu Shortcodea"
-
-#: admin/NinjaTablesAdmin.php:714
-msgid "Invalid Table to Delete"
-msgstr "Taula hori ezin da ezabatu."
-
-#: admin/table-builder/config/responsive.php:53
-#: admin/table-builder/config/responsive.php:100
-msgid "Items Per Header"
-msgstr ""
-
-#: includes/I18nStrings.php:22
-msgid "JSON - Exported From Ninja Tables"
-msgstr "JSON - Exported From Ninja Tables"
-
-#: includes/I18nStrings.php:21
-msgid "JSON - JavaScript Object Notation"
-msgstr "JSON - JavaScript Object Notation"
-
-#: includes/I18nStrings.php:25
-msgid "License"
-msgstr "License"
-
-#: includes/I18nStrings.php:34
-msgid "Licensing"
-msgstr "Lizentzia"
-
-#: admin/table-builder/config/component.php:98
-msgid "List"
-msgstr ""
-
-#: admin/table-builder/config/setting.php:207
-msgid "Margin Bottom"
-msgstr ""
-
-#: admin/table-builder/config/setting.php:200
-msgid "Margin Top"
-msgstr ""
-
-#: includes/I18nStrings.php:83
-msgid "Max Width"
-msgstr "Max zabalera"
-
-#: includes/I18nStrings.php:84
-msgid "Maximum Width"
-msgstr "Gehienezko zabalera"
-
-#: admin/table-builder/config/responsive.php:17
-msgid "Mode Options"
-msgstr ""
-
-#: admin/NinjaTablesAdmin.php:91
-msgid "New Table"
-msgstr "Taula Berria"
-
-#. Name of the plugin
-#: includes/I18nStrings.php:6 admin/NinjaTablesAdmin.php:73
-#: admin/NinjaTablesAdmin.php:84 admin/NinjaTablesAdmin.php:86
-#: admin/NinjaTablesAdmin.php:124
-msgid "Ninja Tables"
-msgstr "Ninja Taulak"
-
-#: includes/I18nStrings.php:26
-msgid ""
-"NinjaTables can import tables from existing data, like from a CSV or JSON "
-"file. You can also import existing tables from the other WordPress table "
-"plugins."
-msgstr ""
-"NinjaTables can import tables from existing data, like from a CSV or JSON "
-"file. You can also import existing tables from the other WordPress table "
-"plugins."
-
-#: includes/NinjaTableImport.php:29
-msgid "No appropriate driver found for the import format."
-msgstr "Ez da inportatzeko formatu egokia aurkitu."
-
-#: public/dataProviders/FluentFormProvider.php:121
-msgid "No fields were selected."
-msgstr "Ez da eremurik hautatu."
-
-#: includes/libs/TableDrivers/NinjaFooTable.php:66
-#: includes/libs/TableDrivers/NinjaFooTable.php:339
-msgid "No Result Found"
-msgstr "Ez da emaitzarik aurkitu"
-
-#: admin/NinjaTablesAdmin.php:95
-msgid "No Table Found"
-msgstr "Ez da Taularik Topatu"
-
-#: admin/NinjaTablesAdmin.php:96
-msgid "No Table Found in Trash"
-msgstr "Ez da Taularik Topatu Zaborrontzian"
-
-#: includes/libs/Migrations/NinjaTablesSupsysticTableMigration.php:24
-msgid "No Table Found with the selected table"
-msgstr ""
-"Taula Ez da hautatutako taula batekin aurkitu\n"
-
-#: includes/libs/Migrations/NinjaTablesUltimateTableMigration.php:21
-msgid "No Ultimate Table Found with the selected table"
-msgstr "No Ultimate Table Found with the selected table"
-
-#: includes/ninja_tables-global-functions.php:1054
-msgid "Nonce verification failed, please try again."
-msgstr ""
-
-#: includes/I18nStrings.php:67
-msgid "Numeric Value"
-msgstr "Numeric Value"
-
-#: admin/table-builder/config/setting.php:88
-msgid "Odd Row Background"
-msgstr ""
-
-#: includes/I18nStrings.php:92
-msgid "Pagination Items Per Page"
-msgstr "Orrialde orri bakoitzeko orrialdea"
-
-#: includes/I18nStrings.php:93
-msgid "Pagination Position"
-msgstr "Paginazio-posizioa"
-
-#: admin/NinjaTablesAdmin.php:97
-msgid "Parent Table"
-msgstr "Taula Gurasoa"
-
-#: includes/I18nStrings.php:24
-msgid "Permission"
-msgstr "Permission"
-
-#: includes/NinjaTableImport.php:299
-msgid "Please set table configuration first"
-msgstr "Taula konfigurazioa lehenetsi ezazu"
-
-#: includes/NinjaTableImport.php:125
-msgid "Please upload valid CSV"
-msgstr "Kargatu baliozko CSV"
-
-#: admin/table-builder/ImportExport.php:33
-msgid "Please upload valid CSV or JSON"
-msgstr ""
-
-#: includes/NinjaTableImport.php:313
-#, fuzzy
-#| msgid "Please use the provided CSV header structure. "
-msgid "Please use the provided CSV header structure font face."
-msgstr "Mesedez erabili emandako CSV goiburuaren egitura."
-
-#: includes/I18nStrings.php:17
-msgid "Preview"
-msgstr "Aurreikusi"
-
-#: public/views/frameless/show_ntb_preview.php:9
-#: public/views/frameless/show_preview.php:9
-msgid "Preview Table"
-msgstr ""
-
-#: admin/table-builder/config/templates.php:27
-msgid "Pricing Table Four"
-msgstr ""
-
-#: admin/table-builder/config/templates.php:9
-msgid "Pricing Table One"
-msgstr ""
-
-#: admin/table-builder/config/templates.php:21
-msgid "Pricing Table Three"
-msgstr ""
-
-#: admin/table-builder/config/templates.php:15
-msgid "Pricing Table Two"
-msgstr ""
-
-#: admin/table-builder/config/templates.php:5
-msgid "Pricing Tables"
-msgstr ""
-
-#: admin/table-builder/config/component.php:215
-msgid "Progress"
-msgstr ""
-
-#: admin/table-builder/config/component.php:82
-msgid "Rating"
-msgstr ""
-
-#: includes/I18nStrings.php:102
-msgid "Replace Existing Data"
-msgstr "Ordeztu Datu Existitzen"
-
-#: includes/I18nStrings.php:76
-msgid "Responsive Breakpoint"
-msgstr "Responsive Breakpoint"
-
-#: admin/table-builder/config/responsive.php:138
-msgid "Responsive Settings"
-msgstr ""
-
-#: admin/table-builder/config/component.php:184
-msgid "Ribbon"
-msgstr ""
-
-#: includes/I18nStrings.php:94
-msgid "Row Details (Responsive drawer)"
-msgstr "Errenkaden xehetasunak (tiradera sentikorra)"
-
-#: admin/table-builder/config/templates.php:95
-msgid "Schedule Table One"
-msgstr ""
-
-#: admin/table-builder/config/templates.php:107
-msgid "Schedule Table Three"
-msgstr ""
-
-#: admin/table-builder/config/templates.php:101
-msgid "Schedule Table Two"
-msgstr ""
-
-#: admin/table-builder/config/templates.php:91
-msgid "Schedule Tables"
-msgstr ""
-
-#: includes/libs/TableDrivers/NinjaFooTable.php:65
-#: includes/libs/TableDrivers/NinjaFooTable.php:337
-msgid "Search"
-msgstr "Bilatu"
-
-#: includes/libs/TableDrivers/NinjaFooTable.php:64
-#: includes/libs/TableDrivers/NinjaFooTable.php:335
-msgid "Search in"
-msgstr "Bilatu honela"
-
-#: admin/NinjaTablesAdmin.php:94
-msgid "Search Table"
-msgstr "Bilatu Taula"
-
-#: includes/I18nStrings.php:80
-msgid "Select a Format"
-msgstr "Aukeratu formatua"
-
-#: admin/NinjaTablesAdmin.php:1211
-msgid "Select a Table"
-msgstr "Aukeratu Taula bat"
-
-#: admin/NinjaTablesAdmin.php:1187
-msgid "Select a Table to insert"
-msgstr "Hautatu txertatzeko taula bat"
-
-#: includes/I18nStrings.php:45
-msgid "Select bulk action"
-msgstr "Select bulk action"
-
-#: includes/I18nStrings.php:69
-msgid "Select Field"
-msgstr "Hautatu eremua"
-
-#: includes/I18nStrings.php:27
-msgid "Select file:"
-msgstr "Select file:"
-
-#: includes/I18nStrings.php:81
-msgid "Select Items"
-msgstr "Hautatu elementuak"
-
-#: includes/libs/TableDrivers/NinjaFooTable.php:68
-msgid "Selected"
-msgstr "hautatua"
-
-#: admin/table-builder/config/setting.php:22
-msgid "Separate Columns/Rows"
-msgstr ""
-
-#: admin/NinjaTablesAdmin.php:1620 admin/NinjaTablesAdmin.php:1667
-#: admin/NinjaTablesAdmin.php:1700
-msgid "Settings successfully updated"
-msgstr "Ezarpenak behar bezala eguneratu dira"
-
-#: includes/I18nStrings.php:15
-msgid "ShortCode"
-msgstr "ShortCode"
-
-#: admin/table-builder/config/component.php:128
-msgid "Shortcode"
-msgstr ""
-
-#: includes/I18nStrings.php:89
-msgid "Show Table Description"
-msgstr "Erakutsi taula deskribapena"
-
-#: includes/I18nStrings.php:88
-msgid "Show Table Title"
-msgstr "Erakutsi taula izenburua"
-
-#: includes/I18nStrings.php:64
-msgid "Single Line Text Field"
-msgstr "Single Line Text Field"
-
-#: includes/NinjaTableImport.php:142 admin/table-builder/ImportExport.php:55
-msgid "Something is wrong when parsing the csv"
-msgstr "Zerbait gaizki dago CSV parekatzean"
-
-#: admin/table-builder/config/setting.php:27
-msgid "Space Between Columns"
-msgstr ""
-
-#: admin/table-builder/config/setting.php:34
-msgid "Space Between Rows"
-msgstr ""
-
-#: includes/I18nStrings.php:79
-msgid "Standard"
-msgstr "Standard"
-
-#: admin/table-builder/config/responsive.php:127
-msgid "Static Top Row"
-msgstr ""
-
-#: admin/table-builder/config/setting.php:95
-msgid "Sticky"
-msgstr ""
-
-#: admin/table-builder/config/component.php:163
-msgid "Stylist List"
-msgstr ""
-
-#: includes/NinjaTableImport.php:162 includes/NinjaTableImport.php:188
-#: includes/NinjaTableImport.php:255
-msgid "Successfully added a table."
-msgstr "Taula ondo gehitu da."
-
-#: admin/NinjaTablesAdmin.php:1041
-msgid "Successfully deleted data."
-msgstr "Datuak ondo ezabatu dira."
-
-#: admin/NinjaTablesAdmin.php:732
-msgid "Successfully deleted the table."
-msgstr "Taula ondo ezabatu da."
-
-#: admin/NinjaTablesAdmin.php:1325
-msgid "Successfully duplicated table."
-msgstr "Mahai bikoiztua behar bezala kopiatu da."
-
-#: includes/NinjaTableImport.php:77
-msgid ""
-"Successfully imported. Please go to all tables and review your newly "
-"imported table."
-msgstr ""
-"Ondo inportatu da. Joan tauletara eta berriki inportatutako taulak berrikusi."
-
-#: admin/NinjaTablesAdmin.php:945
-msgid "Successfully saved the data."
-msgstr "Datuak ondo gorde dira."
-
-#: admin/NinjaTablesAdmin.php:688
-msgid "Successfully updated configuration."
-msgstr "Konfigurazioa ondo eguneratu da."
-
-#: includes/NinjaTableImport.php:353
-msgid "Successfully uploaded data."
-msgstr "Datuak ondo eguneratu dira."
-
-#: admin/NinjaTablesAdmin.php:85
-msgid "Table"
-msgstr "Taula"
-
-#: admin/table-builder/config/responsive.php:154
-#: admin/table-builder/config/responsive.php:170
-#: admin/table-builder/config/setting.php:17
-msgid "Table Alignment"
-msgstr ""
-
-#: includes/I18nStrings.php:97
-msgid "Table Body Colors"
-msgstr "Taula Gorputzaren Koloreak"
-
-#: admin/table-builder/config/setting.php:147
-msgid "Table Border"
-msgstr ""
-
-#: admin/table-builder/config/setting.php:57
-msgid "Table Cell Min Auto Width"
-msgstr ""
-
-#: includes/I18nStrings.php:41
-msgid "Table Configuration"
-msgstr "Table Configuration"
-
-#: admin/table-builder/config/setting.php:64
-msgid "Table Container Max Height"
-msgstr ""
-
-#: admin/table-builder/config/setting.php:43
-#: admin/table-builder/config/setting.php:48
-msgid "Table Container Max Width"
-msgstr ""
-
-#: includes/I18nStrings.php:42
-msgid "Table Design"
-msgstr "Table Design"
-
-#: includes/I18nStrings.php:96
-msgid "Table Header Colors"
-msgstr "Taularen goiburuko koloreak"
-
-#: admin/table-builder/config/setting.php:117
-msgid "Table Role"
-msgstr ""
-
-#: includes/I18nStrings.php:40
-msgid "Table Rows"
-msgstr "Table Rows"
-
-#: admin/NinjaTablesAdmin.php:140
-msgid "Tables"
-msgstr ""
-
-#: includes/NinjaTableImport.php:266
-#: includes/libs/Migrations/NinjaTablesMigration.php:22
-msgid "Temporary table description"
-msgstr "Behin-behineko taularen deskribapena."
-
-#: includes/NinjaTableImport.php:265
-#: includes/libs/Migrations/NinjaTablesMigration.php:19
-msgid "Temporary table name"
-msgstr "Behin-behieneko taularen izena."
-
-#: admin/table-builder/NinjaTableBuilder.php:259
-#: admin/table-builder/config/component.php:16
-msgid "Text"
-msgstr ""
-
-#: includes/I18nStrings.php:85
-msgid "Text Align"
-msgstr "Testua lerrokatu"
-
-#: includes/I18nStrings.php:65
-msgid "Text Area"
-msgstr "Text Area"
-
-#: admin/table-builder/config/component.php:233
-msgid "Text Icon"
-msgstr ""
-
 #. Description of the plugin
+#: ninja-tables.php
 msgid ""
 "The Easiest & Fastest Responsive Table Plugin on WordPress. Multiple "
-"templates, drag-&-drop live table builder, multiple color scheme, and styles."
+"templates, drag-&-drop live table builder, multiple color scheme, and "
+"styles."
 msgstr ""
 "WorPressen Responsive Taula Plugin Errazena eta Azkarrena.Hainbat "
 "txantiloitan, arrastatu & askatu ezazu zuzeneko taula eraikitzailea, kolore "
 "eskema eta estilo askeak."
 
-#: admin/NinjaTablesAdmin.php:554
-msgid "The name field is required."
-msgstr "Izenaren eremua derigorrezkoa da"
-
-#: public/dataProviders/FluentFormProvider.php:114
-msgid "The title field is required."
-msgstr "Izenburua eremua beharrezkoa da."
-
-#: includes/I18nStrings.php:14
-msgid "Title"
-msgstr "Izenburua"
-
-#: includes/I18nStrings.php:55
-msgid "to view the upgrade guide."
-msgstr "to view the upgrade guide."
-
-#: includes/I18nStrings.php:8 admin/NinjaTablesAdmin.php:156
-msgid "Tools"
-msgstr "Erremintak"
-
-#: admin/table-builder/config/responsive.php:47
-#: admin/table-builder/config/responsive.php:94
-#: admin/table-builder/config/responsive.php:120
-msgid "Top Row As Header"
-msgstr ""
-
-#: includes/I18nStrings.php:63
-msgid "Totally hidden on all devices"
-msgstr "Totally hidden on all devices"
-
-#: includes/I18nStrings.php:77
-msgid "Update"
-msgstr "eguneratzearen"
-
-#: includes/I18nStrings.php:70
-msgid "Update Configuration"
-msgstr "Eguneratu konfigurazioa"
-
-#: includes/I18nStrings.php:52
-msgid "Upgrade Notice"
-msgstr "Berritze oharra"
-
-#: admin/NinjaTablesAdmin.php:92 admin/NinjaTablesAdmin.php:93
-msgid "View Table"
-msgstr "Ikusi Taula"
-
 #. Author of the plugin
+#: ninja-tables.php
 msgid "WPManageNinja LLC"
 msgstr "WPManageNinja LLC"
 
-#: includes/NinjaTableImport.php:215
-msgid "You have a faulty JSON file. Please export a new one."
-msgstr "Zure JSON fitxategiak akatsak ditu. Mesedez, exportatu beste bat."
+#. Author URI of the plugin
+#: ninja-tables.php
+msgid "https://ninjatables.com/"
+msgstr ""
 
-#: includes/I18nStrings.php:31
+#: app/CPT/NinjaTable.php:11 app/CPT/NinjaTable.php:22
+#: app/CPT/NinjaTable.php:24 app/Hooks/Handlers/AdminMenuHandler.php:25
+msgid "Ninja Tables"
+msgstr "Ninja Taulak"
+
+#: app/CPT/NinjaTable.php:23
+msgid "Table"
+msgstr "Taula"
+
+#: app/CPT/NinjaTable.php:25
+msgid "Add Table"
+msgstr "Gehitu Taula"
+
+#: app/CPT/NinjaTable.php:26
+msgid "Add New Table"
+msgstr "Gehitu Taula Berria"
+
+#: app/CPT/NinjaTable.php:27 app/Views/admin/preview/default-table.php:32
+#: app/Views/admin/preview/drag-and-drop.php:32
+msgid "Edit"
+msgstr "Editatu"
+
+#: app/CPT/NinjaTable.php:28
+#: app/Views/public/datatables/ninja-datatable.php:67
+#: app/Views/public/drag-and-drop-html.php:41
+#: app/Views/public/ninja-footable.php:45
+msgid "Edit Table"
+msgstr "Editatu Taula"
+
+#: app/CPT/NinjaTable.php:29
+msgid "New Table"
+msgstr "Taula Berria"
+
+#: app/CPT/NinjaTable.php:30 app/CPT/NinjaTable.php:31
+#: app/Modules/I18nStrings.php:1047
+msgid "View Table"
+msgstr "Ikusi Taula"
+
+#: app/CPT/NinjaTable.php:32
+msgid "Search Table"
+msgstr "Bilatu Taula"
+
+#: app/CPT/NinjaTable.php:33 app/Http/Controllers/SettingsController.php:19
+#: app/Http/Controllers/SettingsController.php:34
+#: app/Modules/FluentCart/Handlers/FluentCartHandler.php:27
+msgid "No Table Found"
+msgstr "Ez da Taularik Topatu"
+
+#: app/CPT/NinjaTable.php:34
+msgid "No Table Found in Trash"
+msgstr "Ez da Taularik Topatu Zaborrontzian"
+
+#: app/CPT/NinjaTable.php:35
+msgid "Parent Table"
+msgstr "Taula Gurasoa"
+
+#: app/Hooks/filters.php:26 app/Modules/I18nStrings.php:61
+msgid "All Tables"
+msgstr "Taula Guztiak"
+
+#: app/Hooks/Handlers/AdminMenuHandler.php:41
+msgid "Tables"
+msgstr ""
+
+#: app/Hooks/Handlers/AdminMenuHandler.php:50 app/Modules/I18nStrings.php:499
+msgid "Import"
+msgstr "Inportazio"
+
+#: app/Hooks/Handlers/AdminMenuHandler.php:59
+#: app/Hooks/Handlers/AdminMenuHandler.php:65
+msgid "Charts"
+msgstr ""
+
+#: app/Hooks/Handlers/AdminMenuHandler.php:71
+msgid "Add Chart"
+msgstr ""
+
+#: app/Hooks/Handlers/AdminMenuHandler.php:78 app/Modules/I18nStrings.php:420
+msgid "Get Pro"
+msgstr ""
+
+#: app/Hooks/Handlers/AdminMenuHandler.php:109
+msgid "Help"
+msgstr "Laguntza"
+
+#: app/Hooks/Handlers/AdminMenuHandler.php:132
+msgid "Dashboard"
+msgstr ""
+
+#: app/Hooks/Handlers/DeactivationHandler.php:126
+msgid "Permission denied."
+msgstr ""
+
+#: app/Hooks/Handlers/DeactivationHandler.php:131
+msgid "Invalid nonce."
+msgstr ""
+
+#: app/Hooks/Handlers/DeactivationHandler.php:162
+msgid "Deactivating"
+msgstr ""
+
+#: app/Hooks/Handlers/EditorBlockHandler.php:54
+msgid "Select a Table to insert"
+msgstr "Hautatu txertatzeko taula bat"
+
+#: app/Hooks/Handlers/EditorBlockHandler.php:55
+msgid "Insert Ninja Tables Shortcode"
+msgstr "Txertatu Ninja Taulen Shortcodea"
+
+#: app/Hooks/Handlers/EditorBlockHandler.php:56
+msgid "Please select a table"
+msgstr ""
+
+#: app/Hooks/Handlers/EditorBlockHandler.php:57
+msgid "Insert Shortcode"
+msgstr "Txertatu Shortcodea"
+
+#: app/Hooks/Handlers/EditorBlockHandler.php:78
+#: app/Modules/Gutenberg/GutenbergModule.php:87
+msgid "Select a Table"
+msgstr "Aukeratu Taula bat"
+
+#: app/Hooks/Handlers/EditorBlockHandler.php:80
+#: app/Modules/Gutenberg/GutenbergModule.php:89
+msgid "No Tables found. Please add a table first"
+msgstr ""
+
+#: app/Hooks/Handlers/ExportHandler.php:24
+#: app/Hooks/Handlers/ExportHandler.php:101
+#: app/Hooks/Handlers/NoticeHandler.php:60
+msgid "Security check failed."
+msgstr ""
+
+#: app/Hooks/Handlers/NoticeHandler.php:67
+msgid "Invalid notice key or type."
+msgstr ""
+
+#: app/Hooks/Handlers/NoticeHandler.php:71
+msgid "Invalid notice type."
+msgstr ""
+
+#: app/Hooks/Handlers/NoticeHandler.php:78
+msgid "Failed to save dismissal."
+msgstr ""
+
+#: app/Hooks/Handlers/NoticeHandler.php:83
+msgid "Notice dismissed successfully."
+msgstr ""
+
+#: app/Hooks/Handlers/NoticeHandler.php:238
+msgid "Rate Now"
+msgstr ""
+
+#: app/Hooks/Handlers/NoticeHandler.php:247
+msgid "Remind Me Later"
+msgstr ""
+
+#: app/Hooks/Handlers/NoticeHandler.php:256
+msgid "Update Ninja Tables Pro Plugin"
+msgstr ""
+
+#. translators: %1$s: opening link tag, %2$s: closing link tag
+#: app/Hooks/Handlers/NoticeHandler.php:259
+#, php-format
+msgid ""
+"You are using an outdated version. Some features may not work properly. "
+"%1$sPlease update to the latest version%2$s"
+msgstr ""
+
+#. translators: %1$s/%2$s: link tags around "documentation", %3$s/%4$s: link
+#. tags around "tutorial videos"
+#: app/Hooks/Handlers/NoticeHandler.php:290
+#, php-format
+msgid ""
+"Having trouble creating your first table? Check out Ninja Tables "
+"%1$sdocumentation%2$s or watch %3$stutorial videos%4$s to get you started."
+msgstr ""
+
+#. translators: %1$s: opening link tag, %2$s: closing link tag
+#: app/Hooks/Handlers/NoticeHandler.php:296
+#, php-format
+msgid ""
+"Looks like you're having fun with Drag & Drop!<br>Did you know Ninja Tables "
+"has a lot more fun features in the Advanced Table mode? See the "
+"%1$sdocumentation%2$s and try it!"
+msgstr ""
+
+#. translators: %1$s: opening link tag, %2$s: closing link tag
+#: app/Hooks/Handlers/NoticeHandler.php:302
+#, php-format
+msgid ""
+"Looks like you're having fun using Advanced mode for your tables.<br>Did you"
+" know Ninja Tables makes things even easier in Drag and Drop mode? See the "
+"%1$sdocumentation%2$s and try it!"
+msgstr ""
+
+#. translators: %s: five star icons
+#: app/Hooks/Handlers/NoticeHandler.php:308
+#, php-format
+msgid ""
+"You're doing amazing!<br><div class=\"flex items-center\">Loving Ninja "
+"Tables? Leave us a %s review. It will encourage us to come up with more and "
+"more features.</div>"
+msgstr ""
+
+#: app/Hooks/Handlers/PublicDataHandler.php:39
+#: app/Hooks/Handlers/PublicDataHandler.php:96
+#: app/Hooks/Handlers/PublicDataHandler.php:177
+msgid "Please publish the page/post to see the table"
+msgstr ""
+
+#: app/Hooks/Handlers/PublicDataHandler.php:64
+msgid ""
+"This table is currently in trash. Please restore it to display the table."
+msgstr ""
+
+#: app/Hooks/Handlers/PublicDataHandler.php:66
+msgid "This table does not exist or has been permanently deleted."
+msgstr ""
+
+#: app/Hooks/Handlers/PublicDataHandler.php:68
+#: app/Modules/DataTables/Handlers/PublicRenderer.php:50
+msgid ""
+"This table has no columns configured. Please add columns to display the "
+"table."
+msgstr ""
+
+#: app/Hooks/Handlers/PublicDataHandler.php:70
+msgid "This table is not published. Please publish it to display the table."
+msgstr ""
+
+#: app/Http/Controllers/FluentFormsController.php:54
+#: app/Http/Controllers/ImportController.php:632
+#: app/Http/Controllers/ImportController.php:673
+#: app/Http/Controllers/TableBuilderController.php:126
+#: app/Http/Controllers/TablesController.php:21
+#: app/Http/Controllers/TablesController.php:75
+msgid "Invalid table."
+msgstr ""
+
+#: app/Http/Controllers/FluentFormsController.php:61
+#: app/Modules/FluentCart/Handlers/FluentCartHandler.php:76
+msgid "The title field is required."
+msgstr "Izenburua eremua beharrezkoa da."
+
+#: app/Http/Controllers/FluentFormsController.php:69
+msgid "No fields were selected."
+msgstr "Ez da eremurik hautatu."
+
+#: app/Http/Controllers/ImportController.php:45
+msgid "Please upload a file."
+msgstr ""
+
+#: app/Http/Controllers/ImportController.php:64
+msgid "No appropriate driver found for the import format."
+msgstr "Ez da inportatzeko formatu egokia aurkitu."
+
+#: app/Http/Controllers/ImportController.php:90
+msgid "Uploaded file path is not valid."
+msgstr ""
+
+#: app/Http/Controllers/ImportController.php:133
+msgid "CSV uploaded. Import has started."
+msgstr ""
+
+#: app/Http/Controllers/ImportController.php:160
+msgid "Import token is missing."
+msgstr ""
+
+#: app/Http/Controllers/ImportController.php:167
+msgid "Import session expired. Please start again."
+msgstr ""
+
+#: app/Http/Controllers/ImportController.php:173
+msgid "You are not allowed to process this import job."
+msgstr ""
+
+#: app/Http/Controllers/ImportController.php:180
+msgid "CSV file is not accessible anymore."
+msgstr ""
+
+#: app/Http/Controllers/ImportController.php:187
+msgid "Import header is not valid."
+msgstr ""
+
+#: app/Http/Controllers/ImportController.php:203
+#: app/Http/Controllers/ImportController.php:294
+#: app/Modules/I18nStrings.php:500
+msgid "Import completed successfully."
+msgstr ""
+
+#: app/Http/Controllers/ImportController.php:295
+msgid "Import chunk processed."
+msgstr ""
+
+#: app/Http/Controllers/ImportController.php:334
+msgid "Please upload valid CSV"
+msgstr "Kargatu baliozko CSV"
+
+#: app/Http/Controllers/ImportController.php:346
+#: app/Http/Controllers/ImportController.php:460
+#: app/Http/Controllers/ImportController.php:494
+#: app/Http/Controllers/ImportController.php:681
+#: app/Traits/ImportTrait.php:105 app/Traits/ImportTrait.php:128
+msgid "Invalid file upload."
+msgstr ""
+
+#: app/Http/Controllers/ImportController.php:361
+msgid "Unable to parse the uploaded CSV file."
+msgstr ""
+
+#: app/Http/Controllers/ImportController.php:362
+msgid "CSV parsing failed. Please verify delimiter/encoding and try again."
+msgstr ""
+
+#: app/Http/Controllers/ImportController.php:369
+msgid "The uploaded CSV appears to be empty."
+msgstr ""
+
+#: app/Http/Controllers/ImportController.php:376
+#: app/Http/Controllers/ImportController.php:983
+msgid "Unable to read CSV header row."
+msgstr ""
+
+#: app/Http/Controllers/ImportController.php:398
+#: app/Http/Controllers/ImportController.php:483
+#: app/Http/Controllers/ImportController.php:601
+#: app/Modules/I18nStrings.php:902
+msgid "Successfully added a table."
+msgstr "Taula ondo gehitu da."
+
+#: app/Http/Controllers/ImportController.php:409
+#: database/Migrations/NinjaTablesMigration.php:29
+msgid "Temporary table name"
+msgstr "Behin-behieneko taularen izena."
+
+#: app/Http/Controllers/ImportController.php:410
+#: database/Migrations/NinjaTablesMigration.php:32
+msgid "Temporary table description"
+msgstr "Behin-behineko taularen deskribapena."
+
+#. translators: %s is the reserved column name(s) that conflict
+#: app/Http/Controllers/ImportController.php:438
+#: app/Http/Controllers/ImportController.php:781
+#, php-format
+msgid ""
+"CSV header \"%s\" conflicts with a reserved system column. Please rename it."
+msgstr ""
+
+#: app/Http/Controllers/ImportController.php:515
+msgid "Please upload a JSON file exported from Ninja Tables"
+msgstr ""
+
+#. translators: %s is the data provider name
+#: app/Http/Controllers/ImportController.php:529
+#, php-format
+msgid ""
+"This table uses the \"%s\" data provider which is not supported by the "
+"DataTables engine. Only tables with the \"default\" provider can be imported"
+" as DataTables."
+msgstr ""
+
+#: app/Http/Controllers/ImportController.php:646
+msgid "Something Went Wrong When Migrating"
+msgstr ""
+
+#: app/Http/Controllers/ImportController.php:651
+msgid ""
+"Successfully imported. Please go to all tables and review your newly "
+"imported table."
+msgstr ""
+"Ondo inportatu da. Joan tauletara eta berriki inportatutako taulak "
+"berrikusi."
+
+#: app/Http/Controllers/ImportController.php:702
+msgid "Please set table configuration first"
+msgstr "Taula konfigurazioa lehenetsi ezazu"
+
+#: app/Http/Controllers/ImportController.php:713
+#, fuzzy
+msgid "Please use the provided CSV header structure font face."
+msgstr "Mesedez erabili emandako CSV goiburuaren egitura."
+
+#: app/Http/Controllers/ImportController.php:766
+msgid "Successfully uploaded data."
+msgstr "Datuak ondo eguneratu dira."
+
+#. translators: %d is the number of rows imported
+#: app/Http/Controllers/ImportController.php:818
+#, php-format
+msgid "Successfully imported %d rows."
+msgstr ""
+
+#: app/Http/Controllers/ImportController.php:905
+msgid ""
+"Import failed because the server ran out of memory. Try a smaller "
+"file/chunked import or increase PHP memory_limit."
+msgstr ""
+
+#: app/Http/Controllers/ImportController.php:912
+msgid ""
+"Import timed out on the server. Try a smaller file/chunked import or "
+"increase PHP max_execution_time."
+msgstr ""
+
+#: app/Http/Controllers/ImportController.php:918
+msgid ""
+"Import failed due to a server error while processing the file. Please check "
+"file format/size and try again."
+msgstr ""
+
+#: app/Http/Controllers/ImportController.php:930
+msgid "Invalid media file selected."
+msgstr ""
+
+#: app/Http/Controllers/ImportController.php:934
+msgid "You do not have permission to use this media file."
+msgstr ""
+
+#: app/Http/Controllers/ImportController.php:939
+msgid "Selected media file is not accessible."
+msgstr ""
+
+#: app/Http/Controllers/ImportController.php:945
+msgid "Selected media file must be a CSV."
+msgstr ""
+
+#: app/Http/Controllers/ImportController.php:955
+msgid "Selected media file is not a valid CSV type."
+msgstr ""
+
+#: app/Http/Controllers/ImportController.php:967
+msgid ""
+"Please select a CSV file from WordPress Media Library for large import."
+msgstr ""
+
+#: app/Http/Controllers/ImportController.php:977
+msgid "Unable to open CSV file."
+msgstr ""
+
+#: app/Http/Controllers/ImportController.php:1011
+msgid "Unable to read CSV file."
+msgstr ""
+
+#: app/Http/Controllers/ImportController.php:1016
+msgid "Unable to seek CSV file."
+msgstr ""
+
+#: app/Http/Controllers/PluginInstallerController.php:17
+msgid ""
+"You do not have permission to install a plugin, Please ask your "
+"administrator to install WP Fluent Form"
+msgstr ""
+
+#: app/Http/Controllers/PluginInstallerController.php:25
+msgid ""
+"You are using wp multisite environment so please install WP FluentForm "
+"manually"
+msgstr ""
+
+#: app/Http/Controllers/PluginInstallerController.php:36
+msgid ""
+"WP Fluent Form successfully installed and activated, You are redirecting to "
+"WP Fluent Form Now"
+msgstr ""
+
+#: app/Http/Controllers/PluginInstallerController.php:44
+msgid ""
+"There was an error to install the plugin. Please install the plugin "
+"manually."
+msgstr ""
+
+#: app/Http/Controllers/PluginInstallerController.php:78
+msgid "Insufficient permissions"
+msgstr ""
+
+#: app/Http/Controllers/PluginInstallerController.php:93
+msgid "Successfully enabled Ninja Charts."
+msgstr ""
+
+#: app/Http/Controllers/SettingsController.php:203
+#: app/Http/Controllers/ToolsController.php:29
+#: app/Http/Controllers/ToolsController.php:95
+#: app/Modules/FluentCart/Handlers/FluentCartHandler.php:257
+msgid "Settings successfully updated"
+msgstr "Ezarpenak behar bezala eguneratu dira"
+
+#: app/Http/Controllers/SettingsController.php:224
+msgid "Code successfully saved"
+msgstr ""
+
+#: app/Http/Controllers/TableItemsController.php:85
+#: app/Modules/DataTables/Handlers/ItemsHandler.php:212
+msgid "Successfully deleted data."
+msgstr "Datuak ondo ezabatu dira."
+
+#: app/Http/Controllers/TableItemsController.php:97
+#: app/Http/Controllers/TableItemsController.php:131
+#: app/Http/Controllers/TableItemsController.php:152
+#: app/Http/Controllers/TableItemsController.php:169
+#: app/Modules/DataTables/Handlers/ItemsHandler.php:81
+#: app/Modules/DataTables/Handlers/ItemsHandler.php:162
+msgid "Row not found."
+msgstr ""
+
+#: app/Http/Controllers/TableItemsController.php:139
+#: app/Modules/DataTables/Handlers/ItemsHandler.php:134
+msgid "Successfully saved the data."
+msgstr "Datuak ondo gorde dira."
+
+#: app/Http/Controllers/TableItemsController.php:191
+#: app/Modules/DataTables/Handlers/ItemsHandler.php:183
+msgid "Cell successfully updated"
+msgstr ""
+
+#: app/Http/Controllers/TablesController.php:58
+msgid "An error occurred while loading tables."
+msgstr ""
+
+#: app/Http/Controllers/TablesController.php:67
+msgid "Title is required"
+msgstr ""
+
+#: app/Http/Controllers/TablesController.php:102
+msgid "Table updated successfully"
+msgstr ""
+
+#: app/Http/Controllers/TablesController.php:102
+msgid "Table saved successfully."
+msgstr ""
+
+#: app/Http/Controllers/TablesController.php:114
+msgid "Invalid Table to Delete"
+msgstr "Taula hori ezin da ezabatu."
+
+#: app/Http/Controllers/TablesController.php:125
+msgid "Table trashed successfully."
+msgstr ""
+
+#: app/Http/Controllers/TablesController.php:132
+msgid "Table deleted successfully."
+msgstr ""
+
+#: app/Http/Controllers/TablesController.php:136
+msgid "An error occurred while deleting the table."
+msgstr ""
+
+#: app/Http/Controllers/TablesController.php:147
+msgid "Table not found."
+msgstr ""
+
+#: app/Http/Controllers/TablesController.php:169
+msgid "Table duplicated successfully."
+msgstr ""
+
+#: app/Http/Controllers/TablesController.php:174
+msgid "An error occurred while duplicating the table."
+msgstr ""
+
+#: app/Http/Controllers/TablesController.php:227
+#: app/Http/Controllers/TablesController.php:272
+msgid "No table selected."
+msgstr ""
+
+#: app/Http/Controllers/TablesController.php:237
+msgid "No valid tables found."
+msgstr ""
+
+#: app/Http/Controllers/TablesController.php:248
+msgid "Tables trashed successfully."
+msgstr ""
+
+#: app/Http/Controllers/TablesController.php:260
+msgid "Tables deleted successfully."
+msgstr ""
+
+#: app/Http/Controllers/TablesController.php:283
+msgid "No valid trashed tables found."
+msgstr ""
+
+#: app/Http/Controllers/TablesController.php:296
+msgid "Tables restored successfully."
+msgstr ""
+
+#: app/Http/Controllers/TablesController.php:323
+msgid "Columns deleted successfully."
+msgstr ""
+
+#: app/Http/Controllers/ToolsController.php:109
+msgid "Table cache successfully cleared"
+msgstr ""
+
+#: app/Http/Controllers/ToolsController.php:120
+msgid "All caches successfully cleared"
+msgstr ""
+
+#: app/Models/Post.php:176
+msgid "Successfully updated configuration."
+msgstr "Konfigurazioa ondo eguneratu da."
+
+#: app/Modules/DataProviders/FluentFormProvider.php:31
+msgid "Serial Number"
+msgstr ""
+
+#: app/Modules/DataProviders/FluentFormProvider.php:32
+msgid "Status"
+msgstr ""
+
+#: app/Modules/DataProviders/FluentFormProvider.php:50
+msgid "Payment Total"
+msgstr ""
+
+#: app/Modules/DataProviders/FluentFormProvider.php:51
+msgid "Payment Status"
+msgstr ""
+
+#: app/Modules/DataProviders/FluentFormProvider.php:52
+msgid "Billing Name"
+msgstr ""
+
+#: app/Modules/DataProviders/FluentFormProvider.php:53
+msgid "Billing Email"
+msgstr ""
+
+#: app/Modules/DataProviders/FluentFormProvider.php:54
+msgid "Transaction ID"
+msgstr ""
+
+#: app/Modules/DataProviders/FluentFormProvider.php:55
+msgid "Payment Date"
+msgstr ""
+
+#: app/Modules/DataProviders/FluentFormProvider.php:151
+msgid "You may edit your table settings here."
+msgstr ""
+
+#: app/Modules/DataProviders/NinjaFooTable.php:267
+#: app/Modules/DataTables/Handlers/PublicRenderer.php:92
+#: app/Services/TranslationService.php:10
+msgid "Search in"
+msgstr "Bilatu honela"
+
+#: app/Modules/DataProviders/NinjaFooTable.php:269
+#: app/Modules/DataTables/Handlers/PublicRenderer.php:94
+#: app/Modules/I18nStrings.php:769 app/Services/TranslationService.php:11
+msgid "Search"
+msgstr "Bilatu"
+
+#: app/Modules/DataProviders/NinjaFooTable.php:271
+#: app/Modules/DataTables/Handlers/PublicRenderer.php:96
+#: app/Services/TranslationService.php:12
+msgid "No Result Found"
+msgstr "Ez da emaitzarik aurkitu"
+
+#. translators: %s is the reserved column key name
+#: app/Modules/DataTables/DataTablesModule.php:51
+#, php-format
+msgid "Column key \"%s\" is reserved for system use. Please use a different key."
+msgstr ""
+
+#: app/Modules/DataTables/Handlers/ItemsHandler.php:18
+#: app/Modules/DataTables/Handlers/ItemsHandler.php:55
+msgid "Dynamic table does not exist. Please save columns first."
+msgstr ""
+
+#: app/Modules/DataTables/Handlers/ItemsHandler.php:90
+#: app/Modules/DataTables/Handlers/ItemsHandler.php:175
+msgid "Failed to update row."
+msgstr ""
+
+#: app/Modules/DataTables/Handlers/ItemsHandler.php:100
+msgid "Successfully updated the data."
+msgstr ""
+
+#: app/Modules/DataTables/Handlers/ItemsHandler.php:124
+msgid "Failed to insert row."
+msgstr ""
+
+#: app/Modules/DataTables/Handlers/ItemsHandler.php:146
+#: app/Modules/DataTables/Handlers/ItemsHandler.php:194
+msgid "Dynamic table does not exist."
+msgstr ""
+
+#: app/Modules/DataTables/Handlers/ItemsHandler.php:204
+msgid "Failed to delete row(s)."
+msgstr ""
+
+#: app/Modules/DragAndDrop/InitConfig.php:180 app/Modules/I18nStrings.php:931
+#: config/table-builder/component.php:27
+msgid "Text"
+msgstr ""
+
+#: app/Modules/FluentCart/Handlers/FluentCartHandler.php:35
+msgid "You do not have permission to get options."
+msgstr ""
+
+#: app/Modules/FluentCart/Handlers/FluentCartHandler.php:42
+msgid "Select Products By Category"
+msgstr ""
+
+#: app/Modules/FluentCart/Handlers/FluentCartHandler.php:43
+msgid ""
+"Select the categories from where you want to show the products. Leave empty "
+"if you want to show from all categories"
+msgstr ""
+
+#: app/Modules/FluentCart/Handlers/FluentCartHandler.php:50
+msgid "Select Products By Product Brands"
+msgstr ""
+
+#: app/Modules/FluentCart/Handlers/FluentCartHandler.php:51
+msgid ""
+"Select the product brands from where you want to show the products. Leave "
+"empty if you want to show from all types"
+msgstr ""
+
+#: app/Modules/FluentCart/Handlers/FluentCartHandler.php:67
+msgid "You do not have permission to create tables."
+msgstr ""
+
+#: app/Modules/FluentCart/Handlers/FluentCartHandler.php:242
+msgid "Table not found"
+msgstr ""
+
+#: app/Modules/FluentCart/Handlers/FluentCartHandler.php:411
+msgid "Items"
+msgstr ""
+
+#: app/Modules/FluentCart/Handlers/FluentCartHandler.php:413
+msgid "Item"
+msgstr ""
+
+#: app/Modules/FluentCart/Handlers/FluentCartHandler.php:421
+msgid "Checkout"
+msgstr ""
+
+#: app/Modules/FluentCart/Handlers/FluentCartHandler.php:425
+msgid "View cart"
+msgstr ""
+
+#: app/Modules/FluentCart/Handlers/FluentCartHandler.php:474
+msgid "Invalid nonce"
+msgstr ""
+
+#: app/Modules/FluentCart/Traits/FluentCartTrait.php:404
+msgctxt "Product quantity input tooltip"
+msgid "Quantity"
+msgstr ""
+
+#. translators: %s: Product name
+#: app/Modules/FluentCart/Traits/FluentCartTrait.php:413
+#, php-format
+msgid "%s quantity"
+msgstr ""
+
+#: app/Modules/FluentCart/Traits/FluentCartTrait.php:457
+msgid "Buy Now"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:18
+msgid " Have a new license key? Please "
+msgstr ""
+
+#: app/Modules/I18nStrings.php:19
+msgid " will be replaced with your table ID dynamically."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:20
+msgid "( Already Imported )"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:21
+msgid "10/page"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:22
+msgid "100/page"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:23
+msgid "15/page"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:24
+msgid "20/page"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:25
+msgid "50/page"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:26
+msgid "A powerful jQuery DataTables based rendering engine"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:27
+msgid "A responsive table plugin built on jQuery"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:28
+msgid ""
+"A special faster form of table rendering that does not resize table cells "
+"based on content."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:29
+msgid ""
+"A table can specify that its cell contents should remain on a single line, "
+"and not wrap."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:30
+msgid "Action"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:31
+msgid "Action canceled"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:32
+msgid "Activate Ninja Tables Pro plugin to unlock this feature"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:33
+msgid "Activate Pro"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:34
+msgid "Active"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:35
+msgid "Add"
+msgstr "Add"
+
+#: app/Modules/I18nStrings.php:36
+msgid "Add at"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:37
+msgid "Add Column"
+msgstr "Add Column"
+
+#: app/Modules/I18nStrings.php:38
+msgid "Add column CSS class"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:39
+msgid "Add Condition"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:40
+msgid "Add Data"
+msgstr "Gehitu datuak"
+
+#: app/Modules/I18nStrings.php:41
+msgid ""
+"Add extra classes to this column. This will be applied for the entire column"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:42
+msgid "Add Media (pro)"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:43
+msgid "Add Media to Your Table Cells"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:44
+msgid "Add Meta Query"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:45
+msgid "Add New Column"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:46
+msgid "Add New Custom Filter"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:47
+msgid "Add New Filter"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:48
+msgid "Add Popup Heading"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:49
+msgid "Add Row Button Label"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:50
+msgid "Add Table Column"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:51
+msgid "Add Your Custom CSS"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:52
+msgid "Add Your Custom JS"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:53
+msgid "Add zebra-striping to any table row"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:54
+msgid "Advanced - Better performance for large datasets"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:55
+msgid "Advanced Column Settings"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:56
+msgid "Advanced Settings"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:57
+msgid "After Search Box"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:58
+msgid "Align"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:59
+msgid "Alignment"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:60
+msgid "All"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:62
+msgid "Always Show Edit Icons"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:63
+msgid "Always show in all devices"
+msgstr "Always show in all devices"
+
+#: app/Modules/I18nStrings.php:64
+msgid "And Many More features"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:65
+msgid "Appearance"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:66
+msgid "Appearance Settings"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:67
+msgid "Apply"
+msgstr "Apply"
+
+#: app/Modules/I18nStrings.php:68
+msgid "Apply Semantic UI styles in the table"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:69
+msgid "Apply Twitter Bootstrap 3 styles in the table"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:70
+msgid "Apply Twitter Bootstrap 4 styles in the table"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:71
+msgid "Approved"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:72
+msgid "Are you sure to delete this column?"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:73
+msgid "Are you sure to delete this?"
+msgstr "Are you sure to delete this?"
+
+#: app/Modules/I18nStrings.php:74
+msgid "Are you sure, you want to delete this table"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:75
+msgid "As Numeric Basis"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:76
+msgid "As Text Basis"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:77
+msgid ""
+"as your css selector prefix to target this specific table. Alternatively, "
+"you can use"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:78
+msgid "Ascending"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:79
+msgid "Ascending Way"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:80
+msgid ""
+"Auto-sync your published Google Sheet and display the entries on a "
+"customized table in Ninja Tables Pro."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:81
+msgid "Available Columns"
+msgstr "Available Columns"
+
+#: app/Modules/I18nStrings.php:82
+msgid "Available Dynamic Placeholders:"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:83 config/table-builder/setting.php:77
+msgid "Background"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:84
+msgid "Background color"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:85
+msgid "Background Color"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:86
+msgid "Basic Settings"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:87
+msgid "Better for SEO"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:88
+msgid "Between (Min & Max Values)"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:89
+msgid "Blogs"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:90
+msgid "Bootstrap 3"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:91
+msgid "Bootstrap 4"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:92 config/table-builder/setting.php:158
+msgid "Border"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:93
+msgid "Border color"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:94
+msgid "Border Radius"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:95
+msgid "Border Size"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:96
+msgid "Bordered table"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:97
+msgid "Borders on all sides of the table and cells"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:98
+msgid "Bottom"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:99
+msgid "Bottom of the Table"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:100
+msgid "Browse and locate a CSV / JSON file you backed up before"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:101
+msgid "Bulk Actions"
+msgstr "Bulk Actions"
+
+#: app/Modules/I18nStrings.php:102
+msgid "Button Alignment"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:103
+msgid "Button Background Color"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:104
+msgid "Button BG Color"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:105
+msgid "Button Border Color"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:106
+msgid "Button Hover"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:107
+msgid ""
+"Button on Table is a pro Feature. It will not work without Pro Version."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:108
+msgid "Button Options"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:109
+msgid "Button Position In Frontend"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:110
+msgid "Button Size"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:111
+msgid "Button Text"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:112
+msgid "Button Text (HTML supported)"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:113
+msgid "Button Text Color"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:114
+msgid "Button/Link"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:115
+msgid "Buttons (CSV/Print)"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:116
+msgid "Buttons Placement"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:117
+msgid "Buy Now Button Text"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:118
+msgid "By Column"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:119
+msgid ""
+"By default, Only Administrator have access to manage the tables. By "
+"selecting additional roles below, you can give access to manage your Tables "
+"to other user roles."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:120
+msgid "Caching Configuration"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:121
+msgid "Caching Interval (In Minutes)"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:122
+msgid "cancel"
+msgstr "cancel"
+
+#: app/Modules/I18nStrings.php:123
+msgid "Cancel"
+msgstr "Utzi"
+
+#: app/Modules/I18nStrings.php:124
+msgid "Cart Text"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:125
+msgid "Cell Options"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:126
+msgid "Center"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:127
+msgid "Change"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:128
+msgid "Change the button background color"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:129
+msgid "Change the button border color"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:130
+msgid "Change the button text color"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:131
+msgid "Check out some more WPManageNinja’s finest plugins made for you."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:132
+msgid "Check the documentation for advanced use cases:"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:133
+msgid "Check tutorial for importing data from CSV file"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:134
+msgid "Check tutorial for importing Table from JSON file"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:135
+msgid "Checkbox"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:136
+msgid "Checkout Text"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:137
+msgid "Choose a CSV file or drag & drop it here."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:138
+msgid "Choose a file or drag & drop it here."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:139
+msgid "Choose a Template"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:140
+msgid "Choose CSV from Media Library"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:141
+msgid "Choose Form"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:142
+msgid "Choose how your table will be rendered on the frontend."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:143
+msgid "Choose Icon"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:144
+#, php-format
+msgid ""
+"Choose responsive breakpoints of your table columns. For more details check "
+"%1$sdocumentation%2$s."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:145
+msgid "Choose the data type of the column."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:146
+msgid "Choose the date format of the column."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:147
+msgid "Choose the text alignment for Column Rows"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:148
+msgid "Choose the text alignment. This will be applied only for header"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:149
+msgid "Clear Cache"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:150
+msgid "Clear External Caches"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:151
+msgid "Clear Table Cache"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:152
+msgid "click here"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:153
+msgid "Click here"
+msgstr "Klikatu hemen"
+
+#: app/Modules/I18nStrings.php:154
+msgid "click here to check again."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:155
+msgid ""
+"Click on a cell to get cell-specific options. Selected cells will be "
+"highlighted."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:156
+msgid "Click to copy shortcode"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:157
+msgid "click to upload"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:158
+msgid "Close"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:159 config/table-builder/setting.php:237
+msgid "Color"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:160
+msgid ""
+"Color customization is a PRO feature. Please upgrade to pro apply this "
+"feature."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:161
+msgid "Colspan ( Cell-Merge )"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:162
+msgid "Colspan/Cell Merging Feature"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:163
+msgid "Column"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:164
+msgid "Column Background Color"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:165
+msgid "Column Key"
+msgstr "Column Key"
+
+#: app/Modules/I18nStrings.php:166
+msgid "Column key is for data mapping, export and import table data."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:167
+msgid "Column Key is required"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:168
+msgid ""
+"Column Key needs to be unique. Please add a suffix / prefix to make it "
+"unique"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:169
+msgid "Column Name"
+msgstr "Column Name"
+
+#: app/Modules/I18nStrings.php:170
+msgid "Column Options"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:171
+msgid "Column Text Color"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:172
+msgid "Column Title"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:173
+msgid "Column Width"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:174
+msgid "Columns"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:175
+msgid "Compact Table"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:176
+msgid "Compact View"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:177
+msgid "Completed"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:178
+msgid "Condensed table"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:179
+msgid "Conditional Formatting"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:180
+msgid "Conditions"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:181
+msgid "confirm"
+msgstr "berretsi"
+
+#: app/Modules/I18nStrings.php:182
+msgid "Connect External CSV"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:183
+msgid "Connect Fluent Forms"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:184
+msgid "Connect Google Sheets"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:185
+msgid "Connect with the Ninja Tables community on Social Media."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:186
+msgid "Console Log JS Errors Silently"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:187
+msgid "Construct Table from Custom SQL Query"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:188
+msgid "Construct Table from Fluent Forms Entries"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:189
+msgid "Construct Table from Posts / CPTs"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:190
+msgid ""
+"Construct table from remote CSV file. Whenever your remote CSV data changes "
+"it will automatically sync here."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:191
+msgid "Construct Table from Your FluentCart Products"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:192
+msgid "Construct Table from Your WooCommerce Product Reviews"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:193
+msgid "Construct Table from Your WooCommerce Products"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:194
+msgid "Contains"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:195
+msgid "Content Alignment"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:196
+msgid "Content Text Alignment"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:197
+msgid "Continue Adding"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:198
+msgid ""
+"Convert to UTF-8 format ( Check this if your csv is non-unicode format)"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:199
+msgid "Convert to UTF-8 format (Check this if your CSV is non-unicode format)"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:200
+msgid "Create"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:201
+msgid "Create a Drag & Drop Table"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:202
+msgid "Create a table by generating a sql query to any custom SQL database."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:203
+msgid ""
+"Create communities in WordPress with user profiles, forums, activity feeds, "
+"and messaging - all from your dashboard with 0 server issues."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:204
+msgid "Create Custom Filter UI in Table"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:205
+msgid "Create New Table"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:206
+msgid "Create Products Table"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:207
+msgid ""
+"Create responsive and customizable WP posts tables from your existing "
+"posts/pages/custom post types with Ninja Tables pro."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:208
+msgid "Create Reviews Table"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:209
+msgid ""
+"Create tables fast using drag & drop table mode. Add columns and rows "
+"manually, import, or pick a template. Learn more about drag & drop table."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:210
+msgid ""
+"Create visually impressive and dynamic data charts with this free WordPress "
+"charts plugin."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:211
+msgid "Create WordPress tables fast"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:212
+msgid "Create Your First Table"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:213
+msgid "Create your metadata on your FluentCart platform"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:214
+msgid "Create your metadata on your WooCommerce platform"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:215
+msgid "Created At"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:216
+msgid "CSV - Comma-separated values"
+msgstr "CSV - Comma-separated values"
+
+#: app/Modules/I18nStrings.php:217
+msgid "CSV Export / Print Button Settings for Frontend"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:218
+msgid "CSV or JSON"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:219
+msgid "Current Caching Interval:"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:220
+msgid "Current Page"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:221
+msgid "Current SQL Query:"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:222
+msgid "Custom"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:223 config/table-builder/setting.php:99
+msgid "Custom CSS"
+msgstr "CSS pertsonalizatua"
+
+#: app/Modules/I18nStrings.php:224
+msgid "Custom CSS/JS"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:225
+msgid "Custom Filters"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:226
+msgid ""
+"Custom Filters is introduced in version 2.4.0. Please update <b>Ninja tables"
+" pro</b> plugin to use this feature"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:227
+msgid "Custom Html Options"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:228
+msgid ""
+"Custom Javascript feature is a pro feature along with many awesome features."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:229 config/table-builder/setting.php:105
+msgid "Custom JS"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:230
+msgid "Custom Scheme"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:231
+msgid "Custom Search Filters"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:232
+msgid ""
+"Custom Search Filters is useful if you want to add select box / Radio Button"
+" to show a group of rows of your table."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:233
+msgid "Custom SQL Query"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:234
+msgid ""
+"Customize table appearance based on the cell value. Add as many conditions "
+"as you like. Conditional formatting is a pro feature."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:235
+msgid "Customize Your Language Preferences"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:236
+msgid ""
+"Customize your table's column width, custom CSS class, column styling with "
+"this Pro feature."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:237
+msgid "Data Source"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:238
+msgid "Data Source URL"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:239
+msgid ""
+"Data Transformer is a powerful tool where you can concat any column values "
+"easily into any valid html and show as computed value."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:240
+msgid "Data Type"
+msgstr "Datu mota"
+
+#: app/Modules/I18nStrings.php:241
+msgid "DataTable"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:242
+msgid "DataTables"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:243
+msgid ""
+"DataTables CSV import reads selected Media CSV in chunks for better "
+"stability."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:244
+msgid "Date After 10 Days:"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:245
+msgid "Date Before 10 Days:"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:246
+msgid "Date Field"
+msgstr "Date Field"
+
+#: app/Modules/I18nStrings.php:247
+msgid "Date Filter Operator"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:248
+msgid "Date Format"
+msgstr "Date Format"
+
+#: app/Modules/I18nStrings.php:249
+msgid "Date Picker"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:250
+msgid "Date Range"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:251
+msgid "DB Host"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:252
+msgid "DB Host Port"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:253
+msgid "DB Name"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:254
+msgid "DB User Password"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:255
+msgid "DB username"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:256
+msgid "Deactivate License"
+msgstr "Lizentzia desaktibatu"
+
+#: app/Modules/I18nStrings.php:257
+msgid "Default"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:258
+msgid "Default - Lightweight and responsive"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:259
+msgid "Default DataTables styles"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:260
+msgid "Default Features"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:261
+msgid "Default Font Setting"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:262
+msgid "Default Pagination Setting"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:263
+msgid "Default Placeholder"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:264
+msgid "Default Styling Library"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:265
+msgid "Default Table Color"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:266
+msgid "Default Value"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:267
+msgid "Default WP SQL Table"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:268
+msgid "Default: 10,20,50,100"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:269
+msgid "Delete"
+msgstr "ezabatu"
+
+#: app/Modules/I18nStrings.php:270
+msgid "Delete canceled"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:271
+msgid "Delete Column"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:272
+msgid "Delete Entries"
+msgstr "Ezabatu sarrerak"
+
+#: app/Modules/I18nStrings.php:273
+msgid "Delete Tables"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:274
+msgid "Demo"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:275
+msgid "Descending"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:276
+msgid "Descending Way"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:277
+msgid "Description"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:278
+msgid "Description For Footer"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:279
+msgid "Description For Header"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:280
+msgid "Deselect All"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:281
+msgid "Disable automatic filter value sorting"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:282
+msgid "Disable Caching"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:283
+msgid "Disable frontend search for this column data"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:284
+msgid "Disable frontend sorting for this column"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:285
+msgid "Disable Sticky header for mobile "
+msgstr ""
+
+#: app/Modules/I18nStrings.php:286
+msgid "Display Frontend Loader"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:287
+msgid "Displays products content in a searchable, sortable with Ninja Tables."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:288
+msgid ""
+"Displays WooCommerce product reviews in a searchable, sortable, customized "
+"table."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:289
+msgid "Documentation"
+msgstr "Dokumentazio"
+
+#: app/Modules/I18nStrings.php:290
+msgid "Does Not Contain"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:291
+msgid "Don't Handle Global Javascript Errors (Default)"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:292
+msgid "Download Button Text / HTML"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:293
+msgid "Download Sample CSV"
+msgstr "Deskargatu Sample CSV"
+
+#: app/Modules/I18nStrings.php:294
+msgid "Drag & Drop Table"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:295
+msgid "Drag and Drop Table Data Sorting"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:296
+msgid "Drop file here or "
+msgstr ""
+
+#: app/Modules/I18nStrings.php:297
+msgid "Duplicate"
+msgstr "bikoiztua"
+
+#: app/Modules/I18nStrings.php:298
+msgid "Duplicate column"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:299
+msgid "Duplicate row"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:300
+msgid "Dynamic Column Data Settings"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:301
+msgid "Dynamic Data from Table Column"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:302
+msgid "Dynamic Fields Settings"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:303
+msgid "Dynamic Post Data Settings"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:304
+msgid "Edit Custom Filter"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:305
+msgid "Edit Popup Heading"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:306
+msgid "Edit Row Button Label"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:307
+msgid "Elements"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:308
+msgid "Empty Star Color"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:309
+msgid "Enable a hover state on table rows"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:310
+msgid "Enable click to copy for this column cells"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:311
+msgid "Enable CSV Export Button"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:312
+msgid "Enable Excel Formula support for Transform Value"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:313
+msgid "Enable first column sticky for table"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:314
+msgid "Enable Frontend Copy Cell"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:315
+msgid "Enable Frontend Editing"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:316
+msgid "Enable Full HTML Cache"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:317
+msgid "Enable HTML Cache"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:318
+msgid "Enable HTML Table Header Content"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:319
+msgid "Enable Icon"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:320
+msgid "Enable Multi-Select"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:321
+msgid "Enable Multi-Selection"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:322
+msgid "Enable Ninja Charts"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:323
+msgid "Enable Print Button"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:324
+msgid "Enable Progressive filter for dynamic filter options"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:325
+msgid "Enable Row Details Modal"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:326
+msgid "Enable sorting of the table by the visitor"
+msgstr "Gaitu bisitariaren taula ordenatzea"
+
+#: app/Modules/I18nStrings.php:327
+msgid "Enable SQL-Module Permission for selected user roles"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:328
+msgid "Enable Stackable Table"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:329
+msgid "Enable sticky header for table"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:330
+msgid ""
+"Enable Strict Mode (If Enable, Ninja Tables will try to match exact value)"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:331
+msgid "Enable the visitor to filter or search the table."
+msgstr "Gaitu bisitaria taula iragazi edo bilatzeko."
+
+#: app/Modules/I18nStrings.php:332
+msgid "Enable this if you want to link to post/Author permalink"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:333
+msgid "Enable this if you want to link to Taxonomy permalink"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:334
+msgid ""
+"Enable this if you want to make the author as table filter action. So when "
+"user click on those filters then they will see only the selected author "
+"posts."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:335
+msgid ""
+"Enable this if you want to make the taxonomies as table filter action. So "
+"when user click on those filters then they will see only those type of "
+"posts."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:336
+msgid "Enable this if you want to open the links to new tab"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:337
+msgid "Enable this if you want to show table description in frontend"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:338
+msgid "Enable this if you want to show table title in frontend"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:339
+msgid "Enable this to show rating value alongside stars"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:340
+msgid "engine"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:341
+msgid "Enter a colum key"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:342
+msgid "Enter a column name to set the header title"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:343
+msgid "Enter a column name to set the header title."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:344
+msgid "Enter a table caption if you want to show"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:345
+msgid "Enter a title to identify your table"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:346
+msgid "Enter cart button text"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:347
+msgid "Enter checkout button text"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:348
+msgid "enter comma separated value"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:349
+msgid "Enter Filter Label"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:350
+msgid "Enter Filter Title"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:351
+msgid "Enter Filter Value"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:352
+msgid "Enter here"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:353
+msgid "Enter moment.js supported format"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:354
+msgid "Enter placeholder"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:355
+msgid "Enter Select items one per line"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:356
+msgid "Enter table name here...."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:357
+msgid "Enter the button text you want to show on the button."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:358
+msgid "Enter the selection placeholder, default: Select"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:359
+msgid "Enter Value"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:360
+msgid "Enter your license key"
+msgstr "Enter your license key"
+
+#: app/Modules/I18nStrings.php:361
+msgid "Enter your source URL"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:362
+msgid "Entry Type:"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:363
+msgid "Equal"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:364
+msgid "European Style - decimal comma (123.234,01)"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:365 config/table-builder/setting.php:87
+msgid "Even Row Background"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:366
+msgid "Even Row Colors"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:367
+msgid "Example Usage"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:368
+msgid "Expand All"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:369
+msgid "Expand First"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:370
+msgid "Export"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:371
+msgid "Export Table"
+msgstr "Esportatu taula"
+
+#: app/Modules/I18nStrings.php:372
+msgid "Extra Classes"
+msgstr "Extra Classes"
+
+#: app/Modules/I18nStrings.php:373
+msgid "Extra CSS Class for the table"
+msgstr "Extra CSS Class for the table"
+
+#: app/Modules/I18nStrings.php:374
+msgid "Features"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:375
+msgid "Fetch Columns"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:376
+msgid "Field Type"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:377
+msgid "Field Value"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:378
+msgid "File upload failed"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:379
+msgid "Filled Star Color"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:380
+msgid "Filter Appearance"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:381
+msgid "Filter Columns"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:382
+msgid "Filter Label"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:383
+msgid "Filter Options"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:384
+msgid "Filter Prefix"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:385
+msgid "Filter Title"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:386
+msgid "Filter UI"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:387
+msgid "Filter UI Type"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:388
+msgid "Filterable"
+msgstr "Filterable"
+
+#: app/Modules/I18nStrings.php:389
+msgid "First Column"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:390
+msgid "First Day"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:391
+msgid "First day of the week"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:392
+msgid "First page"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:393
+msgid "Fixed Layout"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:394
+msgid "Fluent Form Entries"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:395
+msgid "Fluent Forms Integration"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:396
+msgid "FluentCart Table"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:397
+msgid "Font color"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:398 config/table-builder/setting.php:242
+msgid "Font Family"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:399 config/table-builder/setting.php:230
+msgid "Font Size"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:400
+msgid "Font Style"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:401
+msgid "Font X Offset"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:402
+msgid "Font Y Offset"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:403
+msgid "FooTable"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:404
+msgid "Footer Colors"
+msgstr "Oinarrizko koloreak"
+
+#: app/Modules/I18nStrings.php:405
+msgid "Footer in each page"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:406
+msgid ""
+"For security reason, Custom SQL module is enabled only for Administrator "
+"user role. Please ask your site administrator to enable SQL module for other"
+" user roles."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:407
+msgid ""
+"For Stackable Tables, Live preview is disabled here. Please check on preview"
+" url"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:408
+msgid "Format"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:409
+msgid "Four Columns"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:410
+msgid "Free table templates"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:411
+msgid "From Placeholder"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:412
+msgid "Frontend Editing"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:413
+msgid ""
+"Frontend Editing is a pro only feature. Please purchase <b>&quot;Ninja "
+"Tables Pro&quot;</b> to use this feature."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:414
+msgid "Frontend Editing Settings"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:415
+msgid "Full Width"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:416 config/table-builder/component.php:23
+#: config/table-builder/responsive.php:9 config/table-builder/setting.php:9
+msgid "General"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:417
+msgid "General Color Options"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:418
+msgid "Get In Touch"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:419
+msgid "Get Priority Support for any Issue"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:421
+msgid ""
+"Get smart, fast, and free email delivery with the most efficient WordPress "
+"plugin for transactional emails using secure, authenticated SMTP "
+"connections."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:422
+msgid "Get Support"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:423
+msgid ""
+"Get the best payment and donation plugin for your WordPress website. It's an"
+" ideal solution for businesses, fundraising, or membership programs."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:424
+msgid ""
+"Get the fastest email newsletter and CRM solution in WordPress for smart and"
+" effective email marketing. Join 60k+ users for happy emailing!"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:425
+msgid ""
+"Get this WordPress social tool to embed live social feeds, reviews, and chat"
+" widgets directly into your website to boost engagement and social proof."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:426
+msgid "Getting started with Ninja Tables"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:427
+msgid "Global Appearance"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:428
+msgid "Global Appearance Settings"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:429
+msgid "Global Javascript Error Handling"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:430
+msgid "Global Settings"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:431
+msgid "Greater Than"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:432
+msgid "Greater Than Equal"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:433
+msgid "Greater Than Or Equal To"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:434
+msgid "Handle Error But don't Log"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:435 config/table-builder/setting.php:82
+msgid "Header Background"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:436
+msgid "Header HTML Content"
+msgstr "Goiburuko HTML edukia"
+
+#: app/Modules/I18nStrings.php:437
+msgid "Header in each page"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:438
+msgid "Header Text Align"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:439
+msgid "Header Text Alignment"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:440
+msgid "Help & Documentation"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:441
+msgid "here"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:442
+msgid "Hidden On Desktop"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:443
+msgid "Hide <b>out of stocks</b> items"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:444
+msgid "Hide All Borders"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:445
+msgid "Hide column headings"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:446
+msgid "Hide empty items on responsive breakdown"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:447
+msgid "Hide Header Row"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:448
+msgid "Hide Horizontal Borders"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:449
+msgid "Hide internal borders"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:450
+msgid "Hide Labels on responsive breakdown"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:451
+msgid "Hide Pagination (Show all data at once)"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:452
+msgid "Hide Vertical Borders"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:453
+msgid "Highlight Column"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:454
+msgid "Highlighted Column Height"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:455
+msgid ""
+"Hold \"SHIFT\" and click on cells to select multiple cells for merge cells."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:456
+msgid "Hover"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:457
+msgid "Hover Background"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:458
+msgid "Hover rows"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:459
+msgid "How does the Ninja Tables Custom filter work?"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:460
+msgid "How To Create a WooCommerce Product Table with Ninja Tables?"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:461
+msgid "How to create Google Sheets integrated tables with Ninja Tables?"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:462
+msgid "How to export-import tables in Ninja Tables?"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:463
+msgid "How to make a WP Post Table?"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:464
+msgid "How would you like to create your table?"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:465
+msgid "HTML Field"
+msgstr "HTML Field"
+
+#: app/Modules/I18nStrings.php:466 config/table-builder/component.php:86
+msgid "Icon"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:467
+msgid "Icon Color"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:468
+msgid "Icon Options"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:469
+msgid "Icon Position"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:470
+msgid "Icon Size"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:471
+msgid "ID"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:472
+msgid "If Cell Value"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:473
+msgid "If you already renewed your license then please"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:474
+msgid ""
+"If You enable this then columns headings will not show into responsive "
+"drawer / Stackable View"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:475
+msgid ""
+"If you enable this then ninja tables will cache the full html of the table "
+"and render that without interact with database. You can set the time how "
+"many minutes it will cache each iteration."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:476
+msgid ""
+"If you enable this then on pagination change, the table will be scrolled to "
+"top"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:477
+msgid ""
+"If You enable this then the empty items will not show into responsive drawer"
+" / Stackable View"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:478
+msgid ""
+"If You enable this then this column data will not be filterable at the "
+"frontend."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:479
+msgid ""
+"If You enable this then this column data will not be sortable at the "
+"frontend."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:480
+msgid ""
+"If you enable this then Users can change the items per page on frontend"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:481
+msgid ""
+"If You enable this then users can click on cells to copy their content."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:482
+msgid ""
+"If You enable this, Then the search input will take all the available space "
+"(100% width)"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:483
+msgid "If you select yes, Then admin can select multiple item on create data"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:484
+msgid "If you select yes, then time picker will be available"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:485
+msgid ""
+"If you use responsive breakdown then the '+' icon will show at the last "
+"visible column"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:486
+msgid ""
+"If you want to clear all the Ninja tables cache, please click on the \"Clear"
+" Table Cache\" button or if you want to clear the cache by popular external "
+"plugins please click \"Clear External Caches\"."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:487
+msgid "Iframe Lightbox"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:488
+msgid "Iframe URL (Only The URL)"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:489
+msgid "Image Alternative Text"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:490
+msgid "Image Lightbox"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:491
+msgid "Image Link"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:492
+msgid "Image Linkable?"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:493
+msgid "Image Only"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:494
+msgid "Image Options"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:495
+msgid "Image Shape"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:496
+msgid "Image Size"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:497
+msgid "Image Upload"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:498
+msgid ""
+"Image upload with lightbox, download link is a pro feature. It will not work"
+" without Pro Version"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:501
+msgid ""
+"Import CSV data into the existing table. Please note that, your CSV data "
+"structure need to follow the sample CSV. Download the sample CSV to ensure "
+"correct data formatting."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:502
+msgid "Import CSV/JSON from URL"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:503
+msgid "Import data:"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:504
+msgid "Import failed. Please try again."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:505
+msgid "Import Format"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:506
+msgid "Import Format:"
+msgstr "Import Format:"
+
+#: app/Modules/I18nStrings.php:507
+msgid "Import From Other WP Table Plugin"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:508
+msgid "Import initialization failed."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:509
+msgid "Import Progress"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:510
+msgid ""
+"Import stopped: too many chunk requests. Please check the imported data."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:511
+msgid "Import Table"
+msgstr "Inportatu taula"
+
+#: app/Modules/I18nStrings.php:512
+msgid "Import Table from CSV / JSON File"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:513
+msgid "Import table from existing CSV or JSON file."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:514
+msgid "Import table from here"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:515
+msgid "Import/Export"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:516
+msgid "Imported successfully."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:517
+msgid "Importing the table, please wait a bit ..."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:518
+msgid "Importing..."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:519
+msgid "Incremental New Premium Features"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:520
+msgid "Initial Hidden Mobile"
+msgstr "Initial Hidden Mobile"
+
+#: app/Modules/I18nStrings.php:521
+msgid "Initial Hidden Mobile and Tab"
+msgstr "Initial Hidden Mobile and Tab"
+
+#: app/Modules/I18nStrings.php:522
+msgid "Initial Hidden Mobile, Tab and Regular Computers"
+msgstr "Initial Hidden Mobile, Tab and Regular Computers"
+
+#: app/Modules/I18nStrings.php:523
+msgid "Initial Order By"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:524
+msgid "Insert bottom row"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:525
+msgid "Insert column after"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:526
+msgid "Insert column before"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:527
+msgid "Insert left column"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:528
+msgid "Insert right column"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:529
+msgid "Insert row after"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:530
+msgid "Insert row before"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:531
+msgid "Insert top row"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:532
+msgid "Install Fluent Forms Now"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:533
+msgid "Installing WP Fluent From..."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:534
+msgid "Introduction"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:535
+msgid "Invalid License Key"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:536
+msgid "Is Editable?"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:537
+msgid "Is Required?"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:538
+msgid "Item Spacing"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:539
+msgid "Item Spacing Vertically"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:540
+msgid "items"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:541
+msgid "Items Per Page"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:542
+msgid "JSON - Exported From Ninja Tables"
+msgstr "JSON - Exported From Ninja Tables"
+
+#: app/Modules/I18nStrings.php:543
+msgid "JSON - Javascript Object Notation"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:544
+msgid "JSON/CSV - Exported From Drag & Drop Tables"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:545
+msgid "Just a Name to identify your Filter"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:546
+msgid "Keep Blank or 0 to disable caching for table data"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:547
+msgid "Keep it blank if you don't need any filter instruction."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:548
+msgid "Language Settings"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:549
+msgid "Laptop"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:550
+msgid "Large Devices (imac)"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:551
+msgid "Large File Source"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:552
+msgid "Last Column"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:553
+msgid "Last page"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:554
+msgid "Leave a Review"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:555
+msgid "Left"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:556
+msgid "Legacy"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:557
+msgid "Less Than"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:558
+msgid "Less Than Equal"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:559
+msgid "Less Than Or Equal To"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:560
+msgid "Library"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:561
+msgid "License"
+msgstr "License"
+
+#: app/Modules/I18nStrings.php:562
+msgid "License Key"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:563
+msgid "Licensing"
+msgstr "Lizentzia"
+
+#: app/Modules/I18nStrings.php:564
+msgid "Licensing has been expired"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:565
+msgid "Link"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:566
+msgid "Link rel attributes"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:567
+msgid "Link to Author Permalink"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:568
+msgid "Link to post permalink"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:569
+msgid "Link to Post/Author Permalink"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:570
+msgid "Link to Product page"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:571
+msgid "Link to Taxonomy"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:572
+msgid "Link to Taxonomy Permalink"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:573
+msgid "Link to URL"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:574
+msgid "Link With Rel Attribute"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:575 config/table-builder/component.php:116
+msgid "List"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:576
+msgid "List Icon"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:577
+msgid "List Options"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:578
+msgid "List Type"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:579
+msgid "Logged in user posts"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:580
+msgid "Make Button as rounded corner"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:581
+msgid "Make cell contents vertically centered"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:582
+msgid "Make Force download"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:583
+msgid "Make image as lightbox"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:584
+msgid "Make search input as full width"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:585
+msgid "Make tables more compact by cutting cell padding in half"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:586
+msgid "Make Taxonomies as Table Filter"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:587
+msgid "Manage cell"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:588
+msgid "Manage Cells"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:589
+msgid "Manual Data"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:590
+msgid "Manual Sort"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:591
+msgid "Margin"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:592
+msgid "Max Records:"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:593
+msgid "Max Value"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:594
+msgid ""
+"Maximize Amazon affiliate earnings on WordPress by showcasing products in "
+"stylish, responsive, and customizable tables and grids that convert.\n"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:595
+msgid "Maximum records to show in frontend, keep empty to show all."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:596
+msgid "Maximum Star"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:597
+msgid "Merge"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:598
+msgid "Meta Key"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:599
+msgid "Meta Query"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:600
+msgid "Mobile Device"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:601
+msgid "Move to Trash"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:602
+msgid "Multiple Selection"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:603
+msgid "MYSQL Connection Details"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:604
+msgid "Name"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:605
+msgid "Name is required"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:606
+msgid "Need Expert Support"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:607
+msgid "Next"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:608
+msgid "Next page"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:609
+msgid "Ninja Tables Advanced Mode"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:610
+msgid ""
+"Ninja Tables can import tables from existing data, like from a CSV or JSON "
+"file. You can also import existing tables from the other WordPress table "
+"plugins."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:611
+msgid "Ninja Tables Demo"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:612
+msgid "Ninja Tables Drag and Drop"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:613
+msgid "Ninja Tables Features"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:614
+msgid "Ninja Tables Guide"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:615
+msgid "Ninja Tables SQL Integration Documentation"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:616
+msgid "No"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:617
+msgid "No Data found based on your data source configuration"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:618
+msgid ""
+"No product metadata available for this type. Please create them in "
+"FluentCart to use here"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:619
+msgid ""
+"No product metadata available for this type. Please create them in "
+"WooCommerce to use here"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:620
+msgid "No rating"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:621
+msgid "No Review Text"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:622
+msgid "No reviews yet"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:623
+msgid "None"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:624
+msgid "Not Equal"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:625
+msgid "Note:"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:626
+msgid ""
+"Note: Excel formula is an experimental feature so all formulas may not work."
+" We are improving this feature day by day so please don't be mad if some "
+"formulas don't work properly."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:627
+msgid "Number Range"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:628
+msgid "Numeric Value"
+msgstr "Numeric Value"
+
+#: app/Modules/I18nStrings.php:629 config/table-builder/setting.php:92
+msgid "Odd Row Background"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:630
+msgid "Odd Row Colors"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:631
+msgid "of"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:632
+msgid "Open in another tab"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:633
+msgid "Open in new tab"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:634
+msgid "Open Link in new tab"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:635
+msgid "Open Link in new window"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:636
+msgid "Open link to new tab"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:637
+msgid "Open Link To New tab"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:638
+msgid "Opt-in and Continue"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:639
+msgid "Options"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:640
+msgid "Options (Optional)"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:641
+msgid "or"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:642
+msgid "OR"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:643
+msgid "Order By"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:644
+msgid "Order By Column"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:645
+msgid "Order By Type"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:646
+msgid "Ordered List"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:647
+msgid "Other"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:648
+msgid ""
+"Our EXPERTS would like to assist you for your query and any customization."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:649
+msgid "Our Products"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:650
+msgid "Own Data Only"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:651
+msgid "Padding"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:652
+msgid "Page Sizes (Number as Comma Separated)"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:653
+msgid ""
+"Pagination is enabled by default in this preview. You can set the number of "
+"rows per page or disable it by selecting 'Hide pagination'. Front-end styles"
+" may vary due to theme CSS. Custom filters and inline row styling are not "
+"supported in this view. Check the live preview or embedded page for full "
+"functionality."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:654
+msgid "Pagination Items Per Page"
+msgstr "Orrialde orri bakoitzeko orrialdea"
+
+#: app/Modules/I18nStrings.php:655
+msgid "Pagination Position"
+msgstr "Paginazio-posizioa"
+
+#: app/Modules/I18nStrings.php:656
+msgid "Parse Comma Separated Words"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:657
+msgid "Permalink Action"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:658
+msgid "Permalink Action Type"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:659
+msgid "Permanently Delete"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:660
+msgid "Permission"
+msgstr "Permission"
+
+#: app/Modules/I18nStrings.php:661
+msgid "Pick a date"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:662
+msgid "Placeholder"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:663
+msgid "Please check some FAQs people search for."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:664
+msgid ""
+"Please check the Tutorials and Documentation for the Ninja Tables Plugin!"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:665
+msgid "Please configure the table columns before importing data."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:666
+msgid "Please configure the table columns before viewing the table design."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:667
+#, php-format
+msgid "Please don't include %1$s tag"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:668
+msgid ""
+"Please give positive/negative number or you can provide jquery element "
+"object"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:669
+msgid "Please Input Transform Values (HTML and Excel Formula are supported)"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:670
+msgid "Please Input Transform Values (HTML supported)"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:671
+msgid "Please Provide The Thousand/Decimal Separator If Any."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:672
+msgid "Please provide valid URL"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:673
+msgid "Please select a CSV file from Media Library."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:674
+msgid "Please select a CSV file."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:675
+msgid "Please select action"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:676
+msgid "Please select columns to delete"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:677
+msgid "Please select tables"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:678
+msgid ""
+"Please select the settings for your table render method. Using Legacy table "
+"you can use shortcodes in your cells and it will render the full table from "
+"php side. Table styles will be same for both tables. In most cases you will "
+"need Ajax Table which is recommended settings."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:679
+msgid ""
+"Please specify how many posts/CPTs you want to show in total, Leave blank to"
+" show all"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:680
+msgid ""
+"Please specify order by column. The script will order by with the selected "
+"column"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:681
+msgid ""
+"Please specify order by type. The script will order with your selected type"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:682
+msgid ""
+"Please specify user roles to be able to edit/delete this table. Only "
+"selected user roles can edit/delete the data."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:683
+msgid ""
+"Please specify which columns should be editable from the front-end. You can "
+"also define which columns are required."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:684
+msgid ""
+"Please take a moment to review it, share your feedback, and spread the love "
+"to keep us motivated and moving forward."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:685
+msgid ""
+"Please update Ninja Tables Pro Plugin to latest version. Required Ninja "
+"Tables Version: 3.3 or later"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:686
+msgid "Please use english letters only"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:687
+msgid "Please wait while installing WP Fluent From"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:688
+#, php-format
+msgid ""
+"Please write valid SQL query. Your written SQL query will be passed to %1$s "
+"function"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:689
+msgid "Popular Searches"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:690
+msgid "positive or negative number"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:691
+msgid "Pre Defined Scheme"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:692
+msgid ""
+"Prepare your table from your existing WP Fluent Forms submissions. Click "
+"here to learn more about Fluent Forms integration"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:693
+msgid ""
+"Prepare your table from your existing WP Fluent Forms submissions. It can be"
+" used to easily showcase your form submissions. Click here to learn more "
+"about"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:694
+msgid "Preview"
+msgstr "Aurreikusi"
+
+#: app/Modules/I18nStrings.php:695
+msgid "Previous"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:696
+msgid "Previous page"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:697
+msgid "Print Screen Footer"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:698
+msgid "Print Screen Header"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:699
+msgid "Pro"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:700
+msgid "Processing..."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:701
+msgid "Progress Bar Color"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:702
+msgid "Progress Bar Type"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:703
+msgid "Progress Options"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:704
+msgid "Progress Type"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:705
+msgid "Progressbar Percentage"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:706
+msgid "Progressbar Thickness"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:707
+msgid "Progressbar Width"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:708
+msgid "Progressive Filter"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:709
+msgid "Provide Buy Now Button Text"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:710
+msgid ""
+"Provide content for table column header if you want to show html content."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:711
+msgid "Provide the column value for your corresponding value type select"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:712
+msgid ""
+"Provide the values that you want to show on the frontend.Your values should "
+"match your table cell data"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:713
+msgid "Query Limit"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:714
+msgid "Query Limit for Frontend"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:715
+msgid "Query Settings"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:716
+msgid "Radio"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:717
+msgid "Read"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:718
+msgid "Recommended settings for advanced features"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:719
+msgid "Reference Shortcode"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:720
+msgid "Remote URL..."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:721
+msgid "Remote/External SQL"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:722
+msgid "Remove"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:723
+msgid "Remove all borders from the table"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:724
+msgid "Remove cell CSS class"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:725
+msgid "Remove column"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:726
+msgid "Remove column CSS class"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:727
+msgid "Remove row"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:728
+msgid "Remove row CSS class"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:729
+msgid "Remove the selected Media file first."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:730
+msgid "Remove the selected upload file first."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:731
+msgid "Render shortcode into table cells"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:732
+msgid "Rendering Engine"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:733
+msgid ""
+"Rendering engine is locked after table creation for default data provider "
+"tables."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:734
+msgid "Rendering Settings"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:735
+msgid "Replace Existing Data"
+msgstr "Ordeztu Datu Existitzen"
+
+#: app/Modules/I18nStrings.php:736
+msgid "Replace Image"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:737
+msgid "reset"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:738
+msgid "Reset cell background color to default"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:739
+msgid "Reset cell color to default"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:740
+msgid "Reset Filter Button"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:741
+msgid "Reset row background color to default"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:742
+msgid "Reset row color to default"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:743
+msgid "Responsive Breakpoint"
+msgstr "Responsive Breakpoint"
+
+#: app/Modules/I18nStrings.php:744
+msgid "Responsiveness"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:745
+msgid "Restore"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:746
+msgid "Reviews Status"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:747
+msgid "Ribbon Height"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:748
+msgid "Ribbon Options"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:749
+msgid "Ribbon Position"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:750
+msgid "Ribbon Text"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:751
+msgid "Ribbon Type"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:752
+msgid "Ribbon Width"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:753
+msgid "Right"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:754
+msgid "Round"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:755
+msgid "Row and Cell Color Customization"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:756
+msgid "Row Content Text Align"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:757
+msgid "Row Details (Responsive drawer)"
+msgstr "Errenkaden xehetasunak (tiradera sentikorra)"
+
+#: app/Modules/I18nStrings.php:758
+msgid "Row height"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:759
+msgid "Row Options"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:760
+msgid "Sample CSV downloaded successfully"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:761
+msgid "Sample Header Structure"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:762
+msgid "Save"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:763
+msgid "Save Custom CSS"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:764
+msgid "Save Custom JS"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:765
+msgid "Save Settings"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:766
+msgid "Save Table"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:767
+msgid "Scale"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:768
+msgid "Scroll to table top for pagination change"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:770
+msgid "Search Bar Colors"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:771
+msgid "Search Bar Position"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:772
+msgid "Search Box Placeholder Text"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:773
+msgid "Search Dropdown Heading"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:774
+msgid "Search Empty Results Text"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:775
+msgid "Search Icon"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:776
+msgid "See the form in action:"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:777
+msgid "Select"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:778
+msgid "Select a Form"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:779
+msgid "Select a Format"
+msgstr "Aukeratu formatua"
+
+#: app/Modules/I18nStrings.php:780
+msgid ""
+"Select a row/column/cell to change their background properties. Hold "
+"\"SHIFT\" and click on cells to select multiple cells."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:781
+msgid "Select all"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:782
+msgid "Select All"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:783
+msgid "Select bulk action"
+msgstr "Select bulk action"
+
+#: app/Modules/I18nStrings.php:784
+msgid "Select Color"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:785
+msgid "Select Color Scheme"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:786
+msgid "Select Column"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:787
+msgid "Select Column That you want to populate data"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:788
+msgid "Select columns"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:789
+msgid "Select CSV File"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:790
+msgid "Select Data Type"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:791
+msgid "Select Data Type of this column"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:792
+msgid "Select Dropdown"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:793
+msgid "Select Entry Fields"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:794
+msgid "Select Field"
+msgstr "Hautatu eremua"
+
+#: app/Modules/I18nStrings.php:795
+msgid "Select file:"
+msgstr "Select file:"
+
+#: app/Modules/I18nStrings.php:796
+msgid "Select first day of the week"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:797
+msgid "Select Font"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:798
+msgid "Select Form Fields"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:799
+msgid "Select Format"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:800
+msgid "Select How the value will be populated to the select dropdown"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:801
+msgid "Select HTML Field if you want to add Link, media or any type of html"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:802
+msgid "Select Items"
+msgstr "Hautatu elementuak"
+
+#: app/Modules/I18nStrings.php:803
+msgid "Select Responsive Breakpoint"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:804
+msgid "Select Sorting Method"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:805
+msgid "Select the columns that you want to apply this filter"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:806
+msgid ""
+"Select the device by width in where the stackable tables will be enabled"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:807
+msgid "Select The field type you want to populate for each row"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:808
+msgid ""
+"Select the filter type that you want to show the filter in the frontend"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:809
+msgid ""
+"Select the format in which you want to export your table data. CSV format is"
+" suitable for spreadsheet applications, while JSON format preserves all "
+"table settings for importing into another Ninja Tables installation."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:810
+msgid ""
+"Select the intended format and click <strong>Import</strong> button, we will"
+" do the rest for you."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:811
+msgid "Select what type of entries you want to show from Fluent Forms."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:812
+msgid "Selected Cell Background"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:813
+msgid "Selected Cell Column Background"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:814
+msgid "Selected Cell Row Background"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:815
+msgid "Selected Color Options"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:816
+msgid ""
+"Selection feature is only available on Pro version Please upgrade to pro to "
+"unlock this feature"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:817
+msgid "Semantic UI"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:818
+msgid "Separator Style"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:819
+msgid ""
+"Server returned an unexpected HTML error response. Import may already be "
+"completed; please check the table rows."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:820
+msgid ""
+"Server returned an unexpected HTML error response. Import may already be "
+"completed; please verify imported rows."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:821
+msgid "Server Side Dom-Generation"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:822
+msgid "Set cell background color"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:823
+msgid "Set cell color"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:824
+msgid "Set cell content"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:825
+msgid "Set cell CSS class"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:826
+msgid "Set column background color"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:827
+msgid "Set column color"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:828
+msgid "Set row background color"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:829
+msgid "Set row color"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:830
+msgid "Set row CSS class"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:831
+msgid "Set the color for empty/inactive rating stars"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:832
+msgid "Set the color for filled/active rating stars"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:833
+msgid "Set the column width. This will be applied for the entire column"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:834
+msgid "Set up custom filters to find the data you want! It’s a Pro feature."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:835
+msgid "Set your action icon position"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:836
+msgid "Settings"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:837
+msgid "Shadow Color"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:838
+msgid "Shadow Effect (Blur Radius)"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:839
+msgid "Shadow Effect (X-Axis)"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:840
+msgid "Shadow Effect (Y-Axis)"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:841
+msgid "ShortCode"
+msgstr "ShortCode"
+
+#: app/Modules/I18nStrings.php:842
+msgid "Shortcode Options"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:843
+msgid "Show All the responsive columns data into the responsive drawer"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:844
+msgid "Show Bulk Action"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:845
+msgid "Show Bulk Actions"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:846
+msgid "Show Cart Details After Table"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:847
+msgid "Show Cart Details Before Table"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:848
+msgid "Show Checkout Button"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:849
+msgid "Show current user submissions only at frontend"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:850
+msgid "Show filter inputs as Columns"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:851
+msgid "Show filter inputs as inline"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:852
+msgid "Show Formulas"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:853
+msgid "Show Go to Cart Button"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:854
+msgid "Show New Items First"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:855
+msgid "Show Old Items First"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:856
+msgid "Show Page sizes change option"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:857
+msgid "Show Rating"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:858
+msgid "Show Rating Value"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:859
+msgid "Show Table Description"
+msgstr "Erakutsi taula deskribapena"
+
+#: app/Modules/I18nStrings.php:860
+msgid "Show Table Title"
+msgstr "Erakutsi taula izenburua"
+
+#: app/Modules/I18nStrings.php:861
+msgid "Show Time"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:862
+msgid "Show Your Love"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:863
+msgid "Single Line Cells"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:864
+msgid "Single Line Text Field"
+msgstr "Single Line Text Field"
+
+#: app/Modules/I18nStrings.php:865
+msgid "Skip"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:866
+msgid "Small table"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:867
+msgid "Something is wrong! Please try again"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:868
+msgid "Something went wrong, please try again."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:869
+msgid ""
+"Sorry, No corresponding columns found based on your selection and column's "
+"data type"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:870
+msgid ""
+"Sorry! You can not export the data as the table data is configured as "
+"external source"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:871
+msgid ""
+"Sorry! You can not import any data as the table data is configured as "
+"external source"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:872
+msgid "Sort Algorithm "
+msgstr ""
+
+#: app/Modules/I18nStrings.php:873
+msgid "Sort Dynamic Value as: "
+msgstr ""
+
+#: app/Modules/I18nStrings.php:874
+msgid "Sort Manually"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:875
+msgid "Sort Type"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:876
+msgid "Sortable"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:877
+msgid "Space Between Icon and Text"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:878
+msgid "Spacing"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:879
+msgid "Split"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:880
+msgid "Sponsored, Nofollow, NoReferrer & Noopener"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:881
+msgid "SQL Connection Details"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:882
+msgid "SQL Connection Type:"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:883
+msgid "SQL Error"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:884
+msgid "Square"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:885
+msgid "Stackable Table Configuration"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:886
+msgid "Stacked Appearance"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:887
+msgid "Standard"
+msgstr "Standard"
+
+#: app/Modules/I18nStrings.php:888
+msgid "Star Rating Options"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:889
+msgid "Star Size"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:890
+msgid ""
+"Start your journey to modern eCommerce and sell products "
+"(digital/physical/hybrid) much faster. It's practical, intuitive, and "
+"lightweight."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:891
+msgid ""
+"Start your own affiliate program; onboard affiliates, track visits, disburse"
+" commissions and more. Run your affiliate program successfully!"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:892
+msgid "Step 1"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:893
+msgid "Step 2"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:894
+msgid ""
+"Step into the future of WordPress project management! Organize tasks, "
+"projects, and workflows visually with drag and drop, kanban-style boards."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:895
+msgid "Sticky First Column"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:896
+msgid "Sticky Header"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:897
+msgid "Sticky Top Offset"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:898
+msgid "Striped rows"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:899
+msgid "Styles"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:900
+msgid "Styling"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:901
+msgid "Stylist List Options"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:903
+msgid "Supported Excel Formulas"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:904
+msgid "Table Body Colors"
+msgstr "Taula Gorputzaren Koloreak"
+
+#: app/Modules/I18nStrings.php:905
+msgid "Table Caption"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:906
+msgid "Table Colors"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:907
+msgid "Table Column Settings"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:908
+msgid "Table Configuration"
+msgstr "Table Configuration"
+
+#: app/Modules/I18nStrings.php:909
+msgid "Table Configuration Required"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:910
+msgid "Table created successfully."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:911
+msgid "Table data saved successfully."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:912
+msgid "Table Description"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:913
+msgid "Table Design"
+msgstr "Table Design"
+
+#: app/Modules/I18nStrings.php:914
+msgid "Table Font Setting"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:915
+msgid "Table Header Colors"
+msgstr "Taularen goiburuko koloreak"
+
+#: app/Modules/I18nStrings.php:916
+msgid "Table List"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:917
+msgid "Table margin top"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:918
+msgid "Table name field is required"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:919
+msgid "Table Query Settings and New Column"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:920
+msgid "Table Render Settings"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:921
+msgid "Table Rows"
+msgstr "Table Rows"
+
+#: app/Modules/I18nStrings.php:922
+msgid "Table Title"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:923
+msgid "Tablet Device"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:924
+msgid "Target Column"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:925
+msgid "Target Columns"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:926
+msgid "Target Devices"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:927
+msgid "Target URL"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:928
+msgid "Taxonomy Separator"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:929
+msgid "Taxonomy Separator for Multiple Items"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:930
+msgid "Templates"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:932
+msgid "Text Align"
+msgstr "Testua lerrokatu"
+
+#: app/Modules/I18nStrings.php:933
+msgid "Text Area"
+msgstr "Text Area"
+
+#: app/Modules/I18nStrings.php:934
+msgid "Text Color"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:935
+msgid "Text Font Size"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:936
+msgid "Text Icon Options"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:937
+msgid "Text Input"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:938
+msgid "Text Options"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:939
+msgid "Text to display when there are no reviews"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:940
+msgid ""
+"Thank you for installing Ninja Tables - Best Responsive Table Plugin for "
+"WordPress"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:941
+msgid "The configuration object of the table."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:942
+msgid "The first day of the week, e.g. Sunday, Monday, etc."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:943
+msgid "The Following Javascript variables are available that you can use:"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:944
+msgid ""
+"The following settings will be applied to the newly created tables. Of "
+"course, you can customize the appearance settings to each table level."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:945
+msgid ""
+"The global style will be applied if the component individual style is not "
+"applied."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:946
+msgid "The Javascript DOM object of the table"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:947
+msgid ""
+"The ultimate WordPress scheduling solution for appointments, events, "
+"webinars, meetings, sales calls etc. Start scheduling smarter today!"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:948
+msgid "Then"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:949
+msgid ""
+"This is a Premium feature. Auto-sync your published Google Sheet and display"
+" the entries on a customized table in Ninja Tables Pro."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:950
+msgid ""
+"This is a Premium feature. Construct table from remote CSV file. Whenever "
+"your remote CSV data changes it will automatically sync here."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:951
+msgid ""
+"This is a Premium feature. Create a table by generating a sql query to any "
+"custom SQL database."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:952
+msgid ""
+"This is a Premium feature. Create responsive and customizable WP posts "
+"tables from your existing posts/pages/custom post types with Ninja Tables "
+"pro."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:953
+msgid ""
+"This is a Premium feature. Displays product Reviews in a searchable, "
+"sortable with Ninja Tables."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:954
+msgid ""
+"This is a Premium feature. Displays products content in a searchable, "
+"sortable with Ninja Tables."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:955
+msgid "This is a Pro feature."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:956
+msgid ""
+"This table can not be editable on frontend. Only \"Default\" data source "
+"tables can be editable"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:957
+msgid ""
+"This table data is created from wp-posts. Use the \"Query Settings\" and "
+"\"Add New Column\" tab to customize the columns and query."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:958
+msgid "This table is being rendered with the "
+msgstr ""
+
+#: app/Modules/I18nStrings.php:959
+msgid ""
+"This will automatically expand all rows of the table when displayed on a "
+"device that hides any columns."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:960
+msgid ""
+"This will automatically expand the first row of the table when displayed on "
+"a device that hides any columns."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:961
+msgid "This will hide horizontal borders of table body rows"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:962
+msgid "This will hide vertical borders of table body rows"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:963
+msgid "This will hide Vertical borders of table body rows"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:964
+msgid "This will move the selected tables to trash. Continue?"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:965
+msgid "This will permanently delete the selected rows. Continue?"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:966
+msgid "This will permanently delete the selected tables. Continue?"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:967
+msgid "This will restore the selected tables. Continue?"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:968
+msgid ""
+"This will show on as default placeholder to reset the label ( Ex: All )"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:969
+msgid ""
+"This will show on your Table Filter. Keep it blank if you don't need any "
+"filter instruction at the frontend"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:970
+msgid "Thousand Separator"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:971
+msgid "Three Columns"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:972
+msgid "Title"
+msgstr "Izenburua"
+
+#: app/Modules/I18nStrings.php:973
+msgid "To get started please add table columns"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:974
+msgid ""
+"To import from other WordPress plugins click the respective "
+"<strong>Import</strong> button."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:975
+msgid "To learn more about this"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:976
+msgid ""
+"To optimize and load faster, we cache the table contents. It's not "
+"recommended to disable caching unless you know what you are doing."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:977
+msgid "To Placeholder"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:978
+msgid ""
+"To use this feature your WP Fluent Forms need to be updated. Please update "
+"WP Fluent From from plugins screen"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:979
+msgid "to view the upgrade guide."
+msgstr "to view the upgrade guide."
+
+#: app/Modules/I18nStrings.php:980
+msgid "Today's Date:"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:981
+msgid "Toggle Position"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:982
+msgid "Tomorrow's Date:"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:983
+msgid "Toolbar Button Settings"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:984
+msgid "Tools and Settings"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:985
+msgid "Top"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:986
+msgid "Top of the Table"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:987
+msgid "Totally hidden on all devices"
+msgstr "Totally hidden on all devices"
+
+#: app/Modules/I18nStrings.php:988
+msgid "Transform Column Value"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:989
+msgid "Transform Value"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:990
+msgid "Trash"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:991
+msgid "Trashed Tables"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:992
+msgid "Try AzonPress"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:993
+msgid "Try Fluent Forms"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:994
+msgid "Try Fluent Support"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:995
+msgid "Try FluentAffiliate"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:996
+msgid "Try FluentBoards"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:997
+msgid "Try FluentBooking"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:998
+msgid "Try FluentCart"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:999
+msgid "Try FluentCommunity"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1000
+msgid "Try FluentCRM"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1001
+msgid "Try FluentSMTP"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1002
+msgid "Try Paymattic"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1003
+msgid ""
+"Try the best contact form plugin in WordPress and create forms faster than "
+"ever! 500k+ users worldwide enjoy this plugin to build smart forms everyday."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1004
+msgid "Try WP Social Ninja"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1005
+msgid ""
+"Turn your support agents into superheroes with the best WordPress helpdesk "
+"plugin. Streamline customer support with this intuitive and powerful tool."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1006
+msgid "Two Columns"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1007
+msgid "Type"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1008
+msgid "Unapproved"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1009
+msgid "Unlock in Pro"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1010
+msgid "Unlock the NinjaTable Pro Features"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1011
+msgid "Unordered List"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1012
+msgid "Unread"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1013
+msgid "Update"
+msgstr "eguneratzearen"
+
+#: app/Modules/I18nStrings.php:1014
+msgid "Update Global Settings"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1015
+msgid "Update Settings"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1016
+msgid "Update SQL Connection"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1017
+msgid "Update SQL Query"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1018
+msgid "Update Table Info"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1019
+msgid "Upgrade Notice"
+msgstr "Berritze oharra"
+
+#: app/Modules/I18nStrings.php:1020
+msgid "URL"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1021
+msgid "US Style - decimal point (123,234.01)"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1022
+msgid "Use Advanced Customization Features"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1023
+msgid "Use Advanced Data Filtering"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1024
+msgid "Use Advanced Data Sorting"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1025
+msgid "Use Alternate Color Schema for Table Rows"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1026
+msgid "Use margin top only for horizontal ribbon positioning."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1027
+msgid "Use Select Field to add data in your table from predefined list"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1028
+msgid "Use Shortcode in your table cell"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1029
+msgid ""
+"Use simple HTML code to transform a column’s data value. Transform value is "
+"a Pro feature."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1030
+msgid "Use this file"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1031
+msgid ""
+"Use this settings if you have lots of data and don't need cell merge "
+"features. It will load your data over ajax. Please note that, shortcodes in "
+"table will not work here."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1032
+msgid "Use Unlimited Colors in Your Tables"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1033
+msgid "User Guide"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1034
+msgid "User Roles and Data Editing Permissions"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1035
+msgid "User Roles for Deleting Table Rows"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1036
+msgid "User Roles for Edit/Add Table Rows"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1037
+msgid "Users can see and edit/delete only own data"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1038
+msgid ""
+"Using this module, you can let your frontend users to add/edit/delete "
+"records based on user role. Also, you can separate the records by user "
+"submission."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1039
+msgid ""
+"Using this module, You can set cell and row level colors of your data, It's "
+"a pro feature, Please purchase pro to unlock this feature"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1040
+msgid "Value"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1041
+msgid "Value Type"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1042
+msgid "Vertically centered table cell contents"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1043
+msgid "View documentation"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1044
+msgid "View Documentation"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1045
+msgid "View documentation."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1046
+msgid "View Documentation."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1048
+msgid "Visual"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1049
+msgid "Watch Video."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1050
+msgid "Welcome to Ninja Charts"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1051
+msgid "Welcome to Ninja Tables"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1052
+msgid "What are Ninja Tables Advanced Shortcodes?"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1053
+msgid ""
+"When enabled, clicking a table row on the frontend opens its details in a "
+"pop-up view."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1054
+msgid "where"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1055
+msgid "WooCommerce Reviews"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1056
+msgid "WooCommerce Table"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1057
+msgid "WordPress media manager is not available."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1058
+msgid ""
+"WP Editor is only available on WordPress version 4.8 or later. Please "
+"Upgrade Your WordPress Core"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1059
+msgid "WP Posts"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1060
+msgid "write html"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1061
+msgid "X Offset"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1062
+msgid "Y Offset"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1063
+msgid "Yes"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1064
+msgid "Yes, Delete"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1065
+msgid "Yes, Proceed"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1066
+msgid "Yesterday's Date:"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1067
+msgid "You are using free version of ninja-tables"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1068
+msgid "You can add additional conditions/where clauses here."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1069
+msgid "You can add additional meta query here."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1070
+msgid ""
+"You can configure global settings for Ninja Tables here. This settings will "
+"apply to all the tables."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1071
+msgid "You can configure table language settings here."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1072
+msgid "You can customize the appearance in stacked view of your table"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1073
+msgid "You can download a sample CSV file to ensure correct data formatting."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1074
+msgid ""
+"You can download the table in CSV or JSON format. If you download it as "
+"JSON, you can import the table into a Ninja Tables installation."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1075
+msgid "You can enable/disable print and csv export settings here"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1076
+msgid ""
+"You can only see the data and update other settings but can't alter the "
+"original SQL."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1077
+msgid "You can set an offset value for the sticky table header."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1078
+msgid ""
+"You can set Column Background color of this particular column that will show"
+" on the frontend table."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1079
+msgid ""
+"You can set Column Text color of this particular column that will show on "
+"the frontend table."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1080
+msgid "You can set the Editing Component Labels and Appearances"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1081
+msgid ""
+"You can sort the table data from <b>Table Rows</b> Manually. Click Sort "
+"Manually checkbox to sort the data using drag and drop feature"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1082
+msgid "You can use any Excel formula into the transform value box"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1083
+msgid ""
+"You can use filter prefix to append the value of user inputed value. It will"
+" join with the value and perform the search"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1084
+msgid ""
+"You can use placeholder for dynamic dates to style your row/cell/column"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1085
+msgid ""
+"You can use the following Reference Shortcode Values to transform your cell "
+"value"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1086
+msgid "You haven't added any conditions for the column yet!"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1087
+#, php-format
+msgid "You may %1$scheck the documentation here.%2$s"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1088
+msgid "You may add"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1089
+#, php-format
+msgid ""
+"You may add %1$s as your css selector prefix to target this specific table."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1090
+msgid "You may update the FluentCart query settings here."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1091
+msgid "You may update the query settings here."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1092
+#, php-format
+msgid "You may use %1$s to target this specific table."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1093
+#, php-format
+msgid ""
+"You need to activate your Ninja Tables Pro by providing the license key "
+"below. If you don't have a license key please %1$sClick Here%2$s to get a "
+"license key from your purchase. Any questions or problems with your license?"
+" %3$sContact us!%4$s"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1094
+msgid ""
+"Your additional JS code will run after the table initialized. Please provide"
+" valid javascript code. Invalid JS code may break the table UI."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1095
+msgid "Your CSV file should follow this column structure."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1096
+msgid "Your current tables"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1097
 msgid "Your License is Active"
 msgstr "Lizentzia aktiboa da"
 
-#: includes/I18nStrings.php:32
+#: app/Modules/I18nStrings.php:1098
 msgid "Your license is active! Enjoy Ninja Tables Pro Add On"
 msgstr "Zure lizentzia aktiboa da! Gozatu Ninja Tables Pro Add On"
 
-#: includes/I18nStrings.php:53
+#: app/Modules/I18nStrings.php:1099
 msgid ""
 "Your Ninja Tables Pro plugin is outdated. Please upgrade to its latest "
 "version."
 msgstr ""
 "Zure Ninja Tables Pro plugina zaharkituta dago. Eguneratu azken bertsiora."
+
+#: app/Modules/I18nStrings.php:1100
+msgid ""
+"Your Selected user roles only see their own data and manage those data. "
+"Other user roles can not see any data. If you want to show all the data "
+"without editing tools to all users, you can use the following shortcode:"
+msgstr ""
+
+#: app/Modules/Lead/LeadFlow.php:68
+msgid "Thank you"
+msgstr ""
+
+#: app/Services/TranslationService.php:14
+msgid "No matches for \"{0}\""
+msgstr ""
+
+#: app/Services/TranslationService.php:15
+msgid "Clear All"
+msgstr "Garbitu guztiak"
+
+#: app/Services/TranslationService.php:16
+msgid "Selected"
+msgstr "hautatua"
+
+#: app/Services/TranslationService.php:18
+msgid "Previous Month"
+msgstr ""
+
+#: app/Services/TranslationService.php:19
+msgid "Next Month"
+msgstr ""
+
+#: app/Services/TranslationService.php:21
+msgid "January"
+msgstr ""
+
+#: app/Services/TranslationService.php:22
+msgid "February"
+msgstr ""
+
+#: app/Services/TranslationService.php:23
+msgid "March"
+msgstr ""
+
+#: app/Services/TranslationService.php:24
+msgid "April"
+msgstr ""
+
+#: app/Services/TranslationService.php:25
+msgid "May"
+msgstr ""
+
+#: app/Services/TranslationService.php:26
+msgid "June"
+msgstr ""
+
+#: app/Services/TranslationService.php:27
+msgid "July"
+msgstr ""
+
+#: app/Services/TranslationService.php:28
+msgid "August"
+msgstr ""
+
+#: app/Services/TranslationService.php:29
+msgid "September"
+msgstr ""
+
+#: app/Services/TranslationService.php:30
+msgid "October"
+msgstr ""
+
+#: app/Services/TranslationService.php:31
+msgid "November"
+msgstr ""
+
+#: app/Services/TranslationService.php:32
+msgid "December"
+msgstr ""
+
+#: app/Services/TranslationService.php:35
+msgid "Sunday"
+msgstr ""
+
+#: app/Services/TranslationService.php:36
+msgid "Monday"
+msgstr ""
+
+#: app/Services/TranslationService.php:37
+msgid "Tuesday"
+msgstr ""
+
+#: app/Services/TranslationService.php:38
+msgid "Wednesday"
+msgstr ""
+
+#: app/Services/TranslationService.php:39
+msgid "Thursday"
+msgstr ""
+
+#: app/Services/TranslationService.php:40
+msgid "Friday"
+msgstr ""
+
+#: app/Services/TranslationService.php:41
+msgid "Saturday"
+msgstr ""
+
+#: app/Services/TranslationService.php:44
+msgid "Sun"
+msgstr ""
+
+#: app/Services/TranslationService.php:45
+msgid "Mon"
+msgstr ""
+
+#: app/Services/TranslationService.php:46
+msgid "Tue"
+msgstr ""
+
+#: app/Services/TranslationService.php:47
+msgid "Wed"
+msgstr ""
+
+#: app/Services/TranslationService.php:48
+msgid "Thu"
+msgstr ""
+
+#: app/Services/TranslationService.php:49
+msgid "Fri"
+msgstr ""
+
+#: app/Services/TranslationService.php:50
+msgid "Sat"
+msgstr ""
+
+#: app/Services/TranslationService.php:52
+msgid "12 AM"
+msgstr ""
+
+#: app/Services/TranslationService.php:53
+msgid "12 PM"
+msgstr ""
+
+#: app/Traits/ImportTrait.php:64 app/Traits/ImportTrait.php:87
+msgid "Please upload valid CSV or JSON"
+msgstr ""
+
+#: app/Traits/ImportTrait.php:114
+msgid "Something is wrong when parsing the csv"
+msgstr "Zerbait gaizki dago CSV parekatzean"
+
+#: app/Views/admin/preview/default-table.php:10
+#: app/Views/admin/preview/drag-and-drop.php:10
+msgid "Preview Table"
+msgstr ""
+
+#: boot/app.php:34
+msgid ""
+"Ninja Tables Pro plugin is not compatible with the current version of Ninja "
+"Tables. Please update Ninja Tables Pro to the latest version."
+msgstr ""
+
+#: boot/ninja-tables-global-function.php:438
+msgid "Auto Draft"
+msgstr ""
+
+#: boot/ninja-tables-global-function.php:1059
+msgid "Nonce verification failed, please try again."
+msgstr ""
+
+#: config/table-builder/component.php:47
+msgid "Button"
+msgstr ""
+
+#: config/table-builder/component.php:100
+msgid "Rating"
+msgstr ""
+
+#: config/table-builder/component.php:135
+msgid "HTML"
+msgstr ""
+
+#: config/table-builder/component.php:151
+msgid "Shortcode"
+msgstr ""
+
+#: config/table-builder/component.php:168
+msgid "Image"
+msgstr ""
+
+#: config/table-builder/component.php:188
+msgid "Advanced"
+msgstr ""
+
+#: config/table-builder/component.php:192
+msgid "Styled List"
+msgstr ""
+
+#: config/table-builder/component.php:213
+msgid "Ribbon"
+msgstr ""
+
+#: config/table-builder/component.php:244
+msgid "Progress"
+msgstr ""
+
+#: config/table-builder/component.php:263
+msgid "Text Icon"
+msgstr ""
+
+#: config/table-builder/responsive.php:14
+msgid "Enable Responsive Table"
+msgstr ""
+
+#: config/table-builder/responsive.php:21
+msgid "Mode Options"
+msgstr ""
+
+#: config/table-builder/responsive.php:30
+#: config/table-builder/responsive.php:77
+msgid "Disable Breakpoint"
+msgstr ""
+
+#: config/table-builder/responsive.php:36
+#: config/table-builder/responsive.php:83
+msgid "Cell Stack Direction"
+msgstr ""
+
+#: config/table-builder/responsive.php:51
+#: config/table-builder/responsive.php:98
+#: config/table-builder/responsive.php:124
+msgid "Top Row As Header"
+msgstr ""
+
+#: config/table-builder/responsive.php:57
+#: config/table-builder/responsive.php:104
+msgid "Items Per Header"
+msgstr ""
+
+#: config/table-builder/responsive.php:65
+#: config/table-builder/responsive.php:112
+msgid "Group Separator"
+msgstr ""
+
+#: config/table-builder/responsive.php:131
+msgid "Static Top Row"
+msgstr ""
+
+#: config/table-builder/responsive.php:142
+msgid "Responsive Settings"
+msgstr ""
+
+#: config/table-builder/responsive.php:151
+#: config/table-builder/responsive.php:167 config/table-builder/setting.php:14
+msgid "Cell Padding"
+msgstr ""
+
+#: config/table-builder/responsive.php:158
+#: config/table-builder/responsive.php:174 config/table-builder/setting.php:21
+msgid "Table Alignment"
+msgstr ""
+
+#: config/table-builder/setting.php:26
+msgid "Separate Columns/Rows"
+msgstr ""
+
+#: config/table-builder/setting.php:31
+msgid "Space Between Columns"
+msgstr ""
+
+#: config/table-builder/setting.php:38
+msgid "Space Between Rows"
+msgstr ""
+
+#: config/table-builder/setting.php:47 config/table-builder/setting.php:52
+msgid "Table Container Max Width"
+msgstr ""
+
+#: config/table-builder/setting.php:61
+msgid "Table Cell Min Auto Width"
+msgstr ""
+
+#: config/table-builder/setting.php:68
+msgid "Table Container Max Height"
+msgstr ""
+
+#: config/table-builder/setting.php:111
+msgid "Sticky"
+msgstr ""
+
+#: config/table-builder/setting.php:116
+msgid "First Row Sticky"
+msgstr ""
+
+#: config/table-builder/setting.php:121
+msgid "First Column Sticky"
+msgstr ""
+
+#: config/table-builder/setting.php:128
+msgid "Accessibility"
+msgstr ""
+
+#: config/table-builder/setting.php:133
+msgid "Table Role"
+msgstr ""
+
+#: config/table-builder/setting.php:163
+msgid "Table Border"
+msgstr ""
+
+#: config/table-builder/setting.php:170
+msgid "Border Color"
+msgstr ""
+
+#: config/table-builder/setting.php:175
+msgid "Apply Inner Border"
+msgstr ""
+
+#: config/table-builder/setting.php:180
+msgid "Header Inner Border"
+msgstr ""
+
+#: config/table-builder/setting.php:185
+msgid "Inner Border Color"
+msgstr ""
+
+#: config/table-builder/setting.php:190
+msgid "Inner Border Size"
+msgstr ""
+
+#: config/table-builder/setting.php:211
+msgid "Global Style"
+msgstr ""
+
+#: config/table-builder/setting.php:216
+msgid "Margin Top"
+msgstr ""
+
+#: config/table-builder/setting.php:223
+msgid "Margin Bottom"
+msgstr ""
+
+#: config/table-builder/templates.php:9
+msgid "Pricing Tables"
+msgstr ""
+
+#: config/table-builder/templates.php:13
+msgid "Pricing Table One"
+msgstr ""
+
+#: config/table-builder/templates.php:19
+msgid "Pricing Table Two"
+msgstr ""
+
+#: config/table-builder/templates.php:25
+msgid "Pricing Table Three"
+msgstr ""
+
+#: config/table-builder/templates.php:31
+msgid "Pricing Table Four"
+msgstr ""
+
+#: config/table-builder/templates.php:39
+msgid "Comparison Tables"
+msgstr ""
+
+#: config/table-builder/templates.php:43
+msgid "Comparison Table One"
+msgstr ""
+
+#: config/table-builder/templates.php:49
+msgid "Comparison Table Two"
+msgstr ""
+
+#: config/table-builder/templates.php:55
+msgid "Comparison Table Three"
+msgstr ""
+
+#: config/table-builder/templates.php:61
+msgid "Comparison Table Four"
+msgstr ""
+
+#: config/table-builder/templates.php:67
+msgid "Comparison Table Five"
+msgstr ""
+
+#: config/table-builder/templates.php:76
+msgid "Employee Tables"
+msgstr ""
+
+#: config/table-builder/templates.php:80
+msgid "Employee Table One"
+msgstr ""
+
+#: config/table-builder/templates.php:86
+msgid "Employee Table Two"
+msgstr ""
+
+#: config/table-builder/templates.php:92
+msgid "Employee Table Three"
+msgstr ""
+
+#: config/table-builder/templates.php:101
+msgid "Schedule Tables"
+msgstr ""
+
+#: config/table-builder/templates.php:105
+msgid "Schedule Table One"
+msgstr ""
+
+#: config/table-builder/templates.php:111
+msgid "Schedule Table Two"
+msgstr ""
+
+#: config/table-builder/templates.php:117
+msgid "Schedule Table Three"
+msgstr ""
+
+#: database/Migrations/NinjaTablesSupsysticTableMigration.php:32
+msgid "No Table Found with the selected table"
+msgstr "Taula Ez da hautatutako taula batekin aurkitu"
+
+#~ msgid " successfully."
+#~ msgstr "Arrakastaz."
+
+#~ msgid "<span style=\"color:#f39c12;\">Get Pro</span>"
+#~ msgstr "<span style=\"color:#f39c12;\">Get Pro</span>"
+
+#~ msgid "Activate Ninja Tables Pro"
+#~ msgstr "Aktibatu Ninja Tables Pro"
+
+#~ msgid "Activate Ninja Tables Pro Add-on plugin to unlock this feature"
+#~ msgstr "Aktibatu Ninja Tables Pro Add-on plugina funtzio hau desblokeatzeko"
+
+#~ msgid "Additional CSS"
+#~ msgstr "CSS osagarria"
+
+#~ msgid "Check all"
+#~ msgstr "Begiratu guztiak"
+
+#~ msgid "CSV File is not valid"
+#~ msgstr "CSV fitxategia ez da baliozkoa"
+
+#~ msgid "CSV Header Structure"
+#~ msgstr "CSV goiburuaren egitura"
+
+#~ msgid ""
+#~ "For any type of query which was not covered in our documentation, Please "
+#~ "submit a support ticket ticket"
+#~ msgstr ""
+#~ "Gure dokumentazioan estalita ez dagoen edozein kontsulta egiteko, bidali "
+#~ "laguntza txartelaren txartela"
+
+#~ msgid "Home"
+#~ msgstr "Home"
+
+#~ msgid "Import - Export"
+#~ msgstr "Import - Export"
+
+#~ msgid "Import from CSV"
+#~ msgstr "Inportatu CSV-tik"
+
+#~ msgid "Import Table Data"
+#~ msgstr "Inportatu taula-datuak"
+
+#~ msgid "JSON - JavaScript Object Notation"
+#~ msgstr "JSON - JavaScript Object Notation"
+
+#~ msgid "Max Width"
+#~ msgstr "Max zabalera"
+
+#~ msgid "Maximum Width"
+#~ msgstr "Gehienezko zabalera"
+
+#~ msgid ""
+#~ "NinjaTables can import tables from existing data, like from a CSV or JSON "
+#~ "file. You can also import existing tables from the other WordPress table "
+#~ "plugins."
+#~ msgstr ""
+#~ "NinjaTables can import tables from existing data, like from a CSV or JSON "
+#~ "file. You can also import existing tables from the other WordPress table "
+#~ "plugins."
+
+#~ msgid "No Ultimate Table Found with the selected table"
+#~ msgstr "No Ultimate Table Found with the selected table"
+
+#~ msgid "Successfully deleted the table."
+#~ msgstr "Taula ondo ezabatu da."
+
+#~ msgid "Successfully duplicated table."
+#~ msgstr "Mahai bikoiztua behar bezala kopiatu da."
+
+#~ msgid "The name field is required."
+#~ msgstr "Izenaren eremua derigorrezkoa da"
+
+#~ msgid "Tools"
+#~ msgstr "Erremintak"
+
+#~ msgid "Update Configuration"
+#~ msgstr "Eguneratu konfigurazioa"
+
+#~ msgid "You have a faulty JSON file. Please export a new one."
+#~ msgstr "Zure JSON fitxategiak akatsak ditu. Mesedez, exportatu beste bat."

@@ -577,8 +577,8 @@ class Collection extends BaseCollection
     /**
      * Count the number of items in the collection by a field or using a callback.
      *
-     * @param  (callable(TModel, TKey): array-key)|string|null  $countBy
-     * @return \NinjaTables\Framework\Support\Collection<array-key, int>
+     * @param  (callable(mixed, mixed): array-key)|string|null  $countBy
+     * @return \NinjaTables\Framework\Support\Collection
      */
     public function countBy($countBy = null)
     {
@@ -605,7 +605,7 @@ class Collection extends BaseCollection
      * Get the comparison function to detect duplicates.
      *
      * @param  bool  $strict
-     * @return callable(TModel, TModel): bool
+     * @return callable(mixed, mixed): bool
      */
     protected function duplicateComparator($strict)
     {
@@ -646,7 +646,7 @@ class Collection extends BaseCollection
     /**
      * Get a flattened array of the items in the collection.
      *
-     * @param  int  $depth
+     * @param  int|float  $depth
      * @return \NinjaTables\Framework\Support\Collection
      */
     public function flatten($depth = INF)

@@ -543,10 +543,14 @@ class ImportController extends Controller
 
         $tableId = $this->createTable($tableAttributes);
 
-        update_post_meta($tableId, '_ninja_table_columns', $content['columns']);
+        update_post_meta($tableId, '_ninja_table_columns', ninja_tables_sanitize_array($content['columns']));
 
         $metas = $content['metas'];
         foreach ($metas as $meta_key => $meta_value) {
+            if ($meta_key === '_ninja_table_columns') {
+                // already stored above with sanitization; don't overwrite with the raw copy
+                continue;
+            }
             update_post_meta($tableId, $meta_key, $meta_value);
         }
 
@@ -639,7 +643,7 @@ class ImportController extends Controller
         if (is_wp_error($tableId)) {
             return $this->sendError([
                 'data' => [
-                    'message' => 'Something Went Wrong When Migrating'
+                    'message' => __('Something Went Wrong When Migrating', 'ninja-tables')
                 ]
             ], 423);
         }

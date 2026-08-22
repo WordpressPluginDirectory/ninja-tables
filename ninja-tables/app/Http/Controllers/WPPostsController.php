@@ -78,7 +78,7 @@ class WPPostsController extends Controller
                 global $wpdb;
 
                 $placeholders = implode(',', array_fill(0, count($postTypes), '%s'));
-                $query = $wpdb->prepare("SELECT {$wpdb->prefix}users.ID, {$wpdb->prefix}users.display_name FROM {$wpdb->prefix}posts INNER JOIN {$wpdb->prefix}users ON {$wpdb->prefix}users.ID = {$wpdb->prefix}posts.post_author WHERE {$wpdb->prefix}posts.post_type IN ($placeholders) GROUP BY {$wpdb->prefix}posts.post_author", ...$postTypes); // phpcs:ignore WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+                $query = $wpdb->prepare("SELECT {$wpdb->prefix}users.ID, {$wpdb->prefix}users.display_name FROM {$wpdb->prefix}posts INNER JOIN {$wpdb->prefix}users ON {$wpdb->prefix}users.ID = {$wpdb->prefix}posts.post_author WHERE {$wpdb->prefix}posts.post_type IN ($placeholders) GROUP BY {$wpdb->prefix}users.ID, {$wpdb->prefix}users.display_name", ...$postTypes); // phpcs:ignore WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
                 $authors = $wpdb->get_results($query); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.NotPrepared
             }
         }

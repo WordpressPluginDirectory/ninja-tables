@@ -343,30 +343,37 @@ trait HasAttributes
         $attributes = [];
 
         foreach ($this->getArrayableRelations() as $key => $value) {
-            // If the values implements the Arrayable interface we can just call this
-            // toArray method on the instances which will convert both models and
-            // collections to their proper array form and we'll set the values.
+            
+            $relation = null;
+
+            // If the values implements the Arrayable interface we can just call
+            // this toArray method on the instances which will convert
+            // both models and collections to their proper array
+            // form and we'll set the values.
             if ($value instanceof ArrayableInterface) {
                 $relation = $value->toArray();
             }
 
-            // If the value is null, we'll still go ahead and set it in this list of
-            // attributes since null is used to represent empty relationships if
-            // if it a has one or belongs to type relationships on the models.
+            // If the value is null, we'll still go ahead and set it in this
+            // list of attributes since null is used to represent empty
+            // relationships if if it a has one or belongs to type
+            // relationships on the models.
             elseif (is_null($value)) {
                 $relation = $value;
             }
 
-            // If the relationships snake-casing is enabled, we will snake case this
-            // key so that the relation attribute is snake cased in this returned
-            // array to the developers, making this consistent with attributes.
+            // If the relationships snake-casing is enabled, we will snake case
+            // this key so that the relation attribute is snake cased
+            // in this returned array to the developers, making
+            // this consistent with attributes.
             if (static::$snakeAttributes) {
                 $key = Str::snake($key);
             }
 
-            // If the relation value has been set, we will set it on this attributes
-            // list for returning. If it was not arrayable or null, we'll not set
-            // the value on the array because it is some type of invalid value.
+            // If the relation value has been set, we will set it on this
+            // attributes list for returning. If it was not arrayable
+            // or null, we'll not set the value on the array
+            // because it is some type of invalid value.
             if (isset($relation) || is_null($value)) {
                 $attributes[$key] = $relation;
             }
@@ -1144,7 +1151,7 @@ trait HasAttributes
     {
         $enumClass = $this->getCasts()[$key];
 
-        if (! isset($value)) {
+        if (is_null($value)) {
             $this->attributes[$key] = null;
         } elseif ($value instanceof $enumClass) {
             $this->attributes[$key] = $value->value;
@@ -1550,19 +1557,19 @@ trait HasAttributes
      */
     protected function isEnumCastable($key)
     {
-        if (! array_key_exists($key, $this->getCasts())) {
+        $casts = $this->getCasts();
+
+        if (! array_key_exists($key, $casts)) {
             return false;
         }
 
-        $castType = $this->getCasts()[$key];
+        $castType = $casts[$key];
 
-        if (in_array($castType, static::$primitiveCastTypes)) {
+        if (in_array($castType, static::$primitiveCastTypes, true)) {
             return false;
         }
 
-        if (function_exists('enum_exists') && enum_exists($castType)) {
-            return true;
-        }
+        return function_exists('enum_exists') && enum_exists($castType);
     }
 
     /**
@@ -2151,6 +2158,9 @@ trait HasAttributes
             }
 
             return false;
-        })->map->name->values()->all();
+        })
+        ->map(fn($method) => $method->name)
+        ->values()
+        ->all();
     }
 }

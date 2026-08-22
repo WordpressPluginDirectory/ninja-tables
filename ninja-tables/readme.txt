@@ -3,8 +3,8 @@ Contributors: wpmanageninja, techjewel, adreastrian, heera
 Tags: Table, table builder, datatable, tables, spreadsheet
 Requires at least: 6.0
 Requires PHP: 7.4
-Tested up to: 7.0
-Stable tag: 5.2.9
+Tested up to: 7.1
+Stable tag: 5.2.15
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -414,6 +414,57 @@ Ninja Tables [customer support](https://wpmanageninja.com/support-tickets/#/) te
 
 == Changelog ==
 We released several updates for Ninja Tables in the years of development. These include improvements to the existing features and some wonderful additions to help you design tables more effectively.
+
+= 5.2.15 (Date: August 21, 2026) =
+* Fixed: File upload issues with Media Library and plugin uploads.
+* Fixed: AJAX tables not rendering correctly in Elementor editor preview.
+* Fixed: DataTables frontend editing: added data permission for public users.
+* Fixed: HTML column labels not displaying correctly in Stackable table view.
+* Fixed: Filter dropdown options not updating immediately after table data changes.
+* Added: Support for post slugs in button links.
+* Added: Support for advanced shortcode attributes in DataTables.
+* Added: Confirmation notice when updating Fluent Forms tables.
+* Improved: WordPress 7.1 Compatibility
+* Improved: Admin interface translation coverage.
+* Improved: Fluent Forms integration by preventing duplicate submissions.
+* Improved: Fluent Forms table loading states for Save and Update actions.
+* Improved: Search placeholder translation support in multi-select dropdown filters.
+* Improved: Accessibility across rendered tables to meet WCAG 2.1 AA standards.
+* Improved: Default filtering and search behavior in DataTables.
+* Improved: Custom filters now work consistently in both Classic and DataTables views.
+
+= 5.2.13 (Date: August 03, 2026) =
+ * Added safeguards for outdated Ninja Tables Pro installations.
+
+= 5.2.12 (Date: July 22, 2026) =
+ * Fixed: European decimal format in custom filter.
+ * Fixed: Data create/update dates now save correctly.
+ * Fixed: Frontend date/time picker.
+ * Fixed: Gutenberg block colour preview.
+ * Improved: Large table data exports smoothly to CSV/JSON.
+ * Improved: Updated shortcode limit filter behavior.
+ * Improved: Instant search typing on mobile/touch keyboards.
+ * Compatibility: PHP 8.4 deprecation notices.
+
+= 5.2.11 (Date: July 16, 2026) =
+ * Security: Fixes table data handling issue on the frontend.
+
+= 5.2.10 (Date: July 09, 2026) =
+ * Added: dynamic-select support for custom filters in DataTables mode.
+ * Added: accessibility labels for custom filter controls.
+ * Added: Rendering engine (DataTables/FooTable) indicator in the table list and settings.
+ * Fixed: DataTables custom filters rendering in reverse order.
+ * Fixed: DataTables Progressive filter not refreshing dynamic-data selects.
+ * Fixed: custom filter labels showing placeholder text in DataTables mode.
+ * Fixed: SumoSelect crash for custom filters in DataTables mode.
+ * Fixed: multi-select and HTML column value issues in Inline Edit and the Add Data modal.
+ * Fixed: button text and WooCommerce HTML-field columns rendering as escaped text.
+ * Fixed: range filter not working when Pro is loaded before FooTable.
+ * Security: Added direct file access protection to installer service files.
+ * Security: Hardened against DOM/Stored XSS and direct file access.
+ * Improved: Design Studio Styles panel spacing and rendering-settings UI.
+ * Improved: Sticky header support and keyboard accessibility for DataTables and FooTable engines.
+ * Improved: admin UI alignment and border issues.
 
 = 5.2.9 (Date: May 25, 2026) =
   * Fixed: Row query scoping by table_id in manual sort operations

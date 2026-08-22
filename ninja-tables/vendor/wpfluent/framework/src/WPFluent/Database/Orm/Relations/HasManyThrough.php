@@ -12,7 +12,7 @@ class HasManyThrough extends HasOneOrManyThrough
     /**
      * Convert the relationship to a "has one through" relationship.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOneThrough<TRelatedModel, TIntermediateModel, TDeclaringModel>
+     * @return \NinjaTables\Framework\Database\Orm\Relations\HasOneThrough
      */
     public function one()
     {

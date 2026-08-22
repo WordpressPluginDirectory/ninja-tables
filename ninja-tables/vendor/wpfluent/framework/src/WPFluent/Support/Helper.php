@@ -188,16 +188,15 @@ class Helper
     }
 
     /**
-     * Dispatch an event and call the listeners.
+     * Dispatch an event and call its listeners.
      *
-     * @param  string|object  $event
-     * @param  mixed  $payload
-     * @param  bool  $halt
-     * @return array|null
+     * @param string|object $event Event name or object
+     * @param mixed ...$payload Optional arguments passed to listeners
+     * @return mixed Result of the event dispatch
      */
-    public static function event(...$args)
+    public static function event($event, ...$payload)
     {
-        return App::make('events')->dispatch(...$args);
+        return App::make('events')->dispatch($event, ...$payload);
     }
 
     /**
@@ -284,7 +283,7 @@ class Helper
     /**
      * Gets the size of a directory.
      *
-     * @param string $directory Full path of a directory. 
+     * @param string $dirPath Full path of a directory. 
      * @return int|false|null Size in bytes or false. Null if timeout.
      */
     public static function getSizeOf($dirPath)

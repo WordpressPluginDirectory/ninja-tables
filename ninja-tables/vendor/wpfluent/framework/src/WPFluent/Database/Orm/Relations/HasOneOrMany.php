@@ -10,6 +10,9 @@ use NinjaTables\Framework\Database\UniqueConstraintViolationException;
 use NinjaTables\Framework\Database\Orm\Relations\Concerns\InteractsWithDictionary;
 use NinjaTables\Framework\Database\Orm\Relations\Concerns\SupportsInverseRelations;
 
+/**
+ * @template TRelatedModel of Model
+ */
 abstract class HasOneOrMany extends Relation
 {
     use InteractsWithDictionary, SupportsInverseRelations;

@@ -12,7 +12,7 @@ trait InteractsWithDictionary
      * @param  mixed  $attribute
      * @return mixed
      *
-     * @throws NinjaTables\Framework\Support\InvalidArgumentException // @need_fix: Need Proper Namespace
+     * @throws \NinjaTables\Framework\Support\InvalidArgumentException
      */
     protected function getDictionaryKey($attribute)
     {

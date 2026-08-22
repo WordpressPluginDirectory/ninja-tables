@@ -172,7 +172,7 @@ class ValidationRuleParser
      * @param array $results
      * @param string|array $attribute
      * @param string|array $rules
-     * @param string|null $ $originalRuleKey
+     * @param string|null  $originalRuleKey
      *
      * @return array
      */
@@ -197,7 +197,7 @@ class ValidationRuleParser
      * @param array $results
      * @param string $attribute
      * @param string|array $rules
-     * @param string|null $ $originalRuleKey
+     * @param string|null  $originalRuleKey
      *
      * @return array
      */
@@ -238,7 +238,7 @@ class ValidationRuleParser
         if (strpos($rule, ':') !== false) {
             list($rule, $parameter) = explode(':', $rule, 2);
 
-            $parameters = str_getcsv($parameter);
+            $parameters = str_getcsv($parameter, ',', '"', '\\');
         }
 
         return [trim($rule), $parameters];

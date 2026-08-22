@@ -57,30 +57,30 @@ class NoticeHandler
     public function handleDismissNotice()
     {
         if (!check_ajax_referer('ninja_tables_admin_notice_nonce', '_wpnonce', false)) {
-            $this->sendJsonError('Security check failed.', 403);
+            $this->sendJsonError(__('Security check failed.', 'ninja-tables'), 403);
         }
 
         $key  = sanitize_text_field(Arr::get($_POST, 'notice_key', ''));
         $type = sanitize_text_field(Arr::get($_POST, 'notice_type', ''));
 
         if (empty($key) || empty($type)) {
-            $this->sendJsonError('Invalid notice key or type.', 400);
+            $this->sendJsonError(__('Invalid notice key or type.', 'ninja-tables'), 400);
         }
 
         if (!in_array($type, self::VALID_NOTICE_TYPES, true)) {
-            $this->sendJsonError('Invalid notice type.', 400);
+            $this->sendJsonError(__('Invalid notice type.', 'ninja-tables'), 400);
         }
 
         $notices       = get_option($this->noticeKey, []);
         $notices[$key] = ['type' => $type, 'dismissed_at' => current_time('mysql')];
 
         if (!update_option($this->noticeKey, $notices, false)) {
-            $this->sendJsonError('Failed to save dismissal.', 500);
+            $this->sendJsonError(__('Failed to save dismissal.', 'ninja-tables'), 500);
         }
 
         wp_send_json_success([
             'success' => true,
-            'message' => 'Notice dismissed successfully.',
+            'message' => __('Notice dismissed successfully.', 'ninja-tables'),
             'key'     => $key,
             'type'    => $type,
         ]);
@@ -235,7 +235,8 @@ class NoticeHandler
 
         if ($showRateButton) {
             $reviewUrl  = esc_url('https://wordpress.org/support/plugin/ninja-tables/reviews/');
-            $rateButton = "<a class='nt-btn nt-btn-primary' target='_blank' href='{$reviewUrl}' rel='noopener'>Rate Now</a><div class='nt-divider'></div>";
+            $rateNow    = __('Rate Now', 'ninja-tables');
+            $rateButton = "<a class='nt-btn nt-btn-primary' target='_blank' href='{$reviewUrl}' rel='noopener'>{$rateNow}</a><div class='nt-divider'></div>";
         }
 
         return '<div class="nt_review_notice" data-notice-key="' . $key . '">
@@ -243,7 +244,7 @@ class NoticeHandler
         <div class="nt-notice-text">' . $message . '</div>
         <div class="nt-notice-actions">
             ' . $rateButton . '
-            <a class="nt-btn nt-btn-secondary remind-me-later" href="#" data-notice-type="temp">Remind Me Later</a>
+            <a class="nt-btn nt-btn-secondary remind-me-later" href="#" data-notice-type="temp">' . esc_html__('Remind Me Later', 'ninja-tables') . '</a>
         </div>
     </div>
 </div>';
@@ -252,7 +253,13 @@ class NoticeHandler
     private function getUpgradeNoticeHtml($key)
     {
         $url     = esc_url(admin_url('plugins.php?s=ninja-tables-pro&plugin_status=all'));
-        $message = "<h3>Update Ninja Tables Pro Plugin</h3><p>You are using an outdated version. Some features may not work properly. <a href='{$url}' target='_blank' class='nt-link' rel='noopener'>Please update to the latest version</a></p>";
+        $message = '<h3>' . esc_html__('Update Ninja Tables Pro Plugin', 'ninja-tables') . '</h3><p>'
+            . sprintf(
+                /* translators: %1$s: opening link tag, %2$s: closing link tag */
+                __('You are using an outdated version. Some features may not work properly. %1$sPlease update to the latest version%2$s', 'ninja-tables'),
+                "<a href='{$url}' target='_blank' class='nt-link' rel='noopener'>",
+                '</a>'
+            ) . '</p>';
 
         return $this->renderNoticeTemplate($key, $message);
     }
@@ -271,15 +278,36 @@ class NoticeHandler
 
     private function getReviewMessages()
     {
+        // Link markup is passed in rather than embedded, so a translation cannot break a URL.
+        $docsLink     = "<a class='nt-link' href='https://ninjatables.com/docs/' target='_blank'>";
+        $videosLink   = "<a class='nt-link' href='https://youtube.com/playlist?list=PLXpD0vT4thWGhHDY0X7UpN9JoR0vu2O_C&si=XMx60a-0AGu7KxZB' target='_blank'>";
+        $advancedLink = "<a class='nt-link' href='https://ninjatables.com/docs-category/advanced-mode/' target='_blank'>";
+        $simpleLink   = "<a class='nt-link' href='https://ninjatables.com/docs-category/simple-mode/' target='_blank'>";
+
         return [
-            'no_tables' => "Having trouble creating your first table? Check out Ninja Tables <a class='nt-link' href='https://ninjatables.com/docs/' target='_blank'>documentation</a> or watch <a class='nt-link' href='https://youtube.com/playlist?list=PLXpD0vT4thWGhHDY0X7UpN9JoR0vu2O_C&si=XMx60a-0AGu7KxZB' target='_blank'>tutorial videos</a> to get you started.",
+            'no_tables' => sprintf(
+                /* translators: %1$s/%2$s: link tags around "documentation", %3$s/%4$s: link tags around "tutorial videos" */
+                __('Having trouble creating your first table? Check out Ninja Tables %1$sdocumentation%2$s or watch %3$stutorial videos%4$s to get you started.', 'ninja-tables'),
+                $docsLink, '</a>', $videosLink, '</a>'
+            ),
 
-            'only_drag' => "Looks like you're having fun with Drag & Drop!<br>Did you know Ninja Tables has a lot more fun features in the Advanced Table mode? See the <a class='nt-link' href='https://ninjatables.com/docs-category/advanced-mode/' target='_blank'>documentation</a> and try it!",
+            'only_drag' => sprintf(
+                /* translators: %1$s: opening link tag, %2$s: closing link tag */
+                __('Looks like you\'re having fun with Drag & Drop!<br>Did you know Ninja Tables has a lot more fun features in the Advanced Table mode? See the %1$sdocumentation%2$s and try it!', 'ninja-tables'),
+                $advancedLink, '</a>'
+            ),
 
-            'only_advanced' => "Looks like you're having fun using Advanced mode for your tables.<br>Did you know Ninja Tables makes things even easier in Drag and Drop mode? See the <a class='nt-link' href='https://ninjatables.com/docs-category/simple-mode/' target='_blank'>documentation</a> and try it!",
+            'only_advanced' => sprintf(
+                /* translators: %1$s: opening link tag, %2$s: closing link tag */
+                __('Looks like you\'re having fun using Advanced mode for your tables.<br>Did you know Ninja Tables makes things even easier in Drag and Drop mode? See the %1$sdocumentation%2$s and try it!', 'ninja-tables'),
+                $simpleLink, '</a>'
+            ),
 
-            'both_modes_recent' => "You're doing amazing!<br><div class='flex items-center'>Loving Ninja Tables? Leave us a " . $this->getStarsSvg(
-                ) . " review. It will encourage us to come up with more and more features.</div>"
+            'both_modes_recent' => sprintf(
+                /* translators: %s: five star icons */
+                __('You\'re doing amazing!<br><div class="flex items-center">Loving Ninja Tables? Leave us a %s review. It will encourage us to come up with more and more features.</div>', 'ninja-tables'),
+                $this->getStarsSvg()
+            )
         ];
     }
 

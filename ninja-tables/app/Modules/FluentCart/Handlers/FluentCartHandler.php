@@ -39,16 +39,16 @@ class FluentCartHandler
 
         $settings = [
             'product-categories' => [
-                'title'       => 'Select Products By Category',
-                'description' => 'Select the categories from where you want to show the products. Leave empty if you want to show from all categories',
+                'title'       => __('Select Products By Category', 'ninja-tables'),
+                'description' => __('Select the categories from where you want to show the products. Leave empty if you want to show from all categories', 'ninja-tables'),
                 'terms'       => get_terms([
                     'taxonomy'   => 'product-categories',
                     'hide_empty' => false,
                 ])
             ],
             'product-types'      => [
-                'title'       => 'Select Products By Product Brands',
-                'description' => 'Select the product brands from where you want to show the products. Leave empty if you want to show from all types',
+                'title'       => __('Select Products By Product Brands', 'ninja-tables'),
+                'description' => __('Select the product brands from where you want to show the products. Leave empty if you want to show from all types', 'ninja-tables'),
                 'terms'       => get_terms([
                     'taxonomy'   => 'product-brands',
                     'hide_empty' => false,
@@ -239,7 +239,7 @@ class FluentCartHandler
         $tableId = intval(Arr::get($inputs, 'table_id'));
 
         if (!$tableId) {
-            wp_send_json_error(array('message' => 'Table not found'), 400);
+            wp_send_json_error(array('message' => __('Table not found', 'ninja-tables')), 400);
         }
 
         $this->assertNinjaTable($tableId);
@@ -254,7 +254,7 @@ class FluentCartHandler
         update_post_meta($tableId, '_ninja_table_fct_query_conditions', $data['query_conditions']);
         update_post_meta($tableId, '_ninja_table_fct_appearance_settings', $data['appearance_settings']);
 
-        wp_send_json_success(array('message' => 'Settings successfully updated'), 200);
+        wp_send_json_success(array('message' => __('Settings successfully updated', 'ninja-tables')), 200);
     }
 
     public function getCustomFieldOptions(): void

@@ -43,4 +43,25 @@ class Helper
 
         return true;
     }
+
+    // esc_url() prepends http:// to scheme-less values, breaking slug/relative links
+    // (e.g. Google Sheets columns storing slugs). Only escape values with a scheme.
+    public static function sanitizeLinkValue($value)
+    {
+        if (!is_string($value)) {
+            return $value;
+        }
+
+        $trimmed = trim($value);
+
+        if ($trimmed === '') {
+            return $value;
+        }
+
+        if (preg_match('#^[a-z][a-z0-9+.\-]*:#i', $trimmed) || strpos($trimmed, '//') === 0) {
+            return esc_url($trimmed);
+        }
+
+        return wp_kses_bad_protocol($trimmed, wp_allowed_protocols());
+    }
 }

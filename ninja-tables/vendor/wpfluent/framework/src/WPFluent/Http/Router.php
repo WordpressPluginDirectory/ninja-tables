@@ -2,6 +2,8 @@
 
 namespace NinjaTables\Framework\Http;
 
+use Closure;
+
 class Router
 {
     /**
@@ -9,6 +11,18 @@ class Router
      * @var \NinjaTables\Framework\Foundation\Application
      */
     protected $app = null;
+
+    /**
+     * Name for the route.
+     * @var array
+     */
+    protected $name = [];
+
+    /**
+     * Mapping of named routes.
+     * @var array
+     */
+    protected $namedRoutes = [];
     
     /**
      * Prefix for the route
@@ -44,10 +58,22 @@ class Router
     ];
 
     /**
+     * Whether routes created by this router should override existing ones.
+     * @var bool
+     */
+    protected $shouldOverride = false;
+
+    /**
      * Keep the track of number of group calls
      * @var integer
      */
     protected $groupCount = 0;
+
+    /**
+     * Weak references to groups pending execution.
+     * @var array
+     */
+    protected $pendingGroups = [];
 
     /**
      * Construct the routet instance
@@ -61,16 +87,20 @@ class Router
     /**
      * Create a route group
      * @param  array $attributes
-     * @param  \Closure|null $callback
+     * @param  Closure|null $callback
      * @return null
      */
-    public function group($attributes = [], \Closure $callback = null)
+    public function group($attributes = [], ?Closure $callback = null)
     {
         $this->groupCount += 1;
 
-        if ($attributes instanceof \Closure) {
+        if ($attributes instanceof Closure) {
             $callback = $attributes;
             $attributes = [];
+        }
+
+        if (isset($attributes['name'])) {
+            $this->name($attributes['name']);
         }
 
         if (isset($attributes['prefix'])) {
@@ -128,6 +158,19 @@ class Router
     }
 
     /**
+     * Set the route name
+     * 
+     * @param  string $name
+     * @return self
+     */
+    public function name($name)
+    {
+        $this->name[] = $name;
+
+        return $this;
+    }
+
+    /**
      * Set the route prefix
      * 
      * @param  string $prefix
@@ -143,7 +186,7 @@ class Router
     /**
      * Set the namespace for the action/controller
      * 
-     * @param  string $namespace
+     * @param  string $ns
      * @return self
      */
     public function namespace($ns)
@@ -151,6 +194,19 @@ class Router
         $this->namespace[] = $ns;
 
         return $this;
+    }
+
+    /**
+     * Set the default route policy.
+     * 
+     * @return self
+     */
+    public function withDefaultPolicy()
+    {
+        return $this->withPolicy(
+            // @phpstan-ignore-next-line
+            $this->app->__namespace__.'\\App\\Http\\Policies\\Policy'
+        );
     }
 
     /**
@@ -213,8 +269,40 @@ class Router
     }
 
     /**
+     * Track a group so any instance kept alive past its statement
+     * can still be executed before routes are registered. A weak
+     * reference keeps the destructor firing at end of statement.
+     *
+     * @param  Group $group
+     * @return null
+     */
+    public function trackGroup(Group $group)
+    {
+        if (class_exists(\WeakReference::class)) {
+            $this->pendingGroups[] = \WeakReference::create($group);
+        }
+    }
+
+    /**
+     * Execute any groups still pending execution because a
+     * reference to them was held beyond their statement.
+     *
+     * @return null
+     */
+    protected function executePendingGroups()
+    {
+        while ($this->pendingGroups) {
+            $reference = array_shift($this->pendingGroups);
+
+            if ($group = $reference->get()) {
+                $group->execute();
+            }
+        }
+    }
+
+    /**
      * Execute the route group callback
-     * 
+     *
      * @param  Closure $callback
      * @return null
      */
@@ -222,6 +310,7 @@ class Router
     {
         $callback($this);
         $this->groupCount -= 1;
+        array_pop($this->name);
         array_pop($this->prefix);
         array_pop($this->namespace);
         array_pop($this->middleware['before']);
@@ -336,6 +425,10 @@ class Router
             $method
         );
 
+        if ($this->name) {
+            $route->withName($this->name);
+        }
+
         if ($this->namespace) {
             $route->withNamespace($this->namespace);
         }
@@ -352,7 +445,11 @@ class Router
             $route->after($this->middleware['after']);
         }
 
-        return $route;
+        if ($this->shouldOverride) {
+            $route->override();
+        }
+
+        return $route->preparefrontendHandlers();
     }
 
     /**
@@ -391,12 +488,26 @@ class Router
     }
 
     /**
+     * Mark all routes created by this router to override existing ones.
+     *
+     * @return $this
+     */
+    public function overrideExisting()
+    {
+        $this->shouldOverride = true;
+
+        return $this;
+    }
+
+    /**
      * Register all the routse in WordPress Rest Engine
-     * 
+     *
      * @return null
      */
     public function registerRoutes()
     {
+        $this->executePendingGroups();
+
         foreach ($this->routes as $route) $route->register();
     }
 
@@ -407,5 +518,29 @@ class Router
     public function getRoutes()
     {
         return $this->routes;
+    }
+
+    /**
+     * Set a named route in the router.
+     * 
+     * @param string $name
+     * @param Route  $route
+     */
+    public function setNamedRoute($name, Route $route)
+    {
+        $this->namedRoutes[$name] = $route;
+
+        return $route;
+    }
+
+    /**
+     * Get a route by name.
+     * 
+     * @param  string $name
+     * @return Route|null
+     */
+    public function getByName($name)
+    {
+        return $this->namedRoutes[$name] ?? null;
     }
 }

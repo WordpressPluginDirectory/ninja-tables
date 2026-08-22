@@ -141,7 +141,7 @@ trait EnumeratesValues
      * @param  callable|null  $callback
      * @return static
      */
-    public static function times($number, callable $callback = null)
+    public static function times($number, ?callable $callback = null)
     {
         if ($number < 1) {
             return new static;
@@ -444,10 +444,10 @@ trait EnumeratesValues
      * @param  callable|null  $default
      * @return static|mixed
      */
-    public function when($value, callable $callback = null, callable $default = null)
+    public function when($value, ?callable $callback = null, ?callable $default = null)
     {
         if (! $callback) {
-            return new HigherOrderWhenProxy($this, $value);
+            return new HigherOrderWhenProxy($value);
         }
 
         if ($value) {
@@ -466,7 +466,7 @@ trait EnumeratesValues
      * @param  callable|null  $default
      * @return static|mixed
      */
-    public function whenEmpty(callable $callback, callable $default = null)
+    public function whenEmpty(callable $callback, ?callable $default = null)
     {
         return $this->when($this->isEmpty(), $callback, $default);
     }
@@ -478,7 +478,7 @@ trait EnumeratesValues
      * @param  callable|null  $default
      * @return static|mixed
      */
-    public function whenNotEmpty(callable $callback, callable $default = null)
+    public function whenNotEmpty(callable $callback, ?callable $default = null)
     {
         return $this->when($this->isNotEmpty(), $callback, $default);
     }
@@ -491,7 +491,7 @@ trait EnumeratesValues
      * @param  callable|null  $default
      * @return static|mixed
      */
-    public function unless($value, callable $callback, callable $default = null)
+    public function unless($value, callable $callback, ?callable $default = null)
     {
         return $this->when(! $value, $callback, $default);
     }
@@ -503,7 +503,7 @@ trait EnumeratesValues
      * @param  callable|null  $default
      * @return static|mixed
      */
-    public function unlessEmpty(callable $callback, callable $default = null)
+    public function unlessEmpty(callable $callback, ?callable $default = null)
     {
         return $this->whenNotEmpty($callback, $default);
     }
@@ -515,7 +515,7 @@ trait EnumeratesValues
      * @param  callable|null  $default
      * @return static|mixed
      */
-    public function unlessNotEmpty(callable $callback, callable $default = null)
+    public function unlessNotEmpty(callable $callback, ?callable $default = null)
     {
         return $this->whenEmpty($callback, $default);
     }
@@ -966,8 +966,10 @@ trait EnumeratesValues
         } elseif ($items instanceof Traversable) {
             return iterator_to_array($items);
         } elseif (function_exists('enum_exists')) {
-            if ($items instanceof \UnitEnum) {
-                return [$items];
+            if (class_exists('UnitEnum')) {
+                if ($items instanceof \UnitEnum) {
+                    return [$items];
+                }
             }
         }
 

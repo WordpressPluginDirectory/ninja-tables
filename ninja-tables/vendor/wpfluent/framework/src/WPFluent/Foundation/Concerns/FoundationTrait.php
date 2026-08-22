@@ -67,13 +67,13 @@ trait FoundationTrait
 
     /**
      * Parse the handler for the rest request
-     * @param  string|Closure $handler
+     * @param  string|\Closure $handler
      * @param  string $ns
      * @return mixed
      */
     public function parseRestHandler($handler, $ns = '')
     {
-        if ($handler instanceof \Closure) {
+        if (is_object($handler) && is_callable($handler)) {
             return $handler;
         }
 
@@ -353,13 +353,12 @@ trait FoundationTrait
     /**
      * Register a short code
      * @param string $action
-     * @param null
+     * @param string|\Closure $handler
+     * @return void
      */
     public function addShortcode($action, $handler)
     {
-        return add_shortcode(
-            $action, $this->parseHookHandler($handler)
-        );
+        add_shortcode($action, $this->parseHookHandler($handler));
     }
 
     /**
@@ -406,8 +405,9 @@ trait FoundationTrait
     }
 
     /**
-     * Chdeck if handler has fqn
-     * @param  string|Closure $handler
+     * Chdeck if handler has FQCN.
+     * 
+     * @param  string|\Closure $handler
      * @return boolean
      */
     public function hasNamespace($handler)
@@ -415,7 +415,11 @@ trait FoundationTrait
         if ($handler instanceof \Closure) {
             return false;
         };
-        
+
+        if (is_object($handler)) {
+            return false;
+        }
+
         $parts = array_filter(explode('\\', $handler));
         
         return count($parts) > 1;
@@ -481,16 +485,40 @@ trait FoundationTrait
      * Returns a WPUserProxy instance if the 'init' action has fired,
      * otherwise logs a warning in debug mode and returns null.
      * 
-     * @return \NinjaTables\Framework\Http\Request\WPUserProxy|null
+     * @return mixed
      */
     public function user()
     {
-        if (did_action('init')) {
-            return new WPUserProxy(wp_get_current_user());
+        if (!did_action('init')) {
+            if ($this->isDebugOn()) {
+                error_log("User not available—'init' action hasn't fired.");
+            }
+            
+            return new class {
+                public function __call($method, $args) {}
+            };
         }
 
-        if ($this->isDebugOn()) {
-            error_log("User not available—'init' action hasn't fired yet.");
+        $wpUser = wp_get_current_user();
+
+        if (!$wpUser->ID) {
+            return new class {
+                public function __call($method, $args) {}
+            };
         }
+
+        $userModel = $this->__namespace__ . '\App\Models\User';
+
+        return class_exists($userModel)
+            ? ($userModel::find($wpUser->ID) ?? new WPUserProxy($wpUser))
+            : new WPUserProxy($wpUser);
+    }
+
+    public function enableApplicationPassword()
+    {
+        add_filter(
+            'wp_is_application_passwords_available',
+            fn() => !str_starts_with($this->env(), 'prod')
+        );
     }
 }

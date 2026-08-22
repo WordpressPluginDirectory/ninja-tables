@@ -142,6 +142,10 @@ abstract class BaseGrammar
      */
     protected function resolveTablePrefix($table)
     {
+        if ($this->isAliasedTable($table)) {
+            return '';
+        }
+        
         if (!is_multisite()) {
             return $this->tablePrefix;
         }
@@ -186,8 +190,6 @@ abstract class BaseGrammar
     protected function wrapAliasedTable($value)
     {
         $segments = preg_split('/\s+as\s+/i', $value);
-
-        $tablePrefix = $this->resolveTablePrefix($segments[0]);
 
         $this->alias[] = $alias = $this->wrapValue($segments[1]);
 
@@ -367,7 +369,7 @@ abstract class BaseGrammar
     /**
      * Set the grammar's table prefix.
      *
-     * @param  string  $prefix
+     * @param object $wpdb WordPress database object
      * @return $this
      */
     public function setTablePrefix($wpdb)
@@ -390,5 +392,15 @@ abstract class BaseGrammar
         $this->connection = $connection;
 
         return $this;
+    }
+
+    /**
+     * Track table aliases.
+     * 
+     * @param void
+     */
+    public function addAlias($alias)
+    {
+        $this->alias[] = "`$alias`";
     }
 }

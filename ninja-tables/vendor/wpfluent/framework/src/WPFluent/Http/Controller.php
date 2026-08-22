@@ -7,6 +7,17 @@ use ReflectionException;
 use NinjaTables\Framework\Foundation\App;
 use NinjaTables\Framework\Validator\ValidationException;
 
+/**
+ * Base controller — exposes the Application, Request, and Response
+ * via protected properties. The `@property` annotations below are
+ * intentional in addition to the protected declarations: they help
+ * PHPStan disambiguate when a subclass declares a method with the
+ * same name as one of these properties (e.g., `function app()`).
+ *
+ * @property \NinjaTables\Framework\Foundation\Application      $app
+ * @property \NinjaTables\Framework\Http\Request\Request        $request
+ * @property \NinjaTables\Framework\Http\Response\Response      $response
+ */
 abstract class Controller
 {
     /**
@@ -17,13 +28,13 @@ abstract class Controller
 
     /**
      * Request Instane
-     * @var \NinjaTables\Framework\Request\Request
+     * @var \NinjaTables\Framework\Http\Request\Request
      */
     protected $request = null;
 
     /**
      * Response Instane
-     * @var \NinjaTables\Framework\Response\Response
+     * @var \NinjaTables\Framework\Http\Response\Response
      */
     protected $response = null;
 
@@ -53,6 +64,7 @@ abstract class Controller
     public function validate($data, $rules, $messages = [])
     {
         try {
+            // @phpstan-ignore-next-line
             $validator = $this->app->validator->make($data, $rules, $messages);
 
             if ($validator->validate()->fails()) {
@@ -119,9 +131,9 @@ abstract class Controller
     }
 
     /**
-     * Send a success json response
+     * Send a success json response.
+     * 
      * @param  array  $data
-     * @param  integer $code
      * @return \WP_REST_Response
      */
     public function sendSuccess($data = [])

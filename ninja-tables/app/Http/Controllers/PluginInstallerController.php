@@ -75,7 +75,7 @@ class PluginInstallerController extends Controller
     {
         if (!current_user_can('install_plugins')) {
             return $this->sendError([
-                'message' => 'Insufficient permissions'
+                'message' => __('Insufficient permissions', 'ninja-tables')
             ], 403);
         }
 
@@ -90,7 +90,7 @@ class PluginInstallerController extends Controller
 
         return $this->sendSuccess([
             'data' => [
-                'message'  => 'Successfully enabled Ninja Charts.',
+                'message'  => __('Successfully enabled Ninja Charts.', 'ninja-tables'),
                 'redirect' => $plugin['redirect']
             ]
         ], 200);

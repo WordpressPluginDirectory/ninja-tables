@@ -28,42 +28,38 @@ interface ConnectionInterface
      *
      * @param  string  $query
      * @param  array  $bindings
-     * @param  bool  $useReadPdo
      * @return mixed
      */
-    public function selectOne($query, $bindings = [], $useReadPdo = true);
+    public function selectOne($query, $bindings = []);
 
     /**
      * Run a select statement and return the first column of the first row.
      *
      * @param  string  $query
      * @param  array  $bindings
-     * @param  bool  $useReadPdo
      * @return mixed
      *
      * @throws \NinjaTables\Framework\Database\MultipleColumnsSelectedException
      */
-    public function scalar($query, $bindings = [], $useReadPdo = true);
+    public function scalar($query, $bindings = []);
 
     /**
      * Run a select statement against the database.
      *
      * @param  string  $query
      * @param  array  $bindings
-     * @param  bool  $useReadPdo
      * @return array
      */
-    public function select($query, $bindings = [], $useReadPdo = true);
+    public function select($query, $bindings = []);
 
     /**
      * Run a select statement against the database and returns a generator.
      *
      * @param  string  $query
      * @param  array  $bindings
-     * @param  bool  $useReadPdo
      * @return \Generator
      */
-    public function cursor($query, $bindings = [], $useReadPdo = true);
+    public function cursor($query, $bindings = []);
 
     /**
      * Run an insert statement against the database.
@@ -179,4 +175,21 @@ interface ConnectionInterface
      * @return string
      */
     public function getDatabaseName();
+
+    /**
+     * Run a raw, unprepared query against the connection and return a cursor.
+     *
+     * @param  string  $query
+     * @param  array  $bindings
+     * @return \Generator
+     */
+    public function rawCursor($query, $bindings = []);
+
+    /**
+     * Set the transaction manager instance on the connection.
+     *
+     * @param  mixed  $manager
+     * @return $this
+     */
+    public function setTransactionManager($manager);
 }

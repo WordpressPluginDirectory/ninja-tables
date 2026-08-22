@@ -134,6 +134,64 @@ class NinjaTableItem extends Model
         ninjaTablesClearTableDataCache($tableId);
     }
 
+    /**
+     * Serialize date attributes without converting the timezone.
+     *
+     * The ORM treats created_at/updated_at as timestamps and serializes them
+     * through asDateTime(), which reads the naive DB value as site local time
+     * and then converts it to UTC. These columns are already written as plain
+     * strings, so that conversion shifted every date by the site's GMT offset.
+     * Formatting the value as-is keeps what was stored.
+     *
+     * @param \DateTimeInterface $date
+     * @return string
+     */
+    protected function serializeDate(\DateTimeInterface $date)
+    {
+        return $date->format('Y-m-d H:i:s');
+    }
+
+    /**
+     * Normalize a user supplied create date to a MySQL DATETIME string.
+     *
+     * MySQL silently stores anything it cannot parse as 0000-00-00 00:00:00 on
+     * servers without STRICT_TRANS_TABLES, which then reads back as
+     * -0001-11-30. Values that cannot be parsed are dropped instead, so the
+     * existing created_at is left untouched.
+     *
+     * @param string $value
+     * @return string Empty string when the value cannot be parsed.
+     */
+    protected function normalizeCreatedAt($value)
+    {
+        if (!is_string($value) || !$value) {
+            return '';
+        }
+
+        $value = trim($value);
+
+        $date = \DateTime::createFromFormat('Y-m-d H:i:s', $value);
+        if ($date && $date->format('Y-m-d H:i:s') === $value) {
+            return $value;
+        }
+
+        // Otherwise accept anything strtotime() understands, e.g. ISO 8601.
+        $timestamp = strtotime($value);
+        if ($timestamp === false) {
+            return '';
+        }
+
+        $normalized = gmdate('Y-m-d H:i:s', $timestamp);
+
+        // strtotime() maps 0000-00-00 onto a negative timestamp rather than
+        // failing, so make sure the result is a real four digit year.
+        if (!preg_match('/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/', $normalized)) {
+            return '';
+        }
+
+        return $normalized;
+    }
+
     protected function insertTableItem($id, $tableId, $formattedRow, $created_at, $insertAfterId, $settings)
     {
         $attributes = array(
@@ -156,7 +214,9 @@ class NinjaTableItem extends Model
 
         $createdAt = '';
         if ($created_at !== null) {
-            $createdAt = Sanitizer::sanitizeTextField($created_at);
+            $createdAt = $this->normalizeCreatedAt(
+                Sanitizer::sanitizeTextField($created_at)
+            );
         }
         if ($createdAt) {
             $attributes['created_at'] = $createdAt;

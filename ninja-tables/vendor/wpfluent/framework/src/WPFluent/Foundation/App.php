@@ -4,19 +4,30 @@ namespace NinjaTables\Framework\Foundation;
 
 use NinjaTables\Framework\Container\Contracts\BindingResolutionException;
 
+/**
+ * @method static db();
+ * @method static view();
+ * @method static events();
+ * @method static config();
+ * @method static request();
+ * @method static response();
+ * @method static encrypter();
+ * @method static validator();
+ */
+
 class App
 {
     /**
      * Application instance
      * 
-     * @var NinjaTables\Framework\Foundation\Application
+     * @var \NinjaTables\Framework\Foundation\Application
      */
     protected static $instance = null;
 
     /**
      * Set the application instance
      * 
-     * @param NinjaTables\Framework\Foundation\Application $app
+     * @param \NinjaTables\Framework\Foundation\Application $app
      */
     public static function setInstance($app)
     {
@@ -28,7 +39,7 @@ class App
      * 
      * @param  string $module The binding/key name for a component.
      * @param  array $parameters constructor dependencies if any.
-     * @return NinjaTables\Framework\Foundation\Application|mixed
+     * @return \NinjaTables\Framework\Foundation\Application|mixed
      */
     public static function getInstance($module = null, $parameters = [])
     {
@@ -44,7 +55,7 @@ class App
      * 
      * @param  string $module The binding/key name for a component.
      * @param  array $parameters constructor dependencies if any.
-     * @return NinjaTables\Framework\Foundation\Application|mixed
+     * @return \NinjaTables\Framework\Foundation\Application|mixed
      */
     public static function make($module = null, $parameters = [])
     {

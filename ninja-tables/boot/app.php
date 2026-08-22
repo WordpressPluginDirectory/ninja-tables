@@ -21,6 +21,8 @@ return function ($file) {
 
     add_action('plugins_loaded', function () use ($app) {
 
+        ninja_tables_maybe_disable_contaminated_pro();
+
         if (defined('NINJAPROPLUGIN_VERSION')) {
             if (!defined('NINJA_TABLE_PRO_FRAMEWORK_VERSION')) {
                 // add admin notice for old version of Ninja Tables Pro

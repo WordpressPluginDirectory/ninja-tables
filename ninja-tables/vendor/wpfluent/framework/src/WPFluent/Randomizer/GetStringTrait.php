@@ -2,7 +2,7 @@
 
 namespace NinjaTables\Framework\Randomizer;
 
-use InvalidArgumentException;
+use NinjaTables\Framework\Support\InvalidArgumentException;
 
 trait GetStringTrait
 {

@@ -65,7 +65,7 @@ class LeadFlow
         $reviewOption = new ReviewOptIn($this->options);
         $reviewOption->doConsent($status);
         wp_send_json_success(array(
-            'message' => 'Thank you'
+            'message' => __('Thank you', 'ninja-tables')
         ), 200);
     }
 

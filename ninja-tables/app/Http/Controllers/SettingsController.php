@@ -213,7 +213,7 @@ class SettingsController extends Controller
             return $response;
         }
 
-        $css     = isset($_REQUEST['custom_css']) ? sanitize_textarea_field(wp_unslash($_REQUEST['custom_css'])) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        $css     = sanitize_textarea_field(wp_unslash($request->get('custom_css', '')));
         $css     = wp_strip_all_tags($css);
         update_post_meta($tableId, '_ninja_tables_custom_css', $css);
 
@@ -221,7 +221,7 @@ class SettingsController extends Controller
 
         return $this->sendSuccess([
             'data' => [
-                'message' => 'Code successfully saved'
+                'message' => __('Code successfully saved', 'ninja-tables')
             ]
         ], 200);
     }

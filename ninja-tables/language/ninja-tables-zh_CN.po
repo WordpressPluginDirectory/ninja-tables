@@ -2,949 +2,5855 @@
 # This file is distributed under the same license as the Plugins - Ninja Tables &#8211; Best Data Table Plugin for WordPress - Stable (latest release) package.
 msgid ""
 msgstr ""
+"Project-Id-Version: Plugins - Ninja Tables &#8211; Best Data Table Plugin for WordPress - Stable (latest release)\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/ninja-tables\n"
+"POT-Creation-Date: 2026-07-23T12:13:04+00:00\n"
 "PO-Revision-Date: 2023-01-12 06:35+0000\n"
+"Language-Team: Chinese (China)\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Loco https://localise.biz/\n"
-"Language: zh_CN\n"
-"Project-Id-Version: Plugins - Ninja Tables &#8211; Best Data Table Plugin "
-"for WordPress - Stable (latest release)\n"
-"Language-Team: Chinese (China)"
 
-#: admin/NinjaTablesAdmin.php:566
-msgid " successfully."
+#. Plugin Name of the plugin
+#: ninja-tables.php
+msgid "Ninja Tables – Easy Data Table Builder"
 msgstr ""
 
-#: admin/NinjaTablesAdmin.php:185
-msgid "<span style=\"color:#f39c12;\">Get Pro</span>"
-msgstr "<span style=\"color:#f39c12;\">获取Pro版</span>"
-
-#: admin/table-builder/config/setting.php:112
-msgid "Accessibility"
-msgstr "可访问性"
-
-#: includes/I18nStrings.php:36
-msgid "Activate Ninja Tables Pro"
-msgstr "激活Ninja Tables Pro版"
-
-#: includes/I18nStrings.php:29
-msgid "Activate Ninja Tables Pro Add-on plugin to unlock this feature"
-msgstr "激活Ninja Tables Pro版插件以解锁此项功能"
-
-#: includes/I18nStrings.php:51
-msgid "Add"
-msgstr "添加"
-
-#: admin/NinjaTablesAdmin.php:177
-msgid "Add Chart"
-msgstr "添加图表"
-
-#: includes/I18nStrings.php:72
-msgid "Add Column"
-msgstr "添加列"
-
-#: includes/I18nStrings.php:49
-msgid "Add Data"
-msgstr "添加数据"
-
-#: includes/I18nStrings.php:13 admin/NinjaTablesAdmin.php:88
-msgid "Add New Table"
-msgstr "添加新表"
-
-#: includes/I18nStrings.php:11 admin/NinjaTablesAdmin.php:87
-msgid "Add Table"
-msgstr "添加表格"
-
-#: includes/I18nStrings.php:99
-msgid "Additional CSS"
-msgstr ""
-
-#: admin/table-builder/config/component.php:159
-msgid "Advanced"
-msgstr "高级"
-
-#: includes/I18nStrings.php:10 admin/NinjaTablesAdmin.php:1678
-msgid "All Tables"
-msgstr "所有表格"
-
-#: includes/I18nStrings.php:62
-msgid "Always show in all devices"
-msgstr "在所有设备上一直显示"
-
-#: includes/I18nStrings.php:48
-msgid "Apply"
-msgstr "应用"
-
-#: admin/table-builder/config/setting.php:159
-msgid "Apply Inner Border"
-msgstr "应用内边框"
-
-#: includes/I18nStrings.php:56
-msgid "Are you sure to delete this?"
-msgstr "确定要删除吗？"
-
-#: includes/I18nStrings.php:71
-msgid "Available Columns"
-msgstr "可用的列"
-
-#: admin/table-builder/config/setting.php:73
-msgid "Background"
-msgstr "背景"
-
-#: admin/table-builder/config/setting.php:142
-msgid "Border"
-msgstr "边框"
-
-#: admin/table-builder/config/setting.php:154
-msgid "Border Color"
-msgstr "边框颜色"
-
-#: includes/I18nStrings.php:46
-msgid "Bulk Actions"
-msgstr "批量操作"
-
-#: admin/table-builder/config/component.php:31
-msgid "Button"
-msgstr "按钮"
-
-#: includes/I18nStrings.php:50
-msgid "Cancel"
-msgstr "取消"
-
-#: includes/I18nStrings.php:57
-msgid "cancel"
-msgstr "取消"
-
-#: admin/table-builder/config/responsive.php:147
-#: admin/table-builder/config/responsive.php:163
-#: admin/table-builder/config/setting.php:10
-msgid "Cell Padding"
-msgstr "单元格填充"
-
-#: admin/table-builder/config/responsive.php:32
-#: admin/table-builder/config/responsive.php:79
-msgid "Cell Stack Direction"
-msgstr "单元格堆叠方向"
-
-#: admin/NinjaTablesAdmin.php:165 admin/NinjaTablesAdmin.php:171
-msgid "Charts"
-msgstr "图表"
-
-#: includes/I18nStrings.php:30
-msgid "Check all"
-msgstr "全选"
-
-#: includes/libs/TableDrivers/NinjaFooTable.php:67
-msgid "Clear All"
-msgstr "全部清除"
-
-#: includes/I18nStrings.php:54
-msgid "Click here"
-msgstr "单击此处"
-
-#: admin/table-builder/config/setting.php:221
-msgid "Color"
-msgstr "颜色"
-
-#: includes/I18nStrings.php:74
-msgid "Column Key"
-msgstr "列键"
-
-#: includes/I18nStrings.php:73
-msgid "Column Name"
-msgstr "列名"
-
-#: admin/table-builder/config/templates.php:57
-msgid "Comparison Table Four"
-msgstr "比较表四"
-
-#: admin/table-builder/config/templates.php:39
-msgid "Comparison Table One"
-msgstr "比较表格一"
-
-#: admin/table-builder/config/templates.php:51
-msgid "Comparison Table Three"
-msgstr "比较表三"
-
-#: admin/table-builder/config/templates.php:45
-msgid "Comparison Table Two"
-msgstr "比较表格二"
-
-#: admin/table-builder/config/templates.php:35
-msgid "Comparison Tables"
-msgstr "比较表格"
-
-#: includes/I18nStrings.php:58
-msgid "confirm"
-msgstr "确认"
-
-#: includes/I18nStrings.php:20
-msgid "CSV - Comma-separated values"
-msgstr "CSV - 逗号分隔值"
-
-#: includes/NinjaTableImport.php:288
-msgid "CSV File is not valid"
-msgstr ""
-
-#: includes/I18nStrings.php:104
-msgid "CSV Header Structure"
-msgstr ""
-
-#: includes/I18nStrings.php:43
-msgid "Custom CSS"
-msgstr "自定义CSS"
-
-#: includes/I18nStrings.php:75
-msgid "Data Type"
-msgstr "数据类型"
-
-#: includes/I18nStrings.php:68
-msgid "Date Field"
-msgstr "日期字段"
-
-#: includes/I18nStrings.php:78
-msgid "Date Format"
-msgstr "日期格式"
-
-#: includes/I18nStrings.php:33
-msgid "Deactivate License"
-msgstr "停用许可证"
-
-#: includes/I18nStrings.php:19
-msgid "Delete"
-msgstr "删除"
-
-#: includes/I18nStrings.php:47
-msgid "Delete Entries"
-msgstr "删除记录"
-
-#: admin/table-builder/config/responsive.php:26
-#: admin/table-builder/config/responsive.php:73
-msgid "Disable Breakpoint"
-msgstr "禁用断点"
-
-#: includes/I18nStrings.php:39
-msgid "Documentation"
-msgstr "文档"
-
-#: includes/I18nStrings.php:37
-msgid "Documentation and Help"
-msgstr "文档与帮助"
-
-#: includes/I18nStrings.php:105
-msgid "Download Sample CSV"
-msgstr ""
-
-#: includes/I18nStrings.php:18
-msgid "Duplicate"
-msgstr "创建副本"
-
-#: includes/I18nStrings.php:16 admin/NinjaTablesAdmin.php:89
-#: public/views/frameless/show_ntb_preview.php:31
-#: public/views/frameless/show_preview.php:29
-msgid "Edit"
-msgstr "编辑"
-
-#: admin/NinjaTablesAdmin.php:90 public/views/table_builder_html.php:38
-#: includes/libs/TableDrivers/views/ninja_foo_table.php:44
-msgid "Edit Table"
-msgstr "编辑表格"
-
-#: admin/table-builder/config/templates.php:70
-msgid "Employee Table One"
-msgstr "员工表一"
-
-#: admin/table-builder/config/templates.php:82
-msgid "Employee Table Three"
-msgstr "员工表三"
-
-#: admin/table-builder/config/templates.php:76
-msgid "Employee Table Two"
-msgstr "员工表二"
-
-#: admin/table-builder/config/templates.php:66
-msgid "Employee Tables"
-msgstr "员工表"
-
-#: admin/table-builder/config/responsive.php:10
-msgid "Enable Responsive Table"
-msgstr "启用响应表"
-
-#: includes/I18nStrings.php:91
-msgid "Enable sorting of the table by the visitor"
-msgstr ""
-
-#: includes/I18nStrings.php:90
-msgid "Enable the visitor to filter or search the table."
-msgstr ""
-
-#: includes/I18nStrings.php:35
-msgid "Enter your license key"
-msgstr "输入您的许可证密钥"
-
-#: admin/table-builder/config/setting.php:83
-msgid "Even Row Background"
-msgstr "偶数行背景"
-
-#: includes/I18nStrings.php:100
-msgid "Export Table"
-msgstr ""
-
-#: includes/I18nStrings.php:82
-msgid "Extra Classes"
-msgstr ""
-
-#: includes/I18nStrings.php:95
-msgid "Extra CSS Class for the table"
-msgstr ""
-
-#: includes/I18nStrings.php:86
-msgid "Filterable"
-msgstr ""
-
-#: admin/table-builder/config/setting.php:105
-msgid "First Column Sticky"
-msgstr "第一列置顶"
-
-#: admin/table-builder/config/setting.php:100
-msgid "First Row Sticky"
-msgstr "第一行置顶"
-
-#: admin/table-builder/config/setting.php:226
-msgid "Font Family"
-msgstr "字体集"
-
-#: admin/table-builder/config/setting.php:214
-msgid "Font Size"
-msgstr "字号"
-
-#: includes/I18nStrings.php:98
-msgid "Footer Colors"
-msgstr ""
-
-#: includes/I18nStrings.php:38
-msgid ""
-"For any type of query which was not covered in our documentation, Please "
-"submit a support ticket ticket"
-msgstr "对于我们文档中未涉及的任何类型的查询，请提交一份支持申请函"
-
-#: admin/table-builder/config/component.php:12
-#: admin/table-builder/config/responsive.php:5
-#: admin/table-builder/config/setting.php:5
-msgid "General"
-msgstr "常规设置"
-
-#: admin/table-builder/config/setting.php:195
-msgid "Global Style"
-msgstr "全局样式"
-
-#: admin/table-builder/config/responsive.php:61
-#: admin/table-builder/config/responsive.php:108
-msgid "Group Separator"
-msgstr "分组分隔符"
-
-#: admin/table-builder/config/setting.php:78
-msgid "Header Background"
-msgstr "表头（页眉）背景"
-
-#: includes/I18nStrings.php:87
-msgid "Header HTML Content"
-msgstr ""
-
-#: admin/table-builder/config/setting.php:164
-msgid "Header Inner Border"
-msgstr "页眉内边框"
-
-#: includes/I18nStrings.php:9 admin/NinjaTablesAdmin.php:218
-msgid "Help"
-msgstr "帮助"
-
-#: includes/I18nStrings.php:7
-msgid "Home"
-msgstr "首页"
-
-#: admin/table-builder/config/component.php:117
-msgid "HTML"
-msgstr "HTML代码"
-
-#: includes/I18nStrings.php:66
-msgid "HTML Field"
-msgstr "HTML字段"
-
-#. Author URI of the plugin
-msgid "https://ninjatables.com/"
-msgstr ""
-
-#. URI of the plugin
+#. Plugin URI of the plugin
+#: ninja-tables.php
 msgid "https://wpmanageninja.com/downloads/ninja-tables-pro-add-on/"
 msgstr ""
 
-#: admin/table-builder/config/component.php:68
-msgid "Icon"
-msgstr "图标"
+#. Description of the plugin
+#: ninja-tables.php
+msgid ""
+"The Easiest & Fastest Responsive Table Plugin on WordPress. Multiple "
+"templates, drag-&-drop live table builder, multiple color scheme, and "
+"styles."
+msgstr "WordPress上最简单、响应最快的表格插件。丰富的模板、拖放式实时表格生成器、多种配色方案和样式。"
 
-#: admin/table-builder/config/component.php:140
-msgid "Image"
-msgstr "图片"
-
-#: includes/I18nStrings.php:23 admin/NinjaTablesAdmin.php:148
-msgid "Import"
-msgstr "导入"
-
-#: includes/I18nStrings.php:44
-msgid "Import - Export"
-msgstr "导入 - 导出"
-
-#: includes/I18nStrings.php:28
-msgid "Import Format:"
-msgstr "导入格式"
-
-#: includes/I18nStrings.php:103
-msgid "Import from CSV"
+#. Author of the plugin
+#: ninja-tables.php
+msgid "WPManageNinja LLC"
 msgstr ""
 
-#: includes/I18nStrings.php:12
-msgid "Import Table"
-msgstr "导入表"
-
-#: includes/I18nStrings.php:101
-msgid "Import Table Data"
+#. Author URI of the plugin
+#: ninja-tables.php
+msgid "https://ninjatables.com/"
 msgstr ""
 
-#: includes/I18nStrings.php:59
-msgid "Initial Hidden Mobile"
-msgstr "初始隐藏移动"
-
-#: includes/I18nStrings.php:60
-msgid "Initial Hidden Mobile and Tab"
-msgstr "初始隐藏移动和标签"
-
-#: includes/I18nStrings.php:61
-msgid "Initial Hidden Mobile, Tab and Regular Computers"
-msgstr "初始隐藏移动、标签和常规计算机"
-
-#: admin/table-builder/config/setting.php:169
-msgid "Inner Border Color"
-msgstr "内边框颜色"
-
-#: admin/table-builder/config/setting.php:174
-msgid "Inner Border Size"
-msgstr "内边框大小"
-
-#: admin/NinjaTablesAdmin.php:1188
-msgid "Insert Ninja Tables Shortcode"
-msgstr "插入Ninja Tables短代码"
-
-#: admin/NinjaTablesAdmin.php:1190
-msgid "Insert Shortcode"
-msgstr "插入短代码"
-
-#: admin/NinjaTablesAdmin.php:714
-msgid "Invalid Table to Delete"
-msgstr "要删除的表无效"
-
-#: admin/table-builder/config/responsive.php:53
-#: admin/table-builder/config/responsive.php:100
-msgid "Items Per Header"
-msgstr "每个表头的项目"
-
-#: includes/I18nStrings.php:22
-msgid "JSON - Exported From Ninja Tables"
-msgstr "JSON - 从Ninja Tables中导出"
-
-#: includes/I18nStrings.php:21
-msgid "JSON - JavaScript Object Notation"
-msgstr "JSON - JS对象简谱（JavaScript Object Notation的缩写）"
-
-#: includes/I18nStrings.php:25
-msgid "License"
-msgstr "授权许可"
-
-#: includes/I18nStrings.php:34
-msgid "Licensing"
-msgstr "授权许可"
-
-#: admin/table-builder/config/component.php:98
-msgid "List"
-msgstr "列表"
-
-#: admin/table-builder/config/setting.php:207
-msgid "Margin Bottom"
-msgstr "下边距"
-
-#: admin/table-builder/config/setting.php:200
-msgid "Margin Top"
-msgstr "上边距"
-
-#: includes/I18nStrings.php:83
-msgid "Max Width"
-msgstr ""
-
-#: includes/I18nStrings.php:84
-msgid "Maximum Width"
-msgstr ""
-
-#: admin/table-builder/config/responsive.php:17
-msgid "Mode Options"
-msgstr "模式选项"
-
-#: admin/NinjaTablesAdmin.php:91
-msgid "New Table"
-msgstr "新建表格"
-
-#. Name of the plugin
-#: includes/I18nStrings.php:6 admin/NinjaTablesAdmin.php:73
-#: admin/NinjaTablesAdmin.php:84 admin/NinjaTablesAdmin.php:86
-#: admin/NinjaTablesAdmin.php:124
+#: app/CPT/NinjaTable.php:11 app/CPT/NinjaTable.php:22
+#: app/CPT/NinjaTable.php:24 app/Hooks/Handlers/AdminMenuHandler.php:25
 msgid "Ninja Tables"
 msgstr "Ninja Tables"
 
-#: includes/I18nStrings.php:26
-msgid ""
-"NinjaTables can import tables from existing data, like from a CSV or JSON "
-"file. You can also import existing tables from the other WordPress table "
-"plugins."
-msgstr ""
-"Ninja Tables可以从已存在的数据中导入表格，例如从CSV或JSON文件中导入。您也可以将其他WordPress表格插件中的数据导入进来。"
+#: app/CPT/NinjaTable.php:23
+msgid "Table"
+msgstr "表格"
 
-#: includes/NinjaTableImport.php:29
-msgid "No appropriate driver found for the import format."
-msgstr "找不到适合的驱动程序去导入该格式"
+#: app/CPT/NinjaTable.php:25
+msgid "Add Table"
+msgstr "添加表格"
 
-#: public/dataProviders/FluentFormProvider.php:121
-msgid "No fields were selected."
-msgstr ""
+#: app/CPT/NinjaTable.php:26
+msgid "Add New Table"
+msgstr "添加新表"
 
-#: includes/libs/TableDrivers/NinjaFooTable.php:66
-#: includes/libs/TableDrivers/NinjaFooTable.php:339
-msgid "No Result Found"
-msgstr "未找到结果"
+#: app/CPT/NinjaTable.php:27 app/Views/admin/preview/default-table.php:32
+#: app/Views/admin/preview/drag-and-drop.php:32
+msgid "Edit"
+msgstr "编辑"
 
-#: admin/NinjaTablesAdmin.php:95
-msgid "No Table Found"
-msgstr "未找到表格"
+#: app/CPT/NinjaTable.php:28
+#: app/Views/public/datatables/ninja-datatable.php:67
+#: app/Views/public/drag-and-drop-html.php:41
+#: app/Views/public/ninja-footable.php:45
+msgid "Edit Table"
+msgstr "编辑表格"
 
-#: admin/NinjaTablesAdmin.php:96
-msgid "No Table Found in Trash"
-msgstr "回收站中未找到表格"
+#: app/CPT/NinjaTable.php:29
+msgid "New Table"
+msgstr "新建表格"
 
-#: includes/libs/Migrations/NinjaTablesSupsysticTableMigration.php:24
-msgid "No Table Found with the selected table"
-msgstr ""
+#: app/CPT/NinjaTable.php:30 app/CPT/NinjaTable.php:31
+#: app/Modules/I18nStrings.php:1047
+msgid "View Table"
+msgstr "查看表格"
 
-#: includes/libs/Migrations/NinjaTablesUltimateTableMigration.php:21
-msgid "No Ultimate Table Found with the selected table"
-msgstr ""
-
-#: includes/ninja_tables-global-functions.php:1054
-msgid "Nonce verification failed, please try again."
-msgstr "随机验证失败，请重试。"
-
-#: includes/I18nStrings.php:67
-msgid "Numeric Value"
-msgstr "数值"
-
-#: admin/table-builder/config/setting.php:88
-msgid "Odd Row Background"
-msgstr "奇数行背景"
-
-#: includes/I18nStrings.php:92
-msgid "Pagination Items Per Page"
-msgstr ""
-
-#: includes/I18nStrings.php:93
-msgid "Pagination Position"
-msgstr ""
-
-#: admin/NinjaTablesAdmin.php:97
-msgid "Parent Table"
-msgstr "父级表格"
-
-#: includes/I18nStrings.php:24
-msgid "Permission"
-msgstr "权限"
-
-#: includes/NinjaTableImport.php:299
-msgid "Please set table configuration first"
-msgstr "请先设定表格配置。"
-
-#: includes/NinjaTableImport.php:125
-msgid "Please upload valid CSV"
-msgstr ""
-
-#: admin/table-builder/ImportExport.php:33
-msgid "Please upload valid CSV or JSON"
-msgstr "请上传有效的CSV或JSON"
-
-#: includes/NinjaTableImport.php:313
-msgid "Please use the provided CSV header structure font face."
-msgstr "请使用已提供的CSV标题结构字体。"
-
-#: includes/I18nStrings.php:17
-msgid "Preview"
-msgstr "预览"
-
-#: public/views/frameless/show_ntb_preview.php:9
-#: public/views/frameless/show_preview.php:9
-msgid "Preview Table"
-msgstr ""
-
-#: admin/table-builder/config/templates.php:27
-msgid "Pricing Table Four"
-msgstr "价格表四"
-
-#: admin/table-builder/config/templates.php:9
-msgid "Pricing Table One"
-msgstr "价格表一"
-
-#: admin/table-builder/config/templates.php:21
-msgid "Pricing Table Three"
-msgstr "价格表三"
-
-#: admin/table-builder/config/templates.php:15
-msgid "Pricing Table Two"
-msgstr "价格表二"
-
-#: admin/table-builder/config/templates.php:5
-msgid "Pricing Tables"
-msgstr "价目表"
-
-#: admin/table-builder/config/component.php:215
-msgid "Progress"
-msgstr "进度"
-
-#: admin/table-builder/config/component.php:82
-msgid "Rating"
-msgstr "评分"
-
-#: includes/I18nStrings.php:102
-msgid "Replace Existing Data"
-msgstr ""
-
-#: includes/I18nStrings.php:76
-msgid "Responsive Breakpoint"
-msgstr "响应式断点"
-
-#: admin/table-builder/config/responsive.php:138
-msgid "Responsive Settings"
-msgstr "响应设置"
-
-#: admin/table-builder/config/component.php:184
-msgid "Ribbon"
-msgstr "功能区"
-
-#: includes/I18nStrings.php:94
-msgid "Row Details (Responsive drawer)"
-msgstr "行详细信息（响应式抽屉）"
-
-#: admin/table-builder/config/templates.php:95
-msgid "Schedule Table One"
-msgstr "调度表一"
-
-#: admin/table-builder/config/templates.php:107
-msgid "Schedule Table Three"
-msgstr "调度表三"
-
-#: admin/table-builder/config/templates.php:101
-msgid "Schedule Table Two"
-msgstr "调度表二"
-
-#: admin/table-builder/config/templates.php:91
-msgid "Schedule Tables"
-msgstr "调度表"
-
-#: includes/libs/TableDrivers/NinjaFooTable.php:65
-#: includes/libs/TableDrivers/NinjaFooTable.php:337
-msgid "Search"
-msgstr "搜索"
-
-#: includes/libs/TableDrivers/NinjaFooTable.php:64
-#: includes/libs/TableDrivers/NinjaFooTable.php:335
-msgid "Search in"
-msgstr "在以下位置搜索"
-
-#: admin/NinjaTablesAdmin.php:94
+#: app/CPT/NinjaTable.php:32
 msgid "Search Table"
 msgstr "搜索表格"
 
-#: includes/I18nStrings.php:80
-msgid "Select a Format"
-msgstr "选择格式"
+#: app/CPT/NinjaTable.php:33 app/Http/Controllers/SettingsController.php:19
+#: app/Http/Controllers/SettingsController.php:34
+#: app/Modules/FluentCart/Handlers/FluentCartHandler.php:27
+msgid "No Table Found"
+msgstr "未找到表格"
 
-#: admin/NinjaTablesAdmin.php:1211
-msgid "Select a Table"
-msgstr "选择一个表格"
+#: app/CPT/NinjaTable.php:34
+msgid "No Table Found in Trash"
+msgstr "回收站中未找到表格"
 
-#: admin/NinjaTablesAdmin.php:1187
+#: app/CPT/NinjaTable.php:35
+msgid "Parent Table"
+msgstr "父级表格"
+
+#: app/Hooks/filters.php:26 app/Modules/I18nStrings.php:61
+msgid "All Tables"
+msgstr "所有表格"
+
+#: app/Hooks/Handlers/AdminMenuHandler.php:41
+msgid "Tables"
+msgstr "表"
+
+#: app/Hooks/Handlers/AdminMenuHandler.php:50 app/Modules/I18nStrings.php:499
+msgid "Import"
+msgstr "导入"
+
+#: app/Hooks/Handlers/AdminMenuHandler.php:59
+#: app/Hooks/Handlers/AdminMenuHandler.php:65
+msgid "Charts"
+msgstr "图表"
+
+#: app/Hooks/Handlers/AdminMenuHandler.php:71
+msgid "Add Chart"
+msgstr "添加图表"
+
+#: app/Hooks/Handlers/AdminMenuHandler.php:78 app/Modules/I18nStrings.php:420
+msgid "Get Pro"
+msgstr "获取专业版"
+
+#: app/Hooks/Handlers/AdminMenuHandler.php:109
+msgid "Help"
+msgstr "帮助"
+
+#: app/Hooks/Handlers/AdminMenuHandler.php:132
+msgid "Dashboard"
+msgstr "仪表盘"
+
+#: app/Hooks/Handlers/DeactivationHandler.php:126
+msgid "Permission denied."
+msgstr "权限被拒绝。"
+
+#: app/Hooks/Handlers/DeactivationHandler.php:131
+msgid "Invalid nonce."
+msgstr "无效的 nonce。"
+
+#: app/Hooks/Handlers/DeactivationHandler.php:162
+msgid "Deactivating"
+msgstr "正在停用"
+
+#: app/Hooks/Handlers/EditorBlockHandler.php:54
 msgid "Select a Table to insert"
 msgstr "选择一个要插入的表单"
 
-#: includes/I18nStrings.php:45
-msgid "Select bulk action"
-msgstr "选择批量操作"
+#: app/Hooks/Handlers/EditorBlockHandler.php:55
+msgid "Insert Ninja Tables Shortcode"
+msgstr "插入Ninja Tables短代码"
 
-#: includes/I18nStrings.php:69
-msgid "Select Field"
-msgstr "选择字段"
+#: app/Hooks/Handlers/EditorBlockHandler.php:56
+msgid "Please select a table"
+msgstr "请选择一个表格"
 
-#: includes/I18nStrings.php:27
-msgid "Select file:"
-msgstr "选择文件"
+#: app/Hooks/Handlers/EditorBlockHandler.php:57
+msgid "Insert Shortcode"
+msgstr "插入短代码"
 
-#: includes/I18nStrings.php:81
-msgid "Select Items"
-msgstr "选择项目"
+#: app/Hooks/Handlers/EditorBlockHandler.php:78
+#: app/Modules/Gutenberg/GutenbergModule.php:87
+msgid "Select a Table"
+msgstr "选择一个表格"
 
-#: includes/libs/TableDrivers/NinjaFooTable.php:68
-msgid "Selected"
-msgstr "已选择"
+#: app/Hooks/Handlers/EditorBlockHandler.php:80
+#: app/Modules/Gutenberg/GutenbergModule.php:89
+msgid "No Tables found. Please add a table first"
+msgstr "未找到表格。请先添加一个表格"
 
-#: admin/table-builder/config/setting.php:22
-msgid "Separate Columns/Rows"
-msgstr "分隔列/行"
+#: app/Hooks/Handlers/ExportHandler.php:24
+#: app/Hooks/Handlers/ExportHandler.php:101
+#: app/Hooks/Handlers/NoticeHandler.php:60
+msgid "Security check failed."
+msgstr "安全检查失败。"
 
-#: admin/NinjaTablesAdmin.php:1620 admin/NinjaTablesAdmin.php:1667
-#: admin/NinjaTablesAdmin.php:1700
-msgid "Settings successfully updated"
+#: app/Hooks/Handlers/NoticeHandler.php:67
+msgid "Invalid notice key or type."
+msgstr "无效的通知键或类型。"
+
+#: app/Hooks/Handlers/NoticeHandler.php:71
+msgid "Invalid notice type."
+msgstr "无效的通知类型。"
+
+#: app/Hooks/Handlers/NoticeHandler.php:78
+msgid "Failed to save dismissal."
+msgstr "无法保存关闭状态。"
+
+#: app/Hooks/Handlers/NoticeHandler.php:83
+msgid "Notice dismissed successfully."
+msgstr "通知已成功关闭。"
+
+#: app/Hooks/Handlers/NoticeHandler.php:238
+msgid "Rate Now"
+msgstr "立即评分"
+
+#: app/Hooks/Handlers/NoticeHandler.php:247
+msgid "Remind Me Later"
+msgstr "稍后提醒我"
+
+#: app/Hooks/Handlers/NoticeHandler.php:256
+msgid "Update Ninja Tables Pro Plugin"
+msgstr "更新 Ninja Tables Pro 插件"
+
+#. translators: %1$s: opening link tag, %2$s: closing link tag
+#: app/Hooks/Handlers/NoticeHandler.php:259
+#, php-format
+msgid ""
+"You are using an outdated version. Some features may not work properly. "
+"%1$sPlease update to the latest version%2$s"
+msgstr "您正在使用旧版本，部分功能可能无法正常工作。%1$s请更新到最新版本%2$s"
+
+#. translators: %1$s/%2$s: link tags around "documentation", %3$s/%4$s: link
+#. tags around "tutorial videos"
+#: app/Hooks/Handlers/NoticeHandler.php:290
+#, php-format
+msgid ""
+"Having trouble creating your first table? Check out Ninja Tables "
+"%1$sdocumentation%2$s or watch %3$stutorial videos%4$s to get you started."
+msgstr "创建第一个表格遇到困难？请查看 Ninja Tables %1$s文档%2$s 或观看 %3$s教程视频%4$s 来快速上手。"
+
+#. translators: %1$s: opening link tag, %2$s: closing link tag
+#: app/Hooks/Handlers/NoticeHandler.php:296
+#, php-format
+msgid ""
+"Looks like you're having fun with Drag & Drop!<br>Did you know Ninja Tables "
+"has a lot more fun features in the Advanced Table mode? See the "
+"%1$sdocumentation%2$s and try it!"
 msgstr ""
+"看起来您很喜欢拖放功能！<br>您知道吗？Ninja Tables 在高级表格模式中有更多有趣的功能。请查看 %1$s文档%2$s 并试试看！"
 
-#: includes/I18nStrings.php:15
-msgid "ShortCode"
-msgstr "短代码"
-
-#: admin/table-builder/config/component.php:128
-msgid "Shortcode"
-msgstr "短代码"
-
-#: includes/I18nStrings.php:89
-msgid "Show Table Description"
+#. translators: %1$s: opening link tag, %2$s: closing link tag
+#: app/Hooks/Handlers/NoticeHandler.php:302
+#, php-format
+msgid ""
+"Looks like you're having fun using Advanced mode for your tables.<br>Did you"
+" know Ninja Tables makes things even easier in Drag and Drop mode? See the "
+"%1$sdocumentation%2$s and try it!"
 msgstr ""
+"看起来您很喜欢为表格使用高级模式。<br>您知道吗？Ninja Tables 的拖放模式让操作更加简单。请查看 %1$s文档%2$s 并试试看！"
 
-#: includes/I18nStrings.php:88
-msgid "Show Table Title"
+#. translators: %s: five star icons
+#: app/Hooks/Handlers/NoticeHandler.php:308
+#, php-format
+msgid ""
+"You're doing amazing!<br><div class=\"flex items-center\">Loving Ninja "
+"Tables? Leave us a %s review. It will encourage us to come up with more and "
+"more features.</div>"
 msgstr ""
+"您做得太棒了！<br><div class=\"flex items-center\">喜欢 Ninja Tables 吗？请给我们留下 %s "
+"评价。这将激励我们开发越来越多的功能。</div>"
 
-#: includes/I18nStrings.php:64
-msgid "Single Line Text Field"
-msgstr "单行文本字段"
+#: app/Hooks/Handlers/PublicDataHandler.php:39
+#: app/Hooks/Handlers/PublicDataHandler.php:96
+#: app/Hooks/Handlers/PublicDataHandler.php:177
+msgid "Please publish the page/post to see the table"
+msgstr "请发布页面/文章以查看表格"
 
-#: includes/NinjaTableImport.php:142 admin/table-builder/ImportExport.php:55
-msgid "Something is wrong when parsing the csv"
-msgstr ""
+#: app/Hooks/Handlers/PublicDataHandler.php:64
+msgid ""
+"This table is currently in trash. Please restore it to display the table."
+msgstr "此表格目前在回收站中。请还原后再显示。"
 
-#: admin/table-builder/config/setting.php:27
-msgid "Space Between Columns"
-msgstr "列间距"
+#: app/Hooks/Handlers/PublicDataHandler.php:66
+msgid "This table does not exist or has been permanently deleted."
+msgstr "此表格不存在或已被永久删除。"
 
-#: admin/table-builder/config/setting.php:34
-msgid "Space Between Rows"
-msgstr "行间距"
+#: app/Hooks/Handlers/PublicDataHandler.php:68
+#: app/Modules/DataTables/Handlers/PublicRenderer.php:50
+msgid ""
+"This table has no columns configured. Please add columns to display the "
+"table."
+msgstr "此表格未配置任何列。请添加列以显示表格。"
 
-#: includes/I18nStrings.php:79
-msgid "Standard"
-msgstr "标准模式"
+#: app/Hooks/Handlers/PublicDataHandler.php:70
+msgid "This table is not published. Please publish it to display the table."
+msgstr "此表格尚未发布。请发布后再显示。"
 
-#: admin/table-builder/config/responsive.php:127
-msgid "Static Top Row"
-msgstr "静态顶行"
+#: app/Http/Controllers/FluentFormsController.php:54
+#: app/Http/Controllers/ImportController.php:632
+#: app/Http/Controllers/ImportController.php:673
+#: app/Http/Controllers/TableBuilderController.php:126
+#: app/Http/Controllers/TablesController.php:21
+#: app/Http/Controllers/TablesController.php:75
+msgid "Invalid table."
+msgstr "无效的表格。"
 
-#: admin/table-builder/config/setting.php:95
-msgid "Sticky"
-msgstr "置顶"
+#: app/Http/Controllers/FluentFormsController.php:61
+#: app/Modules/FluentCart/Handlers/FluentCartHandler.php:76
+msgid "The title field is required."
+msgstr "标题字段为必填项。"
 
-#: admin/table-builder/config/component.php:163
-msgid "Stylist List"
-msgstr "样式列表"
+#: app/Http/Controllers/FluentFormsController.php:69
+msgid "No fields were selected."
+msgstr "未选择任何字段。"
 
-#: includes/NinjaTableImport.php:162 includes/NinjaTableImport.php:188
-#: includes/NinjaTableImport.php:255
+#: app/Http/Controllers/ImportController.php:45
+msgid "Please upload a file."
+msgstr "请上传文件。"
+
+#: app/Http/Controllers/ImportController.php:64
+msgid "No appropriate driver found for the import format."
+msgstr "找不到适合的驱动程序去导入该格式"
+
+#: app/Http/Controllers/ImportController.php:90
+msgid "Uploaded file path is not valid."
+msgstr "上传的文件路径无效。"
+
+#: app/Http/Controllers/ImportController.php:133
+msgid "CSV uploaded. Import has started."
+msgstr "CSV 已上传。导入已开始。"
+
+#: app/Http/Controllers/ImportController.php:160
+msgid "Import token is missing."
+msgstr "缺少导入令牌。"
+
+#: app/Http/Controllers/ImportController.php:167
+msgid "Import session expired. Please start again."
+msgstr "导入会话已过期。请重新开始。"
+
+#: app/Http/Controllers/ImportController.php:173
+msgid "You are not allowed to process this import job."
+msgstr "您无权处理此导入任务。"
+
+#: app/Http/Controllers/ImportController.php:180
+msgid "CSV file is not accessible anymore."
+msgstr "CSV 文件已无法访问。"
+
+#: app/Http/Controllers/ImportController.php:187
+msgid "Import header is not valid."
+msgstr "导入表头无效。"
+
+#: app/Http/Controllers/ImportController.php:203
+#: app/Http/Controllers/ImportController.php:294
+#: app/Modules/I18nStrings.php:500
+msgid "Import completed successfully."
+msgstr "导入成功完成。"
+
+#: app/Http/Controllers/ImportController.php:295
+msgid "Import chunk processed."
+msgstr "导入区块已处理。"
+
+#: app/Http/Controllers/ImportController.php:334
+msgid "Please upload valid CSV"
+msgstr "请上传有效的 CSV"
+
+#: app/Http/Controllers/ImportController.php:346
+#: app/Http/Controllers/ImportController.php:460
+#: app/Http/Controllers/ImportController.php:494
+#: app/Http/Controllers/ImportController.php:681
+#: app/Traits/ImportTrait.php:105 app/Traits/ImportTrait.php:128
+msgid "Invalid file upload."
+msgstr "无效的文件上传。"
+
+#: app/Http/Controllers/ImportController.php:361
+msgid "Unable to parse the uploaded CSV file."
+msgstr "无法解析上传的 CSV 文件。"
+
+#: app/Http/Controllers/ImportController.php:362
+msgid "CSV parsing failed. Please verify delimiter/encoding and try again."
+msgstr "CSV 解析失败。请检查分隔符/编码后重试。"
+
+#: app/Http/Controllers/ImportController.php:369
+msgid "The uploaded CSV appears to be empty."
+msgstr "上传的 CSV 文件似乎为空。"
+
+#: app/Http/Controllers/ImportController.php:376
+#: app/Http/Controllers/ImportController.php:983
+msgid "Unable to read CSV header row."
+msgstr "无法读取 CSV 表头行。"
+
+#: app/Http/Controllers/ImportController.php:398
+#: app/Http/Controllers/ImportController.php:483
+#: app/Http/Controllers/ImportController.php:601
+#: app/Modules/I18nStrings.php:902
 msgid "Successfully added a table."
 msgstr "已成功添加一个表格"
 
-#: admin/NinjaTablesAdmin.php:1041
-msgid "Successfully deleted data."
-msgstr "数据已删除成功。"
+#: app/Http/Controllers/ImportController.php:409
+#: database/Migrations/NinjaTablesMigration.php:29
+msgid "Temporary table name"
+msgstr "临时表名称"
 
-#: admin/NinjaTablesAdmin.php:732
-msgid "Successfully deleted the table."
-msgstr "删除表格成功。"
+#: app/Http/Controllers/ImportController.php:410
+#: database/Migrations/NinjaTablesMigration.php:32
+msgid "Temporary table description"
+msgstr "临时表描述"
 
-#: admin/NinjaTablesAdmin.php:1325
-msgid "Successfully duplicated table."
-msgstr "已成功复制表格。"
+#. translators: %s is the reserved column name(s) that conflict
+#: app/Http/Controllers/ImportController.php:438
+#: app/Http/Controllers/ImportController.php:781
+#, php-format
+msgid ""
+"CSV header \"%s\" conflicts with a reserved system column. Please rename it."
+msgstr "CSV 表头“%s”与系统保留列冲突。请重命名。"
 
-#: includes/NinjaTableImport.php:77
+#: app/Http/Controllers/ImportController.php:515
+msgid "Please upload a JSON file exported from Ninja Tables"
+msgstr "请上传从 Ninja Tables 导出的 JSON 文件"
+
+#. translators: %s is the data provider name
+#: app/Http/Controllers/ImportController.php:529
+#, php-format
+msgid ""
+"This table uses the \"%s\" data provider which is not supported by the "
+"DataTables engine. Only tables with the \"default\" provider can be imported"
+" as DataTables."
+msgstr ""
+"此表格使用“%s”数据提供程序，DataTables 引擎不支持该程序。只有使用“default”提供程序的表格才能作为 DataTables 导入。"
+
+#: app/Http/Controllers/ImportController.php:646
+msgid "Something Went Wrong When Migrating"
+msgstr "迁移时出错"
+
+#: app/Http/Controllers/ImportController.php:651
 msgid ""
 "Successfully imported. Please go to all tables and review your newly "
 "imported table."
 msgstr "已成功导入。请转到所有表格并查看您新导入的表格。"
 
-#: admin/NinjaTablesAdmin.php:945
-msgid "Successfully saved the data."
-msgstr "数据已成功保存。"
+#: app/Http/Controllers/ImportController.php:702
+msgid "Please set table configuration first"
+msgstr "请先设定表格配置。"
 
-#: admin/NinjaTablesAdmin.php:688
-msgid "Successfully updated configuration."
-msgstr "已成功更新设置"
+#: app/Http/Controllers/ImportController.php:713
+msgid "Please use the provided CSV header structure font face."
+msgstr "请使用已提供的CSV标题结构字体。"
 
-#: includes/NinjaTableImport.php:353
+#: app/Http/Controllers/ImportController.php:766
 msgid "Successfully uploaded data."
 msgstr "数据已上传成功。"
 
-#: admin/NinjaTablesAdmin.php:85
-msgid "Table"
-msgstr "表格"
+#. translators: %d is the number of rows imported
+#: app/Http/Controllers/ImportController.php:818
+#, php-format
+msgid "Successfully imported %d rows."
+msgstr "已成功导入 %d 行。"
 
-#: admin/table-builder/config/responsive.php:154
-#: admin/table-builder/config/responsive.php:170
-#: admin/table-builder/config/setting.php:17
-msgid "Table Alignment"
-msgstr "表格对齐方式"
+#: app/Http/Controllers/ImportController.php:905
+msgid ""
+"Import failed because the server ran out of memory. Try a smaller "
+"file/chunked import or increase PHP memory_limit."
+msgstr "导入失败，因为服务器内存不足。请尝试较小的文件或分块导入，或提高 PHP 的 memory_limit。"
 
-#: includes/I18nStrings.php:97
-msgid "Table Body Colors"
-msgstr ""
+#: app/Http/Controllers/ImportController.php:912
+msgid ""
+"Import timed out on the server. Try a smaller file/chunked import or "
+"increase PHP max_execution_time."
+msgstr "导入在服务器上超时。请尝试较小的文件或分块导入，或提高 PHP 的 max_execution_time。"
 
-#: admin/table-builder/config/setting.php:147
-msgid "Table Border"
-msgstr "表格边框"
+#: app/Http/Controllers/ImportController.php:918
+msgid ""
+"Import failed due to a server error while processing the file. Please check "
+"file format/size and try again."
+msgstr "由于处理文件时发生服务器错误，导入失败。请检查文件格式/大小后重试。"
 
-#: admin/table-builder/config/setting.php:57
-msgid "Table Cell Min Auto Width"
-msgstr "表格单元格最小自动宽度"
+#: app/Http/Controllers/ImportController.php:930
+msgid "Invalid media file selected."
+msgstr "选择的媒体文件无效。"
 
-#: includes/I18nStrings.php:41
-msgid "Table Configuration"
-msgstr "表格配置"
+#: app/Http/Controllers/ImportController.php:934
+msgid "You do not have permission to use this media file."
+msgstr "您无权使用此媒体文件。"
 
-#: admin/table-builder/config/setting.php:64
-msgid "Table Container Max Height"
-msgstr "表容器最大高度"
+#: app/Http/Controllers/ImportController.php:939
+msgid "Selected media file is not accessible."
+msgstr "所选媒体文件无法访问。"
 
-#: admin/table-builder/config/setting.php:43
-#: admin/table-builder/config/setting.php:48
-msgid "Table Container Max Width"
-msgstr "表容器最大宽度"
+#: app/Http/Controllers/ImportController.php:945
+msgid "Selected media file must be a CSV."
+msgstr "所选媒体文件必须是 CSV。"
 
-#: includes/I18nStrings.php:42
-msgid "Table Design"
-msgstr "表格设计"
+#: app/Http/Controllers/ImportController.php:955
+msgid "Selected media file is not a valid CSV type."
+msgstr "所选媒体文件不是有效的 CSV 类型。"
 
-#: includes/I18nStrings.php:96
-msgid "Table Header Colors"
-msgstr ""
+#: app/Http/Controllers/ImportController.php:967
+msgid ""
+"Please select a CSV file from WordPress Media Library for large import."
+msgstr "请从 WordPress 媒体库中选择一个 CSV 文件进行大批量导入。"
 
-#: admin/table-builder/config/setting.php:117
-msgid "Table Role"
-msgstr "表格职能"
+#: app/Http/Controllers/ImportController.php:977
+msgid "Unable to open CSV file."
+msgstr "无法打开 CSV 文件。"
 
-#: includes/I18nStrings.php:40
-msgid "Table Rows"
-msgstr "表格行"
+#: app/Http/Controllers/ImportController.php:1011
+msgid "Unable to read CSV file."
+msgstr "无法读取 CSV 文件。"
 
-#: admin/NinjaTablesAdmin.php:140
-msgid "Tables"
-msgstr "表"
+#: app/Http/Controllers/ImportController.php:1016
+msgid "Unable to seek CSV file."
+msgstr "无法检索 CSV 文件。"
 
-#: includes/NinjaTableImport.php:266
-#: includes/libs/Migrations/NinjaTablesMigration.php:22
-msgid "Temporary table description"
-msgstr "临时表描述"
+#: app/Http/Controllers/PluginInstallerController.php:17
+msgid ""
+"You do not have permission to install a plugin, Please ask your "
+"administrator to install WP Fluent Form"
+msgstr "您无权安装插件，请让您的管理员安装 WP Fluent Forms"
 
-#: includes/NinjaTableImport.php:265
-#: includes/libs/Migrations/NinjaTablesMigration.php:19
-msgid "Temporary table name"
-msgstr "临时表名称"
+#: app/Http/Controllers/PluginInstallerController.php:25
+msgid ""
+"You are using wp multisite environment so please install WP FluentForm "
+"manually"
+msgstr "您正在使用 WordPress 多站点环境，请手动安装 WP Fluent Forms"
 
-#: admin/table-builder/NinjaTableBuilder.php:259
-#: admin/table-builder/config/component.php:16
+#: app/Http/Controllers/PluginInstallerController.php:36
+msgid ""
+"WP Fluent Form successfully installed and activated, You are redirecting to "
+"WP Fluent Form Now"
+msgstr "WP Fluent Forms 已成功安装并启用，正在将您重定向到 WP Fluent Forms"
+
+#: app/Http/Controllers/PluginInstallerController.php:44
+msgid ""
+"There was an error to install the plugin. Please install the plugin "
+"manually."
+msgstr "安装插件时出错。请手动安装插件。"
+
+#: app/Http/Controllers/PluginInstallerController.php:78
+msgid "Insufficient permissions"
+msgstr "权限不足"
+
+#: app/Http/Controllers/PluginInstallerController.php:93
+msgid "Successfully enabled Ninja Charts."
+msgstr "已成功启用 Ninja Charts。"
+
+#: app/Http/Controllers/SettingsController.php:203
+#: app/Http/Controllers/ToolsController.php:29
+#: app/Http/Controllers/ToolsController.php:95
+#: app/Modules/FluentCart/Handlers/FluentCartHandler.php:257
+msgid "Settings successfully updated"
+msgstr "设置已成功更新"
+
+#: app/Http/Controllers/SettingsController.php:224
+msgid "Code successfully saved"
+msgstr "代码已成功保存"
+
+#: app/Http/Controllers/TableItemsController.php:85
+#: app/Modules/DataTables/Handlers/ItemsHandler.php:212
+msgid "Successfully deleted data."
+msgstr "数据已删除成功。"
+
+#: app/Http/Controllers/TableItemsController.php:97
+#: app/Http/Controllers/TableItemsController.php:131
+#: app/Http/Controllers/TableItemsController.php:152
+#: app/Http/Controllers/TableItemsController.php:169
+#: app/Modules/DataTables/Handlers/ItemsHandler.php:81
+#: app/Modules/DataTables/Handlers/ItemsHandler.php:162
+msgid "Row not found."
+msgstr "未找到行。"
+
+#: app/Http/Controllers/TableItemsController.php:139
+#: app/Modules/DataTables/Handlers/ItemsHandler.php:134
+msgid "Successfully saved the data."
+msgstr "数据已成功保存。"
+
+#: app/Http/Controllers/TableItemsController.php:191
+#: app/Modules/DataTables/Handlers/ItemsHandler.php:183
+msgid "Cell successfully updated"
+msgstr "单元格已成功更新"
+
+#: app/Http/Controllers/TablesController.php:58
+msgid "An error occurred while loading tables."
+msgstr "加载表格时发生错误。"
+
+#: app/Http/Controllers/TablesController.php:67
+msgid "Title is required"
+msgstr "标题为必填项"
+
+#: app/Http/Controllers/TablesController.php:102
+msgid "Table updated successfully"
+msgstr "表格已成功更新"
+
+#: app/Http/Controllers/TablesController.php:102
+msgid "Table saved successfully."
+msgstr "表格已成功保存。"
+
+#: app/Http/Controllers/TablesController.php:114
+msgid "Invalid Table to Delete"
+msgstr "要删除的表无效"
+
+#: app/Http/Controllers/TablesController.php:125
+msgid "Table trashed successfully."
+msgstr "表格已成功移至回收站。"
+
+#: app/Http/Controllers/TablesController.php:132
+msgid "Table deleted successfully."
+msgstr "表格已成功删除。"
+
+#: app/Http/Controllers/TablesController.php:136
+msgid "An error occurred while deleting the table."
+msgstr "删除表格时发生错误。"
+
+#: app/Http/Controllers/TablesController.php:147
+msgid "Table not found."
+msgstr "未找到表格。"
+
+#: app/Http/Controllers/TablesController.php:169
+msgid "Table duplicated successfully."
+msgstr "表格已成功复制。"
+
+#: app/Http/Controllers/TablesController.php:174
+msgid "An error occurred while duplicating the table."
+msgstr "复制表格时发生错误。"
+
+#: app/Http/Controllers/TablesController.php:227
+#: app/Http/Controllers/TablesController.php:272
+msgid "No table selected."
+msgstr "未选择表格。"
+
+#: app/Http/Controllers/TablesController.php:237
+msgid "No valid tables found."
+msgstr "未找到有效的表格。"
+
+#: app/Http/Controllers/TablesController.php:248
+msgid "Tables trashed successfully."
+msgstr "表格已成功移至回收站。"
+
+#: app/Http/Controllers/TablesController.php:260
+msgid "Tables deleted successfully."
+msgstr "表格已成功删除。"
+
+#: app/Http/Controllers/TablesController.php:283
+msgid "No valid trashed tables found."
+msgstr "未在回收站中找到有效的表格。"
+
+#: app/Http/Controllers/TablesController.php:296
+msgid "Tables restored successfully."
+msgstr "表格已成功还原。"
+
+#: app/Http/Controllers/TablesController.php:323
+msgid "Columns deleted successfully."
+msgstr "列已成功删除。"
+
+#: app/Http/Controllers/ToolsController.php:109
+msgid "Table cache successfully cleared"
+msgstr "表格缓存已成功清除"
+
+#: app/Http/Controllers/ToolsController.php:120
+msgid "All caches successfully cleared"
+msgstr "所有缓存已成功清除"
+
+#: app/Models/Post.php:176
+msgid "Successfully updated configuration."
+msgstr "已成功更新设置"
+
+#: app/Modules/DataProviders/FluentFormProvider.php:31
+msgid "Serial Number"
+msgstr "序号"
+
+#: app/Modules/DataProviders/FluentFormProvider.php:32
+msgid "Status"
+msgstr "状态"
+
+#: app/Modules/DataProviders/FluentFormProvider.php:50
+msgid "Payment Total"
+msgstr "付款总额"
+
+#: app/Modules/DataProviders/FluentFormProvider.php:51
+msgid "Payment Status"
+msgstr "付款状态"
+
+#: app/Modules/DataProviders/FluentFormProvider.php:52
+msgid "Billing Name"
+msgstr "账单姓名"
+
+#: app/Modules/DataProviders/FluentFormProvider.php:53
+msgid "Billing Email"
+msgstr "账单邮箱"
+
+#: app/Modules/DataProviders/FluentFormProvider.php:54
+msgid "Transaction ID"
+msgstr "交易 ID"
+
+#: app/Modules/DataProviders/FluentFormProvider.php:55
+msgid "Payment Date"
+msgstr "付款日期"
+
+#: app/Modules/DataProviders/FluentFormProvider.php:151
+msgid "You may edit your table settings here."
+msgstr "您可以在此处编辑表格设置。"
+
+#: app/Modules/DataProviders/NinjaFooTable.php:267
+#: app/Modules/DataTables/Handlers/PublicRenderer.php:92
+#: app/Services/TranslationService.php:10
+msgid "Search in"
+msgstr "在以下位置搜索"
+
+#: app/Modules/DataProviders/NinjaFooTable.php:269
+#: app/Modules/DataTables/Handlers/PublicRenderer.php:94
+#: app/Modules/I18nStrings.php:769 app/Services/TranslationService.php:11
+msgid "Search"
+msgstr "搜索"
+
+#: app/Modules/DataProviders/NinjaFooTable.php:271
+#: app/Modules/DataTables/Handlers/PublicRenderer.php:96
+#: app/Services/TranslationService.php:12
+msgid "No Result Found"
+msgstr "未找到结果"
+
+#. translators: %s is the reserved column key name
+#: app/Modules/DataTables/DataTablesModule.php:51
+#, php-format
+msgid "Column key \"%s\" is reserved for system use. Please use a different key."
+msgstr "列键“%s”为系统保留键。请使用其他键。"
+
+#: app/Modules/DataTables/Handlers/ItemsHandler.php:18
+#: app/Modules/DataTables/Handlers/ItemsHandler.php:55
+msgid "Dynamic table does not exist. Please save columns first."
+msgstr "动态表格不存在。请先保存列。"
+
+#: app/Modules/DataTables/Handlers/ItemsHandler.php:90
+#: app/Modules/DataTables/Handlers/ItemsHandler.php:175
+msgid "Failed to update row."
+msgstr "更新行失败。"
+
+#: app/Modules/DataTables/Handlers/ItemsHandler.php:100
+msgid "Successfully updated the data."
+msgstr "数据已成功更新。"
+
+#: app/Modules/DataTables/Handlers/ItemsHandler.php:124
+msgid "Failed to insert row."
+msgstr "插入行失败。"
+
+#: app/Modules/DataTables/Handlers/ItemsHandler.php:146
+#: app/Modules/DataTables/Handlers/ItemsHandler.php:194
+msgid "Dynamic table does not exist."
+msgstr "动态表格不存在。"
+
+#: app/Modules/DataTables/Handlers/ItemsHandler.php:204
+msgid "Failed to delete row(s)."
+msgstr "删除行失败。"
+
+#: app/Modules/DragAndDrop/InitConfig.php:180 app/Modules/I18nStrings.php:931
+#: config/table-builder/component.php:27
 msgid "Text"
 msgstr "文本"
 
-#: includes/I18nStrings.php:85
-msgid "Text Align"
+#: app/Modules/FluentCart/Handlers/FluentCartHandler.php:35
+msgid "You do not have permission to get options."
+msgstr "您无权获取选项。"
+
+#: app/Modules/FluentCart/Handlers/FluentCartHandler.php:42
+msgid "Select Products By Category"
+msgstr "按分类选择产品"
+
+#: app/Modules/FluentCart/Handlers/FluentCartHandler.php:43
+msgid ""
+"Select the categories from where you want to show the products. Leave empty "
+"if you want to show from all categories"
+msgstr "选择要显示产品的分类。留空则显示所有分类的产品"
+
+#: app/Modules/FluentCart/Handlers/FluentCartHandler.php:50
+msgid "Select Products By Product Brands"
+msgstr "按品牌选择产品"
+
+#: app/Modules/FluentCart/Handlers/FluentCartHandler.php:51
+msgid ""
+"Select the product brands from where you want to show the products. Leave "
+"empty if you want to show from all types"
+msgstr "选择要显示产品的品牌。留空则显示所有类型的产品"
+
+#: app/Modules/FluentCart/Handlers/FluentCartHandler.php:67
+msgid "You do not have permission to create tables."
+msgstr "您无权创建表格。"
+
+#: app/Modules/FluentCart/Handlers/FluentCartHandler.php:242
+msgid "Table not found"
+msgstr "未找到表格"
+
+#: app/Modules/FluentCart/Handlers/FluentCartHandler.php:411
+msgid "Items"
+msgstr "项目"
+
+#: app/Modules/FluentCart/Handlers/FluentCartHandler.php:413
+msgid "Item"
+msgstr "项目"
+
+#: app/Modules/FluentCart/Handlers/FluentCartHandler.php:421
+msgid "Checkout"
+msgstr "结账"
+
+#: app/Modules/FluentCart/Handlers/FluentCartHandler.php:425
+msgid "View cart"
+msgstr "查看购物车"
+
+#: app/Modules/FluentCart/Handlers/FluentCartHandler.php:474
+msgid "Invalid nonce"
+msgstr "无效的 nonce"
+
+#: app/Modules/FluentCart/Traits/FluentCartTrait.php:404
+msgctxt "Product quantity input tooltip"
+msgid "Quantity"
+msgstr "数量"
+
+#. translators: %s: Product name
+#: app/Modules/FluentCart/Traits/FluentCartTrait.php:413
+#, php-format
+msgid "%s quantity"
+msgstr "%s 数量"
+
+#: app/Modules/FluentCart/Traits/FluentCartTrait.php:457
+msgid "Buy Now"
+msgstr "立即购买"
+
+#: app/Modules/I18nStrings.php:18
+msgid " Have a new license key? Please "
+msgstr " 有新的许可证密钥吗？请 "
+
+#: app/Modules/I18nStrings.php:19
+msgid " will be replaced with your table ID dynamically."
+msgstr " 将动态替换为您的表格 ID。"
+
+#: app/Modules/I18nStrings.php:20
+msgid "( Already Imported )"
+msgstr "（已导入）"
+
+#: app/Modules/I18nStrings.php:21
+msgid "10/page"
+msgstr "10/页"
+
+#: app/Modules/I18nStrings.php:22
+msgid "100/page"
+msgstr "100/页"
+
+#: app/Modules/I18nStrings.php:23
+msgid "15/page"
+msgstr "15/页"
+
+#: app/Modules/I18nStrings.php:24
+msgid "20/page"
+msgstr "20/页"
+
+#: app/Modules/I18nStrings.php:25
+msgid "50/page"
+msgstr "50/页"
+
+#: app/Modules/I18nStrings.php:26
+msgid "A powerful jQuery DataTables based rendering engine"
+msgstr "基于 jQuery DataTables 的强大渲染引擎"
+
+#: app/Modules/I18nStrings.php:27
+msgid "A responsive table plugin built on jQuery"
+msgstr "基于 jQuery 构建的响应式表格插件"
+
+#: app/Modules/I18nStrings.php:28
+msgid ""
+"A special faster form of table rendering that does not resize table cells "
+"based on content."
+msgstr "一种更快的特殊表格渲染方式，不会根据内容调整单元格大小。"
+
+#: app/Modules/I18nStrings.php:29
+msgid ""
+"A table can specify that its cell contents should remain on a single line, "
+"and not wrap."
+msgstr "表格可以指定单元格内容保持在同一行，不换行。"
+
+#: app/Modules/I18nStrings.php:30
+msgid "Action"
+msgstr "操作"
+
+#: app/Modules/I18nStrings.php:31
+msgid "Action canceled"
+msgstr "操作已取消"
+
+#: app/Modules/I18nStrings.php:32
+msgid "Activate Ninja Tables Pro plugin to unlock this feature"
+msgstr "启用 Ninja Tables Pro 插件以解锁此功能"
+
+#: app/Modules/I18nStrings.php:33
+msgid "Activate Pro"
+msgstr "启用专业版"
+
+#: app/Modules/I18nStrings.php:34
+msgid "Active"
+msgstr "激活"
+
+#: app/Modules/I18nStrings.php:35
+msgid "Add"
+msgstr "添加"
+
+#: app/Modules/I18nStrings.php:36
+msgid "Add at"
+msgstr "添加于"
+
+#: app/Modules/I18nStrings.php:37
+msgid "Add Column"
+msgstr "添加列"
+
+#: app/Modules/I18nStrings.php:38
+msgid "Add column CSS class"
+msgstr "为列添加 CSS 类"
+
+#: app/Modules/I18nStrings.php:39
+msgid "Add Condition"
+msgstr "添加条件"
+
+#: app/Modules/I18nStrings.php:40
+msgid "Add Data"
+msgstr "添加数据"
+
+#: app/Modules/I18nStrings.php:41
+msgid ""
+"Add extra classes to this column. This will be applied for the entire column"
+msgstr "为此列添加额外的类。此设置将应用于整列"
+
+#: app/Modules/I18nStrings.php:42
+msgid "Add Media (pro)"
+msgstr "添加媒体（专业版）"
+
+#: app/Modules/I18nStrings.php:43
+msgid "Add Media to Your Table Cells"
+msgstr "为您的表格单元格添加媒体"
+
+#: app/Modules/I18nStrings.php:44
+msgid "Add Meta Query"
+msgstr "添加元查询"
+
+#: app/Modules/I18nStrings.php:45
+msgid "Add New Column"
+msgstr "添加列"
+
+#: app/Modules/I18nStrings.php:46
+msgid "Add New Custom Filter"
+msgstr "添加自定义筛选器"
+
+#: app/Modules/I18nStrings.php:47
+msgid "Add New Filter"
+msgstr "添加筛选器"
+
+#: app/Modules/I18nStrings.php:48
+msgid "Add Popup Heading"
+msgstr "添加弹窗标题"
+
+#: app/Modules/I18nStrings.php:49
+msgid "Add Row Button Label"
+msgstr "添加行按钮标签"
+
+#: app/Modules/I18nStrings.php:50
+msgid "Add Table Column"
+msgstr "添加表格列"
+
+#: app/Modules/I18nStrings.php:51
+msgid "Add Your Custom CSS"
+msgstr "添加您的自定义 CSS"
+
+#: app/Modules/I18nStrings.php:52
+msgid "Add Your Custom JS"
+msgstr "添加您的自定义 JS"
+
+#: app/Modules/I18nStrings.php:53
+msgid "Add zebra-striping to any table row"
+msgstr "为表格行添加斑马条纹"
+
+#: app/Modules/I18nStrings.php:54
+msgid "Advanced - Better performance for large datasets"
+msgstr "高级：对于大型数据集性能更佳"
+
+#: app/Modules/I18nStrings.php:55
+msgid "Advanced Column Settings"
+msgstr "高级列设置"
+
+#: app/Modules/I18nStrings.php:56
+msgid "Advanced Settings"
+msgstr "高级设置"
+
+#: app/Modules/I18nStrings.php:57
+msgid "After Search Box"
+msgstr "搜索框之后"
+
+#: app/Modules/I18nStrings.php:58
+msgid "Align"
+msgstr "对齐"
+
+#: app/Modules/I18nStrings.php:59
+msgid "Alignment"
+msgstr "对齐方式"
+
+#: app/Modules/I18nStrings.php:60
+msgid "All"
+msgstr "全部"
+
+#: app/Modules/I18nStrings.php:62
+msgid "Always Show Edit Icons"
+msgstr "始终显示编辑图标"
+
+#: app/Modules/I18nStrings.php:63
+msgid "Always show in all devices"
+msgstr "在所有设备上一直显示"
+
+#: app/Modules/I18nStrings.php:64
+msgid "And Many More features"
+msgstr "以及更多功能"
+
+#: app/Modules/I18nStrings.php:65
+msgid "Appearance"
+msgstr "外观"
+
+#: app/Modules/I18nStrings.php:66
+msgid "Appearance Settings"
+msgstr "外观设置"
+
+#: app/Modules/I18nStrings.php:67
+msgid "Apply"
+msgstr "应用"
+
+#: app/Modules/I18nStrings.php:68
+msgid "Apply Semantic UI styles in the table"
+msgstr "在表格中应用 Semantic UI 样式"
+
+#: app/Modules/I18nStrings.php:69
+msgid "Apply Twitter Bootstrap 3 styles in the table"
+msgstr "在表格中应用 Twitter Bootstrap 3 样式"
+
+#: app/Modules/I18nStrings.php:70
+msgid "Apply Twitter Bootstrap 4 styles in the table"
+msgstr "在表格中应用 Twitter Bootstrap 4 样式"
+
+#: app/Modules/I18nStrings.php:71
+msgid "Approved"
+msgstr "已批准"
+
+#: app/Modules/I18nStrings.php:72
+msgid "Are you sure to delete this column?"
+msgstr "确定要删除此列吗？"
+
+#: app/Modules/I18nStrings.php:73
+msgid "Are you sure to delete this?"
+msgstr "确定要删除吗？"
+
+#: app/Modules/I18nStrings.php:74
+msgid "Are you sure, you want to delete this table"
+msgstr "确定要删除此表格吗？"
+
+#: app/Modules/I18nStrings.php:75
+msgid "As Numeric Basis"
+msgstr "按数值排序"
+
+#: app/Modules/I18nStrings.php:76
+msgid "As Text Basis"
+msgstr "按文本排序"
+
+#: app/Modules/I18nStrings.php:77
+msgid ""
+"as your css selector prefix to target this specific table. Alternatively, "
+"you can use"
+msgstr "作为您的 CSS 选择器前缀以定位此特定表格。您也可以使用"
+
+#: app/Modules/I18nStrings.php:78
+msgid "Ascending"
+msgstr "升序"
+
+#: app/Modules/I18nStrings.php:79
+msgid "Ascending Way"
+msgstr "升序方式"
+
+#: app/Modules/I18nStrings.php:80
+msgid ""
+"Auto-sync your published Google Sheet and display the entries on a "
+"customized table in Ninja Tables Pro."
+msgstr "自动同步您已发布的 Google 表格，并在 Ninja Tables Pro 的自定义表格中显示条目。"
+
+#: app/Modules/I18nStrings.php:81
+msgid "Available Columns"
+msgstr "可用的列"
+
+#: app/Modules/I18nStrings.php:82
+msgid "Available Dynamic Placeholders:"
+msgstr "可用的动态占位符："
+
+#: app/Modules/I18nStrings.php:83 config/table-builder/setting.php:77
+msgid "Background"
+msgstr "背景"
+
+#: app/Modules/I18nStrings.php:84
+msgid "Background color"
+msgstr "背景颜色"
+
+#: app/Modules/I18nStrings.php:85
+msgid "Background Color"
+msgstr "背景颜色"
+
+#: app/Modules/I18nStrings.php:86
+msgid "Basic Settings"
+msgstr "基本设置"
+
+#: app/Modules/I18nStrings.php:87
+msgid "Better for SEO"
+msgstr "更利于 SEO"
+
+#: app/Modules/I18nStrings.php:88
+msgid "Between (Min & Max Values)"
+msgstr "介于（最小值和最大值之间）"
+
+#: app/Modules/I18nStrings.php:89
+msgid "Blogs"
+msgstr "博客"
+
+#: app/Modules/I18nStrings.php:90
+msgid "Bootstrap 3"
 msgstr ""
 
-#: includes/I18nStrings.php:65
+#: app/Modules/I18nStrings.php:91
+msgid "Bootstrap 4"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:92 config/table-builder/setting.php:158
+msgid "Border"
+msgstr "边框"
+
+#: app/Modules/I18nStrings.php:93
+msgid "Border color"
+msgstr "边框颜色"
+
+#: app/Modules/I18nStrings.php:94
+msgid "Border Radius"
+msgstr "边框圆角"
+
+#: app/Modules/I18nStrings.php:95
+msgid "Border Size"
+msgstr "边框粗细"
+
+#: app/Modules/I18nStrings.php:96
+msgid "Bordered table"
+msgstr "带边框的表格"
+
+#: app/Modules/I18nStrings.php:97
+msgid "Borders on all sides of the table and cells"
+msgstr "表格和单元格所有边的边框"
+
+#: app/Modules/I18nStrings.php:98
+msgid "Bottom"
+msgstr "底部"
+
+#: app/Modules/I18nStrings.php:99
+msgid "Bottom of the Table"
+msgstr "表格底部"
+
+#: app/Modules/I18nStrings.php:100
+msgid "Browse and locate a CSV / JSON file you backed up before"
+msgstr "浏览并找到您之前备份的 CSV / JSON 文件"
+
+#: app/Modules/I18nStrings.php:101
+msgid "Bulk Actions"
+msgstr "批量操作"
+
+#: app/Modules/I18nStrings.php:102
+msgid "Button Alignment"
+msgstr "按钮对齐"
+
+#: app/Modules/I18nStrings.php:103
+msgid "Button Background Color"
+msgstr "按钮背景颜色"
+
+#: app/Modules/I18nStrings.php:104
+msgid "Button BG Color"
+msgstr "按钮背景颜色"
+
+#: app/Modules/I18nStrings.php:105
+msgid "Button Border Color"
+msgstr "按钮边框颜色"
+
+#: app/Modules/I18nStrings.php:106
+msgid "Button Hover"
+msgstr "按钮悬停"
+
+#: app/Modules/I18nStrings.php:107
+msgid ""
+"Button on Table is a pro Feature. It will not work without Pro Version."
+msgstr "表格中的按钮是专业版功能。没有专业版将无法使用。"
+
+#: app/Modules/I18nStrings.php:108
+msgid "Button Options"
+msgstr "按钮选项"
+
+#: app/Modules/I18nStrings.php:109
+msgid "Button Position In Frontend"
+msgstr "按钮在前端的位置"
+
+#: app/Modules/I18nStrings.php:110
+msgid "Button Size"
+msgstr "按钮大小"
+
+#: app/Modules/I18nStrings.php:111
+msgid "Button Text"
+msgstr "按钮文本"
+
+#: app/Modules/I18nStrings.php:112
+msgid "Button Text (HTML supported)"
+msgstr "按钮文本（支持 HTML）"
+
+#: app/Modules/I18nStrings.php:113
+msgid "Button Text Color"
+msgstr "按钮文本颜色"
+
+#: app/Modules/I18nStrings.php:114
+msgid "Button/Link"
+msgstr "按钮/链接"
+
+#: app/Modules/I18nStrings.php:115
+msgid "Buttons (CSV/Print)"
+msgstr "按钮（CSV/打印）"
+
+#: app/Modules/I18nStrings.php:116
+msgid "Buttons Placement"
+msgstr "按钮位置"
+
+#: app/Modules/I18nStrings.php:117
+msgid "Buy Now Button Text"
+msgstr "“立即购买”按钮文本"
+
+#: app/Modules/I18nStrings.php:118
+msgid "By Column"
+msgstr "按列"
+
+#: app/Modules/I18nStrings.php:119
+msgid ""
+"By default, Only Administrator have access to manage the tables. By "
+"selecting additional roles below, you can give access to manage your Tables "
+"to other user roles."
+msgstr "默认情况下，只有管理员才能管理表格。通过在下方选择其他角色，您可以授予其他用户角色管理表格的权限。"
+
+#: app/Modules/I18nStrings.php:120
+msgid "Caching Configuration"
+msgstr "缓存配置"
+
+#: app/Modules/I18nStrings.php:121
+msgid "Caching Interval (In Minutes)"
+msgstr "缓存间隔（分钟）"
+
+#: app/Modules/I18nStrings.php:122
+msgid "cancel"
+msgstr "取消"
+
+#: app/Modules/I18nStrings.php:123
+msgid "Cancel"
+msgstr "取消"
+
+#: app/Modules/I18nStrings.php:124
+msgid "Cart Text"
+msgstr "购物车文本"
+
+#: app/Modules/I18nStrings.php:125
+msgid "Cell Options"
+msgstr "单元格选项"
+
+#: app/Modules/I18nStrings.php:126
+msgid "Center"
+msgstr "居中"
+
+#: app/Modules/I18nStrings.php:127
+msgid "Change"
+msgstr "更改"
+
+#: app/Modules/I18nStrings.php:128
+msgid "Change the button background color"
+msgstr "更改按钮背景颜色"
+
+#: app/Modules/I18nStrings.php:129
+msgid "Change the button border color"
+msgstr "更改按钮边框颜色"
+
+#: app/Modules/I18nStrings.php:130
+msgid "Change the button text color"
+msgstr "更改按钮文本颜色"
+
+#: app/Modules/I18nStrings.php:131
+msgid "Check out some more WPManageNinja’s finest plugins made for you."
+msgstr "了解更多 WPManageNinja 为您打造的优质插件。"
+
+#: app/Modules/I18nStrings.php:132
+msgid "Check the documentation for advanced use cases:"
+msgstr "查看文档了解高级用例："
+
+#: app/Modules/I18nStrings.php:133
+msgid "Check tutorial for importing data from CSV file"
+msgstr "查看从 CSV 文件导入数据的教程"
+
+#: app/Modules/I18nStrings.php:134
+msgid "Check tutorial for importing Table from JSON file"
+msgstr "查看从 JSON 文件导入表格的教程"
+
+#: app/Modules/I18nStrings.php:135
+msgid "Checkbox"
+msgstr "复选框"
+
+#: app/Modules/I18nStrings.php:136
+msgid "Checkout Text"
+msgstr "结账文本"
+
+#: app/Modules/I18nStrings.php:137
+msgid "Choose a CSV file or drag & drop it here."
+msgstr "选择一个 CSV 文件或将其拖放到此处。"
+
+#: app/Modules/I18nStrings.php:138
+msgid "Choose a file or drag & drop it here."
+msgstr "选择一个文件或将其拖放到此处。"
+
+#: app/Modules/I18nStrings.php:139
+msgid "Choose a Template"
+msgstr "选择模板"
+
+#: app/Modules/I18nStrings.php:140
+msgid "Choose CSV from Media Library"
+msgstr "从媒体库选择 CSV"
+
+#: app/Modules/I18nStrings.php:141
+msgid "Choose Form"
+msgstr "选择表单"
+
+#: app/Modules/I18nStrings.php:142
+msgid "Choose how your table will be rendered on the frontend."
+msgstr "选择您的表格在前端的渲染方式。"
+
+#: app/Modules/I18nStrings.php:143
+msgid "Choose Icon"
+msgstr "选择图标"
+
+#: app/Modules/I18nStrings.php:144
+#, php-format
+msgid ""
+"Choose responsive breakpoints of your table columns. For more details check "
+"%1$sdocumentation%2$s."
+msgstr "选择表格列的响应式断点。更多详情请查看 %1$s文档%2$s。"
+
+#: app/Modules/I18nStrings.php:145
+msgid "Choose the data type of the column."
+msgstr "选择列的数据类型。"
+
+#: app/Modules/I18nStrings.php:146
+msgid "Choose the date format of the column."
+msgstr "选择列的日期格式。"
+
+#: app/Modules/I18nStrings.php:147
+msgid "Choose the text alignment for Column Rows"
+msgstr "选择列行的文本对齐方式"
+
+#: app/Modules/I18nStrings.php:148
+msgid "Choose the text alignment. This will be applied only for header"
+msgstr "选择文本对齐方式。此设置仅应用于表头"
+
+#: app/Modules/I18nStrings.php:149
+msgid "Clear Cache"
+msgstr "清除缓存"
+
+#: app/Modules/I18nStrings.php:150
+msgid "Clear External Caches"
+msgstr "清除外部缓存"
+
+#: app/Modules/I18nStrings.php:151
+msgid "Clear Table Cache"
+msgstr "清除表格缓存"
+
+#: app/Modules/I18nStrings.php:152
+msgid "click here"
+msgstr "点击此处"
+
+#: app/Modules/I18nStrings.php:153
+msgid "Click here"
+msgstr "单击此处"
+
+#: app/Modules/I18nStrings.php:154
+msgid "click here to check again."
+msgstr "点击此处重新检查。"
+
+#: app/Modules/I18nStrings.php:155
+msgid ""
+"Click on a cell to get cell-specific options. Selected cells will be "
+"highlighted."
+msgstr "点击单元格以获取单元格专属选项。所选单元格将被高亮显示。"
+
+#: app/Modules/I18nStrings.php:156
+msgid "Click to copy shortcode"
+msgstr "点击复制短代码"
+
+#: app/Modules/I18nStrings.php:157
+msgid "click to upload"
+msgstr "点击上传"
+
+#: app/Modules/I18nStrings.php:158
+msgid "Close"
+msgstr "关闭"
+
+#: app/Modules/I18nStrings.php:159 config/table-builder/setting.php:237
+msgid "Color"
+msgstr "颜色"
+
+#: app/Modules/I18nStrings.php:160
+msgid ""
+"Color customization is a PRO feature. Please upgrade to pro apply this "
+"feature."
+msgstr "颜色自定义是专业版功能。请升级到专业版以使用此功能。"
+
+#: app/Modules/I18nStrings.php:161
+msgid "Colspan ( Cell-Merge )"
+msgstr "跨列（合并单元格）"
+
+#: app/Modules/I18nStrings.php:162
+msgid "Colspan/Cell Merging Feature"
+msgstr "跨列/合并单元格功能"
+
+#: app/Modules/I18nStrings.php:163
+msgid "Column"
+msgstr "列"
+
+#: app/Modules/I18nStrings.php:164
+msgid "Column Background Color"
+msgstr "列背景颜色"
+
+#: app/Modules/I18nStrings.php:165
+msgid "Column Key"
+msgstr "列键"
+
+#: app/Modules/I18nStrings.php:166
+msgid "Column key is for data mapping, export and import table data."
+msgstr "列键用于数据映射以及导出和导入表格数据。"
+
+#: app/Modules/I18nStrings.php:167
+msgid "Column Key is required"
+msgstr "列键为必填项"
+
+#: app/Modules/I18nStrings.php:168
+msgid ""
+"Column Key needs to be unique. Please add a suffix / prefix to make it "
+"unique"
+msgstr "列键必须唯一。请添加后缀/前缀使其唯一"
+
+#: app/Modules/I18nStrings.php:169
+msgid "Column Name"
+msgstr "列名"
+
+#: app/Modules/I18nStrings.php:170
+msgid "Column Options"
+msgstr "列选项"
+
+#: app/Modules/I18nStrings.php:171
+msgid "Column Text Color"
+msgstr "列文本颜色"
+
+#: app/Modules/I18nStrings.php:172
+msgid "Column Title"
+msgstr "列标题"
+
+#: app/Modules/I18nStrings.php:173
+msgid "Column Width"
+msgstr "列宽"
+
+#: app/Modules/I18nStrings.php:174
+msgid "Columns"
+msgstr "列"
+
+#: app/Modules/I18nStrings.php:175
+msgid "Compact Table"
+msgstr "紧凑表格"
+
+#: app/Modules/I18nStrings.php:176
+msgid "Compact View"
+msgstr "紧凑视图"
+
+#: app/Modules/I18nStrings.php:177
+msgid "Completed"
+msgstr "已完成"
+
+#: app/Modules/I18nStrings.php:178
+msgid "Condensed table"
+msgstr "精简表格"
+
+#: app/Modules/I18nStrings.php:179
+msgid "Conditional Formatting"
+msgstr "条件格式"
+
+#: app/Modules/I18nStrings.php:180
+msgid "Conditions"
+msgstr "条件"
+
+#: app/Modules/I18nStrings.php:181
+msgid "confirm"
+msgstr "确认"
+
+#: app/Modules/I18nStrings.php:182
+msgid "Connect External CSV"
+msgstr "连接外部 CSV"
+
+#: app/Modules/I18nStrings.php:183
+msgid "Connect Fluent Forms"
+msgstr "连接 Fluent Forms"
+
+#: app/Modules/I18nStrings.php:184
+msgid "Connect Google Sheets"
+msgstr "连接 Google 表格"
+
+#: app/Modules/I18nStrings.php:185
+msgid "Connect with the Ninja Tables community on Social Media."
+msgstr "在社交媒体上与 Ninja Tables 社区联系。"
+
+#: app/Modules/I18nStrings.php:186
+msgid "Console Log JS Errors Silently"
+msgstr "静默地将 JS 错误记录到控制台"
+
+#: app/Modules/I18nStrings.php:187
+msgid "Construct Table from Custom SQL Query"
+msgstr "通过自定义 SQL 查询创建表格"
+
+#: app/Modules/I18nStrings.php:188
+msgid "Construct Table from Fluent Forms Entries"
+msgstr "通过 Fluent Forms 提交内容创建表格"
+
+#: app/Modules/I18nStrings.php:189
+msgid "Construct Table from Posts / CPTs"
+msgstr "通过文章 / 自定义文章类型创建表格"
+
+#: app/Modules/I18nStrings.php:190
+msgid ""
+"Construct table from remote CSV file. Whenever your remote CSV data changes "
+"it will automatically sync here."
+msgstr "通过远程 CSV 文件创建表格。每当您的远程 CSV 数据更改时，都会自动在此处同步。"
+
+#: app/Modules/I18nStrings.php:191
+msgid "Construct Table from Your FluentCart Products"
+msgstr "通过您的 FluentCart 产品创建表格"
+
+#: app/Modules/I18nStrings.php:192
+msgid "Construct Table from Your WooCommerce Product Reviews"
+msgstr "通过您的 WooCommerce 产品评论创建表格"
+
+#: app/Modules/I18nStrings.php:193
+msgid "Construct Table from Your WooCommerce Products"
+msgstr "通过您的 WooCommerce 产品创建表格"
+
+#: app/Modules/I18nStrings.php:194
+msgid "Contains"
+msgstr "包含"
+
+#: app/Modules/I18nStrings.php:195
+msgid "Content Alignment"
+msgstr "内容对齐"
+
+#: app/Modules/I18nStrings.php:196
+msgid "Content Text Alignment"
+msgstr "内容文本对齐"
+
+#: app/Modules/I18nStrings.php:197
+msgid "Continue Adding"
+msgstr "继续添加"
+
+#: app/Modules/I18nStrings.php:198
+msgid ""
+"Convert to UTF-8 format ( Check this if your csv is non-unicode format)"
+msgstr "转换为 UTF-8 格式（如果您的 CSV 不是 Unicode 格式，请勾选此项）"
+
+#: app/Modules/I18nStrings.php:199
+msgid "Convert to UTF-8 format (Check this if your CSV is non-unicode format)"
+msgstr "转换为 UTF-8 格式（如果您的 CSV 不是 Unicode 格式，请勾选此项）"
+
+#: app/Modules/I18nStrings.php:200
+msgid "Create"
+msgstr "创建"
+
+#: app/Modules/I18nStrings.php:201
+msgid "Create a Drag & Drop Table"
+msgstr "创建拖放表格"
+
+#: app/Modules/I18nStrings.php:202
+msgid "Create a table by generating a sql query to any custom SQL database."
+msgstr "通过为任何自定义 SQL 数据库生成 SQL 查询来创建表格。"
+
+#: app/Modules/I18nStrings.php:203
+msgid ""
+"Create communities in WordPress with user profiles, forums, activity feeds, "
+"and messaging - all from your dashboard with 0 server issues."
+msgstr "在 WordPress 中创建社区，具有用户资料、论坛、动态和消息功能，全部通过您的仪表盘实现，且没有服务器问题。"
+
+#: app/Modules/I18nStrings.php:204
+msgid "Create Custom Filter UI in Table"
+msgstr "在表格中创建自定义筛选器界面"
+
+#: app/Modules/I18nStrings.php:205
+msgid "Create New Table"
+msgstr "创建新表格"
+
+#: app/Modules/I18nStrings.php:206
+msgid "Create Products Table"
+msgstr "创建产品表格"
+
+#: app/Modules/I18nStrings.php:207
+msgid ""
+"Create responsive and customizable WP posts tables from your existing "
+"posts/pages/custom post types with Ninja Tables pro."
+msgstr "使用 Ninja Tables Pro 从您现有的文章/页面/自定义文章类型创建响应式且可自定义的 WP 文章表格。"
+
+#: app/Modules/I18nStrings.php:208
+msgid "Create Reviews Table"
+msgstr "创建评论表格"
+
+#: app/Modules/I18nStrings.php:209
+msgid ""
+"Create tables fast using drag & drop table mode. Add columns and rows "
+"manually, import, or pick a template. Learn more about drag & drop table."
+msgstr "使用拖放表格模式快速创建表格。手动添加列和行、导入或选择模板。了解有关拖放表格的更多信息。"
+
+#: app/Modules/I18nStrings.php:210
+msgid ""
+"Create visually impressive and dynamic data charts with this free WordPress "
+"charts plugin."
+msgstr "使用这款免费的 WordPress 图表插件创建视觉上令人印象深刻的动态数据图表。"
+
+#: app/Modules/I18nStrings.php:211
+msgid "Create WordPress tables fast"
+msgstr "快速创建 WordPress 表格"
+
+#: app/Modules/I18nStrings.php:212
+msgid "Create Your First Table"
+msgstr "创建您的第一个表格"
+
+#: app/Modules/I18nStrings.php:213
+msgid "Create your metadata on your FluentCart platform"
+msgstr "在您的 FluentCart 平台上创建元数据"
+
+#: app/Modules/I18nStrings.php:214
+msgid "Create your metadata on your WooCommerce platform"
+msgstr "在您的 WooCommerce 平台上创建元数据"
+
+#: app/Modules/I18nStrings.php:215
+msgid "Created At"
+msgstr "创建时间"
+
+#: app/Modules/I18nStrings.php:216
+msgid "CSV - Comma-separated values"
+msgstr "CSV - 逗号分隔值"
+
+#: app/Modules/I18nStrings.php:217
+msgid "CSV Export / Print Button Settings for Frontend"
+msgstr "前端 CSV 导出/打印按钮设置"
+
+#: app/Modules/I18nStrings.php:218
+msgid "CSV or JSON"
+msgstr "CSV 或 JSON"
+
+#: app/Modules/I18nStrings.php:219
+msgid "Current Caching Interval:"
+msgstr "当前缓存间隔："
+
+#: app/Modules/I18nStrings.php:220
+msgid "Current Page"
+msgstr "当前页"
+
+#: app/Modules/I18nStrings.php:221
+msgid "Current SQL Query:"
+msgstr "当前 SQL 查询："
+
+#: app/Modules/I18nStrings.php:222
+msgid "Custom"
+msgstr "自定义"
+
+#: app/Modules/I18nStrings.php:223 config/table-builder/setting.php:99
+msgid "Custom CSS"
+msgstr "自定义CSS"
+
+#: app/Modules/I18nStrings.php:224
+msgid "Custom CSS/JS"
+msgstr "自定义 CSS/JS"
+
+#: app/Modules/I18nStrings.php:225
+msgid "Custom Filters"
+msgstr "自定义筛选器"
+
+#: app/Modules/I18nStrings.php:226
+msgid ""
+"Custom Filters is introduced in version 2.4.0. Please update <b>Ninja tables"
+" pro</b> plugin to use this feature"
+msgstr "自定义筛选器在 2.4.0 版本中引入。请更新 <b>Ninja Tables Pro</b> 插件以使用此功能"
+
+#: app/Modules/I18nStrings.php:227
+msgid "Custom Html Options"
+msgstr "自定义 HTML 选项"
+
+#: app/Modules/I18nStrings.php:228
+msgid ""
+"Custom Javascript feature is a pro feature along with many awesome features."
+msgstr "自定义 JavaScript 与许多其他出色功能一样是专业版功能。"
+
+#: app/Modules/I18nStrings.php:229 config/table-builder/setting.php:105
+msgid "Custom JS"
+msgstr "自定义 JS"
+
+#: app/Modules/I18nStrings.php:230
+msgid "Custom Scheme"
+msgstr "自定义方案"
+
+#: app/Modules/I18nStrings.php:231
+msgid "Custom Search Filters"
+msgstr "自定义搜索筛选器"
+
+#: app/Modules/I18nStrings.php:232
+msgid ""
+"Custom Search Filters is useful if you want to add select box / Radio Button"
+" to show a group of rows of your table."
+msgstr "如果您想添加下拉框/单选按钮以显示表格中的一组行，自定义搜索筛选器会很有用。"
+
+#: app/Modules/I18nStrings.php:233
+msgid "Custom SQL Query"
+msgstr "自定义 SQL 查询"
+
+#: app/Modules/I18nStrings.php:234
+msgid ""
+"Customize table appearance based on the cell value. Add as many conditions "
+"as you like. Conditional formatting is a pro feature."
+msgstr "根据单元格的值自定义表格外观。您可以添加任意数量的条件。条件格式是专业版功能。"
+
+#: app/Modules/I18nStrings.php:235
+msgid "Customize Your Language Preferences"
+msgstr "自定义您的语言偏好"
+
+#: app/Modules/I18nStrings.php:236
+msgid ""
+"Customize your table's column width, custom CSS class, column styling with "
+"this Pro feature."
+msgstr "使用此专业版功能自定义表格的列宽、自定义 CSS 类和列样式。"
+
+#: app/Modules/I18nStrings.php:237
+msgid "Data Source"
+msgstr "数据源"
+
+#: app/Modules/I18nStrings.php:238
+msgid "Data Source URL"
+msgstr "数据源 URL"
+
+#: app/Modules/I18nStrings.php:239
+msgid ""
+"Data Transformer is a powerful tool where you can concat any column values "
+"easily into any valid html and show as computed value."
+msgstr "数据转换器是一个强大的工具，您可以轻松地将任何列的值拼接成有效的 HTML 并显示为计算值。"
+
+#: app/Modules/I18nStrings.php:240
+msgid "Data Type"
+msgstr "数据类型"
+
+#: app/Modules/I18nStrings.php:241
+msgid "DataTable"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:242
+msgid "DataTables"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:243
+msgid ""
+"DataTables CSV import reads selected Media CSV in chunks for better "
+"stability."
+msgstr "DataTables 的 CSV 导入会分块读取所选的媒体 CSV 以获得更好的稳定性。"
+
+#: app/Modules/I18nStrings.php:244
+msgid "Date After 10 Days:"
+msgstr "10 天后的日期："
+
+#: app/Modules/I18nStrings.php:245
+msgid "Date Before 10 Days:"
+msgstr "10 天前的日期："
+
+#: app/Modules/I18nStrings.php:246
+msgid "Date Field"
+msgstr "日期字段"
+
+#: app/Modules/I18nStrings.php:247
+msgid "Date Filter Operator"
+msgstr "日期筛选器运算符"
+
+#: app/Modules/I18nStrings.php:248
+msgid "Date Format"
+msgstr "日期格式"
+
+#: app/Modules/I18nStrings.php:249
+msgid "Date Picker"
+msgstr "日期选择器"
+
+#: app/Modules/I18nStrings.php:250
+msgid "Date Range"
+msgstr "日期范围"
+
+#: app/Modules/I18nStrings.php:251
+msgid "DB Host"
+msgstr "数据库主机"
+
+#: app/Modules/I18nStrings.php:252
+msgid "DB Host Port"
+msgstr "主机端口"
+
+#: app/Modules/I18nStrings.php:253
+msgid "DB Name"
+msgstr "数据库名称"
+
+#: app/Modules/I18nStrings.php:254
+msgid "DB User Password"
+msgstr "用户密码"
+
+#: app/Modules/I18nStrings.php:255
+msgid "DB username"
+msgstr "数据库用户名"
+
+#: app/Modules/I18nStrings.php:256
+msgid "Deactivate License"
+msgstr "停用许可证"
+
+#: app/Modules/I18nStrings.php:257
+msgid "Default"
+msgstr "默认"
+
+#: app/Modules/I18nStrings.php:258
+msgid "Default - Lightweight and responsive"
+msgstr "默认：轻量且响应式"
+
+#: app/Modules/I18nStrings.php:259
+msgid "Default DataTables styles"
+msgstr "默认 DataTables 样式"
+
+#: app/Modules/I18nStrings.php:260
+msgid "Default Features"
+msgstr "默认功能"
+
+#: app/Modules/I18nStrings.php:261
+msgid "Default Font Setting"
+msgstr "默认字体设置"
+
+#: app/Modules/I18nStrings.php:262
+msgid "Default Pagination Setting"
+msgstr "默认分页设置"
+
+#: app/Modules/I18nStrings.php:263
+msgid "Default Placeholder"
+msgstr "默认占位符"
+
+#: app/Modules/I18nStrings.php:264
+msgid "Default Styling Library"
+msgstr "默认样式库"
+
+#: app/Modules/I18nStrings.php:265
+msgid "Default Table Color"
+msgstr "默认表格颜色"
+
+#: app/Modules/I18nStrings.php:266
+msgid "Default Value"
+msgstr "默认值"
+
+#: app/Modules/I18nStrings.php:267
+msgid "Default WP SQL Table"
+msgstr "默认 WP SQL 表"
+
+#: app/Modules/I18nStrings.php:268
+msgid "Default: 10,20,50,100"
+msgstr "默认：10,20,50,100"
+
+#: app/Modules/I18nStrings.php:269
+msgid "Delete"
+msgstr "删除"
+
+#: app/Modules/I18nStrings.php:270
+msgid "Delete canceled"
+msgstr "删除已取消"
+
+#: app/Modules/I18nStrings.php:271
+msgid "Delete Column"
+msgstr "删除列"
+
+#: app/Modules/I18nStrings.php:272
+msgid "Delete Entries"
+msgstr "删除记录"
+
+#: app/Modules/I18nStrings.php:273
+msgid "Delete Tables"
+msgstr "删除表格"
+
+#: app/Modules/I18nStrings.php:274
+msgid "Demo"
+msgstr "演示"
+
+#: app/Modules/I18nStrings.php:275
+msgid "Descending"
+msgstr "降序"
+
+#: app/Modules/I18nStrings.php:276
+msgid "Descending Way"
+msgstr "降序方式"
+
+#: app/Modules/I18nStrings.php:277
+msgid "Description"
+msgstr "描述"
+
+#: app/Modules/I18nStrings.php:278
+msgid "Description For Footer"
+msgstr "页脚描述"
+
+#: app/Modules/I18nStrings.php:279
+msgid "Description For Header"
+msgstr "页眉描述"
+
+#: app/Modules/I18nStrings.php:280
+msgid "Deselect All"
+msgstr "取消全选"
+
+#: app/Modules/I18nStrings.php:281
+msgid "Disable automatic filter value sorting"
+msgstr "禁用筛选值的自动排序"
+
+#: app/Modules/I18nStrings.php:282
+msgid "Disable Caching"
+msgstr "禁用缓存"
+
+#: app/Modules/I18nStrings.php:283
+msgid "Disable frontend search for this column data"
+msgstr "禁用此列数据的前端搜索"
+
+#: app/Modules/I18nStrings.php:284
+msgid "Disable frontend sorting for this column"
+msgstr "禁用此列的前端排序"
+
+#: app/Modules/I18nStrings.php:285
+msgid "Disable Sticky header for mobile "
+msgstr "在移动端禁用固定表头 "
+
+#: app/Modules/I18nStrings.php:286
+msgid "Display Frontend Loader"
+msgstr "显示前端加载指示器"
+
+#: app/Modules/I18nStrings.php:287
+msgid "Displays products content in a searchable, sortable with Ninja Tables."
+msgstr "使用 Ninja Tables 在可搜索、可排序的表格中显示产品内容。"
+
+#: app/Modules/I18nStrings.php:288
+msgid ""
+"Displays WooCommerce product reviews in a searchable, sortable, customized "
+"table."
+msgstr "在可搜索、可排序的自定义表格中显示 WooCommerce 产品评论。"
+
+#: app/Modules/I18nStrings.php:289
+msgid "Documentation"
+msgstr "文档"
+
+#: app/Modules/I18nStrings.php:290
+msgid "Does Not Contain"
+msgstr "不包含"
+
+#: app/Modules/I18nStrings.php:291
+msgid "Don't Handle Global Javascript Errors (Default)"
+msgstr "不处理全局 JavaScript 错误（默认）"
+
+#: app/Modules/I18nStrings.php:292
+msgid "Download Button Text / HTML"
+msgstr "下载按钮文本 / HTML"
+
+#: app/Modules/I18nStrings.php:293
+msgid "Download Sample CSV"
+msgstr "下载示例 CSV"
+
+#: app/Modules/I18nStrings.php:294
+msgid "Drag & Drop Table"
+msgstr "拖放表格"
+
+#: app/Modules/I18nStrings.php:295
+msgid "Drag and Drop Table Data Sorting"
+msgstr "拖放式表格数据排序"
+
+#: app/Modules/I18nStrings.php:296
+msgid "Drop file here or "
+msgstr "将文件拖放到此处，或 "
+
+#: app/Modules/I18nStrings.php:297
+msgid "Duplicate"
+msgstr "创建副本"
+
+#: app/Modules/I18nStrings.php:298
+msgid "Duplicate column"
+msgstr "复制列"
+
+#: app/Modules/I18nStrings.php:299
+msgid "Duplicate row"
+msgstr "复制行"
+
+#: app/Modules/I18nStrings.php:300
+msgid "Dynamic Column Data Settings"
+msgstr "动态列数据设置"
+
+#: app/Modules/I18nStrings.php:301
+msgid "Dynamic Data from Table Column"
+msgstr "来自表格列的动态数据"
+
+#: app/Modules/I18nStrings.php:302
+msgid "Dynamic Fields Settings"
+msgstr "动态字段设置"
+
+#: app/Modules/I18nStrings.php:303
+msgid "Dynamic Post Data Settings"
+msgstr "动态文章数据设置"
+
+#: app/Modules/I18nStrings.php:304
+msgid "Edit Custom Filter"
+msgstr "编辑自定义筛选器"
+
+#: app/Modules/I18nStrings.php:305
+msgid "Edit Popup Heading"
+msgstr "编辑弹窗标题"
+
+#: app/Modules/I18nStrings.php:306
+msgid "Edit Row Button Label"
+msgstr "编辑行按钮标签"
+
+#: app/Modules/I18nStrings.php:307
+msgid "Elements"
+msgstr "元素"
+
+#: app/Modules/I18nStrings.php:308
+msgid "Empty Star Color"
+msgstr "空星颜色"
+
+#: app/Modules/I18nStrings.php:309
+msgid "Enable a hover state on table rows"
+msgstr "为表格行启用悬停状态"
+
+#: app/Modules/I18nStrings.php:310
+msgid "Enable click to copy for this column cells"
+msgstr "为此列的单元格启用点击复制"
+
+#: app/Modules/I18nStrings.php:311
+msgid "Enable CSV Export Button"
+msgstr "启用 CSV 导出按钮"
+
+#: app/Modules/I18nStrings.php:312
+msgid "Enable Excel Formula support for Transform Value"
+msgstr "为值转换启用 Excel 公式支持"
+
+#: app/Modules/I18nStrings.php:313
+msgid "Enable first column sticky for table"
+msgstr "为表格固定第一列"
+
+#: app/Modules/I18nStrings.php:314
+msgid "Enable Frontend Copy Cell"
+msgstr "启用前端复制单元格"
+
+#: app/Modules/I18nStrings.php:315
+msgid "Enable Frontend Editing"
+msgstr "启用前端编辑"
+
+#: app/Modules/I18nStrings.php:316
+msgid "Enable Full HTML Cache"
+msgstr "启用完整 HTML 缓存"
+
+#: app/Modules/I18nStrings.php:317
+msgid "Enable HTML Cache"
+msgstr "启用 HTML 缓存"
+
+#: app/Modules/I18nStrings.php:318
+msgid "Enable HTML Table Header Content"
+msgstr "启用 HTML 表头内容"
+
+#: app/Modules/I18nStrings.php:319
+msgid "Enable Icon"
+msgstr "启用图标"
+
+#: app/Modules/I18nStrings.php:320
+msgid "Enable Multi-Select"
+msgstr "启用多选"
+
+#: app/Modules/I18nStrings.php:321
+msgid "Enable Multi-Selection"
+msgstr "启用多选"
+
+#: app/Modules/I18nStrings.php:322
+msgid "Enable Ninja Charts"
+msgstr "启用 Ninja Charts"
+
+#: app/Modules/I18nStrings.php:323
+msgid "Enable Print Button"
+msgstr "启用打印按钮"
+
+#: app/Modules/I18nStrings.php:324
+msgid "Enable Progressive filter for dynamic filter options"
+msgstr "为动态筛选选项启用渐进式筛选"
+
+#: app/Modules/I18nStrings.php:325
+msgid "Enable Row Details Modal"
+msgstr "启用行详情弹窗"
+
+#: app/Modules/I18nStrings.php:326
+msgid "Enable sorting of the table by the visitor"
+msgstr "允许访客对表格进行排序"
+
+#: app/Modules/I18nStrings.php:327
+msgid "Enable SQL-Module Permission for selected user roles"
+msgstr "为所选用户角色启用 SQL 模块权限"
+
+#: app/Modules/I18nStrings.php:328
+msgid "Enable Stackable Table"
+msgstr "启用可堆叠表格"
+
+#: app/Modules/I18nStrings.php:329
+msgid "Enable sticky header for table"
+msgstr "为表格启用固定表头"
+
+#: app/Modules/I18nStrings.php:330
+msgid ""
+"Enable Strict Mode (If Enable, Ninja Tables will try to match exact value)"
+msgstr "启用严格模式（启用后，Ninja Tables 将尝试匹配精确值）"
+
+#: app/Modules/I18nStrings.php:331
+msgid "Enable the visitor to filter or search the table."
+msgstr "允许访客筛选或搜索表格。"
+
+#: app/Modules/I18nStrings.php:332
+msgid "Enable this if you want to link to post/Author permalink"
+msgstr "如果您想链接到文章/作者的固定链接，请启用此项"
+
+#: app/Modules/I18nStrings.php:333
+msgid "Enable this if you want to link to Taxonomy permalink"
+msgstr "如果您想链接到分类法的固定链接，请启用此项"
+
+#: app/Modules/I18nStrings.php:334
+msgid ""
+"Enable this if you want to make the author as table filter action. So when "
+"user click on those filters then they will see only the selected author "
+"posts."
+msgstr "如果您想将作者用作表格筛选操作，请启用此项。这样当用户点击这些筛选器时，只会看到所选作者的文章。"
+
+#: app/Modules/I18nStrings.php:335
+msgid ""
+"Enable this if you want to make the taxonomies as table filter action. So "
+"when user click on those filters then they will see only those type of "
+"posts."
+msgstr "如果您想将分类法用作表格筛选操作，请启用此项。这样当用户点击这些筛选器时，只会看到该类型的文章。"
+
+#: app/Modules/I18nStrings.php:336
+msgid "Enable this if you want to open the links to new tab"
+msgstr "如果您想在新标签页中打开链接，请启用此项"
+
+#: app/Modules/I18nStrings.php:337
+msgid "Enable this if you want to show table description in frontend"
+msgstr "如果您想在前端显示表格描述，请启用此项"
+
+#: app/Modules/I18nStrings.php:338
+msgid "Enable this if you want to show table title in frontend"
+msgstr "如果您想在前端显示表格标题，请启用此项"
+
+#: app/Modules/I18nStrings.php:339
+msgid "Enable this to show rating value alongside stars"
+msgstr "启用此项以在星级旁显示评分值"
+
+#: app/Modules/I18nStrings.php:340
+msgid "engine"
+msgstr "引擎"
+
+#: app/Modules/I18nStrings.php:341
+msgid "Enter a colum key"
+msgstr "输入列键"
+
+#: app/Modules/I18nStrings.php:342
+msgid "Enter a column name to set the header title"
+msgstr "输入列名以设置表头标题"
+
+#: app/Modules/I18nStrings.php:343
+msgid "Enter a column name to set the header title."
+msgstr "输入列名以设置表头标题。"
+
+#: app/Modules/I18nStrings.php:344
+msgid "Enter a table caption if you want to show"
+msgstr "如果您想显示表格标题，请输入"
+
+#: app/Modules/I18nStrings.php:345
+msgid "Enter a title to identify your table"
+msgstr "输入标题以识别您的表格"
+
+#: app/Modules/I18nStrings.php:346
+msgid "Enter cart button text"
+msgstr "输入购物车按钮文本"
+
+#: app/Modules/I18nStrings.php:347
+msgid "Enter checkout button text"
+msgstr "输入结账按钮文本"
+
+#: app/Modules/I18nStrings.php:348
+msgid "enter comma separated value"
+msgstr "输入以逗号分隔的值"
+
+#: app/Modules/I18nStrings.php:349
+msgid "Enter Filter Label"
+msgstr "输入筛选器标签"
+
+#: app/Modules/I18nStrings.php:350
+msgid "Enter Filter Title"
+msgstr "输入筛选器标题"
+
+#: app/Modules/I18nStrings.php:351
+msgid "Enter Filter Value"
+msgstr "输入筛选值"
+
+#: app/Modules/I18nStrings.php:352
+msgid "Enter here"
+msgstr "在此处输入"
+
+#: app/Modules/I18nStrings.php:353
+msgid "Enter moment.js supported format"
+msgstr "输入 moment.js 支持的格式"
+
+#: app/Modules/I18nStrings.php:354
+msgid "Enter placeholder"
+msgstr "输入占位符"
+
+#: app/Modules/I18nStrings.php:355
+msgid "Enter Select items one per line"
+msgstr "每行输入一个选择项"
+
+#: app/Modules/I18nStrings.php:356
+msgid "Enter table name here...."
+msgstr "在此处输入表格名称…"
+
+#: app/Modules/I18nStrings.php:357
+msgid "Enter the button text you want to show on the button."
+msgstr "输入您想在按钮上显示的文本。"
+
+#: app/Modules/I18nStrings.php:358
+msgid "Enter the selection placeholder, default: Select"
+msgstr "输入选择占位符，默认：选择"
+
+#: app/Modules/I18nStrings.php:359
+msgid "Enter Value"
+msgstr "输入值"
+
+#: app/Modules/I18nStrings.php:360
+msgid "Enter your license key"
+msgstr "输入您的许可证密钥"
+
+#: app/Modules/I18nStrings.php:361
+msgid "Enter your source URL"
+msgstr "输入您的源 URL"
+
+#: app/Modules/I18nStrings.php:362
+msgid "Entry Type:"
+msgstr "条目类型："
+
+#: app/Modules/I18nStrings.php:363
+msgid "Equal"
+msgstr "等于"
+
+#: app/Modules/I18nStrings.php:364
+msgid "European Style - decimal comma (123.234,01)"
+msgstr "欧洲样式：小数逗号（123.234,01）"
+
+#: app/Modules/I18nStrings.php:365 config/table-builder/setting.php:87
+msgid "Even Row Background"
+msgstr "偶数行背景"
+
+#: app/Modules/I18nStrings.php:366
+msgid "Even Row Colors"
+msgstr "偶数行颜色"
+
+#: app/Modules/I18nStrings.php:367
+msgid "Example Usage"
+msgstr "使用示例"
+
+#: app/Modules/I18nStrings.php:368
+msgid "Expand All"
+msgstr "全部展开"
+
+#: app/Modules/I18nStrings.php:369
+msgid "Expand First"
+msgstr "展开第一个"
+
+#: app/Modules/I18nStrings.php:370
+msgid "Export"
+msgstr "导出"
+
+#: app/Modules/I18nStrings.php:371
+msgid "Export Table"
+msgstr "导出表格"
+
+#: app/Modules/I18nStrings.php:372
+msgid "Extra Classes"
+msgstr "额外的类"
+
+#: app/Modules/I18nStrings.php:373
+msgid "Extra CSS Class for the table"
+msgstr "表格的额外 CSS 类"
+
+#: app/Modules/I18nStrings.php:374
+msgid "Features"
+msgstr "功能"
+
+#: app/Modules/I18nStrings.php:375
+msgid "Fetch Columns"
+msgstr "获取列"
+
+#: app/Modules/I18nStrings.php:376
+msgid "Field Type"
+msgstr "字段类型"
+
+#: app/Modules/I18nStrings.php:377
+msgid "Field Value"
+msgstr "字段值"
+
+#: app/Modules/I18nStrings.php:378
+msgid "File upload failed"
+msgstr "文件上传失败"
+
+#: app/Modules/I18nStrings.php:379
+msgid "Filled Star Color"
+msgstr "实星颜色"
+
+#: app/Modules/I18nStrings.php:380
+msgid "Filter Appearance"
+msgstr "筛选器外观"
+
+#: app/Modules/I18nStrings.php:381
+msgid "Filter Columns"
+msgstr "筛选列"
+
+#: app/Modules/I18nStrings.php:382
+msgid "Filter Label"
+msgstr "筛选器标签"
+
+#: app/Modules/I18nStrings.php:383
+msgid "Filter Options"
+msgstr "筛选选项"
+
+#: app/Modules/I18nStrings.php:384
+msgid "Filter Prefix"
+msgstr "筛选器前缀"
+
+#: app/Modules/I18nStrings.php:385
+msgid "Filter Title"
+msgstr "筛选器标题"
+
+#: app/Modules/I18nStrings.php:386
+msgid "Filter UI"
+msgstr "筛选器界面"
+
+#: app/Modules/I18nStrings.php:387
+msgid "Filter UI Type"
+msgstr "筛选器界面类型"
+
+#: app/Modules/I18nStrings.php:388
+msgid "Filterable"
+msgstr "可筛选"
+
+#: app/Modules/I18nStrings.php:389
+msgid "First Column"
+msgstr "第一列"
+
+#: app/Modules/I18nStrings.php:390
+msgid "First Day"
+msgstr "第一天"
+
+#: app/Modules/I18nStrings.php:391
+msgid "First day of the week"
+msgstr "一周的第一天"
+
+#: app/Modules/I18nStrings.php:392
+msgid "First page"
+msgstr "第一页"
+
+#: app/Modules/I18nStrings.php:393
+msgid "Fixed Layout"
+msgstr "固定布局"
+
+#: app/Modules/I18nStrings.php:394
+msgid "Fluent Form Entries"
+msgstr "Fluent Forms 提交内容"
+
+#: app/Modules/I18nStrings.php:395
+msgid "Fluent Forms Integration"
+msgstr "Fluent Forms 集成"
+
+#: app/Modules/I18nStrings.php:396
+msgid "FluentCart Table"
+msgstr "FluentCart 表格"
+
+#: app/Modules/I18nStrings.php:397
+msgid "Font color"
+msgstr "字体颜色"
+
+#: app/Modules/I18nStrings.php:398 config/table-builder/setting.php:242
+msgid "Font Family"
+msgstr "字体集"
+
+#: app/Modules/I18nStrings.php:399 config/table-builder/setting.php:230
+msgid "Font Size"
+msgstr "字号"
+
+#: app/Modules/I18nStrings.php:400
+msgid "Font Style"
+msgstr "字体样式"
+
+#: app/Modules/I18nStrings.php:401
+msgid "Font X Offset"
+msgstr "字体 X 偏移"
+
+#: app/Modules/I18nStrings.php:402
+msgid "Font Y Offset"
+msgstr "字体 Y 偏移"
+
+#: app/Modules/I18nStrings.php:403
+msgid "FooTable"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:404
+msgid "Footer Colors"
+msgstr "页脚颜色"
+
+#: app/Modules/I18nStrings.php:405
+msgid "Footer in each page"
+msgstr "每页页脚"
+
+#: app/Modules/I18nStrings.php:406
+msgid ""
+"For security reason, Custom SQL module is enabled only for Administrator "
+"user role. Please ask your site administrator to enable SQL module for other"
+" user roles."
+msgstr "出于安全原因，自定义 SQL 模块仅对管理员角色启用。请让您的站点管理员为其他用户角色启用 SQL 模块。"
+
+#: app/Modules/I18nStrings.php:407
+msgid ""
+"For Stackable Tables, Live preview is disabled here. Please check on preview"
+" url"
+msgstr "对于可堆叠表格，此处已禁用实时预览。请通过预览 URL 查看"
+
+#: app/Modules/I18nStrings.php:408
+msgid "Format"
+msgstr "格式"
+
+#: app/Modules/I18nStrings.php:409
+msgid "Four Columns"
+msgstr "四列"
+
+#: app/Modules/I18nStrings.php:410
+msgid "Free table templates"
+msgstr "免费表格模板"
+
+#: app/Modules/I18nStrings.php:411
+msgid "From Placeholder"
+msgstr "“从”占位符"
+
+#: app/Modules/I18nStrings.php:412
+msgid "Frontend Editing"
+msgstr "前端编辑"
+
+#: app/Modules/I18nStrings.php:413
+msgid ""
+"Frontend Editing is a pro only feature. Please purchase <b>&quot;Ninja "
+"Tables Pro&quot;</b> to use this feature."
+msgstr "前端编辑是专业版专属功能。请购买 <b>&quot;Ninja Tables Pro&quot;</b> 以使用此功能。"
+
+#: app/Modules/I18nStrings.php:414
+msgid "Frontend Editing Settings"
+msgstr "前端编辑设置"
+
+#: app/Modules/I18nStrings.php:415
+msgid "Full Width"
+msgstr "全宽"
+
+#: app/Modules/I18nStrings.php:416 config/table-builder/component.php:23
+#: config/table-builder/responsive.php:9 config/table-builder/setting.php:9
+msgid "General"
+msgstr "常规设置"
+
+#: app/Modules/I18nStrings.php:417
+msgid "General Color Options"
+msgstr "常规颜色选项"
+
+#: app/Modules/I18nStrings.php:418
+msgid "Get In Touch"
+msgstr "联系我们"
+
+#: app/Modules/I18nStrings.php:419
+msgid "Get Priority Support for any Issue"
+msgstr "任何问题均获得优先支持"
+
+#: app/Modules/I18nStrings.php:421
+msgid ""
+"Get smart, fast, and free email delivery with the most efficient WordPress "
+"plugin for transactional emails using secure, authenticated SMTP "
+"connections."
+msgstr "使用最高效的 WordPress 事务性邮件插件，通过安全、经过身份验证的 SMTP 连接，实现智能、快速且免费的邮件投递。"
+
+#: app/Modules/I18nStrings.php:422
+msgid "Get Support"
+msgstr "获取支持"
+
+#: app/Modules/I18nStrings.php:423
+msgid ""
+"Get the best payment and donation plugin for your WordPress website. It's an"
+" ideal solution for businesses, fundraising, or membership programs."
+msgstr "为您的 WordPress 网站获取最佳的付款和捐赠插件。它是企业、筹款或会员计划的理想解决方案。"
+
+#: app/Modules/I18nStrings.php:424
+msgid ""
+"Get the fastest email newsletter and CRM solution in WordPress for smart and"
+" effective email marketing. Join 60k+ users for happy emailing!"
+msgstr "获取 WordPress 中最快的邮件通讯和 CRM 解决方案，实现智能有效的邮件营销。加入 6 万多名用户，畅享愉快的邮件体验！"
+
+#: app/Modules/I18nStrings.php:425
+msgid ""
+"Get this WordPress social tool to embed live social feeds, reviews, and chat"
+" widgets directly into your website to boost engagement and social proof."
+msgstr "获取此 WordPress 社交工具，将实时社交动态、评论和聊天小工具直接嵌入您的网站，以提升互动和社会认同。"
+
+#: app/Modules/I18nStrings.php:426
+msgid "Getting started with Ninja Tables"
+msgstr "开始使用 Ninja Tables"
+
+#: app/Modules/I18nStrings.php:427
+msgid "Global Appearance"
+msgstr "全局外观"
+
+#: app/Modules/I18nStrings.php:428
+msgid "Global Appearance Settings"
+msgstr "全局外观设置"
+
+#: app/Modules/I18nStrings.php:429
+msgid "Global Javascript Error Handling"
+msgstr "全局 JavaScript 错误处理"
+
+#: app/Modules/I18nStrings.php:430
+msgid "Global Settings"
+msgstr "全局设置"
+
+#: app/Modules/I18nStrings.php:431
+msgid "Greater Than"
+msgstr "大于"
+
+#: app/Modules/I18nStrings.php:432
+msgid "Greater Than Equal"
+msgstr "大于或等于"
+
+#: app/Modules/I18nStrings.php:433
+msgid "Greater Than Or Equal To"
+msgstr "大于或等于"
+
+#: app/Modules/I18nStrings.php:434
+msgid "Handle Error But don't Log"
+msgstr "处理错误但不记录"
+
+#: app/Modules/I18nStrings.php:435 config/table-builder/setting.php:82
+msgid "Header Background"
+msgstr "表头（页眉）背景"
+
+#: app/Modules/I18nStrings.php:436
+msgid "Header HTML Content"
+msgstr "表头 HTML 内容"
+
+#: app/Modules/I18nStrings.php:437
+msgid "Header in each page"
+msgstr "每页页眉"
+
+#: app/Modules/I18nStrings.php:438
+msgid "Header Text Align"
+msgstr "表头文本对齐"
+
+#: app/Modules/I18nStrings.php:439
+msgid "Header Text Alignment"
+msgstr "表头文本对齐"
+
+#: app/Modules/I18nStrings.php:440
+msgid "Help & Documentation"
+msgstr "帮助与文档"
+
+#: app/Modules/I18nStrings.php:441
+msgid "here"
+msgstr "此处"
+
+#: app/Modules/I18nStrings.php:442
+msgid "Hidden On Desktop"
+msgstr "在桌面端隐藏"
+
+#: app/Modules/I18nStrings.php:443
+msgid "Hide <b>out of stocks</b> items"
+msgstr "隐藏<b>缺货</b>商品"
+
+#: app/Modules/I18nStrings.php:444
+msgid "Hide All Borders"
+msgstr "隐藏所有边框"
+
+#: app/Modules/I18nStrings.php:445
+msgid "Hide column headings"
+msgstr "隐藏列标题"
+
+#: app/Modules/I18nStrings.php:446
+msgid "Hide empty items on responsive breakdown"
+msgstr "在响应式视图中隐藏空项目"
+
+#: app/Modules/I18nStrings.php:447
+msgid "Hide Header Row"
+msgstr "隐藏表头行"
+
+#: app/Modules/I18nStrings.php:448
+msgid "Hide Horizontal Borders"
+msgstr "隐藏水平边框"
+
+#: app/Modules/I18nStrings.php:449
+msgid "Hide internal borders"
+msgstr "隐藏内部边框"
+
+#: app/Modules/I18nStrings.php:450
+msgid "Hide Labels on responsive breakdown"
+msgstr "在响应式视图中隐藏标签"
+
+#: app/Modules/I18nStrings.php:451
+msgid "Hide Pagination (Show all data at once)"
+msgstr "隐藏分页（一次显示所有数据）"
+
+#: app/Modules/I18nStrings.php:452
+msgid "Hide Vertical Borders"
+msgstr "隐藏垂直边框"
+
+#: app/Modules/I18nStrings.php:453
+msgid "Highlight Column"
+msgstr "高亮列"
+
+#: app/Modules/I18nStrings.php:454
+msgid "Highlighted Column Height"
+msgstr "高亮列高度"
+
+#: app/Modules/I18nStrings.php:455
+msgid ""
+"Hold \"SHIFT\" and click on cells to select multiple cells for merge cells."
+msgstr "按住“SHIFT”并点击单元格以选择多个单元格进行合并。"
+
+#: app/Modules/I18nStrings.php:456
+msgid "Hover"
+msgstr "悬停"
+
+#: app/Modules/I18nStrings.php:457
+msgid "Hover Background"
+msgstr "悬停背景"
+
+#: app/Modules/I18nStrings.php:458
+msgid "Hover rows"
+msgstr "悬停高亮行"
+
+#: app/Modules/I18nStrings.php:459
+msgid "How does the Ninja Tables Custom filter work?"
+msgstr "Ninja Tables 的自定义筛选器如何工作？"
+
+#: app/Modules/I18nStrings.php:460
+msgid "How To Create a WooCommerce Product Table with Ninja Tables?"
+msgstr "如何使用 Ninja Tables 创建 WooCommerce 产品表格？"
+
+#: app/Modules/I18nStrings.php:461
+msgid "How to create Google Sheets integrated tables with Ninja Tables?"
+msgstr "如何使用 Ninja Tables 创建与 Google 表格集成的表格？"
+
+#: app/Modules/I18nStrings.php:462
+msgid "How to export-import tables in Ninja Tables?"
+msgstr "如何在 Ninja Tables 中导出和导入表格？"
+
+#: app/Modules/I18nStrings.php:463
+msgid "How to make a WP Post Table?"
+msgstr "如何创建 WP 文章表格？"
+
+#: app/Modules/I18nStrings.php:464
+msgid "How would you like to create your table?"
+msgstr "您想如何创建表格？"
+
+#: app/Modules/I18nStrings.php:465
+msgid "HTML Field"
+msgstr "HTML字段"
+
+#: app/Modules/I18nStrings.php:466 config/table-builder/component.php:86
+msgid "Icon"
+msgstr "图标"
+
+#: app/Modules/I18nStrings.php:467
+msgid "Icon Color"
+msgstr "图标颜色"
+
+#: app/Modules/I18nStrings.php:468
+msgid "Icon Options"
+msgstr "图标选项"
+
+#: app/Modules/I18nStrings.php:469
+msgid "Icon Position"
+msgstr "图标位置"
+
+#: app/Modules/I18nStrings.php:470
+msgid "Icon Size"
+msgstr "图标大小"
+
+#: app/Modules/I18nStrings.php:471
+msgid "ID"
+msgstr "ID"
+
+#: app/Modules/I18nStrings.php:472
+msgid "If Cell Value"
+msgstr "如果单元格值"
+
+#: app/Modules/I18nStrings.php:473
+msgid "If you already renewed your license then please"
+msgstr "如果您已续订许可证，请"
+
+#: app/Modules/I18nStrings.php:474
+msgid ""
+"If You enable this then columns headings will not show into responsive "
+"drawer / Stackable View"
+msgstr "如果您启用此项，则列标题不会显示在响应式抽屉/可堆叠视图中"
+
+#: app/Modules/I18nStrings.php:475
+msgid ""
+"If you enable this then ninja tables will cache the full html of the table "
+"and render that without interact with database. You can set the time how "
+"many minutes it will cache each iteration."
+msgstr "如果您启用此项，Ninja Tables 将缓存表格的完整 HTML 并在不访问数据库的情况下渲染。您可以设置每次迭代缓存的分钟数。"
+
+#: app/Modules/I18nStrings.php:476
+msgid ""
+"If you enable this then on pagination change, the table will be scrolled to "
+"top"
+msgstr "如果您启用此项，则在切换分页时，表格将滚动到顶部"
+
+#: app/Modules/I18nStrings.php:477
+msgid ""
+"If You enable this then the empty items will not show into responsive drawer"
+" / Stackable View"
+msgstr "如果您启用此项，则空项目不会显示在响应式抽屉/可堆叠视图中"
+
+#: app/Modules/I18nStrings.php:478
+msgid ""
+"If You enable this then this column data will not be filterable at the "
+"frontend."
+msgstr "如果您启用此项，则此列数据将无法在前端筛选。"
+
+#: app/Modules/I18nStrings.php:479
+msgid ""
+"If You enable this then this column data will not be sortable at the "
+"frontend."
+msgstr "如果您启用此项，则此列数据将无法在前端排序。"
+
+#: app/Modules/I18nStrings.php:480
+msgid ""
+"If you enable this then Users can change the items per page on frontend"
+msgstr "如果您启用此项，则用户可以在前端更改每页项目数"
+
+#: app/Modules/I18nStrings.php:481
+msgid ""
+"If You enable this then users can click on cells to copy their content."
+msgstr "如果您启用此项，则用户可以点击单元格以复制其内容。"
+
+#: app/Modules/I18nStrings.php:482
+msgid ""
+"If You enable this, Then the search input will take all the available space "
+"(100% width)"
+msgstr "如果您启用此项，则搜索输入框将占用所有可用空间（100% 宽度）"
+
+#: app/Modules/I18nStrings.php:483
+msgid "If you select yes, Then admin can select multiple item on create data"
+msgstr "如果您选择“是”，则管理员在创建数据时可以选择多个项目"
+
+#: app/Modules/I18nStrings.php:484
+msgid "If you select yes, then time picker will be available"
+msgstr "如果您选择“是”，则时间选择器将可用"
+
+#: app/Modules/I18nStrings.php:485
+msgid ""
+"If you use responsive breakdown then the '+' icon will show at the last "
+"visible column"
+msgstr "如果您使用响应式视图，则“+”图标将显示在最后一个可见列"
+
+#: app/Modules/I18nStrings.php:486
+msgid ""
+"If you want to clear all the Ninja tables cache, please click on the \"Clear"
+" Table Cache\" button or if you want to clear the cache by popular external "
+"plugins please click \"Clear External Caches\"."
+msgstr "如果您想清除所有 Ninja Tables 缓存，请点击“清除表格缓存”按钮；如果您想清除常用外部插件的缓存，请点击“清除外部缓存”。"
+
+#: app/Modules/I18nStrings.php:487
+msgid "Iframe Lightbox"
+msgstr "Iframe 灯箱"
+
+#: app/Modules/I18nStrings.php:488
+msgid "Iframe URL (Only The URL)"
+msgstr "Iframe URL（仅 URL）"
+
+#: app/Modules/I18nStrings.php:489
+msgid "Image Alternative Text"
+msgstr "图片替代文本"
+
+#: app/Modules/I18nStrings.php:490
+msgid "Image Lightbox"
+msgstr "图片灯箱"
+
+#: app/Modules/I18nStrings.php:491
+msgid "Image Link"
+msgstr "图片链接"
+
+#: app/Modules/I18nStrings.php:492
+msgid "Image Linkable?"
+msgstr "图片可链接？"
+
+#: app/Modules/I18nStrings.php:493
+msgid "Image Only"
+msgstr "仅图片"
+
+#: app/Modules/I18nStrings.php:494
+msgid "Image Options"
+msgstr "图片选项"
+
+#: app/Modules/I18nStrings.php:495
+msgid "Image Shape"
+msgstr "图片形状"
+
+#: app/Modules/I18nStrings.php:496
+msgid "Image Size"
+msgstr "图片大小"
+
+#: app/Modules/I18nStrings.php:497
+msgid "Image Upload"
+msgstr "图片上传"
+
+#: app/Modules/I18nStrings.php:498
+msgid ""
+"Image upload with lightbox, download link is a pro feature. It will not work"
+" without Pro Version"
+msgstr "带灯箱、下载链接的图片上传是专业版功能。没有专业版将无法使用"
+
+#: app/Modules/I18nStrings.php:501
+msgid ""
+"Import CSV data into the existing table. Please note that, your CSV data "
+"structure need to follow the sample CSV. Download the sample CSV to ensure "
+"correct data formatting."
+msgstr "将 CSV 数据导入现有表格。请注意，您的 CSV 数据结构需要遵循示例 CSV。下载示例 CSV 以确保正确的数据格式。"
+
+#: app/Modules/I18nStrings.php:502
+msgid "Import CSV/JSON from URL"
+msgstr "从 URL 导入 CSV/JSON"
+
+#: app/Modules/I18nStrings.php:503
+msgid "Import data:"
+msgstr "导入数据："
+
+#: app/Modules/I18nStrings.php:504
+msgid "Import failed. Please try again."
+msgstr "导入失败。请重试。"
+
+#: app/Modules/I18nStrings.php:505
+msgid "Import Format"
+msgstr "导入格式"
+
+#: app/Modules/I18nStrings.php:506
+msgid "Import Format:"
+msgstr "导入格式"
+
+#: app/Modules/I18nStrings.php:507
+msgid "Import From Other WP Table Plugin"
+msgstr "从其他 WP 表格插件导入"
+
+#: app/Modules/I18nStrings.php:508
+msgid "Import initialization failed."
+msgstr "导入初始化失败。"
+
+#: app/Modules/I18nStrings.php:509
+msgid "Import Progress"
+msgstr "导入进度"
+
+#: app/Modules/I18nStrings.php:510
+msgid ""
+"Import stopped: too many chunk requests. Please check the imported data."
+msgstr "导入已停止：分块请求过多。请检查已导入的数据。"
+
+#: app/Modules/I18nStrings.php:511
+msgid "Import Table"
+msgstr "导入表"
+
+#: app/Modules/I18nStrings.php:512
+msgid "Import Table from CSV / JSON File"
+msgstr "从 CSV / JSON 文件导入表格"
+
+#: app/Modules/I18nStrings.php:513
+msgid "Import table from existing CSV or JSON file."
+msgstr "从现有的 CSV 或 JSON 文件导入表格。"
+
+#: app/Modules/I18nStrings.php:514
+msgid "Import table from here"
+msgstr "从此处导入表格"
+
+#: app/Modules/I18nStrings.php:515
+msgid "Import/Export"
+msgstr "导入/导出"
+
+#: app/Modules/I18nStrings.php:516
+msgid "Imported successfully."
+msgstr "导入成功。"
+
+#: app/Modules/I18nStrings.php:517
+msgid "Importing the table, please wait a bit ..."
+msgstr "正在导入表格，请稍候…"
+
+#: app/Modules/I18nStrings.php:518
+msgid "Importing..."
+msgstr "正在导入…"
+
+#: app/Modules/I18nStrings.php:519
+msgid "Incremental New Premium Features"
+msgstr "持续推出的新高级功能"
+
+#: app/Modules/I18nStrings.php:520
+msgid "Initial Hidden Mobile"
+msgstr "初始隐藏移动"
+
+#: app/Modules/I18nStrings.php:521
+msgid "Initial Hidden Mobile and Tab"
+msgstr "初始隐藏移动和标签"
+
+#: app/Modules/I18nStrings.php:522
+msgid "Initial Hidden Mobile, Tab and Regular Computers"
+msgstr "初始隐藏移动、标签和常规计算机"
+
+#: app/Modules/I18nStrings.php:523
+msgid "Initial Order By"
+msgstr "初始排序方式"
+
+#: app/Modules/I18nStrings.php:524
+msgid "Insert bottom row"
+msgstr "插入底部行"
+
+#: app/Modules/I18nStrings.php:525
+msgid "Insert column after"
+msgstr "在后面插入列"
+
+#: app/Modules/I18nStrings.php:526
+msgid "Insert column before"
+msgstr "在前面插入列"
+
+#: app/Modules/I18nStrings.php:527
+msgid "Insert left column"
+msgstr "在左侧插入列"
+
+#: app/Modules/I18nStrings.php:528
+msgid "Insert right column"
+msgstr "在右侧插入列"
+
+#: app/Modules/I18nStrings.php:529
+msgid "Insert row after"
+msgstr "在后面插入行"
+
+#: app/Modules/I18nStrings.php:530
+msgid "Insert row before"
+msgstr "在前面插入行"
+
+#: app/Modules/I18nStrings.php:531
+msgid "Insert top row"
+msgstr "插入顶部行"
+
+#: app/Modules/I18nStrings.php:532
+msgid "Install Fluent Forms Now"
+msgstr "立即安装 Fluent Forms"
+
+#: app/Modules/I18nStrings.php:533
+msgid "Installing WP Fluent From..."
+msgstr "正在安装 WP Fluent Forms…"
+
+#: app/Modules/I18nStrings.php:534
+msgid "Introduction"
+msgstr "介绍"
+
+#: app/Modules/I18nStrings.php:535
+msgid "Invalid License Key"
+msgstr "无效的许可证密钥"
+
+#: app/Modules/I18nStrings.php:536
+msgid "Is Editable?"
+msgstr "可编辑？"
+
+#: app/Modules/I18nStrings.php:537
+msgid "Is Required?"
+msgstr "必填？"
+
+#: app/Modules/I18nStrings.php:538
+msgid "Item Spacing"
+msgstr "项目间距"
+
+#: app/Modules/I18nStrings.php:539
+msgid "Item Spacing Vertically"
+msgstr "项目垂直间距"
+
+#: app/Modules/I18nStrings.php:540
+msgid "items"
+msgstr "项目"
+
+#: app/Modules/I18nStrings.php:541
+msgid "Items Per Page"
+msgstr "每页项目数"
+
+#: app/Modules/I18nStrings.php:542
+msgid "JSON - Exported From Ninja Tables"
+msgstr "JSON - 从Ninja Tables中导出"
+
+#: app/Modules/I18nStrings.php:543
+msgid "JSON - Javascript Object Notation"
+msgstr "JSON - JavaScript 对象表示法"
+
+#: app/Modules/I18nStrings.php:544
+msgid "JSON/CSV - Exported From Drag & Drop Tables"
+msgstr "JSON/CSV - 从拖放表格导出"
+
+#: app/Modules/I18nStrings.php:545
+msgid "Just a Name to identify your Filter"
+msgstr "只是一个用于识别您筛选器的名称"
+
+#: app/Modules/I18nStrings.php:546
+msgid "Keep Blank or 0 to disable caching for table data"
+msgstr "留空或设为 0 以禁用表格数据的缓存"
+
+#: app/Modules/I18nStrings.php:547
+msgid "Keep it blank if you don't need any filter instruction."
+msgstr "如果您不需要任何筛选说明，请留空。"
+
+#: app/Modules/I18nStrings.php:548
+msgid "Language Settings"
+msgstr "语言设置"
+
+#: app/Modules/I18nStrings.php:549
+msgid "Laptop"
+msgstr "笔记本电脑"
+
+#: app/Modules/I18nStrings.php:550
+msgid "Large Devices (imac)"
+msgstr "大型设备（iMac）"
+
+#: app/Modules/I18nStrings.php:551
+msgid "Large File Source"
+msgstr "大文件源"
+
+#: app/Modules/I18nStrings.php:552
+msgid "Last Column"
+msgstr "最后一列"
+
+#: app/Modules/I18nStrings.php:553
+msgid "Last page"
+msgstr "最后一页"
+
+#: app/Modules/I18nStrings.php:554
+msgid "Leave a Review"
+msgstr "留下评价"
+
+#: app/Modules/I18nStrings.php:555
+msgid "Left"
+msgstr "左"
+
+#: app/Modules/I18nStrings.php:556
+msgid "Legacy"
+msgstr "Legacy"
+
+#: app/Modules/I18nStrings.php:557
+msgid "Less Than"
+msgstr "小于"
+
+#: app/Modules/I18nStrings.php:558
+msgid "Less Than Equal"
+msgstr "小于或等于"
+
+#: app/Modules/I18nStrings.php:559
+msgid "Less Than Or Equal To"
+msgstr "小于或等于"
+
+#: app/Modules/I18nStrings.php:560
+msgid "Library"
+msgstr "库"
+
+#: app/Modules/I18nStrings.php:561
+msgid "License"
+msgstr "授权许可"
+
+#: app/Modules/I18nStrings.php:562
+msgid "License Key"
+msgstr "许可证密钥"
+
+#: app/Modules/I18nStrings.php:563
+msgid "Licensing"
+msgstr "授权许可"
+
+#: app/Modules/I18nStrings.php:564
+msgid "Licensing has been expired"
+msgstr "许可证已过期"
+
+#: app/Modules/I18nStrings.php:565
+msgid "Link"
+msgstr "链接"
+
+#: app/Modules/I18nStrings.php:566
+msgid "Link rel attributes"
+msgstr "链接的 rel 属性"
+
+#: app/Modules/I18nStrings.php:567
+msgid "Link to Author Permalink"
+msgstr "链接到作者的固定链接"
+
+#: app/Modules/I18nStrings.php:568
+msgid "Link to post permalink"
+msgstr "链接到文章的固定链接"
+
+#: app/Modules/I18nStrings.php:569
+msgid "Link to Post/Author Permalink"
+msgstr "链接到文章/作者的固定链接"
+
+#: app/Modules/I18nStrings.php:570
+msgid "Link to Product page"
+msgstr "链接到产品页面"
+
+#: app/Modules/I18nStrings.php:571
+msgid "Link to Taxonomy"
+msgstr "链接到分类法"
+
+#: app/Modules/I18nStrings.php:572
+msgid "Link to Taxonomy Permalink"
+msgstr "链接到分类法的固定链接"
+
+#: app/Modules/I18nStrings.php:573
+msgid "Link to URL"
+msgstr "链接到 URL"
+
+#: app/Modules/I18nStrings.php:574
+msgid "Link With Rel Attribute"
+msgstr "带 rel 属性的链接"
+
+#: app/Modules/I18nStrings.php:575 config/table-builder/component.php:116
+msgid "List"
+msgstr "列表"
+
+#: app/Modules/I18nStrings.php:576
+msgid "List Icon"
+msgstr "列表图标"
+
+#: app/Modules/I18nStrings.php:577
+msgid "List Options"
+msgstr "列表选项"
+
+#: app/Modules/I18nStrings.php:578
+msgid "List Type"
+msgstr "列表类型"
+
+#: app/Modules/I18nStrings.php:579
+msgid "Logged in user posts"
+msgstr "已登录用户的文章"
+
+#: app/Modules/I18nStrings.php:580
+msgid "Make Button as rounded corner"
+msgstr "将按钮设为圆角"
+
+#: app/Modules/I18nStrings.php:581
+msgid "Make cell contents vertically centered"
+msgstr "垂直居中单元格内容"
+
+#: app/Modules/I18nStrings.php:582
+msgid "Make Force download"
+msgstr "强制下载"
+
+#: app/Modules/I18nStrings.php:583
+msgid "Make image as lightbox"
+msgstr "将图片显示为灯箱"
+
+#: app/Modules/I18nStrings.php:584
+msgid "Make search input as full width"
+msgstr "将搜索输入框设为全宽"
+
+#: app/Modules/I18nStrings.php:585
+msgid "Make tables more compact by cutting cell padding in half"
+msgstr "通过将单元格内边距减半使表格更紧凑"
+
+#: app/Modules/I18nStrings.php:586
+msgid "Make Taxonomies as Table Filter"
+msgstr "将分类法用作表格筛选器"
+
+#: app/Modules/I18nStrings.php:587
+msgid "Manage cell"
+msgstr "管理单元格"
+
+#: app/Modules/I18nStrings.php:588
+msgid "Manage Cells"
+msgstr "管理单元格"
+
+#: app/Modules/I18nStrings.php:589
+msgid "Manual Data"
+msgstr "手动数据"
+
+#: app/Modules/I18nStrings.php:590
+msgid "Manual Sort"
+msgstr "手动排序"
+
+#: app/Modules/I18nStrings.php:591
+msgid "Margin"
+msgstr "外边距"
+
+#: app/Modules/I18nStrings.php:592
+msgid "Max Records:"
+msgstr "最大记录数："
+
+#: app/Modules/I18nStrings.php:593
+msgid "Max Value"
+msgstr "最大值"
+
+#: app/Modules/I18nStrings.php:594
+msgid ""
+"Maximize Amazon affiliate earnings on WordPress by showcasing products in "
+"stylish, responsive, and customizable tables and grids that convert.\n"
+msgstr "通过在时尚、响应式且可自定义的表格和网格中展示产品来最大化您在 WordPress 上的 Amazon 联盟收入，实现更高转化。\n"
+
+#: app/Modules/I18nStrings.php:595
+msgid "Maximum records to show in frontend, keep empty to show all."
+msgstr "在前端显示的最大记录数，留空则显示全部。"
+
+#: app/Modules/I18nStrings.php:596
+msgid "Maximum Star"
+msgstr "最大星数"
+
+#: app/Modules/I18nStrings.php:597
+msgid "Merge"
+msgstr "合并"
+
+#: app/Modules/I18nStrings.php:598
+msgid "Meta Key"
+msgstr "元键"
+
+#: app/Modules/I18nStrings.php:599
+msgid "Meta Query"
+msgstr "元查询"
+
+#: app/Modules/I18nStrings.php:600
+msgid "Mobile Device"
+msgstr "移动设备"
+
+#: app/Modules/I18nStrings.php:601
+msgid "Move to Trash"
+msgstr "移至回收站"
+
+#: app/Modules/I18nStrings.php:602
+msgid "Multiple Selection"
+msgstr "多选"
+
+#: app/Modules/I18nStrings.php:603
+msgid "MYSQL Connection Details"
+msgstr "MySQL 连接详情"
+
+#: app/Modules/I18nStrings.php:604
+msgid "Name"
+msgstr "名称"
+
+#: app/Modules/I18nStrings.php:605
+msgid "Name is required"
+msgstr "名称为必填项"
+
+#: app/Modules/I18nStrings.php:606
+msgid "Need Expert Support"
+msgstr "需要专家支持？"
+
+#: app/Modules/I18nStrings.php:607
+msgid "Next"
+msgstr "下一个"
+
+#: app/Modules/I18nStrings.php:608
+msgid "Next page"
+msgstr "下一页"
+
+#: app/Modules/I18nStrings.php:609
+msgid "Ninja Tables Advanced Mode"
+msgstr "Ninja Tables 高级模式"
+
+#: app/Modules/I18nStrings.php:610
+msgid ""
+"Ninja Tables can import tables from existing data, like from a CSV or JSON "
+"file. You can also import existing tables from the other WordPress table "
+"plugins."
+msgstr ""
+"Ninja Tables 可以从现有数据（如 CSV 或 JSON 文件）导入表格。您还可以从其他 WordPress 表格插件导入现有表格。"
+
+#: app/Modules/I18nStrings.php:611
+msgid "Ninja Tables Demo"
+msgstr "Ninja Tables 演示"
+
+#: app/Modules/I18nStrings.php:612
+msgid "Ninja Tables Drag and Drop"
+msgstr "Ninja Tables 拖放"
+
+#: app/Modules/I18nStrings.php:613
+msgid "Ninja Tables Features"
+msgstr "Ninja Tables 功能"
+
+#: app/Modules/I18nStrings.php:614
+msgid "Ninja Tables Guide"
+msgstr "Ninja Tables 指南"
+
+#: app/Modules/I18nStrings.php:615
+msgid "Ninja Tables SQL Integration Documentation"
+msgstr "Ninja Tables SQL 集成文档"
+
+#: app/Modules/I18nStrings.php:616
+msgid "No"
+msgstr "否"
+
+#: app/Modules/I18nStrings.php:617
+msgid "No Data found based on your data source configuration"
+msgstr "根据您的数据源配置未找到数据"
+
+#: app/Modules/I18nStrings.php:618
+msgid ""
+"No product metadata available for this type. Please create them in "
+"FluentCart to use here"
+msgstr "此类型没有可用的产品元数据。请在 FluentCart 中创建以便在此处使用"
+
+#: app/Modules/I18nStrings.php:619
+msgid ""
+"No product metadata available for this type. Please create them in "
+"WooCommerce to use here"
+msgstr "此类型没有可用的产品元数据。请在 WooCommerce 中创建以便在此处使用"
+
+#: app/Modules/I18nStrings.php:620
+msgid "No rating"
+msgstr "无评分"
+
+#: app/Modules/I18nStrings.php:621
+msgid "No Review Text"
+msgstr "无评论时显示的文本"
+
+#: app/Modules/I18nStrings.php:622
+msgid "No reviews yet"
+msgstr "暂无评论"
+
+#: app/Modules/I18nStrings.php:623
+msgid "None"
+msgstr "无"
+
+#: app/Modules/I18nStrings.php:624
+msgid "Not Equal"
+msgstr "不等于"
+
+#: app/Modules/I18nStrings.php:625
+msgid "Note:"
+msgstr "注意："
+
+#: app/Modules/I18nStrings.php:626
+msgid ""
+"Note: Excel formula is an experimental feature so all formulas may not work."
+" We are improving this feature day by day so please don't be mad if some "
+"formulas don't work properly."
+msgstr "注意：Excel 公式是一项实验性功能，因此并非所有公式都能正常工作。我们每天都在改进此功能，如果某些公式无法正常工作，请不要生气。"
+
+#: app/Modules/I18nStrings.php:627
+msgid "Number Range"
+msgstr "数值范围"
+
+#: app/Modules/I18nStrings.php:628
+msgid "Numeric Value"
+msgstr "数值"
+
+#: app/Modules/I18nStrings.php:629 config/table-builder/setting.php:92
+msgid "Odd Row Background"
+msgstr "奇数行背景"
+
+#: app/Modules/I18nStrings.php:630
+msgid "Odd Row Colors"
+msgstr "奇数行颜色"
+
+#: app/Modules/I18nStrings.php:631
+msgid "of"
+msgstr "共"
+
+#: app/Modules/I18nStrings.php:632
+msgid "Open in another tab"
+msgstr "在另一个标签页中打开"
+
+#: app/Modules/I18nStrings.php:633
+msgid "Open in new tab"
+msgstr "在新标签页中打开"
+
+#: app/Modules/I18nStrings.php:634
+msgid "Open Link in new tab"
+msgstr "在新标签页中打开链接"
+
+#: app/Modules/I18nStrings.php:635
+msgid "Open Link in new window"
+msgstr "在新窗口中打开链接"
+
+#: app/Modules/I18nStrings.php:636
+msgid "Open link to new tab"
+msgstr "在新标签页中打开链接"
+
+#: app/Modules/I18nStrings.php:637
+msgid "Open Link To New tab"
+msgstr "在新标签页中打开链接"
+
+#: app/Modules/I18nStrings.php:638
+msgid "Opt-in and Continue"
+msgstr "同意并继续"
+
+#: app/Modules/I18nStrings.php:639
+msgid "Options"
+msgstr "选项"
+
+#: app/Modules/I18nStrings.php:640
+msgid "Options (Optional)"
+msgstr "选项（可选）"
+
+#: app/Modules/I18nStrings.php:641
+msgid "or"
+msgstr "或"
+
+#: app/Modules/I18nStrings.php:642
+msgid "OR"
+msgstr "或"
+
+#: app/Modules/I18nStrings.php:643
+msgid "Order By"
+msgstr "排序方式"
+
+#: app/Modules/I18nStrings.php:644
+msgid "Order By Column"
+msgstr "按列排序"
+
+#: app/Modules/I18nStrings.php:645
+msgid "Order By Type"
+msgstr "排序类型"
+
+#: app/Modules/I18nStrings.php:646
+msgid "Ordered List"
+msgstr "有序列表"
+
+#: app/Modules/I18nStrings.php:647
+msgid "Other"
+msgstr "其他"
+
+#: app/Modules/I18nStrings.php:648
+msgid ""
+"Our EXPERTS would like to assist you for your query and any customization."
+msgstr "我们的专家愿意为您解答疑问并提供任何自定义帮助。"
+
+#: app/Modules/I18nStrings.php:649
+msgid "Our Products"
+msgstr "我们的产品"
+
+#: app/Modules/I18nStrings.php:650
+msgid "Own Data Only"
+msgstr "仅限自己的数据"
+
+#: app/Modules/I18nStrings.php:651
+msgid "Padding"
+msgstr "内边距"
+
+#: app/Modules/I18nStrings.php:652
+msgid "Page Sizes (Number as Comma Separated)"
+msgstr "页面大小（以逗号分隔的数字）"
+
+#: app/Modules/I18nStrings.php:653
+msgid ""
+"Pagination is enabled by default in this preview. You can set the number of "
+"rows per page or disable it by selecting 'Hide pagination'. Front-end styles"
+" may vary due to theme CSS. Custom filters and inline row styling are not "
+"supported in this view. Check the live preview or embedded page for full "
+"functionality."
+msgstr ""
+"此预览中默认启用分页。您可以设置每页的行数，或通过选择“隐藏分页”将其禁用。由于主题 CSS "
+"的原因，前端样式可能有所不同。此视图不支持自定义筛选器和内联行样式。请查看实时预览或嵌入页面以获得完整功能。"
+
+#: app/Modules/I18nStrings.php:654
+msgid "Pagination Items Per Page"
+msgstr "每页分页项目数"
+
+#: app/Modules/I18nStrings.php:655
+msgid "Pagination Position"
+msgstr "分页位置"
+
+#: app/Modules/I18nStrings.php:656
+msgid "Parse Comma Separated Words"
+msgstr "解析以逗号分隔的词语"
+
+#: app/Modules/I18nStrings.php:657
+msgid "Permalink Action"
+msgstr "固定链接操作"
+
+#: app/Modules/I18nStrings.php:658
+msgid "Permalink Action Type"
+msgstr "固定链接操作类型"
+
+#: app/Modules/I18nStrings.php:659
+msgid "Permanently Delete"
+msgstr "永久删除"
+
+#: app/Modules/I18nStrings.php:660
+msgid "Permission"
+msgstr "权限"
+
+#: app/Modules/I18nStrings.php:661
+msgid "Pick a date"
+msgstr "选择日期"
+
+#: app/Modules/I18nStrings.php:662
+msgid "Placeholder"
+msgstr "占位符"
+
+#: app/Modules/I18nStrings.php:663
+msgid "Please check some FAQs people search for."
+msgstr "请查看人们搜索的一些常见问题。"
+
+#: app/Modules/I18nStrings.php:664
+msgid ""
+"Please check the Tutorials and Documentation for the Ninja Tables Plugin!"
+msgstr "请查看 Ninja Tables 插件的教程和文档！"
+
+#: app/Modules/I18nStrings.php:665
+msgid "Please configure the table columns before importing data."
+msgstr "请在导入数据前配置表格列。"
+
+#: app/Modules/I18nStrings.php:666
+msgid "Please configure the table columns before viewing the table design."
+msgstr "请在查看表格设计前配置表格列。"
+
+#: app/Modules/I18nStrings.php:667
+#, php-format
+msgid "Please don't include %1$s tag"
+msgstr "请不要包含 %1$s 标签"
+
+#: app/Modules/I18nStrings.php:668
+msgid ""
+"Please give positive/negative number or you can provide jquery element "
+"object"
+msgstr "请提供正数或负数，或者您可以提供 jQuery 元素对象"
+
+#: app/Modules/I18nStrings.php:669
+msgid "Please Input Transform Values (HTML and Excel Formula are supported)"
+msgstr "请输入转换值（支持 HTML 和 Excel 公式）"
+
+#: app/Modules/I18nStrings.php:670
+msgid "Please Input Transform Values (HTML supported)"
+msgstr "请输入转换值（支持 HTML）"
+
+#: app/Modules/I18nStrings.php:671
+msgid "Please Provide The Thousand/Decimal Separator If Any."
+msgstr "如有需要，请提供千位/小数分隔符。"
+
+#: app/Modules/I18nStrings.php:672
+msgid "Please provide valid URL"
+msgstr "请提供有效的 URL"
+
+#: app/Modules/I18nStrings.php:673
+msgid "Please select a CSV file from Media Library."
+msgstr "请从媒体库中选择一个 CSV 文件。"
+
+#: app/Modules/I18nStrings.php:674
+msgid "Please select a CSV file."
+msgstr "请选择一个 CSV 文件。"
+
+#: app/Modules/I18nStrings.php:675
+msgid "Please select action"
+msgstr "请选择操作"
+
+#: app/Modules/I18nStrings.php:676
+msgid "Please select columns to delete"
+msgstr "请选择要删除的列"
+
+#: app/Modules/I18nStrings.php:677
+msgid "Please select tables"
+msgstr "请选择表格"
+
+#: app/Modules/I18nStrings.php:678
+msgid ""
+"Please select the settings for your table render method. Using Legacy table "
+"you can use shortcodes in your cells and it will render the full table from "
+"php side. Table styles will be same for both tables. In most cases you will "
+"need Ajax Table which is recommended settings."
+msgstr ""
+"请为您的表格渲染方式选择设置。使用 Legacy 表格，您可以在单元格中使用短代码，它将从 PHP "
+"端渲染完整表格。两种表格的样式相同。在大多数情况下，您需要 Ajax 表格，这是推荐的设置。"
+
+#: app/Modules/I18nStrings.php:679
+msgid ""
+"Please specify how many posts/CPTs you want to show in total, Leave blank to"
+" show all"
+msgstr "请指定您总共想显示多少篇文章/自定义文章类型，留空则显示全部"
+
+#: app/Modules/I18nStrings.php:680
+msgid ""
+"Please specify order by column. The script will order by with the selected "
+"column"
+msgstr "请指定排序列。脚本将按所选列排序"
+
+#: app/Modules/I18nStrings.php:681
+msgid ""
+"Please specify order by type. The script will order with your selected type"
+msgstr "请指定排序类型。脚本将按您所选的类型排序"
+
+#: app/Modules/I18nStrings.php:682
+msgid ""
+"Please specify user roles to be able to edit/delete this table. Only "
+"selected user roles can edit/delete the data."
+msgstr "请指定能够编辑/删除此表格的用户角色。只有所选的用户角色才能编辑/删除数据。"
+
+#: app/Modules/I18nStrings.php:683
+msgid ""
+"Please specify which columns should be editable from the front-end. You can "
+"also define which columns are required."
+msgstr "请指定哪些列可从前端编辑。您还可以定义哪些列为必填。"
+
+#: app/Modules/I18nStrings.php:684
+msgid ""
+"Please take a moment to review it, share your feedback, and spread the love "
+"to keep us motivated and moving forward."
+msgstr "请花点时间留下评价、分享您的反馈并给予支持，让我们保持动力、不断前进。"
+
+#: app/Modules/I18nStrings.php:685
+msgid ""
+"Please update Ninja Tables Pro Plugin to latest version. Required Ninja "
+"Tables Version: 3.3 or later"
+msgstr "请将 Ninja Tables Pro 插件更新到最新版本。所需 Ninja Tables 版本：3.3 或更高"
+
+#: app/Modules/I18nStrings.php:686
+msgid "Please use english letters only"
+msgstr "请仅使用拉丁字母"
+
+#: app/Modules/I18nStrings.php:687
+msgid "Please wait while installing WP Fluent From"
+msgstr "正在安装 WP Fluent Forms，请稍候"
+
+#: app/Modules/I18nStrings.php:688
+#, php-format
+msgid ""
+"Please write valid SQL query. Your written SQL query will be passed to %1$s "
+"function"
+msgstr "请编写有效的 SQL 查询。您编写的 SQL 查询将传递给 %1$s 函数"
+
+#: app/Modules/I18nStrings.php:689
+msgid "Popular Searches"
+msgstr "热门搜索"
+
+#: app/Modules/I18nStrings.php:690
+msgid "positive or negative number"
+msgstr "正数或负数"
+
+#: app/Modules/I18nStrings.php:691
+msgid "Pre Defined Scheme"
+msgstr "预定义方案"
+
+#: app/Modules/I18nStrings.php:692
+msgid ""
+"Prepare your table from your existing WP Fluent Forms submissions. Click "
+"here to learn more about Fluent Forms integration"
+msgstr "根据您现有的 WP Fluent Forms 提交内容准备表格。点击此处了解有关 Fluent Forms 集成的更多信息"
+
+#: app/Modules/I18nStrings.php:693
+msgid ""
+"Prepare your table from your existing WP Fluent Forms submissions. It can be"
+" used to easily showcase your form submissions. Click here to learn more "
+"about"
+msgstr "根据您现有的 WP Fluent Forms 提交内容准备表格。它可用于轻松展示您的表单提交内容。点击此处了解更多信息"
+
+#: app/Modules/I18nStrings.php:694
+msgid "Preview"
+msgstr "预览"
+
+#: app/Modules/I18nStrings.php:695
+msgid "Previous"
+msgstr "上一个"
+
+#: app/Modules/I18nStrings.php:696
+msgid "Previous page"
+msgstr "上一页"
+
+#: app/Modules/I18nStrings.php:697
+msgid "Print Screen Footer"
+msgstr "打印页脚"
+
+#: app/Modules/I18nStrings.php:698
+msgid "Print Screen Header"
+msgstr "打印页眉"
+
+#: app/Modules/I18nStrings.php:699
+msgid "Pro"
+msgstr "专业版"
+
+#: app/Modules/I18nStrings.php:700
+msgid "Processing..."
+msgstr "正在处理…"
+
+#: app/Modules/I18nStrings.php:701
+msgid "Progress Bar Color"
+msgstr "进度条颜色"
+
+#: app/Modules/I18nStrings.php:702
+msgid "Progress Bar Type"
+msgstr "进度条类型"
+
+#: app/Modules/I18nStrings.php:703
+msgid "Progress Options"
+msgstr "进度选项"
+
+#: app/Modules/I18nStrings.php:704
+msgid "Progress Type"
+msgstr "进度类型"
+
+#: app/Modules/I18nStrings.php:705
+msgid "Progressbar Percentage"
+msgstr "进度条百分比"
+
+#: app/Modules/I18nStrings.php:706
+msgid "Progressbar Thickness"
+msgstr "进度条粗细"
+
+#: app/Modules/I18nStrings.php:707
+msgid "Progressbar Width"
+msgstr "进度条宽度"
+
+#: app/Modules/I18nStrings.php:708
+msgid "Progressive Filter"
+msgstr "渐进式筛选"
+
+#: app/Modules/I18nStrings.php:709
+msgid "Provide Buy Now Button Text"
+msgstr "提供“立即购买”按钮文本"
+
+#: app/Modules/I18nStrings.php:710
+msgid ""
+"Provide content for table column header if you want to show html content."
+msgstr "如果您想显示 HTML 内容，请为表格列标题提供内容。"
+
+#: app/Modules/I18nStrings.php:711
+msgid "Provide the column value for your corresponding value type select"
+msgstr "为您所选的相应值类型提供列值"
+
+#: app/Modules/I18nStrings.php:712
+msgid ""
+"Provide the values that you want to show on the frontend.Your values should "
+"match your table cell data"
+msgstr "提供您想在前端显示的值。您的值应与表格单元格数据匹配"
+
+#: app/Modules/I18nStrings.php:713
+msgid "Query Limit"
+msgstr "查询限制"
+
+#: app/Modules/I18nStrings.php:714
+msgid "Query Limit for Frontend"
+msgstr "前端查询限制"
+
+#: app/Modules/I18nStrings.php:715
+msgid "Query Settings"
+msgstr "查询设置"
+
+#: app/Modules/I18nStrings.php:716
+msgid "Radio"
+msgstr "单选按钮"
+
+#: app/Modules/I18nStrings.php:717
+msgid "Read"
+msgstr "已读"
+
+#: app/Modules/I18nStrings.php:718
+msgid "Recommended settings for advanced features"
+msgstr "高级功能的推荐设置"
+
+#: app/Modules/I18nStrings.php:719
+msgid "Reference Shortcode"
+msgstr "参考短代码"
+
+#: app/Modules/I18nStrings.php:720
+msgid "Remote URL..."
+msgstr "远程 URL…"
+
+#: app/Modules/I18nStrings.php:721
+msgid "Remote/External SQL"
+msgstr "远程/外部 SQL"
+
+#: app/Modules/I18nStrings.php:722
+msgid "Remove"
+msgstr "移除"
+
+#: app/Modules/I18nStrings.php:723
+msgid "Remove all borders from the table"
+msgstr "移除表格的所有边框"
+
+#: app/Modules/I18nStrings.php:724
+msgid "Remove cell CSS class"
+msgstr "移除单元格 CSS 类"
+
+#: app/Modules/I18nStrings.php:725
+msgid "Remove column"
+msgstr "移除列"
+
+#: app/Modules/I18nStrings.php:726
+msgid "Remove column CSS class"
+msgstr "移除列 CSS 类"
+
+#: app/Modules/I18nStrings.php:727
+msgid "Remove row"
+msgstr "移除行"
+
+#: app/Modules/I18nStrings.php:728
+msgid "Remove row CSS class"
+msgstr "移除行 CSS 类"
+
+#: app/Modules/I18nStrings.php:729
+msgid "Remove the selected Media file first."
+msgstr "请先移除所选的媒体文件。"
+
+#: app/Modules/I18nStrings.php:730
+msgid "Remove the selected upload file first."
+msgstr "请先移除所选的上传文件。"
+
+#: app/Modules/I18nStrings.php:731
+msgid "Render shortcode into table cells"
+msgstr "在表格单元格中渲染短代码"
+
+#: app/Modules/I18nStrings.php:732
+msgid "Rendering Engine"
+msgstr "渲染引擎"
+
+#: app/Modules/I18nStrings.php:733
+msgid ""
+"Rendering engine is locked after table creation for default data provider "
+"tables."
+msgstr "对于使用默认数据提供程序的表格，渲染引擎在创建表格后被锁定。"
+
+#: app/Modules/I18nStrings.php:734
+msgid "Rendering Settings"
+msgstr "渲染设置"
+
+#: app/Modules/I18nStrings.php:735
+msgid "Replace Existing Data"
+msgstr "替换现有数据"
+
+#: app/Modules/I18nStrings.php:736
+msgid "Replace Image"
+msgstr "替换图片"
+
+#: app/Modules/I18nStrings.php:737
+msgid "reset"
+msgstr "重置"
+
+#: app/Modules/I18nStrings.php:738
+msgid "Reset cell background color to default"
+msgstr "将单元格背景颜色重置为默认"
+
+#: app/Modules/I18nStrings.php:739
+msgid "Reset cell color to default"
+msgstr "将单元格颜色重置为默认"
+
+#: app/Modules/I18nStrings.php:740
+msgid "Reset Filter Button"
+msgstr "重置筛选器按钮"
+
+#: app/Modules/I18nStrings.php:741
+msgid "Reset row background color to default"
+msgstr "将行背景颜色重置为默认"
+
+#: app/Modules/I18nStrings.php:742
+msgid "Reset row color to default"
+msgstr "将行颜色重置为默认"
+
+#: app/Modules/I18nStrings.php:743
+msgid "Responsive Breakpoint"
+msgstr "响应式断点"
+
+#: app/Modules/I18nStrings.php:744
+msgid "Responsiveness"
+msgstr "响应性"
+
+#: app/Modules/I18nStrings.php:745
+msgid "Restore"
+msgstr "还原"
+
+#: app/Modules/I18nStrings.php:746
+msgid "Reviews Status"
+msgstr "评论状态"
+
+#: app/Modules/I18nStrings.php:747
+msgid "Ribbon Height"
+msgstr "缎带高度"
+
+#: app/Modules/I18nStrings.php:748
+msgid "Ribbon Options"
+msgstr "缎带选项"
+
+#: app/Modules/I18nStrings.php:749
+msgid "Ribbon Position"
+msgstr "缎带位置"
+
+#: app/Modules/I18nStrings.php:750
+msgid "Ribbon Text"
+msgstr "缎带文本"
+
+#: app/Modules/I18nStrings.php:751
+msgid "Ribbon Type"
+msgstr "缎带类型"
+
+#: app/Modules/I18nStrings.php:752
+msgid "Ribbon Width"
+msgstr "缎带宽度"
+
+#: app/Modules/I18nStrings.php:753
+msgid "Right"
+msgstr "右"
+
+#: app/Modules/I18nStrings.php:754
+msgid "Round"
+msgstr "圆形"
+
+#: app/Modules/I18nStrings.php:755
+msgid "Row and Cell Color Customization"
+msgstr "行和单元格颜色自定义"
+
+#: app/Modules/I18nStrings.php:756
+msgid "Row Content Text Align"
+msgstr "行内容文本对齐"
+
+#: app/Modules/I18nStrings.php:757
+msgid "Row Details (Responsive drawer)"
+msgstr "行详细信息（响应式抽屉）"
+
+#: app/Modules/I18nStrings.php:758
+msgid "Row height"
+msgstr "行高"
+
+#: app/Modules/I18nStrings.php:759
+msgid "Row Options"
+msgstr "行选项"
+
+#: app/Modules/I18nStrings.php:760
+msgid "Sample CSV downloaded successfully"
+msgstr "示例 CSV 已成功下载"
+
+#: app/Modules/I18nStrings.php:761
+msgid "Sample Header Structure"
+msgstr "示例表头结构"
+
+#: app/Modules/I18nStrings.php:762
+msgid "Save"
+msgstr "保存"
+
+#: app/Modules/I18nStrings.php:763
+msgid "Save Custom CSS"
+msgstr "保存自定义 CSS"
+
+#: app/Modules/I18nStrings.php:764
+msgid "Save Custom JS"
+msgstr "保存自定义 JS"
+
+#: app/Modules/I18nStrings.php:765
+msgid "Save Settings"
+msgstr "保存设置"
+
+#: app/Modules/I18nStrings.php:766
+msgid "Save Table"
+msgstr "保存表格"
+
+#: app/Modules/I18nStrings.php:767
+msgid "Scale"
+msgstr "缩放"
+
+#: app/Modules/I18nStrings.php:768
+msgid "Scroll to table top for pagination change"
+msgstr "切换分页时滚动到表格顶部"
+
+#: app/Modules/I18nStrings.php:770
+msgid "Search Bar Colors"
+msgstr "搜索栏颜色"
+
+#: app/Modules/I18nStrings.php:771
+msgid "Search Bar Position"
+msgstr "搜索栏位置"
+
+#: app/Modules/I18nStrings.php:772
+msgid "Search Box Placeholder Text"
+msgstr "搜索框占位符文本"
+
+#: app/Modules/I18nStrings.php:773
+msgid "Search Dropdown Heading"
+msgstr "搜索下拉菜单标题"
+
+#: app/Modules/I18nStrings.php:774
+msgid "Search Empty Results Text"
+msgstr "无搜索结果时显示的文本"
+
+#: app/Modules/I18nStrings.php:775
+msgid "Search Icon"
+msgstr "搜索图标"
+
+#: app/Modules/I18nStrings.php:776
+msgid "See the form in action:"
+msgstr "查看表单效果："
+
+#: app/Modules/I18nStrings.php:777
+msgid "Select"
+msgstr "选择"
+
+#: app/Modules/I18nStrings.php:778
+msgid "Select a Form"
+msgstr "选择一个表单"
+
+#: app/Modules/I18nStrings.php:779
+msgid "Select a Format"
+msgstr "选择格式"
+
+#: app/Modules/I18nStrings.php:780
+msgid ""
+"Select a row/column/cell to change their background properties. Hold "
+"\"SHIFT\" and click on cells to select multiple cells."
+msgstr "选择行、列或单元格以更改其背景属性。按住“SHIFT”并点击单元格以选择多个单元格。"
+
+#: app/Modules/I18nStrings.php:781
+msgid "Select all"
+msgstr "全选"
+
+#: app/Modules/I18nStrings.php:782
+msgid "Select All"
+msgstr "全选"
+
+#: app/Modules/I18nStrings.php:783
+msgid "Select bulk action"
+msgstr "选择批量操作"
+
+#: app/Modules/I18nStrings.php:784
+msgid "Select Color"
+msgstr "选择颜色"
+
+#: app/Modules/I18nStrings.php:785
+msgid "Select Color Scheme"
+msgstr "选择配色方案"
+
+#: app/Modules/I18nStrings.php:786
+msgid "Select Column"
+msgstr "选择列"
+
+#: app/Modules/I18nStrings.php:787
+msgid "Select Column That you want to populate data"
+msgstr "选择您想从中获取数据的列"
+
+#: app/Modules/I18nStrings.php:788
+msgid "Select columns"
+msgstr "选择列"
+
+#: app/Modules/I18nStrings.php:789
+msgid "Select CSV File"
+msgstr "选择 CSV 文件"
+
+#: app/Modules/I18nStrings.php:790
+msgid "Select Data Type"
+msgstr "选择数据类型"
+
+#: app/Modules/I18nStrings.php:791
+msgid "Select Data Type of this column"
+msgstr "选择此列的数据类型"
+
+#: app/Modules/I18nStrings.php:792
+msgid "Select Dropdown"
+msgstr "下拉列表"
+
+#: app/Modules/I18nStrings.php:793
+msgid "Select Entry Fields"
+msgstr "选择条目字段"
+
+#: app/Modules/I18nStrings.php:794
+msgid "Select Field"
+msgstr "选择字段"
+
+#: app/Modules/I18nStrings.php:795
+msgid "Select file:"
+msgstr "选择文件"
+
+#: app/Modules/I18nStrings.php:796
+msgid "Select first day of the week"
+msgstr "选择一周的第一天"
+
+#: app/Modules/I18nStrings.php:797
+msgid "Select Font"
+msgstr "选择字体"
+
+#: app/Modules/I18nStrings.php:798
+msgid "Select Form Fields"
+msgstr "选择表单字段"
+
+#: app/Modules/I18nStrings.php:799
+msgid "Select Format"
+msgstr "选择格式"
+
+#: app/Modules/I18nStrings.php:800
+msgid "Select How the value will be populated to the select dropdown"
+msgstr "选择如何将值填充到下拉列表中"
+
+#: app/Modules/I18nStrings.php:801
+msgid "Select HTML Field if you want to add Link, media or any type of html"
+msgstr "如果您想添加链接、媒体或任何类型的 HTML，请选择 HTML 字段"
+
+#: app/Modules/I18nStrings.php:802
+msgid "Select Items"
+msgstr "选择项目"
+
+#: app/Modules/I18nStrings.php:803
+msgid "Select Responsive Breakpoint"
+msgstr "选择响应式断点"
+
+#: app/Modules/I18nStrings.php:804
+msgid "Select Sorting Method"
+msgstr "选择排序方式"
+
+#: app/Modules/I18nStrings.php:805
+msgid "Select the columns that you want to apply this filter"
+msgstr "选择您想应用此筛选器的列"
+
+#: app/Modules/I18nStrings.php:806
+msgid ""
+"Select the device by width in where the stackable tables will be enabled"
+msgstr "按宽度选择将启用可堆叠表格的设备"
+
+#: app/Modules/I18nStrings.php:807
+msgid "Select The field type you want to populate for each row"
+msgstr "选择您想为每行填充的字段类型"
+
+#: app/Modules/I18nStrings.php:808
+msgid ""
+"Select the filter type that you want to show the filter in the frontend"
+msgstr "选择您想在前端显示的筛选器类型"
+
+#: app/Modules/I18nStrings.php:809
+msgid ""
+"Select the format in which you want to export your table data. CSV format is"
+" suitable for spreadsheet applications, while JSON format preserves all "
+"table settings for importing into another Ninja Tables installation."
+msgstr ""
+"选择您想导出表格数据的格式。CSV 格式适用于电子表格应用程序，而 JSON 格式会保留所有表格设置，以便导入到另一个 Ninja Tables "
+"安装中。"
+
+#: app/Modules/I18nStrings.php:810
+msgid ""
+"Select the intended format and click <strong>Import</strong> button, we will"
+" do the rest for you."
+msgstr "选择目标格式并点击<strong>导入</strong>按钮，其余的交给我们。"
+
+#: app/Modules/I18nStrings.php:811
+msgid "Select what type of entries you want to show from Fluent Forms."
+msgstr "选择您想从 Fluent Forms 显示的条目类型。"
+
+#: app/Modules/I18nStrings.php:812
+msgid "Selected Cell Background"
+msgstr "所选单元格背景"
+
+#: app/Modules/I18nStrings.php:813
+msgid "Selected Cell Column Background"
+msgstr "所选列背景"
+
+#: app/Modules/I18nStrings.php:814
+msgid "Selected Cell Row Background"
+msgstr "所选行背景"
+
+#: app/Modules/I18nStrings.php:815
+msgid "Selected Color Options"
+msgstr "所选内容的颜色选项"
+
+#: app/Modules/I18nStrings.php:816
+msgid ""
+"Selection feature is only available on Pro version Please upgrade to pro to "
+"unlock this feature"
+msgstr "选择功能仅在专业版中可用。请升级到专业版以解锁此功能"
+
+#: app/Modules/I18nStrings.php:817
+msgid "Semantic UI"
+msgstr "Semantic UI"
+
+#: app/Modules/I18nStrings.php:818
+msgid "Separator Style"
+msgstr "分隔符样式"
+
+#: app/Modules/I18nStrings.php:819
+msgid ""
+"Server returned an unexpected HTML error response. Import may already be "
+"completed; please check the table rows."
+msgstr "服务器返回了意外的 HTML 错误响应。导入可能已完成；请检查表格行。"
+
+#: app/Modules/I18nStrings.php:820
+msgid ""
+"Server returned an unexpected HTML error response. Import may already be "
+"completed; please verify imported rows."
+msgstr "服务器返回了意外的 HTML 错误响应。导入可能已完成；请核实已导入的行。"
+
+#: app/Modules/I18nStrings.php:821
+msgid "Server Side Dom-Generation"
+msgstr "服务器端 DOM 生成"
+
+#: app/Modules/I18nStrings.php:822
+msgid "Set cell background color"
+msgstr "设置单元格背景颜色"
+
+#: app/Modules/I18nStrings.php:823
+msgid "Set cell color"
+msgstr "设置单元格颜色"
+
+#: app/Modules/I18nStrings.php:824
+msgid "Set cell content"
+msgstr "设置单元格内容"
+
+#: app/Modules/I18nStrings.php:825
+msgid "Set cell CSS class"
+msgstr "设置单元格 CSS 类"
+
+#: app/Modules/I18nStrings.php:826
+msgid "Set column background color"
+msgstr "设置列背景颜色"
+
+#: app/Modules/I18nStrings.php:827
+msgid "Set column color"
+msgstr "设置列颜色"
+
+#: app/Modules/I18nStrings.php:828
+msgid "Set row background color"
+msgstr "设置行背景颜色"
+
+#: app/Modules/I18nStrings.php:829
+msgid "Set row color"
+msgstr "设置行颜色"
+
+#: app/Modules/I18nStrings.php:830
+msgid "Set row CSS class"
+msgstr "设置行 CSS 类"
+
+#: app/Modules/I18nStrings.php:831
+msgid "Set the color for empty/inactive rating stars"
+msgstr "设置空/未激活评分星的颜色"
+
+#: app/Modules/I18nStrings.php:832
+msgid "Set the color for filled/active rating stars"
+msgstr "设置实/激活评分星的颜色"
+
+#: app/Modules/I18nStrings.php:833
+msgid "Set the column width. This will be applied for the entire column"
+msgstr "设置列宽。此设置将应用于整列"
+
+#: app/Modules/I18nStrings.php:834
+msgid "Set up custom filters to find the data you want! It’s a Pro feature."
+msgstr "设置自定义筛选器以查找您想要的数据！这是一项专业版功能。"
+
+#: app/Modules/I18nStrings.php:835
+msgid "Set your action icon position"
+msgstr "设置您的操作图标位置"
+
+#: app/Modules/I18nStrings.php:836
+msgid "Settings"
+msgstr "设置"
+
+#: app/Modules/I18nStrings.php:837
+msgid "Shadow Color"
+msgstr "阴影颜色"
+
+#: app/Modules/I18nStrings.php:838
+msgid "Shadow Effect (Blur Radius)"
+msgstr "阴影效果（模糊半径）"
+
+#: app/Modules/I18nStrings.php:839
+msgid "Shadow Effect (X-Axis)"
+msgstr "阴影效果（X 轴）"
+
+#: app/Modules/I18nStrings.php:840
+msgid "Shadow Effect (Y-Axis)"
+msgstr "阴影效果（Y 轴）"
+
+#: app/Modules/I18nStrings.php:841
+msgid "ShortCode"
+msgstr "短代码"
+
+#: app/Modules/I18nStrings.php:842
+msgid "Shortcode Options"
+msgstr "短代码选项"
+
+#: app/Modules/I18nStrings.php:843
+msgid "Show All the responsive columns data into the responsive drawer"
+msgstr "在响应式抽屉中显示所有响应式列的数据"
+
+#: app/Modules/I18nStrings.php:844
+msgid "Show Bulk Action"
+msgstr "显示批量操作"
+
+#: app/Modules/I18nStrings.php:845
+msgid "Show Bulk Actions"
+msgstr "显示批量操作"
+
+#: app/Modules/I18nStrings.php:846
+msgid "Show Cart Details After Table"
+msgstr "在表格后显示购物车详情"
+
+#: app/Modules/I18nStrings.php:847
+msgid "Show Cart Details Before Table"
+msgstr "在表格前显示购物车详情"
+
+#: app/Modules/I18nStrings.php:848
+msgid "Show Checkout Button"
+msgstr "显示结账按钮"
+
+#: app/Modules/I18nStrings.php:849
+msgid "Show current user submissions only at frontend"
+msgstr "在前端仅显示当前用户的提交内容"
+
+#: app/Modules/I18nStrings.php:850
+msgid "Show filter inputs as Columns"
+msgstr "以列形式显示筛选输入框"
+
+#: app/Modules/I18nStrings.php:851
+msgid "Show filter inputs as inline"
+msgstr "以内联形式显示筛选输入框"
+
+#: app/Modules/I18nStrings.php:852
+msgid "Show Formulas"
+msgstr "显示公式"
+
+#: app/Modules/I18nStrings.php:853
+msgid "Show Go to Cart Button"
+msgstr "显示“前往购物车”按钮"
+
+#: app/Modules/I18nStrings.php:854
+msgid "Show New Items First"
+msgstr "优先显示新项目"
+
+#: app/Modules/I18nStrings.php:855
+msgid "Show Old Items First"
+msgstr "优先显示旧项目"
+
+#: app/Modules/I18nStrings.php:856
+msgid "Show Page sizes change option"
+msgstr "显示更改页面大小的选项"
+
+#: app/Modules/I18nStrings.php:857
+msgid "Show Rating"
+msgstr "显示评分"
+
+#: app/Modules/I18nStrings.php:858
+msgid "Show Rating Value"
+msgstr "显示评分值"
+
+#: app/Modules/I18nStrings.php:859
+msgid "Show Table Description"
+msgstr "显示表格描述"
+
+#: app/Modules/I18nStrings.php:860
+msgid "Show Table Title"
+msgstr "显示表格标题"
+
+#: app/Modules/I18nStrings.php:861
+msgid "Show Time"
+msgstr "显示时间"
+
+#: app/Modules/I18nStrings.php:862
+msgid "Show Your Love"
+msgstr "表达您的支持"
+
+#: app/Modules/I18nStrings.php:863
+msgid "Single Line Cells"
+msgstr "单行单元格"
+
+#: app/Modules/I18nStrings.php:864
+msgid "Single Line Text Field"
+msgstr "单行文本字段"
+
+#: app/Modules/I18nStrings.php:865
+msgid "Skip"
+msgstr "跳过"
+
+#: app/Modules/I18nStrings.php:866
+msgid "Small table"
+msgstr "小型表格"
+
+#: app/Modules/I18nStrings.php:867
+msgid "Something is wrong! Please try again"
+msgstr "出错了！请重试"
+
+#: app/Modules/I18nStrings.php:868
+msgid "Something went wrong, please try again."
+msgstr "出错了，请重试。"
+
+#: app/Modules/I18nStrings.php:869
+msgid ""
+"Sorry, No corresponding columns found based on your selection and column's "
+"data type"
+msgstr "抱歉，根据您的选择和列的数据类型未找到相应的列"
+
+#: app/Modules/I18nStrings.php:870
+msgid ""
+"Sorry! You can not export the data as the table data is configured as "
+"external source"
+msgstr "抱歉！您无法导出数据，因为该表格已配置为外部数据源"
+
+#: app/Modules/I18nStrings.php:871
+msgid ""
+"Sorry! You can not import any data as the table data is configured as "
+"external source"
+msgstr "抱歉！您无法导入任何数据，因为该表格已配置为外部数据源"
+
+#: app/Modules/I18nStrings.php:872
+msgid "Sort Algorithm "
+msgstr "排序算法 "
+
+#: app/Modules/I18nStrings.php:873
+msgid "Sort Dynamic Value as: "
+msgstr "将动态值排序为： "
+
+#: app/Modules/I18nStrings.php:874
+msgid "Sort Manually"
+msgstr "手动排序"
+
+#: app/Modules/I18nStrings.php:875
+msgid "Sort Type"
+msgstr "排序类型"
+
+#: app/Modules/I18nStrings.php:876
+msgid "Sortable"
+msgstr "可排序"
+
+#: app/Modules/I18nStrings.php:877
+msgid "Space Between Icon and Text"
+msgstr "图标与文本之间的间距"
+
+#: app/Modules/I18nStrings.php:878
+msgid "Spacing"
+msgstr "间距"
+
+#: app/Modules/I18nStrings.php:879
+msgid "Split"
+msgstr "拆分"
+
+#: app/Modules/I18nStrings.php:880
+msgid "Sponsored, Nofollow, NoReferrer & Noopener"
+msgstr "Sponsored、Nofollow、NoReferrer 和 Noopener"
+
+#: app/Modules/I18nStrings.php:881
+msgid "SQL Connection Details"
+msgstr "SQL 连接详情"
+
+#: app/Modules/I18nStrings.php:882
+msgid "SQL Connection Type:"
+msgstr "SQL 连接类型："
+
+#: app/Modules/I18nStrings.php:883
+msgid "SQL Error"
+msgstr "SQL 错误"
+
+#: app/Modules/I18nStrings.php:884
+msgid "Square"
+msgstr "方形"
+
+#: app/Modules/I18nStrings.php:885
+msgid "Stackable Table Configuration"
+msgstr "可堆叠表格配置"
+
+#: app/Modules/I18nStrings.php:886
+msgid "Stacked Appearance"
+msgstr "堆叠外观"
+
+#: app/Modules/I18nStrings.php:887
+msgid "Standard"
+msgstr "标准模式"
+
+#: app/Modules/I18nStrings.php:888
+msgid "Star Rating Options"
+msgstr "星级评分选项"
+
+#: app/Modules/I18nStrings.php:889
+msgid "Star Size"
+msgstr "星星大小"
+
+#: app/Modules/I18nStrings.php:890
+msgid ""
+"Start your journey to modern eCommerce and sell products "
+"(digital/physical/hybrid) much faster. It's practical, intuitive, and "
+"lightweight."
+msgstr "开启您通向现代电子商务的旅程，更快地销售产品（数字/实物/混合）。它实用、直观且轻量。"
+
+#: app/Modules/I18nStrings.php:891
+msgid ""
+"Start your own affiliate program; onboard affiliates, track visits, disburse"
+" commissions and more. Run your affiliate program successfully!"
+msgstr "启动您自己的联盟计划；招募联盟会员、跟踪访问、发放佣金等。成功运营您的联盟计划！"
+
+#: app/Modules/I18nStrings.php:892
+msgid "Step 1"
+msgstr "步骤 1"
+
+#: app/Modules/I18nStrings.php:893
+msgid "Step 2"
+msgstr "步骤 2"
+
+#: app/Modules/I18nStrings.php:894
+msgid ""
+"Step into the future of WordPress project management! Organize tasks, "
+"projects, and workflows visually with drag and drop, kanban-style boards."
+msgstr "步入 WordPress 项目管理的未来！使用拖放式看板直观地组织任务、项目和工作流程。"
+
+#: app/Modules/I18nStrings.php:895
+msgid "Sticky First Column"
+msgstr "固定第一列"
+
+#: app/Modules/I18nStrings.php:896
+msgid "Sticky Header"
+msgstr "固定表头"
+
+#: app/Modules/I18nStrings.php:897
+msgid "Sticky Top Offset"
+msgstr "固定表头的顶部偏移"
+
+#: app/Modules/I18nStrings.php:898
+msgid "Striped rows"
+msgstr "斑马条纹行"
+
+#: app/Modules/I18nStrings.php:899
+msgid "Styles"
+msgstr "样式"
+
+#: app/Modules/I18nStrings.php:900
+msgid "Styling"
+msgstr "样式"
+
+#: app/Modules/I18nStrings.php:901
+msgid "Stylist List Options"
+msgstr "样式化列表选项"
+
+#: app/Modules/I18nStrings.php:903
+msgid "Supported Excel Formulas"
+msgstr "支持的 Excel 公式"
+
+#: app/Modules/I18nStrings.php:904
+msgid "Table Body Colors"
+msgstr "表格主体颜色"
+
+#: app/Modules/I18nStrings.php:905
+msgid "Table Caption"
+msgstr "表格标题"
+
+#: app/Modules/I18nStrings.php:906
+msgid "Table Colors"
+msgstr "表格颜色"
+
+#: app/Modules/I18nStrings.php:907
+msgid "Table Column Settings"
+msgstr "表格列设置"
+
+#: app/Modules/I18nStrings.php:908
+msgid "Table Configuration"
+msgstr "表格配置"
+
+#: app/Modules/I18nStrings.php:909
+msgid "Table Configuration Required"
+msgstr "需要配置表格"
+
+#: app/Modules/I18nStrings.php:910
+msgid "Table created successfully."
+msgstr "表格已成功创建。"
+
+#: app/Modules/I18nStrings.php:911
+msgid "Table data saved successfully."
+msgstr "表格数据已成功保存。"
+
+#: app/Modules/I18nStrings.php:912
+msgid "Table Description"
+msgstr "表格描述"
+
+#: app/Modules/I18nStrings.php:913
+msgid "Table Design"
+msgstr "表格设计"
+
+#: app/Modules/I18nStrings.php:914
+msgid "Table Font Setting"
+msgstr "表格字体设置"
+
+#: app/Modules/I18nStrings.php:915
+msgid "Table Header Colors"
+msgstr "表头颜色"
+
+#: app/Modules/I18nStrings.php:916
+msgid "Table List"
+msgstr "表格列表"
+
+#: app/Modules/I18nStrings.php:917
+msgid "Table margin top"
+msgstr "表格顶部外边距"
+
+#: app/Modules/I18nStrings.php:918
+msgid "Table name field is required"
+msgstr "表格名称为必填项"
+
+#: app/Modules/I18nStrings.php:919
+msgid "Table Query Settings and New Column"
+msgstr "表格查询设置和新列"
+
+#: app/Modules/I18nStrings.php:920
+msgid "Table Render Settings"
+msgstr "表格渲染设置"
+
+#: app/Modules/I18nStrings.php:921
+msgid "Table Rows"
+msgstr "表格行"
+
+#: app/Modules/I18nStrings.php:922
+msgid "Table Title"
+msgstr "表格标题"
+
+#: app/Modules/I18nStrings.php:923
+msgid "Tablet Device"
+msgstr "平板设备"
+
+#: app/Modules/I18nStrings.php:924
+msgid "Target Column"
+msgstr "目标列"
+
+#: app/Modules/I18nStrings.php:925
+msgid "Target Columns"
+msgstr "目标列"
+
+#: app/Modules/I18nStrings.php:926
+msgid "Target Devices"
+msgstr "目标设备"
+
+#: app/Modules/I18nStrings.php:927
+msgid "Target URL"
+msgstr "目标 URL"
+
+#: app/Modules/I18nStrings.php:928
+msgid "Taxonomy Separator"
+msgstr "分类法分隔符"
+
+#: app/Modules/I18nStrings.php:929
+msgid "Taxonomy Separator for Multiple Items"
+msgstr "多个项目的分类法分隔符"
+
+#: app/Modules/I18nStrings.php:930
+msgid "Templates"
+msgstr "模板"
+
+#: app/Modules/I18nStrings.php:932
+msgid "Text Align"
+msgstr "文本对齐"
+
+#: app/Modules/I18nStrings.php:933
 msgid "Text Area"
 msgstr "文本区"
 
-#: admin/table-builder/config/component.php:233
-msgid "Text Icon"
-msgstr "文本图标"
+#: app/Modules/I18nStrings.php:934
+msgid "Text Color"
+msgstr "文本颜色"
 
-#. Description of the plugin
+#: app/Modules/I18nStrings.php:935
+msgid "Text Font Size"
+msgstr "文本字体大小"
+
+#: app/Modules/I18nStrings.php:936
+msgid "Text Icon Options"
+msgstr "文本图标选项"
+
+#: app/Modules/I18nStrings.php:937
+msgid "Text Input"
+msgstr "文本输入框"
+
+#: app/Modules/I18nStrings.php:938
+msgid "Text Options"
+msgstr "文本选项"
+
+#: app/Modules/I18nStrings.php:939
+msgid "Text to display when there are no reviews"
+msgstr "没有评论时显示的文本"
+
+#: app/Modules/I18nStrings.php:940
 msgid ""
-"The Easiest & Fastest Responsive Table Plugin on WordPress. Multiple "
-"templates, drag-&-drop live table builder, multiple color scheme, and styles."
-msgstr "WordPress上最简单、响应最快的表格插件。丰富的模板、拖放式实时表格生成器、多种配色方案和样式。"
+"Thank you for installing Ninja Tables - Best Responsive Table Plugin for "
+"WordPress"
+msgstr "感谢您安装 Ninja Tables，最佳的 WordPress 响应式表格插件"
 
-#: admin/NinjaTablesAdmin.php:554
-msgid "The name field is required."
-msgstr "名字为必填字段"
+#: app/Modules/I18nStrings.php:941
+msgid "The configuration object of the table."
+msgstr "表格的配置对象。"
 
-#: public/dataProviders/FluentFormProvider.php:114
-msgid "The title field is required."
-msgstr ""
+#: app/Modules/I18nStrings.php:942
+msgid "The first day of the week, e.g. Sunday, Monday, etc."
+msgstr "一周的第一天，例如星期日、星期一等。"
 
-#: includes/I18nStrings.php:14
+#: app/Modules/I18nStrings.php:943
+msgid "The Following Javascript variables are available that you can use:"
+msgstr "以下 JavaScript 变量可供您使用："
+
+#: app/Modules/I18nStrings.php:944
+msgid ""
+"The following settings will be applied to the newly created tables. Of "
+"course, you can customize the appearance settings to each table level."
+msgstr "以下设置将应用于新创建的表格。当然，您可以为每个表格自定义外观设置。"
+
+#: app/Modules/I18nStrings.php:945
+msgid ""
+"The global style will be applied if the component individual style is not "
+"applied."
+msgstr "如果未应用组件的单独样式，则将应用全局样式。"
+
+#: app/Modules/I18nStrings.php:946
+msgid "The Javascript DOM object of the table"
+msgstr "表格的 JavaScript DOM 对象"
+
+#: app/Modules/I18nStrings.php:947
+msgid ""
+"The ultimate WordPress scheduling solution for appointments, events, "
+"webinars, meetings, sales calls etc. Start scheduling smarter today!"
+msgstr "用于预约、活动、网络研讨会、会议、销售电话等的终极 WordPress 排程解决方案。立即开始更智能地排程！"
+
+#: app/Modules/I18nStrings.php:948
+msgid "Then"
+msgstr "则"
+
+#: app/Modules/I18nStrings.php:949
+msgid ""
+"This is a Premium feature. Auto-sync your published Google Sheet and display"
+" the entries on a customized table in Ninja Tables Pro."
+msgstr "这是一项高级功能。自动同步您已发布的 Google 表格，并在 Ninja Tables Pro 的自定义表格中显示条目。"
+
+#: app/Modules/I18nStrings.php:950
+msgid ""
+"This is a Premium feature. Construct table from remote CSV file. Whenever "
+"your remote CSV data changes it will automatically sync here."
+msgstr "这是一项高级功能。通过远程 CSV 文件创建表格。每当您的远程 CSV 数据更改时，都会自动在此处同步。"
+
+#: app/Modules/I18nStrings.php:951
+msgid ""
+"This is a Premium feature. Create a table by generating a sql query to any "
+"custom SQL database."
+msgstr "这是一项高级功能。通过为任何自定义 SQL 数据库生成 SQL 查询来创建表格。"
+
+#: app/Modules/I18nStrings.php:952
+msgid ""
+"This is a Premium feature. Create responsive and customizable WP posts "
+"tables from your existing posts/pages/custom post types with Ninja Tables "
+"pro."
+msgstr "这是一项高级功能。使用 Ninja Tables Pro 从您现有的文章/页面/自定义文章类型创建响应式且可自定义的 WP 文章表格。"
+
+#: app/Modules/I18nStrings.php:953
+msgid ""
+"This is a Premium feature. Displays product Reviews in a searchable, "
+"sortable with Ninja Tables."
+msgstr "这是一项高级功能。使用 Ninja Tables 在可搜索、可排序的表格中显示产品评论。"
+
+#: app/Modules/I18nStrings.php:954
+msgid ""
+"This is a Premium feature. Displays products content in a searchable, "
+"sortable with Ninja Tables."
+msgstr "这是一项高级功能。使用 Ninja Tables 在可搜索、可排序的表格中显示产品内容。"
+
+#: app/Modules/I18nStrings.php:955
+msgid "This is a Pro feature."
+msgstr "这是一项专业版功能。"
+
+#: app/Modules/I18nStrings.php:956
+msgid ""
+"This table can not be editable on frontend. Only \"Default\" data source "
+"tables can be editable"
+msgstr "此表格无法在前端编辑。只有“Default”数据源的表格才能编辑"
+
+#: app/Modules/I18nStrings.php:957
+msgid ""
+"This table data is created from wp-posts. Use the \"Query Settings\" and "
+"\"Add New Column\" tab to customize the columns and query."
+msgstr "此表格数据来自 WP 文章。使用“查询设置”和“添加列”标签页来自定义列和查询。"
+
+#: app/Modules/I18nStrings.php:958
+msgid "This table is being rendered with the "
+msgstr "此表格正在使用以下引擎渲染："
+
+#: app/Modules/I18nStrings.php:959
+msgid ""
+"This will automatically expand all rows of the table when displayed on a "
+"device that hides any columns."
+msgstr "当在隐藏任何列的设备上显示时，这将自动展开表格的所有行。"
+
+#: app/Modules/I18nStrings.php:960
+msgid ""
+"This will automatically expand the first row of the table when displayed on "
+"a device that hides any columns."
+msgstr "当在隐藏任何列的设备上显示时，这将自动展开表格的第一行。"
+
+#: app/Modules/I18nStrings.php:961
+msgid "This will hide horizontal borders of table body rows"
+msgstr "这将隐藏表格主体行的水平边框"
+
+#: app/Modules/I18nStrings.php:962
+msgid "This will hide vertical borders of table body rows"
+msgstr "这将隐藏表格主体行的垂直边框"
+
+#: app/Modules/I18nStrings.php:963
+msgid "This will hide Vertical borders of table body rows"
+msgstr "这将隐藏表格主体行的垂直边框"
+
+#: app/Modules/I18nStrings.php:964
+msgid "This will move the selected tables to trash. Continue?"
+msgstr "这将把所选表格移至回收站。是否继续？"
+
+#: app/Modules/I18nStrings.php:965
+msgid "This will permanently delete the selected rows. Continue?"
+msgstr "这将永久删除所选行。是否继续？"
+
+#: app/Modules/I18nStrings.php:966
+msgid "This will permanently delete the selected tables. Continue?"
+msgstr "这将永久删除所选表格。是否继续？"
+
+#: app/Modules/I18nStrings.php:967
+msgid "This will restore the selected tables. Continue?"
+msgstr "这将还原所选表格。是否继续？"
+
+#: app/Modules/I18nStrings.php:968
+msgid ""
+"This will show on as default placeholder to reset the label ( Ex: All )"
+msgstr "这将显示为重置标签的默认占位符（例如：全部）"
+
+#: app/Modules/I18nStrings.php:969
+msgid ""
+"This will show on your Table Filter. Keep it blank if you don't need any "
+"filter instruction at the frontend"
+msgstr "这将显示在您的表格筛选器上。如果您在前端不需要任何筛选说明，请留空"
+
+#: app/Modules/I18nStrings.php:970
+msgid "Thousand Separator"
+msgstr "千位分隔符"
+
+#: app/Modules/I18nStrings.php:971
+msgid "Three Columns"
+msgstr "三列"
+
+#: app/Modules/I18nStrings.php:972
 msgid "Title"
 msgstr "标题"
 
-#: includes/I18nStrings.php:55
+#: app/Modules/I18nStrings.php:973
+msgid "To get started please add table columns"
+msgstr "要开始，请添加表格列"
+
+#: app/Modules/I18nStrings.php:974
+msgid ""
+"To import from other WordPress plugins click the respective "
+"<strong>Import</strong> button."
+msgstr "要从其他 WordPress 插件导入，请点击相应的<strong>导入</strong>按钮。"
+
+#: app/Modules/I18nStrings.php:975
+msgid "To learn more about this"
+msgstr "要了解更多相关信息"
+
+#: app/Modules/I18nStrings.php:976
+msgid ""
+"To optimize and load faster, we cache the table contents. It's not "
+"recommended to disable caching unless you know what you are doing."
+msgstr "为了优化并加快加载速度，我们会缓存表格内容。除非您了解自己在做什么，否则不建议禁用缓存。"
+
+#: app/Modules/I18nStrings.php:977
+msgid "To Placeholder"
+msgstr "“到”占位符"
+
+#: app/Modules/I18nStrings.php:978
+msgid ""
+"To use this feature your WP Fluent Forms need to be updated. Please update "
+"WP Fluent From from plugins screen"
+msgstr "要使用此功能，您的 WP Fluent Forms 需要更新。请从插件页面更新 WP Fluent Forms"
+
+#: app/Modules/I18nStrings.php:979
 msgid "to view the upgrade guide."
 msgstr "查看升级指南"
 
-#: includes/I18nStrings.php:8 admin/NinjaTablesAdmin.php:156
-msgid "Tools"
-msgstr "工具"
+#: app/Modules/I18nStrings.php:980
+msgid "Today's Date:"
+msgstr "今天的日期："
 
-#: admin/table-builder/config/responsive.php:47
-#: admin/table-builder/config/responsive.php:94
-#: admin/table-builder/config/responsive.php:120
-msgid "Top Row As Header"
-msgstr "顶行作为表头"
+#: app/Modules/I18nStrings.php:981
+msgid "Toggle Position"
+msgstr "展开按钮位置"
 
-#: includes/I18nStrings.php:63
+#: app/Modules/I18nStrings.php:982
+msgid "Tomorrow's Date:"
+msgstr "明天的日期："
+
+#: app/Modules/I18nStrings.php:983
+msgid "Toolbar Button Settings"
+msgstr "工具栏按钮设置"
+
+#: app/Modules/I18nStrings.php:984
+msgid "Tools and Settings"
+msgstr "工具和设置"
+
+#: app/Modules/I18nStrings.php:985
+msgid "Top"
+msgstr "顶部"
+
+#: app/Modules/I18nStrings.php:986
+msgid "Top of the Table"
+msgstr "表格顶部"
+
+#: app/Modules/I18nStrings.php:987
 msgid "Totally hidden on all devices"
 msgstr "从全部设备上完全隐藏"
 
-#: includes/I18nStrings.php:77
+#: app/Modules/I18nStrings.php:988
+msgid "Transform Column Value"
+msgstr "转换列值"
+
+#: app/Modules/I18nStrings.php:989
+msgid "Transform Value"
+msgstr "转换值"
+
+#: app/Modules/I18nStrings.php:990
+msgid "Trash"
+msgstr "回收站"
+
+#: app/Modules/I18nStrings.php:991
+msgid "Trashed Tables"
+msgstr "回收站中的表格"
+
+#: app/Modules/I18nStrings.php:992
+msgid "Try AzonPress"
+msgstr "试用 AzonPress"
+
+#: app/Modules/I18nStrings.php:993
+msgid "Try Fluent Forms"
+msgstr "试用 Fluent Forms"
+
+#: app/Modules/I18nStrings.php:994
+msgid "Try Fluent Support"
+msgstr "试用 Fluent Support"
+
+#: app/Modules/I18nStrings.php:995
+msgid "Try FluentAffiliate"
+msgstr "试用 FluentAffiliate"
+
+#: app/Modules/I18nStrings.php:996
+msgid "Try FluentBoards"
+msgstr "试用 FluentBoards"
+
+#: app/Modules/I18nStrings.php:997
+msgid "Try FluentBooking"
+msgstr "试用 FluentBooking"
+
+#: app/Modules/I18nStrings.php:998
+msgid "Try FluentCart"
+msgstr "试用 FluentCart"
+
+#: app/Modules/I18nStrings.php:999
+msgid "Try FluentCommunity"
+msgstr "试用 FluentCommunity"
+
+#: app/Modules/I18nStrings.php:1000
+msgid "Try FluentCRM"
+msgstr "试用 FluentCRM"
+
+#: app/Modules/I18nStrings.php:1001
+msgid "Try FluentSMTP"
+msgstr "试用 FluentSMTP"
+
+#: app/Modules/I18nStrings.php:1002
+msgid "Try Paymattic"
+msgstr "试用 Paymattic"
+
+#: app/Modules/I18nStrings.php:1003
+msgid ""
+"Try the best contact form plugin in WordPress and create forms faster than "
+"ever! 500k+ users worldwide enjoy this plugin to build smart forms everyday."
+msgstr "试用 WordPress 中最佳的联系表单插件，以前所未有的速度创建表单！全球 50 多万用户每天使用此插件构建智能表单。"
+
+#: app/Modules/I18nStrings.php:1004
+msgid "Try WP Social Ninja"
+msgstr "试用 WP Social Ninja"
+
+#: app/Modules/I18nStrings.php:1005
+msgid ""
+"Turn your support agents into superheroes with the best WordPress helpdesk "
+"plugin. Streamline customer support with this intuitive and powerful tool."
+msgstr "使用最佳的 WordPress 服务台插件，让您的支持人员变身超级英雄。使用这款直观而强大的工具简化客户支持。"
+
+#: app/Modules/I18nStrings.php:1006
+msgid "Two Columns"
+msgstr "两列"
+
+#: app/Modules/I18nStrings.php:1007
+msgid "Type"
+msgstr "类型"
+
+#: app/Modules/I18nStrings.php:1008
+msgid "Unapproved"
+msgstr "未批准"
+
+#: app/Modules/I18nStrings.php:1009
+msgid "Unlock in Pro"
+msgstr "在专业版中解锁"
+
+#: app/Modules/I18nStrings.php:1010
+msgid "Unlock the NinjaTable Pro Features"
+msgstr "解锁 NinjaTables 专业版功能"
+
+#: app/Modules/I18nStrings.php:1011
+msgid "Unordered List"
+msgstr "无序列表"
+
+#: app/Modules/I18nStrings.php:1012
+msgid "Unread"
+msgstr "未读"
+
+#: app/Modules/I18nStrings.php:1013
 msgid "Update"
 msgstr "更新"
 
-#: includes/I18nStrings.php:70
-msgid "Update Configuration"
+#: app/Modules/I18nStrings.php:1014
+msgid "Update Global Settings"
+msgstr "更新全局设置"
+
+#: app/Modules/I18nStrings.php:1015
+msgid "Update Settings"
 msgstr "更新设置"
 
-#: includes/I18nStrings.php:52
+#: app/Modules/I18nStrings.php:1016
+msgid "Update SQL Connection"
+msgstr "更新 SQL 连接"
+
+#: app/Modules/I18nStrings.php:1017
+msgid "Update SQL Query"
+msgstr "更新 SQL 查询"
+
+#: app/Modules/I18nStrings.php:1018
+msgid "Update Table Info"
+msgstr "更新表格信息"
+
+#: app/Modules/I18nStrings.php:1019
 msgid "Upgrade Notice"
 msgstr "升级通知"
 
-#: admin/NinjaTablesAdmin.php:92 admin/NinjaTablesAdmin.php:93
-msgid "View Table"
-msgstr "查看表格"
+#: app/Modules/I18nStrings.php:1020
+msgid "URL"
+msgstr "URL"
 
-#. Author of the plugin
-msgid "WPManageNinja LLC"
+#: app/Modules/I18nStrings.php:1021
+msgid "US Style - decimal point (123,234.01)"
+msgstr "美国样式：小数点（123,234.01）"
+
+#: app/Modules/I18nStrings.php:1022
+msgid "Use Advanced Customization Features"
+msgstr "使用高级自定义功能"
+
+#: app/Modules/I18nStrings.php:1023
+msgid "Use Advanced Data Filtering"
+msgstr "使用高级数据筛选"
+
+#: app/Modules/I18nStrings.php:1024
+msgid "Use Advanced Data Sorting"
+msgstr "使用高级数据排序"
+
+#: app/Modules/I18nStrings.php:1025
+msgid "Use Alternate Color Schema for Table Rows"
+msgstr "为表格行使用交替配色方案"
+
+#: app/Modules/I18nStrings.php:1026
+msgid "Use margin top only for horizontal ribbon positioning."
+msgstr "仅将顶部外边距用于水平缎带定位。"
+
+#: app/Modules/I18nStrings.php:1027
+msgid "Use Select Field to add data in your table from predefined list"
+msgstr "使用选择字段从预定义列表中向表格添加数据"
+
+#: app/Modules/I18nStrings.php:1028
+msgid "Use Shortcode in your table cell"
+msgstr "在表格单元格中使用短代码"
+
+#: app/Modules/I18nStrings.php:1029
+msgid ""
+"Use simple HTML code to transform a column’s data value. Transform value is "
+"a Pro feature."
+msgstr "使用简单的 HTML 代码转换列的数据值。值转换是一项专业版功能。"
+
+#: app/Modules/I18nStrings.php:1030
+msgid "Use this file"
+msgstr "使用此文件"
+
+#: app/Modules/I18nStrings.php:1031
+msgid ""
+"Use this settings if you have lots of data and don't need cell merge "
+"features. It will load your data over ajax. Please note that, shortcodes in "
+"table will not work here."
+msgstr "如果您有大量数据且不需要合并单元格功能，请使用此设置。它将通过 ajax 加载您的数据。请注意，此处表格中的短代码将无法使用。"
+
+#: app/Modules/I18nStrings.php:1032
+msgid "Use Unlimited Colors in Your Tables"
+msgstr "在您的表格中使用无限颜色"
+
+#: app/Modules/I18nStrings.php:1033
+msgid "User Guide"
+msgstr "用户指南"
+
+#: app/Modules/I18nStrings.php:1034
+msgid "User Roles and Data Editing Permissions"
+msgstr "用户角色和数据编辑权限"
+
+#: app/Modules/I18nStrings.php:1035
+msgid "User Roles for Deleting Table Rows"
+msgstr "可删除表格行的用户角色"
+
+#: app/Modules/I18nStrings.php:1036
+msgid "User Roles for Edit/Add Table Rows"
+msgstr "可编辑/添加表格行的用户角色"
+
+#: app/Modules/I18nStrings.php:1037
+msgid "Users can see and edit/delete only own data"
+msgstr "用户只能查看和编辑/删除自己的数据"
+
+#: app/Modules/I18nStrings.php:1038
+msgid ""
+"Using this module, you can let your frontend users to add/edit/delete "
+"records based on user role. Also, you can separate the records by user "
+"submission."
+msgstr "使用此模块，您可以让前端用户根据用户角色添加/编辑/删除记录。此外，您还可以按用户提交内容分隔记录。"
+
+#: app/Modules/I18nStrings.php:1039
+msgid ""
+"Using this module, You can set cell and row level colors of your data, It's "
+"a pro feature, Please purchase pro to unlock this feature"
+msgstr "使用此模块，您可以设置数据的单元格和行级颜色。这是一项专业版功能。请购买专业版以解锁此功能"
+
+#: app/Modules/I18nStrings.php:1040
+msgid "Value"
+msgstr "值"
+
+#: app/Modules/I18nStrings.php:1041
+msgid "Value Type"
+msgstr "值类型"
+
+#: app/Modules/I18nStrings.php:1042
+msgid "Vertically centered table cell contents"
+msgstr "表格单元格内容垂直居中"
+
+#: app/Modules/I18nStrings.php:1043
+msgid "View documentation"
+msgstr "查看文档"
+
+#: app/Modules/I18nStrings.php:1044
+msgid "View Documentation"
+msgstr "查看文档"
+
+#: app/Modules/I18nStrings.php:1045
+msgid "View documentation."
+msgstr "查看文档。"
+
+#: app/Modules/I18nStrings.php:1046
+msgid "View Documentation."
+msgstr "查看文档。"
+
+#: app/Modules/I18nStrings.php:1048
+msgid "Visual"
+msgstr "可视化"
+
+#: app/Modules/I18nStrings.php:1049
+msgid "Watch Video."
+msgstr "观看视频。"
+
+#: app/Modules/I18nStrings.php:1050
+msgid "Welcome to Ninja Charts"
+msgstr "欢迎使用 Ninja Charts"
+
+#: app/Modules/I18nStrings.php:1051
+msgid "Welcome to Ninja Tables"
+msgstr "欢迎使用 Ninja Tables"
+
+#: app/Modules/I18nStrings.php:1052
+msgid "What are Ninja Tables Advanced Shortcodes?"
+msgstr "什么是 Ninja Tables 高级短代码？"
+
+#: app/Modules/I18nStrings.php:1053
+msgid ""
+"When enabled, clicking a table row on the frontend opens its details in a "
+"pop-up view."
+msgstr "启用后，在前端点击表格行会在弹出视图中打开其详情。"
+
+#: app/Modules/I18nStrings.php:1054
+msgid "where"
+msgstr "其中"
+
+#: app/Modules/I18nStrings.php:1055
+msgid "WooCommerce Reviews"
+msgstr "WooCommerce 评论"
+
+#: app/Modules/I18nStrings.php:1056
+msgid "WooCommerce Table"
+msgstr "WooCommerce 表格"
+
+#: app/Modules/I18nStrings.php:1057
+msgid "WordPress media manager is not available."
+msgstr "WordPress 媒体管理器不可用。"
+
+#: app/Modules/I18nStrings.php:1058
+msgid ""
+"WP Editor is only available on WordPress version 4.8 or later. Please "
+"Upgrade Your WordPress Core"
+msgstr "WP 编辑器仅在 WordPress 4.8 或更高版本中可用。请升级您的 WordPress 核心"
+
+#: app/Modules/I18nStrings.php:1059
+msgid "WP Posts"
+msgstr "WP 文章"
+
+#: app/Modules/I18nStrings.php:1060
+msgid "write html"
+msgstr "编写 HTML"
+
+#: app/Modules/I18nStrings.php:1061
+msgid "X Offset"
+msgstr "X 偏移"
+
+#: app/Modules/I18nStrings.php:1062
+msgid "Y Offset"
+msgstr "Y 偏移"
+
+#: app/Modules/I18nStrings.php:1063
+msgid "Yes"
+msgstr "是"
+
+#: app/Modules/I18nStrings.php:1064
+msgid "Yes, Delete"
+msgstr "是，删除"
+
+#: app/Modules/I18nStrings.php:1065
+msgid "Yes, Proceed"
+msgstr "是，继续"
+
+#: app/Modules/I18nStrings.php:1066
+msgid "Yesterday's Date:"
+msgstr "昨天的日期："
+
+#: app/Modules/I18nStrings.php:1067
+msgid "You are using free version of ninja-tables"
+msgstr "您正在使用 Ninja Tables 的免费版"
+
+#: app/Modules/I18nStrings.php:1068
+msgid "You can add additional conditions/where clauses here."
+msgstr "您可以在此处添加额外的条件/where 子句。"
+
+#: app/Modules/I18nStrings.php:1069
+msgid "You can add additional meta query here."
+msgstr "您可以在此处添加额外的元查询。"
+
+#: app/Modules/I18nStrings.php:1070
+msgid ""
+"You can configure global settings for Ninja Tables here. This settings will "
+"apply to all the tables."
+msgstr "您可以在此处配置 Ninja Tables 的全局设置。此设置将应用于所有表格。"
+
+#: app/Modules/I18nStrings.php:1071
+msgid "You can configure table language settings here."
+msgstr "您可以在此处配置表格的语言设置。"
+
+#: app/Modules/I18nStrings.php:1072
+msgid "You can customize the appearance in stacked view of your table"
+msgstr "您可以自定义表格在堆叠视图中的外观"
+
+#: app/Modules/I18nStrings.php:1073
+msgid "You can download a sample CSV file to ensure correct data formatting."
+msgstr "您可以下载示例 CSV 文件以确保正确的数据格式。"
+
+#: app/Modules/I18nStrings.php:1074
+msgid ""
+"You can download the table in CSV or JSON format. If you download it as "
+"JSON, you can import the table into a Ninja Tables installation."
+msgstr "您可以以 CSV 或 JSON 格式下载表格。如果您以 JSON 格式下载，则可以将表格导入到 Ninja Tables 安装中。"
+
+#: app/Modules/I18nStrings.php:1075
+msgid "You can enable/disable print and csv export settings here"
+msgstr "您可以在此处启用/禁用打印和 CSV 导出设置"
+
+#: app/Modules/I18nStrings.php:1076
+msgid ""
+"You can only see the data and update other settings but can't alter the "
+"original SQL."
+msgstr "您只能查看数据并更新其他设置，但不能更改原始 SQL。"
+
+#: app/Modules/I18nStrings.php:1077
+msgid "You can set an offset value for the sticky table header."
+msgstr "您可以为固定的表头设置偏移值。"
+
+#: app/Modules/I18nStrings.php:1078
+msgid ""
+"You can set Column Background color of this particular column that will show"
+" on the frontend table."
+msgstr "您可以设置此特定列的列背景颜色，它将显示在前端表格中。"
+
+#: app/Modules/I18nStrings.php:1079
+msgid ""
+"You can set Column Text color of this particular column that will show on "
+"the frontend table."
+msgstr "您可以设置此特定列的列文本颜色，它将显示在前端表格中。"
+
+#: app/Modules/I18nStrings.php:1080
+msgid "You can set the Editing Component Labels and Appearances"
+msgstr "您可以设置编辑组件的标签和外观"
+
+#: app/Modules/I18nStrings.php:1081
+msgid ""
+"You can sort the table data from <b>Table Rows</b> Manually. Click Sort "
+"Manually checkbox to sort the data using drag and drop feature"
+msgstr "您可以从<b>表格行</b>手动排序表格数据。勾选“手动排序”复选框，使用拖放功能排序数据"
+
+#: app/Modules/I18nStrings.php:1082
+msgid "You can use any Excel formula into the transform value box"
+msgstr "您可以在转换值框中使用任何 Excel 公式"
+
+#: app/Modules/I18nStrings.php:1083
+msgid ""
+"You can use filter prefix to append the value of user inputed value. It will"
+" join with the value and perform the search"
+msgstr "您可以使用筛选器前缀附加到用户输入的值。它将与该值连接并执行搜索"
+
+#: app/Modules/I18nStrings.php:1084
+msgid ""
+"You can use placeholder for dynamic dates to style your row/cell/column"
+msgstr "您可以使用动态日期占位符来设置行/单元格/列的样式"
+
+#: app/Modules/I18nStrings.php:1085
+msgid ""
+"You can use the following Reference Shortcode Values to transform your cell "
+"value"
+msgstr "您可以使用以下参考短代码值来转换您的单元格值"
+
+#: app/Modules/I18nStrings.php:1086
+msgid "You haven't added any conditions for the column yet!"
+msgstr "您尚未为该列添加任何条件！"
+
+#: app/Modules/I18nStrings.php:1087
+#, php-format
+msgid "You may %1$scheck the documentation here.%2$s"
+msgstr "您可以%1$s在此处查看文档。%2$s"
+
+#: app/Modules/I18nStrings.php:1088
+msgid "You may add"
+msgstr "您可以使用"
+
+#: app/Modules/I18nStrings.php:1089
+#, php-format
+msgid ""
+"You may add %1$s as your css selector prefix to target this specific table."
+msgstr "您可以使用 %1$s 作为您的 CSS 选择器前缀以定位此特定表格。"
+
+#: app/Modules/I18nStrings.php:1090
+msgid "You may update the FluentCart query settings here."
+msgstr "您可以在此处更新 FluentCart 查询设置。"
+
+#: app/Modules/I18nStrings.php:1091
+msgid "You may update the query settings here."
+msgstr "您可以在此处更新查询设置。"
+
+#: app/Modules/I18nStrings.php:1092
+#, php-format
+msgid "You may use %1$s to target this specific table."
+msgstr "您可以使用 %1$s 来定位此特定表格。"
+
+#: app/Modules/I18nStrings.php:1093
+#, php-format
+msgid ""
+"You need to activate your Ninja Tables Pro by providing the license key "
+"below. If you don't have a license key please %1$sClick Here%2$s to get a "
+"license key from your purchase. Any questions or problems with your license?"
+" %3$sContact us!%4$s"
 msgstr ""
+"您需要通过在下方输入许可证密钥来激活您的 Ninja Tables "
+"Pro。如果您没有许可证密钥，请%1$s点击此处%2$s从您的购买中获取。对您的许可证有任何疑问或问题？%3$s联系我们！%4$s"
 
-#: includes/NinjaTableImport.php:215
-msgid "You have a faulty JSON file. Please export a new one."
-msgstr "您有一个错误的JSON文件。请导出一个新的。"
+#: app/Modules/I18nStrings.php:1094
+msgid ""
+"Your additional JS code will run after the table initialized. Please provide"
+" valid javascript code. Invalid JS code may break the table UI."
+msgstr "您的附加 JS 代码将在表格初始化后运行。请提供有效的 JavaScript 代码。无效的 JS 代码可能会破坏表格界面。"
 
-#: includes/I18nStrings.php:31
+#: app/Modules/I18nStrings.php:1095
+msgid "Your CSV file should follow this column structure."
+msgstr "您的 CSV 文件应遵循此列结构。"
+
+#: app/Modules/I18nStrings.php:1096
+msgid "Your current tables"
+msgstr "您当前的表格"
+
+#: app/Modules/I18nStrings.php:1097
 msgid "Your License is Active"
 msgstr "您的许可证已激活。"
 
-#: includes/I18nStrings.php:32
+#: app/Modules/I18nStrings.php:1098
 msgid "Your license is active! Enjoy Ninja Tables Pro Add On"
 msgstr "您的授权许可已激活！欢迎使用Ninja Tables Pro插件。"
 
-#: includes/I18nStrings.php:53
+#: app/Modules/I18nStrings.php:1099
 msgid ""
 "Your Ninja Tables Pro plugin is outdated. Please upgrade to its latest "
 "version."
 msgstr "您的Ninja Tables Pro插件版本过低，请更新至最新版本。"
+
+#: app/Modules/I18nStrings.php:1100
+msgid ""
+"Your Selected user roles only see their own data and manage those data. "
+"Other user roles can not see any data. If you want to show all the data "
+"without editing tools to all users, you can use the following shortcode:"
+msgstr "您所选的用户角色只能查看和管理自己的数据。其他用户角色看不到任何数据。如果您想向所有用户显示所有数据而不提供编辑工具，可以使用以下短代码："
+
+#: app/Modules/Lead/LeadFlow.php:68
+msgid "Thank you"
+msgstr "谢谢"
+
+#: app/Services/TranslationService.php:14
+msgid "No matches for \"{0}\""
+msgstr "没有与“{0}”匹配的结果"
+
+#: app/Services/TranslationService.php:15
+msgid "Clear All"
+msgstr "全部清除"
+
+#: app/Services/TranslationService.php:16
+msgid "Selected"
+msgstr "已选择"
+
+#: app/Services/TranslationService.php:18
+msgid "Previous Month"
+msgstr "上个月"
+
+#: app/Services/TranslationService.php:19
+msgid "Next Month"
+msgstr "下个月"
+
+#: app/Services/TranslationService.php:21
+msgid "January"
+msgstr "一月"
+
+#: app/Services/TranslationService.php:22
+msgid "February"
+msgstr "二月"
+
+#: app/Services/TranslationService.php:23
+msgid "March"
+msgstr "三月"
+
+#: app/Services/TranslationService.php:24
+msgid "April"
+msgstr "四月"
+
+#: app/Services/TranslationService.php:25
+msgid "May"
+msgstr "五月"
+
+#: app/Services/TranslationService.php:26
+msgid "June"
+msgstr "六月"
+
+#: app/Services/TranslationService.php:27
+msgid "July"
+msgstr "七月"
+
+#: app/Services/TranslationService.php:28
+msgid "August"
+msgstr "八月"
+
+#: app/Services/TranslationService.php:29
+msgid "September"
+msgstr "九月"
+
+#: app/Services/TranslationService.php:30
+msgid "October"
+msgstr "十月"
+
+#: app/Services/TranslationService.php:31
+msgid "November"
+msgstr "十一月"
+
+#: app/Services/TranslationService.php:32
+msgid "December"
+msgstr "十二月"
+
+#: app/Services/TranslationService.php:35
+msgid "Sunday"
+msgstr "星期日"
+
+#: app/Services/TranslationService.php:36
+msgid "Monday"
+msgstr "星期一"
+
+#: app/Services/TranslationService.php:37
+msgid "Tuesday"
+msgstr "星期二"
+
+#: app/Services/TranslationService.php:38
+msgid "Wednesday"
+msgstr "星期三"
+
+#: app/Services/TranslationService.php:39
+msgid "Thursday"
+msgstr "星期四"
+
+#: app/Services/TranslationService.php:40
+msgid "Friday"
+msgstr "星期五"
+
+#: app/Services/TranslationService.php:41
+msgid "Saturday"
+msgstr "星期六"
+
+#: app/Services/TranslationService.php:44
+msgid "Sun"
+msgstr "日"
+
+#: app/Services/TranslationService.php:45
+msgid "Mon"
+msgstr "一"
+
+#: app/Services/TranslationService.php:46
+msgid "Tue"
+msgstr "二"
+
+#: app/Services/TranslationService.php:47
+msgid "Wed"
+msgstr "三"
+
+#: app/Services/TranslationService.php:48
+msgid "Thu"
+msgstr "四"
+
+#: app/Services/TranslationService.php:49
+msgid "Fri"
+msgstr "五"
+
+#: app/Services/TranslationService.php:50
+msgid "Sat"
+msgstr "六"
+
+#: app/Services/TranslationService.php:52
+msgid "12 AM"
+msgstr "上午 12 点"
+
+#: app/Services/TranslationService.php:53
+msgid "12 PM"
+msgstr "下午 12 点"
+
+#: app/Traits/ImportTrait.php:64 app/Traits/ImportTrait.php:87
+msgid "Please upload valid CSV or JSON"
+msgstr "请上传有效的CSV或JSON"
+
+#: app/Traits/ImportTrait.php:114
+msgid "Something is wrong when parsing the csv"
+msgstr "解析 CSV 时出错"
+
+#: app/Views/admin/preview/default-table.php:10
+#: app/Views/admin/preview/drag-and-drop.php:10
+msgid "Preview Table"
+msgstr "预览表格"
+
+#: boot/app.php:34
+msgid ""
+"Ninja Tables Pro plugin is not compatible with the current version of Ninja "
+"Tables. Please update Ninja Tables Pro to the latest version."
+msgstr ""
+"Ninja Tables Pro 插件与当前版本的 Ninja Tables 不兼容。请将 Ninja Tables Pro 更新到最新版本。"
+
+#: boot/ninja-tables-global-function.php:438
+msgid "Auto Draft"
+msgstr "自动草稿"
+
+#: boot/ninja-tables-global-function.php:1059
+msgid "Nonce verification failed, please try again."
+msgstr "随机验证失败，请重试。"
+
+#: config/table-builder/component.php:47
+msgid "Button"
+msgstr "按钮"
+
+#: config/table-builder/component.php:100
+msgid "Rating"
+msgstr "评分"
+
+#: config/table-builder/component.php:135
+msgid "HTML"
+msgstr "HTML代码"
+
+#: config/table-builder/component.php:151
+msgid "Shortcode"
+msgstr "短代码"
+
+#: config/table-builder/component.php:168
+msgid "Image"
+msgstr "图片"
+
+#: config/table-builder/component.php:188
+msgid "Advanced"
+msgstr "高级"
+
+#: config/table-builder/component.php:192
+msgid "Styled List"
+msgstr "样式化列表"
+
+#: config/table-builder/component.php:213
+msgid "Ribbon"
+msgstr "功能区"
+
+#: config/table-builder/component.php:244
+msgid "Progress"
+msgstr "进度"
+
+#: config/table-builder/component.php:263
+msgid "Text Icon"
+msgstr "文本图标"
+
+#: config/table-builder/responsive.php:14
+msgid "Enable Responsive Table"
+msgstr "启用响应表"
+
+#: config/table-builder/responsive.php:21
+msgid "Mode Options"
+msgstr "模式选项"
+
+#: config/table-builder/responsive.php:30
+#: config/table-builder/responsive.php:77
+msgid "Disable Breakpoint"
+msgstr "禁用断点"
+
+#: config/table-builder/responsive.php:36
+#: config/table-builder/responsive.php:83
+msgid "Cell Stack Direction"
+msgstr "单元格堆叠方向"
+
+#: config/table-builder/responsive.php:51
+#: config/table-builder/responsive.php:98
+#: config/table-builder/responsive.php:124
+msgid "Top Row As Header"
+msgstr "顶行作为表头"
+
+#: config/table-builder/responsive.php:57
+#: config/table-builder/responsive.php:104
+msgid "Items Per Header"
+msgstr "每个表头的项目"
+
+#: config/table-builder/responsive.php:65
+#: config/table-builder/responsive.php:112
+msgid "Group Separator"
+msgstr "分组分隔符"
+
+#: config/table-builder/responsive.php:131
+msgid "Static Top Row"
+msgstr "静态顶行"
+
+#: config/table-builder/responsive.php:142
+msgid "Responsive Settings"
+msgstr "响应设置"
+
+#: config/table-builder/responsive.php:151
+#: config/table-builder/responsive.php:167 config/table-builder/setting.php:14
+msgid "Cell Padding"
+msgstr "单元格填充"
+
+#: config/table-builder/responsive.php:158
+#: config/table-builder/responsive.php:174 config/table-builder/setting.php:21
+msgid "Table Alignment"
+msgstr "表格对齐方式"
+
+#: config/table-builder/setting.php:26
+msgid "Separate Columns/Rows"
+msgstr "分隔列/行"
+
+#: config/table-builder/setting.php:31
+msgid "Space Between Columns"
+msgstr "列间距"
+
+#: config/table-builder/setting.php:38
+msgid "Space Between Rows"
+msgstr "行间距"
+
+#: config/table-builder/setting.php:47 config/table-builder/setting.php:52
+msgid "Table Container Max Width"
+msgstr "表容器最大宽度"
+
+#: config/table-builder/setting.php:61
+msgid "Table Cell Min Auto Width"
+msgstr "表格单元格最小自动宽度"
+
+#: config/table-builder/setting.php:68
+msgid "Table Container Max Height"
+msgstr "表容器最大高度"
+
+#: config/table-builder/setting.php:111
+msgid "Sticky"
+msgstr "置顶"
+
+#: config/table-builder/setting.php:116
+msgid "First Row Sticky"
+msgstr "第一行置顶"
+
+#: config/table-builder/setting.php:121
+msgid "First Column Sticky"
+msgstr "第一列置顶"
+
+#: config/table-builder/setting.php:128
+msgid "Accessibility"
+msgstr "可访问性"
+
+#: config/table-builder/setting.php:133
+msgid "Table Role"
+msgstr "表格职能"
+
+#: config/table-builder/setting.php:163
+msgid "Table Border"
+msgstr "表格边框"
+
+#: config/table-builder/setting.php:170
+msgid "Border Color"
+msgstr "边框颜色"
+
+#: config/table-builder/setting.php:175
+msgid "Apply Inner Border"
+msgstr "应用内边框"
+
+#: config/table-builder/setting.php:180
+msgid "Header Inner Border"
+msgstr "页眉内边框"
+
+#: config/table-builder/setting.php:185
+msgid "Inner Border Color"
+msgstr "内边框颜色"
+
+#: config/table-builder/setting.php:190
+msgid "Inner Border Size"
+msgstr "内边框大小"
+
+#: config/table-builder/setting.php:211
+msgid "Global Style"
+msgstr "全局样式"
+
+#: config/table-builder/setting.php:216
+msgid "Margin Top"
+msgstr "上边距"
+
+#: config/table-builder/setting.php:223
+msgid "Margin Bottom"
+msgstr "下边距"
+
+#: config/table-builder/templates.php:9
+msgid "Pricing Tables"
+msgstr "价目表"
+
+#: config/table-builder/templates.php:13
+msgid "Pricing Table One"
+msgstr "价格表一"
+
+#: config/table-builder/templates.php:19
+msgid "Pricing Table Two"
+msgstr "价格表二"
+
+#: config/table-builder/templates.php:25
+msgid "Pricing Table Three"
+msgstr "价格表三"
+
+#: config/table-builder/templates.php:31
+msgid "Pricing Table Four"
+msgstr "价格表四"
+
+#: config/table-builder/templates.php:39
+msgid "Comparison Tables"
+msgstr "比较表格"
+
+#: config/table-builder/templates.php:43
+msgid "Comparison Table One"
+msgstr "比较表格一"
+
+#: config/table-builder/templates.php:49
+msgid "Comparison Table Two"
+msgstr "比较表格二"
+
+#: config/table-builder/templates.php:55
+msgid "Comparison Table Three"
+msgstr "比较表三"
+
+#: config/table-builder/templates.php:61
+msgid "Comparison Table Four"
+msgstr "比较表四"
+
+#: config/table-builder/templates.php:67
+msgid "Comparison Table Five"
+msgstr "对比表五"
+
+#: config/table-builder/templates.php:76
+msgid "Employee Tables"
+msgstr "员工表"
+
+#: config/table-builder/templates.php:80
+msgid "Employee Table One"
+msgstr "员工表一"
+
+#: config/table-builder/templates.php:86
+msgid "Employee Table Two"
+msgstr "员工表二"
+
+#: config/table-builder/templates.php:92
+msgid "Employee Table Three"
+msgstr "员工表三"
+
+#: config/table-builder/templates.php:101
+msgid "Schedule Tables"
+msgstr "调度表"
+
+#: config/table-builder/templates.php:105
+msgid "Schedule Table One"
+msgstr "调度表一"
+
+#: config/table-builder/templates.php:111
+msgid "Schedule Table Two"
+msgstr "调度表二"
+
+#: config/table-builder/templates.php:117
+msgid "Schedule Table Three"
+msgstr "调度表三"
+
+#: database/Migrations/NinjaTablesSupsysticTableMigration.php:32
+msgid "No Table Found with the selected table"
+msgstr "未找到所选的表格"
+
+#~ msgid "<span style=\"color:#f39c12;\">Get Pro</span>"
+#~ msgstr "<span style=\"color:#f39c12;\">获取Pro版</span>"
+
+#~ msgid "Activate Ninja Tables Pro"
+#~ msgstr "激活Ninja Tables Pro版"
+
+#~ msgid "Activate Ninja Tables Pro Add-on plugin to unlock this feature"
+#~ msgstr "激活Ninja Tables Pro版插件以解锁此项功能"
+
+#~ msgid "Check all"
+#~ msgstr "全选"
+
+#~ msgid "Documentation and Help"
+#~ msgstr "文档与帮助"
+
+#~ msgid ""
+#~ "For any type of query which was not covered in our documentation, Please "
+#~ "submit a support ticket ticket"
+#~ msgstr "对于我们文档中未涉及的任何类型的查询，请提交一份支持申请函"
+
+#~ msgid "Home"
+#~ msgstr "首页"
+
+#~ msgid "Import - Export"
+#~ msgstr "导入 - 导出"
+
+#~ msgid "JSON - JavaScript Object Notation"
+#~ msgstr "JSON - JS对象简谱（JavaScript Object Notation的缩写）"
+
+#~ msgid ""
+#~ "NinjaTables can import tables from existing data, like from a CSV or JSON "
+#~ "file. You can also import existing tables from the other WordPress table "
+#~ "plugins."
+#~ msgstr ""
+#~ "Ninja Tables可以从已存在的数据中导入表格，例如从CSV或JSON文件中导入。您也可以将其他WordPress表格插件中的数据导入进来。"
+
+#~ msgid "Stylist List"
+#~ msgstr "样式列表"
+
+#~ msgid "Successfully deleted the table."
+#~ msgstr "删除表格成功。"
+
+#~ msgid "Successfully duplicated table."
+#~ msgstr "已成功复制表格。"
+
+#~ msgid "The name field is required."
+#~ msgstr "名字为必填字段"
+
+#~ msgid "Tools"
+#~ msgstr "工具"
+
+#~ msgid "Update Configuration"
+#~ msgstr "更新设置"
+
+#~ msgid "You have a faulty JSON file. Please export a new one."
+#~ msgstr "您有一个错误的JSON文件。请导出一个新的。"

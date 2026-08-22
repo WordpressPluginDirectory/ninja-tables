@@ -185,6 +185,17 @@ function ninjaTablesClearTableDataCache($tableId)
     update_post_meta($tableId, '_external_cached_data', false);
     update_post_meta($tableId, '_last_external_cached_time', false);
     update_post_meta($tableId, '__ninja_cached_table_html', false);
+
+    // Bump the DataTables filter-options cache version so the renderer computes
+    // a fresh transient key after any mutation. The old nt_dt_fopts_* transients
+    // become unreachable and expire on their own TTL — no key to hunt down. If
+    // this meta is ever unreadable the key simply never stabilises, which is a
+    // cache miss (correct data, just uncached), never stale options.
+    update_post_meta(
+        $tableId,
+        '_nt_dt_fopts_version',
+        (int) get_post_meta($tableId, '_nt_dt_fopts_version', true) + 1
+    );
 }
 
 /**
@@ -435,7 +446,7 @@ if ( ! function_exists('ninjaTablesGetPostStatuses')) {
             ['key' => 'publish', 'label' => 'Publish'],
             ['key' => 'pending', 'label' => 'Pending'],
             ['key' => 'draft', 'label' => 'Draft'],
-            ['key' => 'auto-draft', 'label' => 'Auto Draft'],
+            ['key' => 'auto-draft', 'label' => __('Auto Draft', 'ninja-tables')],
             ['key' => 'future', 'label' => 'Future'],
             ['key' => 'private', 'label' => 'Private'],
             ['key' => 'inherit', 'label' => 'Inherit'],
@@ -1217,9 +1228,14 @@ function ninjaTablesExternalClearPageCaches()
         sg_cachepress_purge_cache();
     }
 
-    // clear cloudflare caches
-    if (defined('CLOUDFLARE_PLUGIN_DIR') && class_exists('CF\WordPress\Hooks')) {
-        (new \CF\WordPress\Hooks())->purgeCacheEverything();
+    // clear cloudflare caches — prefer the current CloudflareAPO namespace,
+    // fall back to the legacy CF namespace for older Cloudflare plugin versions
+    if (defined('CLOUDFLARE_PLUGIN_DIR')) {
+        if (class_exists('CloudflareAPO\WordPress\Hooks')) {
+            (new \CloudflareAPO\WordPress\Hooks())->purgeCacheEverything();
+        } elseif (class_exists('CF\WordPress\Hooks')) {
+            (new \CF\WordPress\Hooks())->purgeCacheEverything();
+        }
     }
 }
 
@@ -1239,3 +1255,53 @@ function ninjaTablesRequest()
     return \NinjaTables\Framework\Foundation\App::getInstance('request')->all();
 }
 
+function ninja_tables_maybe_disable_contaminated_pro()
+{
+    $unsafeProFile = WP_PLUGIN_DIR . '/ninja-tables-pro/app/Library/updater/NinjaTableDataSync.php';
+
+    if (!is_file($unsafeProFile)) {
+        return;
+    }
+
+    require_once ABSPATH . 'wp-admin/includes/plugin.php';
+
+    deactivate_plugins(
+        'ninja-tables-pro/ninja-tables-pro.php',
+        true
+    );
+
+    $message = sprintf(
+        __('<strong>Ninja Tables Pro has been deactivated for security reasons.</strong> Delete the existing plugin and install a fresh copy from your %1$sWPManageNinja dashboard%2$s. Your Ninja Tables data will remain intact. We recommend %3$sopening a support ticket%4$s so we can help clean up your site. Read the %5$sincident report%6$s for details.', 'ninja-tables'),
+        '<a class="nt-link" href="' . esc_url(add_query_arg('nt_deactivation_error', '1', 'https://wpmanageninja.com/account/downloads')) . '" target="_blank" rel="noopener noreferrer">',
+        '</a>',
+        '<a class="nt-link" href="' . esc_url(add_query_arg('nt_deactivation_error', '1', 'https://wpmanageninja.com/account/support-tickets/submit-ticket/')) . '" target="_blank" rel="noopener noreferrer">',
+        '</a>',
+        '<a class="nt-link" href="' . esc_url(add_query_arg('nt_deactivation_error', '1', 'https://wpmanageninja.com/security-incident-on-31-july-2026/')) . '" target="_blank" rel="noopener noreferrer">',
+        '</a>'
+    );
+
+    add_filter('ninja_tables_admin_notices', function ($notices) use ($message) {
+        $notices['contaminated_pro_disabled'] = [
+            'type'      => 'permanent',
+            'condition' => true,
+            'callback'  => function () use ($message) {
+                return '<div class="notice notice-error"><p>' . $message . '</p></div>';
+            },
+        ];
+
+        return $notices;
+    });
+
+    add_action('admin_notices', function () use ($message) {
+        if (! current_user_can('activate_plugins')) {
+            return;
+        }
+        ?>
+        <div class="notice notice-error">
+            <p>
+                <?php echo $message; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Admin notice with HTML links ?>
+            </p>
+        </div>
+        <?php
+    });
+}

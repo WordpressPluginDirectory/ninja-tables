@@ -79,7 +79,7 @@ trait SupportsInverseRelations
         return array_filter(array_unique([
             Str::camel(Str::beforeLast($this->getForeignKeyName(), $this->getParent()->getKeyName())),
             Str::camel(Str::beforeLast($this->getParent()->getForeignKey(), $this->getParent()->getKeyName())),
-            Str::camel(class_basename($this->getParent())),
+            Str::camel(static::classBasename($this->getParent())),
             'owner',
             get_class($this->getParent()) === get_class($this->getModel()) ? 'parent' : null,
         ]));

@@ -28,8 +28,8 @@ class FluentFormProvider
         // Default meta data fields.
         $labels = [
             ['name' => 'id', 'label' => 'ID'],
-            ['name' => 'serial_number', 'label' => 'Serial Number'],
-            ['name' => 'status', 'label' => 'Status']
+            ['name' => 'serial_number', 'label' => __('Serial Number', 'ninja-tables')],
+            ['name' => 'status', 'label' => __('Status', 'ninja-tables')]
         ];
 
         $form   = $form->fetchForm($id);
@@ -47,12 +47,12 @@ class FluentFormProvider
 
     public function makePaymentFieldLabels($labels)
     {
-        $labels[] = ['name' => 'payment_total', 'label' => 'Payment Total'];
-        $labels[] = ['name' => 'payment_status', 'label' => 'Payment Status'];
-        $labels[] = ['name' => 'payer_name', 'label' => 'Billing Name'];
-        $labels[] = ['name' => 'payer_email', 'label' => 'Billing Email'];
-        $labels[] = ['name' => 'charge_id', 'label' => 'Transaction ID'];
-        $labels[] = ['name' => 'created_at', 'label' => 'Payment Date'];
+        $labels[] = ['name' => 'payment_total', 'label' => __('Payment Total', 'ninja-tables')];
+        $labels[] = ['name' => 'payment_status', 'label' => __('Payment Status', 'ninja-tables')];
+        $labels[] = ['name' => 'payer_name', 'label' => __('Billing Name', 'ninja-tables')];
+        $labels[] = ['name' => 'payer_email', 'label' => __('Billing Email', 'ninja-tables')];
+        $labels[] = ['name' => 'charge_id', 'label' => __('Transaction ID', 'ninja-tables')];
+        $labels[] = ['name' => 'created_at', 'label' => __('Payment Date', 'ninja-tables')];
 
         return $labels;
     }
@@ -148,7 +148,7 @@ class FluentFormProvider
     {
         $table->isEditable        = false;
         $table->dataSourceType    = 'fluent-form';
-        $table->isEditableMessage = 'You may edit your table settings here.';
+        $table->isEditableMessage = __('You may edit your table settings here.', 'ninja-tables');
         $table->fluentFormFormId  = get_post_meta(
             $table->ID,
             '_ninja_tables_data_provider_ff_form_id',

@@ -13,6 +13,13 @@ class Validator
     use ValidatesAttributes, MessageBag;
 
     /**
+     * The rules that should be applied to the data.
+     * 
+     * @var array
+     */
+    protected $dependentRules = [];
+
+    /**
      * Indicates whether the validate method is called or not.
      * @var boolean
      */
@@ -137,16 +144,27 @@ class Validator
      *
      * @return $this
      */
-    public function validate()
+    public function validate(array $data = [], array $rules = [])
     {
-        $this->rules = (new ValidationRuleParser($this->data))->explode($this->rules);
+        $this->rules = (new ValidationRuleParser(
+            $this->data = $data ?: $this->data
+        ))->explode($rules ?: $this->rules);
 
         foreach ($this->rules as $attribute => $rules) {
-            $originalRuleKey =  Arr::get($rules,'rule_key');
+            $originalRuleKey = Arr::get($rules, 'rule_key');
+            
             unset($rules['rule_key']);
+
             $rules = $this->filterExcludeables($attribute, $rules);
+
+            if (empty($rules)) {
+                continue;
+            }
+
             foreach ($rules as $key => $rule) {
-                $this->validateAttribute($attribute, $rule, $key, $originalRuleKey);
+                $this->validateAttribute(
+                    $attribute, $rule, $key, $originalRuleKey
+                );
             }
         }
 
@@ -154,28 +172,25 @@ class Validator
     }
 
     /**
-     * Mark that validate method is called
-     *  
-     * @return self
-     */
-    protected function ready()
-    {
-        $this->isReady = true;
-
-        return $this;
-    }
-
-    /**
-     * Remove the rules which should be excluded
-     * @param  string $attribute
-     * @param  array $rules
+     * Remove rules that can be skipped (nullable, required_if, sometimes).
+     * 
+     * @param string $attribute
+     * @param array $rules
      * @return array
      */
-    protected function filterExcludeables($attribute, $rules)
+    protected function filterExcludeables(string $attribute, array $rules)
     {
-        if (in_array('nullable', $rules)) {
-            if (!$this->getValue($attribute)) {
-                $rules = [];
+        if (in_array('nullable', $rules) && !$this->getValue($attribute)) {
+            return [];
+        }
+
+        $rules = $this->filterRequiredIf($attribute, $rules);
+
+        // Handle sometimes
+        if (in_array('sometimes', $rules)) {
+            $rules = array_diff($rules, ['sometimes']);
+            if (!array_key_exists($attribute, $this->data)) {
+                return [];
             }
         }
 
@@ -183,16 +198,118 @@ class Validator
     }
 
     /**
+     * Filter required_if rules based on other field values.
+     * 
+     * @param string $attribute
+     * @param array $rules
+     * @return array
+     */
+    protected function filterRequiredIf(string $attribute, array $rules)
+    {
+        $requiredIfRules = [];
+        $otherRules = [];
+
+        foreach ($rules as $rule) {
+            if ($rule instanceof Closure) continue;
+
+            if (str_starts_with($rule, 'required_if')) {
+                $requiredIfRules[] = $rule;
+            } else {
+                $otherRules[] = $rule;
+            }
+        }
+
+        if (empty($requiredIfRules)) {
+            return $rules;
+        }
+
+        foreach ($requiredIfRules as $rule) {
+            $params = explode(',', substr($rule, strlen('required_if:')));
+            $otherField = trim(array_shift($params));
+            $expectedValues = array_map('trim', $params);
+
+            // Resolve wildcards
+            $otherValues = $this->getValues($otherField);
+
+            // Keep rule if any match
+            foreach ($otherValues as $val) {
+                if (in_array($val, $expectedValues)) {
+                    return $rules;
+                }
+            }
+        }
+
+        return [];
+    }
+
+    /**
+     * Resolves wildcard attributes to actual values from data
+     *
+     * @param string $path
+     * @return array
+     */
+    protected function getValues(string $path)
+    {
+        // If there is no dot/wildcard, just fetch the value
+        if (!str_contains($path, '*') && strpos($path, '.') === false) {
+            $value = $this->getValue($path);
+            return $value !== null ? [$value] : [];
+        }
+
+        $segments = explode('.', $path);
+        $results = [$this->data];
+
+        foreach ($segments as $segment) {
+            $next = [];
+
+            if ($segment === '*') {
+                foreach ($results as $res) {
+                    if (is_array($res)) {
+                        foreach ($res as $v) {
+                            $next[] = $v;
+                        }
+                    }
+                }
+            } else {
+                foreach ($results as $res) {
+                    if (is_array($res) && array_key_exists($segment, $res)) {
+                        $next[] = $res[$segment];
+                    }
+                }
+            }
+
+            $results = $next;
+        }
+
+        return $results;
+    }
+
+    /**
+     * Mark that validation is ready.
+     * 
+     * @return $this
+     */
+    protected function ready()
+    {
+        $this->isReady = true;
+        return $this;
+    }
+
+    /**
      * Validate each of the attribute of the data.
      *
-     * @param $attribute
-     * @param $rule
-     * @param $$
+     * @param string $attribute
+     * @param string $rule
+     * @param string|null $key
+     * @param string|null $originalRuleKey
      *
      * @return void
      */
     protected function validateAttribute(
-        $attribute, $rule, $key = null, $originalRuleKey = null
+        $attribute,
+        $rule,
+        $key = null,
+        $originalRuleKey = null
     ) {
         $this->currentRule = $rule;
 
@@ -205,18 +322,25 @@ class Validator
         $value = $this->getValue($attribute);
 
         if ($rule instanceof Closure) {
-            
             $params = [];
 
             if ($key && strpos($key, ':') !== false) {
                 $params = explode(':', $key);
-                $params = array_filter(array_map('trim', explode(',', end($params))));
+                $params = array_filter(
+                    array_map('trim', explode(',', end($params)))
+                );
             }
 
-            if ($message = $rule($attribute, $value, $this->rules, $this->data, ...$params)) {
-                is_string($message) && $this->messages[$attribute][$key] = str_replace(
-                    ':attribute', $attribute, $message
-                );
+            if (
+                $message = $rule(
+                    $attribute, $value, $this->rules, $this->data, ...$params
+                )
+            ) {
+                if (is_string($message)) {
+                    $this->messages[$attribute][$key] = str_replace(
+                        ':attribute', $attribute, $message
+                    );
+                }
             }
 
             return $this->setValidatedAttributeData($attribute, $value);
@@ -303,8 +427,8 @@ class Validator
     /**
      * Add a single validation error manually.
      * 
-     * @param [string $attribute
-     * @param [string $message
+     * @param string $attribute
+     * @param string $message
      * @return void
      */
     public function setError($attribute, $message)
@@ -340,6 +464,24 @@ class Validator
         throw new ValidationException(
             'Unprocessable Entity!', 422, null, $this->errors()
         );
+    }
+
+    /**
+     * Get the first validation error message, or null if none exist.
+     *
+     * @return string|null
+     */
+    public function firstError()
+    {
+        $firstAttributeErrors = Arr::first($this->messages, function($value) {
+            return !empty($value);
+        });
+
+        if (is_array($firstAttributeErrors)) {
+            return reset($firstAttributeErrors);
+        }
+
+        return $firstAttributeErrors;
     }
 
     /**
@@ -442,10 +584,13 @@ class Validator
      */
     public function hasRequired($attribute)
     {
+        if (empty($this->rules[$attribute])) {
+            return false;
+        }
+
         foreach ($this->rules[$attribute] as $rule) {
             if (strpos($rule, 'required') !== false) {
                 return true;
-                break;
             }
         }
 
@@ -501,7 +646,9 @@ class Validator
      */
     protected function presentOrRuleIsImplicit($rule, $attribute, $value)
     {
-        return $this->validatePresent($attribute, $value) || $this->isImplicit($rule);
+        return $this->validatePresent(
+            $attribute, $value
+        ) || $this->isImplicit($rule);
     }
 
     public function extend($rule, $callback, $message = null)
@@ -532,7 +679,9 @@ class Validator
         if ($this->currentRule === 'nullable') {
             return true;
         }
+
         $params = array_pad($params, 3, null);
+
         list($attribute, $value, $params) = $params;
 
         $rule = substr(
@@ -554,37 +703,8 @@ class Validator
             return true;
         }
 
-        // If we're her then an invalid/undefined rule is given
-        // so, we need to throw an exception with an available
-        // matching rule name as a suggestion if there's a
-        // close match, otherwise just throw an exception.
-
-        // Geather all available rules
-        $availableRules = array_merge(
-            array_filter(get_class_methods($this), function($m) {
-                return strstr($m, 'validate') && strlen($m) > 9;
-            }), array_keys(static::$customRules)
+        throw new InvalidArgumentException(
+            "The {$rule} rule is undefined or invalid."
         );
-
-        $similar = [];
-        // Find the similar rule names
-        foreach ($availableRules as $r) {
-            similar_text($rule, $r, $percent);
-            if ($percent > 50) {
-                $similar[round($percent)] = $r;
-            }
-        }
-
-        $msg = "The {$rule} rule is undefined or invalid.";
-
-        if ($similar) {
-            // Prepare the appropriate message to throw the exception and throw it.
-            $matchingRule = Str::camel(str_replace('validate', '', max($similar)));
-            if ($matchingRule) {
-                $msg .= " Did you mean {$matchingRule}?";
-            }
-        }
-
-        throw new InvalidArgumentException($msg);
     }
 }

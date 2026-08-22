@@ -11,6 +11,10 @@ use NinjaTables\Framework\Database\Orm\Relations\Concerns\CanBeOneOfMany;
 use NinjaTables\Framework\Database\Orm\Relations\Concerns\ComparesRelatedModels;
 use NinjaTables\Framework\Database\Orm\Relations\Concerns\SupportsDefaultModels;
 
+/**
+ * @template TRelatedModel of Model
+ * @template TDeclaringModel of Model
+ */
 class MorphOne extends MorphOneOrMany implements SupportsPartialRelations
 {
     use CanBeOneOfMany, ComparesRelatedModels, SupportsDefaultModels;
@@ -55,7 +59,7 @@ class MorphOne extends MorphOneOrMany implements SupportsPartialRelations
     /**
      * Add constraints for inner join subselect for one of many relationships.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder<TRelatedModel>  $query
+     * @param  \NinjaTables\Framework\Database\Orm\Builder<TRelatedModel>  $query
      * @param  string|null  $column
      * @param  string|null  $aggregate
      * @return void
@@ -79,7 +83,7 @@ class MorphOne extends MorphOneOrMany implements SupportsPartialRelations
     /**
      * Add join query constraints for one of many relationships.
      *
-     * @param  \Illuminate\Database\Query\JoinClause  $join
+     * @param  \NinjaTables\Framework\Database\Query\JoinClause  $join
      * @return void
      */
     public function addOneOfManyJoinSubQueryConstraints(JoinClause $join)

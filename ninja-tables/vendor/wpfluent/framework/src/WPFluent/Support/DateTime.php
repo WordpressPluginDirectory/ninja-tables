@@ -32,9 +32,22 @@ class DateTime extends PHPDateTime
      * @param string $datetime
      * @param \DateTimeZone $timezone|null
      */
-    public function __construct($datetime = "now", $timezone = null)
+    public function __construct($datetime = 'now', $timezone = null)
     {
-        $timezone = $timezone ?: $this->getDefaultTimezone();
+        if (is_string($timezone)) {
+            $timezone = new DateTimeZone($timezone);
+        }
+
+        $timezone ??= static::getDefaultTimezone();
+
+        if ($datetime instanceof DateTimeInterface) {
+            $datetime = $datetime->format('Y-m-d H:i:s.u');
+        } elseif (
+            is_numeric($datetime)
+            || str_starts_with((string) $datetime, '@')
+        ) {
+            $datetime = '@' . ltrim((string) $datetime, '@');
+        }
 
         parent::__construct($datetime, $timezone);
     }
@@ -42,7 +55,8 @@ class DateTime extends PHPDateTime
     /**
      * Create a new DateTime Object with current time
      * 
-     * @return $this
+     * @param string|null $tz
+     * @return static
      */
     public static function now($tz = null)
     {
@@ -52,7 +66,8 @@ class DateTime extends PHPDateTime
     /**
      * Create a new DateTime Object with today's time
      * 
-     * @return $this
+     * @param string|null $tz
+     * @return static
      */
     public static function today($tz = null)
     {
@@ -62,7 +77,8 @@ class DateTime extends PHPDateTime
     /**
      * Create a new DateTime Object with yesterday's time
      * 
-     * @return $this
+     * @param string|null $tz
+     * @return static
      */
     public static function yesterday($tz = null)
     {
@@ -72,11 +88,111 @@ class DateTime extends PHPDateTime
     /**
      * Create a new DateTime Object with tomorrow's time
      * 
-     * @return $this
+     * @param string|null $tz
+     * @return static
      */
     public static function tomorrow($tz = null)
     {
         return static::create('now', $tz)->modify('+1 day')->startOfDay();
+    }
+
+    /**
+     * Create a new DateTime Object with the current week's starting time.
+     * 
+     * @param string|null $tz
+     * @return static
+     */
+    public static function currentWeek($tz = null)
+    {
+        return static::create('now', $tz)->startOfWeek();
+    }
+
+    /**
+     * Create a new DateTime Object with last week's starting time
+     * 
+     * @param string|null $tz
+     * @return static
+     */
+    public static function lastWeek($tz = null)
+    {
+        return static::create('now', $tz)->subWeek()->startOfWeek();
+    }
+
+    /**
+     * Create a new DateTime Object with next week's starting time
+     * 
+     * @param string|null $tz
+     * @return static
+     */
+    public static function nextWeek($tz = null)
+    {
+        return static::create('now', $tz)->addWeek()->startOfWeek();
+    }
+
+    /**
+     * Create a new DateTime Object with current month's starting time
+     * 
+     * @param string|null $tz
+     * @return static
+     */
+    public static function currentMonth($tz = null)
+    {
+        return static::create('now', $tz)->startOfMonth();
+    }
+
+    /**
+     * Create a new DateTime Object with last month's starting time
+     *
+     * @param string|null $tz
+     * @return static
+     */
+    public static function lastMonth($tz = null)
+    {
+        return static::create('now', $tz)->subMonth()->startOfMonth();
+    }
+
+    /**
+     * Create a new DateTime Object with next month's starting time
+     *
+     * @param string|null $tz
+     * @return static
+     */
+    public static function nextMonth($tz = null)
+    {
+        return static::create('now', $tz)->addMonth()->startOfMonth();
+    }
+
+    /**
+     * Create a new DateTime Object with current year's starting time
+     * 
+     * @param string|null $tz
+     * @return static
+     */
+    public static function currentYear($tz = null)
+    {
+        return static::create('now', $tz)->startOfYear();
+    }
+
+    /**
+     * Create a new DateTime Object with last year's starting time
+     * 
+     * @param string|null $tz
+     * @return static
+     */
+    public static function lastYear($tz = null)
+    {
+        return static::create('now', $tz)->subYear()->startOfYear();
+    }
+
+    /**
+     * Create a new DateTime Object with next year's starting time
+     * 
+     * @param string|null $tz
+     * @return static
+     */
+    public static function nextYear($tz = null)
+    {
+        return static::create('now', $tz)->addYear()->startOfYear();
     }
 
     /**
@@ -119,8 +235,10 @@ class DateTime extends PHPDateTime
      * @param string|DateTimeInterface $date1
      * @param string|DateTimeInterface $date2,
      * @return bool
+     *
+     * @phpstan-ignore-next-line
      */
-    public function between($date1, $date2)
+    public function between($date1, $date2): bool
     {
         if (!$date1 instanceof DateTimeInterface) {
             $date1 = new DateTime($date1);
@@ -130,7 +248,11 @@ class DateTime extends PHPDateTime
             $date2 = new DateTime($date2);
         }
 
-        return ($this >= $date1 && $this <= $date2);
+        $current = $this->getTimestamp();
+        $start   = min($date1->getTimestamp(), $date2->getTimestamp());
+        $end     = max($date1->getTimestamp(), $date2->getTimestamp());
+
+        return $current >= $start && $current <= $end;
     }
 
     /**
@@ -282,7 +404,7 @@ class DateTime extends PHPDateTime
      * Default return format of 'Y-m-d H:i:s' can be
      * overridden using the `$format` parameter.
      *
-     * @param string $date_string The date to be converted, in UTC or GMT timezone.
+     * @param string $dateString The date to be converted, in UTC or GMT timezone.
      * @param string $format      The format string for the returned date. Default 'Y-m-d H:i:s'.
      * @see https://developer.wordpress.org/reference/functions/get_date_from_gmt/
      * 
@@ -290,44 +412,31 @@ class DateTime extends PHPDateTime
      */
     public static function createFromUTC($dateString, $format = 'Y-m-d H:i:s')
     {
-        $date = new static(get_date_from_gmt($dateString, $format));
+        $localString = get_date_from_gmt($dateString, $format);
 
-        return $date->timezone($date->getDefaultTimezone())->format($format);
+        $date = new static($localString);
+
+        $date->timezone($date->getDefaultTimezone());
+
+        return $date;
     }
 
     /**
      * Parse a datetime string
      * @param  string $datetimeString
      * @param  string $timezone
-     * @return $this
+     * @return static
      * @throws InvalidArgumentException
      */
     public static function parse($datetimeString, $timezone = null)
     {
-        $parsedDate = date_parse($datetimeString);
-        
-        $datetimeString = date('Y-m-d H:i:s', mktime(
-            $parsedDate['hour'],
-            $parsedDate['minute'],
-            $parsedDate['second'],
-            $parsedDate['month'],
-            $parsedDate['day'],
-            $parsedDate['year']
-        ));
-
-        if ($timezone && is_scalar($timezone)) {
-            $timezone = new DateTimeZone($timezone);
-        } elseif (isset($parsedDate['tz_id'])) {
-            $timezone = new DateTimeZone($parsedDate['tz_id']);
-        }
-
-        $dateTime = new PHPDateTime($datetimeString, $timezone);
-
-        if ($dateTime instanceof DateTimeInterface) {
+        try {
             return new static($datetimeString, $timezone);
+        } catch (Exception $e) {
+            throw new InvalidArgumentException(
+                'Unable to handle datetime.', 0, $e
+            );
         }
-
-        throw new InvalidArgumentException('Unable to handle datetime.');
     }
 
     /**
@@ -336,7 +445,7 @@ class DateTime extends PHPDateTime
      * add(1, day)
      * add('2 day 8 hours 22 minutes')
      * 
-     * @param \DateInterval|string
+     * @param \DateInterval|string $interval
      * @return $this
      */
     #[\ReturnTypeWillChange]
@@ -364,7 +473,7 @@ class DateTime extends PHPDateTime
     public function sub($interval)
     {
         if ($interval instanceof DateInterval) {
-            return parent::add($interval);
+            return parent::sub($interval);
         } elseif (func_num_args() === 1 && is_string($interval)) {
             return $this->modify('-'.$interval);
         }
@@ -398,6 +507,16 @@ class DateTime extends PHPDateTime
     }
 
     /**
+     * Adds exactly one second to the current date and time.
+     * 
+     * @return $this
+     */
+    public function addSecond()
+    {
+        return $this->add("1 second");
+    }
+
+    /**
      * Adds the given number of minutes to the current date and time.
      *
      * @param int $minutes The number of minutes to add.
@@ -406,6 +525,16 @@ class DateTime extends PHPDateTime
     public function addMinutes(int $minutes)
     {
         return $this->add("{$minutes} minutes");
+    }
+
+    /**
+     * Adds exactly one minute to the current date and time.
+     * 
+     * @return $this
+     */
+    public function addMinute()
+    {
+        return $this->add("1 minute");
     }
 
     /**
@@ -420,6 +549,16 @@ class DateTime extends PHPDateTime
     }
 
     /**
+     * Adds exactly one hour to the current date and time.
+     *
+     * @return $this
+     */
+    public function addHour()
+    {
+        return $this->add("1 hour");
+    }
+
+    /**
      * Adds the given number of days to the current date and time.
      *
      * @param int $days The number of days to add.
@@ -428,6 +567,17 @@ class DateTime extends PHPDateTime
     public function addDays(int $days)
     {
         return $this->add("{$days} days");
+    }
+
+
+    /**
+     * Adds exactly one day to the current date and time.
+     *
+     * @return $this
+     */
+    public function addDay()
+    {
+        return $this->add("1 day");
     }
 
     /**
@@ -442,6 +592,16 @@ class DateTime extends PHPDateTime
     }
 
     /**
+     * Adds exactly one week to the current date and time.
+     *
+     * @return $this
+     */
+    public function addWeek()
+    {
+        return $this->add("1 week");
+    }
+
+    /**
      * Adds the given number of months to the current date and time.
      *
      * @param int $months The number of months to add.
@@ -453,6 +613,16 @@ class DateTime extends PHPDateTime
     }
 
     /**
+     * Adds exactly one month to the current date and time.
+     *
+     * @return $this
+     */
+    public function addMonth()
+    {
+        return $this->add("1 month");
+    }
+
+    /**
      * Adds the given number of years to the current date and time.
      *
      * @param int $years The number of years to add.
@@ -461,6 +631,36 @@ class DateTime extends PHPDateTime
     public function addYears(int $years)
     {
         return $this->add("{$years} years");
+    }
+
+    /**
+     * Adds exactly one year to the current date and time.
+     * 
+     * @return $this
+     */
+    public function addYear()
+    {
+        return $this->add("1 year");
+    }
+
+    /**
+     * Add a quarter (3 months) to the current date.
+     *
+     * @return $this
+     */
+    public function addQuarter()
+    {
+        return $this->add(new DateInterval('P3M'));
+    }
+
+    /**
+     * Add a decade (10 years) to the current date.
+     *
+     * @return $this
+     */
+    public function addDecade()
+    {
+        return $this->add(new DateInterval('P10Y'));
     }
 
      /**
@@ -475,6 +675,16 @@ class DateTime extends PHPDateTime
     }
 
     /**
+     * Subtracts one second from the current date and time.
+     *
+     * @return $this The current instance for method chaining.
+     */
+    public function subSecond()
+    {
+        return $this->sub("1 second");
+    }
+
+    /**
      * Subtracts the given number of minutes from the current date and time.
      *
      * @param int $minutes The number of minutes to subtract.
@@ -483,6 +693,16 @@ class DateTime extends PHPDateTime
     public function subMinutes(int $minutes)
     {
         return $this->sub("{$minutes} minutes");
+    }
+
+    /**
+     * Subtracts one minute from the current date and time.
+     *
+     * @return $this The current instance for method chaining.
+     */
+    public function subMinute()
+    {
+        return $this->sub("1 minute");
     }
 
     /**
@@ -497,6 +717,16 @@ class DateTime extends PHPDateTime
     }
 
     /**
+     * Subtracts one hour from the current date and time.
+     *
+     * @return $this The current instance for method chaining.
+     */
+    public function subHour()
+    {
+        return $this->sub("1 hour");
+    }
+
+    /**
      * Subtracts the given number of days from the current date and time.
      *
      * @param int $days The number of days to subtract.
@@ -505,6 +735,16 @@ class DateTime extends PHPDateTime
     public function subDays(int $days)
     {
         return $this->sub("{$days} days");
+    }
+
+    /**
+     * Subtracts one day from the current date and time.
+     *
+     * @return $this The current instance for method chaining.
+     */
+    public function subDay()
+    {
+        return $this->sub("1 day");
     }
 
     /**
@@ -519,6 +759,16 @@ class DateTime extends PHPDateTime
     }
 
     /**
+     * Subtracts one week from the current date and time.
+     *
+     * @return $this The current instance for method chaining.
+     */
+    public function subWeek()
+    {
+        return $this->sub("1 week");
+    }
+
+    /**
      * Subtracts the given number of months from the current date and time.
      *
      * @param int $months The number of months to subtract.
@@ -530,6 +780,16 @@ class DateTime extends PHPDateTime
     }
 
     /**
+     * Subtracts one month from the current date and time.
+     *
+     * @return $this The current instance for method chaining.
+     */
+    public function subMonth()
+    {
+        return $this->sub("1 month");
+    }
+
+    /**
      * Subtracts the given number of years from the current date and time.
      *
      * @param int $years The number of years to subtract.
@@ -538,6 +798,36 @@ class DateTime extends PHPDateTime
     public function subYears(int $years)
     {
         return $this->sub("{$years} years");
+    }
+
+    /**
+     * Subtracts one year from the current date and time.
+     *
+     * @return $this The current instance for method chaining.
+     */
+    public function subYear()
+    {
+        return $this->sub("1 year");
+    }
+
+    /**
+     * Subtract a quarter (3 months) from the current date.
+     *
+     * @return $this
+     */
+    public function subQuarter()
+    {
+        return $this->sub(new DateInterval('P3M'));
+    }
+
+    /**
+     * Subtract a decade (10 years) from the current date.
+     *
+     * @return $this
+     */
+    public function subDecade()
+    {
+        return $this->sub(new DateInterval('P10Y'));
     }
 
     /**
@@ -768,6 +1058,8 @@ class DateTime extends PHPDateTime
      * Check if the current instance is a weekend.
      *
      * @return bool
+     *
+     * @phpstan-ignore-next-line
      */
     public function isWeekend($startOfWeek = null): bool
     {
@@ -826,7 +1118,10 @@ class DateTime extends PHPDateTime
 
     /**
      * Check if the year is a leap year.
+     *
      * @return boolean
+     *
+     * @phpstan-ignore-next-line
      */
     public function isLeapYear(): bool
     {
@@ -956,8 +1251,8 @@ class DateTime extends PHPDateTime
     /**
      * Get human friendly time difference (2 hours ago/ 2 hours from now)
      * 
-     * @param  \DateTime|string|timestamp $from The datetime to compare from
-     * @param  \DateTime|string|timestamp $to The datetime to compare to
+     * @param  \DateTimeInterface|string|int $from The datetime to compare from
+     * @param  \DateTimeInterface|string|int $to The datetime to compare to
 
      * @return string Human readable string, ie. 5 days ago/from now
      */
@@ -967,7 +1262,7 @@ class DateTime extends PHPDateTime
         // This is because ORM's datetime field can call it without params.
         if (is_null($from)) {
             $from = $this->getTimestamp();
-        } elseif ($from instanceof \DateTime) {
+        } elseif ($from instanceof \DateTimeInterface) {
             $from = $from->getTimestamp();
         } elseif (!is_numeric($from)) {
             $from = (new \DateTime($from))->getTimestamp();
@@ -976,7 +1271,7 @@ class DateTime extends PHPDateTime
         // Use the current time as $to if not provided
         if (is_null($to)) {
             $to = time();
-        } elseif ($to instanceof \DateTime) {
+        } elseif ($to instanceof \DateTimeInterface) {
             $to = $to->getTimestamp();
         } elseif (!is_numeric($to)) {
             $to = (new \DateTime($to))->getTimestamp();

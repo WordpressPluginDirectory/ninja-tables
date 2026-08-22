@@ -16,75 +16,17 @@ use NinjaTables\Framework\Foundation\App;
  * The $handler can be a callable or "Class@method" string.
  * These dynamic methods delegate to the register() method.
  * 
- * @method $this get(
- *  string $action,
- *  callable|string $handler,
- *  int|string|array $priority = 10,
- *  string $scope = "both"
- * )
+ * @method $this get(string $action, callable|string $handler, int|string|array $priority = 10, string $scope = "both")
+ * @method $this post(string $action, callable|string $handler, int|string|array $priority = 10, string $scope = "both")
+ * @method $this put(string $action, callable|string $handler, int|string|array $priority = 10, string $scope = "both")
+ * @method $this patch(string $action, callable|string $handler, int|string|array $priority = 10, string $scope = "both")
+ * @method $this delete(string $action, callable|string $handler, int|string|array $priority = 10, string $scope = "both")
  *
- * @method $this post(
- *  string $action,
- *  callable|string $handler,
- *  int|string|array $priority = 10,
- *  string $scope = "both"
- * )
- * 
- * @method $this put(
- *  string $action,
- *  callable|string $handler,
- *  int|string|array $priority = 10,
- *  string $scope = "both"
- * )
- * 
- * @method $this patch(
- *  string $action,
- *  callable|string $handler,
- *  int|string|array $priority = 10,
- *  string $scope = "both"
- * )
- * 
- * @method $this delete(
- *  string $action,
- *  callable|string $handler,
- *  int|string|array $priority = 10,
- *  string $scope = "both"
- * )
- * 
- * @method static get(
- *  string $action,
- *  callable|string $handler,
- *  int|string|array $priority = 10,
- *  string $scope = "both"
- * )
- * 
- * @method static post(
- *  string $action,
- *  callable|string $handler,
- *  int|string|array $priority = 10,
- *  string $scope = "both"
- * )
- * 
- * @method static put(
- *  string $action,
- *  callable|string $handler,
- *  int|string|array $priority = 10,
- *  string $scope = "both"
- * )
- * 
- * @method static patch(
- *  string $action,
- *  callable|string $handler,
- *  int|string|array $priority = 10,
- *  string $scope = "both"
- * )
- * 
- * @method static delete(
- *  string $action,
- *  callable|string $handler,
- *  int|string|array $priority = 10,
- *  string $scope = "both"
- * )
+ * @method static get(string $action, callable|string $handler, int|string|array $priority = 10, string $scope = "both")
+ * @method static post(string $action, callable|string $handler, int|string|array $priority = 10, string $scope = "both")
+ * @method static put(string $action, callable|string $handler, int|string|array $priority = 10, string $scope = "both")
+ * @method static patch(string $action, callable|string $handler, int|string|array $priority = 10, string $scope = "both")
+ * @method static delete(string $action, callable|string $handler, int|string|array $priority = 10, string $scope = "both")
  *
  * Usage Examples:
  *
@@ -102,8 +44,7 @@ use NinjaTables\Framework\Foundation\App;
 class Ajax
 {
 	/**
-	 * $app NinjaTables\Framework\Foundation\Application
-	 * @var null
+	 * @var \NinjaTables\Framework\Foundation\Application
 	 */
 	protected $app = null;
 	
@@ -122,7 +63,7 @@ class Ajax
 	/**
 	 * Consruct the Instance.
 	 * 
-	 * @param NinjaTables\Framework\Foundation\Application $app
+	 * @param \NinjaTables\Framework\Foundation\Application $app
 	 */
 	public function __construct($app = null)
 	{
@@ -178,10 +119,10 @@ class Ajax
 	        );
 	    }
 
-	    $callback = function () use ($method, $action, $handler) {
+	    $callback = function () use ($method, $handler) {
 	        try {
 	            wp_send_json_success(
-	                $this->handle($method, $action, $handler)
+	                $this->handle($method, $handler)
 	            );
 	        } catch (Exception $e) {
 	            wp_send_json_error($e->getMessage());
@@ -201,7 +142,14 @@ class Ajax
         );
 	}
 
-	public function handle($method, $action, $handler)
+	/**
+	 * Handle an AJAX request.
+	 * 
+	 * @param  string $method
+	 * @param  mixed $handler
+	 * @return mixed
+	 */
+	public function handle($method, $handler)
 	{
 		if ($_SERVER['REQUEST_METHOD'] !== strtoupper($method)) {
 			throw new BadMethodCallException(
@@ -209,18 +157,32 @@ class Ajax
 			);
 		}
 
-		check_ajax_referer($action);
+		check_ajax_referer($this->app->config->get('hook_prefix'));
 
 		return $this->app->call(
 			$this->app->parseHookHandler($handler)
 		);
 	}
 
+	/**
+	 * Overload magic method.
+	 * 
+	 * @param  string $method
+	 * @param  array $args
+	 * @return void
+	 */
 	public function __call($method, $args)
 	{
-		return $this->register($method, ...$args);
+		$this->register($method, ...$args);
 	}
 
+	/**
+	 * Overload static magic method.
+	 * 
+	 * @param  string $method
+	 * @param  array $args
+	 * @return void
+	 */
 	public static function __callStatic($method, $args)
 	{
 		return (new static)->$method(...$args);

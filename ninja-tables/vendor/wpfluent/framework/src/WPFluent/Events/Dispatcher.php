@@ -12,6 +12,8 @@ use NinjaTables\Framework\Container\Container;
 use NinjaTables\Framework\Support\MacroableTrait;
 use NinjaTables\Framework\Support\ReflectsClosures;
 use NinjaTables\Framework\Events\DispatcherInterface;
+use NinjaTables\Framework\Events\ShouldDispatchAfterCommit;
+use NinjaTables\Framework\Events\ShouldHandleEventsAfterCommit;
 use NinjaTables\Framework\Container\Contracts\Container as ContainerContract;
 
 
@@ -46,6 +48,42 @@ class Dispatcher implements DispatcherInterface
      * @var array
      */
     protected $wildcardsCache = [];
+
+
+    /**
+     * The stack of listeners being deferred.
+     * 
+     * @var integer
+     */
+    protected $deferDepth = 0;
+
+    /**
+     * The currently deferred events.
+     *
+     * @var array
+     */
+    protected $deferredEvents = [];
+
+    /**
+     * Indicates if events should be deferred.
+     *
+     * @var bool
+     */
+    protected $deferringEvents = false;
+
+    /**
+     * The specific events to defer (null means defer all events).
+     *
+     * @var array|null
+     */
+    protected $eventsToDefer = null;
+
+    /**
+     * The transaction manager instance.
+     * 
+     * @var \NinjaTables\Framework\Database\DatabaseTransactionsManager|null
+     */
+    protected $transactionManagerResolver = null;
 
     /**
      * Create a new event dispatcher instance.
@@ -197,6 +235,62 @@ class Dispatcher implements DispatcherInterface
     }
 
     /**
+     * Execute the given callback while deferring events,
+     * then dispatch all the deferred events.
+     *
+     * @param  callable  $callback
+     * @param  array|null  $events
+     * @return mixed
+     */
+    public function defer(callable $callback, ?array $events = null)
+    {
+        $this->deferDepth++;
+
+        $previousEventsToDefer = $this->eventsToDefer;
+
+        if ($events !== null) {
+            $this->eventsToDefer = $events;
+        }
+
+        try {
+            return $callback();
+        } finally {
+            $this->deferDepth--;
+
+            if ($this->deferDepth === 0) {
+                $events = $this->deferredEvents;
+                $this->deferredEvents = [];
+                $this->eventsToDefer = null;
+
+                foreach ($events as $args) {
+                    $this->dispatch(...$args);
+                }
+            } else {
+                $this->eventsToDefer = $previousEventsToDefer;
+            }
+        }
+    }
+
+    /**
+     * Determine if the given event should be deferred.
+     *
+     * @param  string  $event
+     * @return bool
+     */
+    protected function shouldDeferEvent($event)
+    {
+        if ($this->deferDepth === 0) {
+            return false;
+        }
+
+        if ($this->eventsToDefer === null) {
+            return true;
+        }
+
+        return in_array($event, $this->eventsToDefer, true);
+    }
+
+    /**
      * Fire an event until the first non-null response is returned.
      *
      * @param  string|object  $event
@@ -218,28 +312,66 @@ class Dispatcher implements DispatcherInterface
      */
     public function dispatch($event, $payload = [], $halt = false)
     {
-        // When the given "event" is actually an object we will assume it is an event
-        // object and use the class as the event name and this event itself as the
-        // payload to the handler, which makes object based events quite simple.
-        [$event, $payload] = $this->parseEventAndPayload(
-            $event, $payload
-        );
+        // When the given "event" is actually an object we will assume it is
+        // an event object and use the class as the event name and this
+        // event itself as the payload to the handler, which makes
+        // object based events quite simple.
+        
+        [$isEventObject, $event, $payload] = [
+            is_object($event),
+            ...$this->parseEventAndPayload($event, $payload),
+        ];
 
+        if ($this->shouldDeferEvent($event)) {
+            $this->deferredEvents[] = func_get_args();
+
+            return null;
+        }
+
+        // If the event is not intended to be dispatched unless the current
+        // database transaction is successful, we'll register a callback
+        // which will handle dispatching this event on the next
+        // successful DB transaction commit.
+        if ($isEventObject &&
+            $payload[0] instanceof ShouldDispatchAfterCommit &&
+            ! is_null($transactions = $this->resolveTransactionManager())) {
+            $transactions->addCallback(
+                fn () => $this->invokeListeners($event, $payload, $halt)
+            );
+
+            return null;
+        }
+
+        return $this->invokeListeners($event, $payload, $halt);
+    }
+
+    /**
+     * Broadcast an event and call its listeners.
+     *
+     * @param  string|object  $event
+     * @param  mixed  $payload
+     * @param  bool  $halt
+     * @return array|null
+     */
+    protected function invokeListeners($event, $payload, $halt = false)
+    {
         $responses = [];
 
         foreach ($this->getListeners($event) as $listener) {
             $response = $listener($event, $payload);
 
-            // If a response is returned from the listener and event halting is enabled
-            // we will just return this response, and not call the rest of the event
-            // listeners. Otherwise we will add the response on the response list.
+            // If a response is returned from the listener and event halting is 
+            // enabled we will just return this response, and not call the
+            // rest of the event listeners. Otherwise we will add the
+            // response on the response list.
             if ($halt && ! is_null($response)) {
                 return $response;
             }
 
-            // If a boolean false is returned from a listener, we will stop propagating
-            // the event to any further listeners down in the chain, else we keep on
-            // looping through the listeners and firing every one in our sequence.
+            // If a boolean false is returned from a listener, we will stop
+            // propagating the event to any further listeners down in the
+            // chain, else we keep on looping through the listeners
+            // and firing every one in our sequence.
             if ($response === false) {
                 break;
             }
@@ -338,7 +470,15 @@ class Dispatcher implements DispatcherInterface
             return $this->createClassListener($listener, $wildcard);
         }
 
-        if (is_array($listener) && isset($listener[0]) && is_string($listener[0])) {
+        if (
+            is_array($listener) &&
+            isset($listener[0]) &&
+            is_string($listener[0])
+        ) {
+            return $this->createClassListener($listener, $wildcard);
+        }
+
+        if (is_object($listener) && !$listener instanceof Closure) {
             return $this->createClassListener($listener, $wildcard);
         }
 
@@ -362,7 +502,9 @@ class Dispatcher implements DispatcherInterface
     {
         return function ($event, $payload) use ($listener, $wildcard) {
             if ($wildcard) {
-                return call_user_func($this->createClassCallable($listener), $event, $payload);
+                return call_user_func(
+                    $this->createClassCallable($listener), $event, $payload
+                );
             }
 
             $callable = $this->createClassCallable($listener);
@@ -380,18 +522,20 @@ class Dispatcher implements DispatcherInterface
     protected function createClassCallable($listener)
     {
         [$class, $method] = is_array($listener)
-                            ? $listener
-                            : $this->parseClassCallable($listener);
+            ? $listener
+            : $this->parseClassCallable($listener);
 
-        if (! method_exists($class, $method)) {
+        if (!method_exists($class, $method)) {
             $method = '__invoke';
         }
 
-        $listener = $this->container->make($class);
+        if (!is_object($class)) {
+            $class = $this->container->make($class);
+        }
 
-        return $this->handlerShouldBeDispatchedAfterDatabaseTransactions($listener)
-                    ? $this->createCallbackForListenerRunningAfterCommits($listener, $method)
-                    : [$listener, $method];
+        return $this->ShouldBeDispatchedAfterTransactions($class)
+            ? $this->createCallbackToRunAfterCommits($class, $method)
+            : [$class, $method];
     }
 
     /**
@@ -402,18 +546,25 @@ class Dispatcher implements DispatcherInterface
      */
     protected function parseClassCallable($listener)
     {
+        if (is_object($listener)) {
+            return [$listener, '__invoke'];
+        }
+
         return Str::parseCallback($listener, 'handle');
     }
 
     /**
-     * Determine if the given event handler should be dispatched after all database transactions have committed.
+     * Determine if the given event handler should be dispatched after
+     * all database transactions have committed.
      *
      * @param  object|mixed  $listener
      * @return bool
      */
-    protected function handlerShouldBeDispatchedAfterDatabaseTransactions($listener)
+    protected function ShouldBeDispatchedAfterTransactions($listener)
     {
-        return ($listener->afterCommit ?? null) && $this->container->bound('db.transactions');
+        return (($listener->afterCommit ?? null) ||
+            $listener instanceof ShouldDispatchAfterCommit
+        ) && $this->resolveTransactionManager();
     }
 
     /**
@@ -423,15 +574,13 @@ class Dispatcher implements DispatcherInterface
      * @param  string  $method
      * @return \Closure
      */
-    protected function createCallbackForListenerRunningAfterCommits($listener, $method)
+    protected function createCallbackToRunAfterCommits($listener, $method)
     {
         return function () use ($method, $listener) {
             $payload = func_get_args();
 
-            $this->container->make('db.transactions')->addCallback(
-                function () use ($listener, $method, $payload) {
-                    $listener->$method(...$payload);
-                }
+            $this->resolveTransactionManager()->addCallback(
+                fn() => $listener->$method(...$payload)
             );
         };
     }
@@ -469,5 +618,28 @@ class Dispatcher implements DispatcherInterface
                 $this->forget($key);
             }
         }
+    }
+
+    /**
+     * Resolve the transaction manager instance.
+     * 
+     * @return \NinjaTables\Framework\Database\DatabaseTransactionsManager
+     */
+    protected function resolveTransactionManager()
+    {
+        return call_user_func($this->transactionManagerResolver);
+    }
+
+    /**
+     * 
+     * Set the transaction manager resolver.
+     * 
+     * @param callable $resolver
+     */
+    public function setTransactionManagerResolver(callable $resolver)
+    {
+        $this->transactionManagerResolver = $resolver;
+
+        return $this;
     }
 }

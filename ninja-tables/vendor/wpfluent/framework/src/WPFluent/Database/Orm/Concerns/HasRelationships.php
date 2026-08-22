@@ -107,7 +107,12 @@ trait HasRelationships
 
         $localKey = $localKey ?: $this->getKeyName();
 
-        return $this->newHasOne($instance->newQuery(), $this, $instance->getTable().'.'.$foreignKey, $localKey);
+        return $this->newHasOne(
+            $instance->newQuery(),
+            $this,
+            $instance->getTable().'.'.$foreignKey,
+            $localKey
+        );
     }
 
     /**
@@ -135,7 +140,14 @@ trait HasRelationships
      * @param  string|null  $secondLocalKey
      * @return \NinjaTables\Framework\Database\Orm\Relations\HasOneThrough
      */
-    public function hasOneThrough($related, $through, $firstKey = null, $secondKey = null, $localKey = null, $secondLocalKey = null)
+    public function hasOneThrough(
+        $related,
+        $through,
+        $firstKey = null,
+        $secondKey = null,
+        $localKey = null,
+        $secondLocalKey = null
+    )
     {
         $through = $this->newRelatedThroughInstance($through);
 
@@ -162,9 +174,25 @@ trait HasRelationships
      * @param  string  $secondLocalKey
      * @return \NinjaTables\Framework\Database\Orm\Relations\HasOneThrough
      */
-    protected function newHasOneThrough(Builder $query, Model $farParent, Model $throughParent, $firstKey, $secondKey, $localKey, $secondLocalKey)
+    protected function newHasOneThrough(
+        Builder $query,
+        Model $farParent,
+        Model $throughParent,
+        $firstKey,
+        $secondKey,
+        $localKey,
+        $secondLocalKey
+    )
     {
-        return new HasOneThrough($query, $farParent, $throughParent, $firstKey, $secondKey, $localKey, $secondLocalKey);
+        return new HasOneThrough(
+            $query,
+            $farParent,
+            $throughParent,
+            $firstKey,
+            $secondKey,
+            $localKey,
+            $secondLocalKey
+        );
     }
 
     /**
@@ -317,8 +345,10 @@ trait HasRelationships
             static::getActualClassNameForMorph($target)
         );
 
+        $ownerKey = $ownerKey !== null ? $ownerKey : $instance->getKeyName();
+
         return $this->newMorphTo(
-            $instance->newQuery(), $this, $id, $ownerKey ?? $instance->getKeyName(), $type, $name
+            $instance->newQuery(), $this, $id, $ownerKey, $type, $name
         );
     }
 
@@ -572,22 +602,31 @@ trait HasRelationships
     /**
      * Define a polymorphic many-to-many relationship.
      *
-     * @template TRelatedModel of \Illuminate\Database\Eloquent\Model
+     * @template TRelatedModel of \NinjaTables\Framework\Database\Orm\Model
      *
-     * @param  class-string<TRelatedModel>  $related
-     * @param  string  $name
-     * @param  string|null  $table
-     * @param  string|null  $foreignPivotKey
-     * @param  string|null  $relatedPivotKey
-     * @param  string|null  $parentKey
-     * @param  string|null  $relatedKey
-     * @param  string|null  $relation
-     * @param  bool  $inverse
-     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany<TRelatedModel, $this>
+     * @param class-string<TRelatedModel> $related
+     * @param string $name
+     * @param string|null $table
+     * @param string|null $foreignPivotKey
+     * @param string|null $relatedPivotKey
+     * @param string|null $parentKey
+     * @param string|null $relatedKey
+     * @param string|null $relation
+     * @param bool $inverse
+     *
+     * @return \NinjaTables\Framework\Database\Orm\Relations\MorphToMany
      */
-    public function morphToMany($related, $name, $table = null, $foreignPivotKey = null,
-                                $relatedPivotKey = null, $parentKey = null,
-                                $relatedKey = null, $relation = null, $inverse = false)
+    public function morphToMany(
+        $related,
+        $name,
+        $table = null,
+        $foreignPivotKey = null,
+        $relatedPivotKey = null,
+        $parentKey = null,
+        $relatedKey = null,
+        $relation = null,
+        $inverse = false
+    )
     {
         $relation = $relation ?: $this->guessBelongsToManyRelation();
 
@@ -644,20 +683,29 @@ trait HasRelationships
     /**
      * Define a polymorphic, inverse many-to-many relationship.
      *
-     * @template TRelatedModel of \Illuminate\Database\Eloquent\Model
+     * @template TRelatedModel of \NinjaTables\Framework\Database\Orm\Model
      *
-     * @param  class-string<TRelatedModel>  $related
-     * @param  string  $name
-     * @param  string|null  $table
-     * @param  string|null  $foreignPivotKey
-     * @param  string|null  $relatedPivotKey
-     * @param  string|null  $parentKey
-     * @param  string|null  $relatedKey
-     * @param  string|null  $relation
-     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany<TRelatedModel, $this>
+     * @param class-string<TRelatedModel> $related
+     * @param string $name
+     * @param string|null $table
+     * @param string|null $foreignPivotKey
+     * @param string|null $relatedPivotKey
+     * @param string|null $parentKey
+     * @param string|null $relatedKey
+     * @param string|null $relation
+     *
+     * @return \NinjaTables\Framework\Database\Orm\Relations\MorphToMany
      */
-    public function morphedByMany($related, $name, $table = null, $foreignPivotKey = null,
-                                  $relatedPivotKey = null, $parentKey = null, $relatedKey = null, $relation = null)
+    public function morphedByMany(
+        $related,
+        $name,
+        $table = null,
+        $foreignPivotKey = null,
+        $relatedPivotKey = null,
+        $parentKey = null,
+        $relatedKey = null,
+        $relation = null
+    )
     {
         $foreignPivotKey = $foreignPivotKey ?: $this->getForeignKey();
 

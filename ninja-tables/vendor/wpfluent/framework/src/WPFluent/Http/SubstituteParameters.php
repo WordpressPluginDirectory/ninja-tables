@@ -10,9 +10,9 @@ use NinjaTables\Framework\Container\Util;
 use NinjaTables\Framework\Support\Reflector;
 use NinjaTables\Framework\Support\UrlRoutable;
 
-trait SubstituteRouteParametersTrait
+trait SubstituteParameters
 {
-    protected function SubstituteParameters($routeParameters)
+    protected function substituteParameters($routeParameters)
     {
         $resolved = [];
 

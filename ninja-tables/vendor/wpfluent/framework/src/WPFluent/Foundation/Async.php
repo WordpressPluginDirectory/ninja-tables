@@ -7,6 +7,9 @@ use NinjaTables\Framework\Support\Arr;
 use NinjaTables\Framework\Support\Helper;
 use InvalidArgumentException;
 
+/**
+ * @property \NinjaTables\Framework\Foundation\Config $config
+ */
 class Async
 {
 	/**
@@ -14,7 +17,7 @@ class Async
 	 * 
 	 * @var array
 	 */
-	protected $dispatched = [];
+	private $dispatched = [];
 
 	/**
 	 * The application instance
@@ -55,22 +58,22 @@ class Async
 	{
 		$app = $app ?: App::make();
 
-		if (is_null(static::$instance)) {
-			static::$app = $app;
-			static::$instance = new static;
+		if (is_null(self::$instance)) {
+			self::$app = $app;
+			self::$instance = new static;
 		}
 
-		$action = static::$instance->makeAsyncHookAction();
+		$action = self::$instance->makeAsyncHookAction();
 
-		static::$app->addAction(
-			"admin_post_{$action}", [static::$instance, 'handle']
+		self::$app->addAction(
+			"admin_post_{$action}", [self::$instance, 'handle']
 		);
 
-		static::$app->addAction(
-			"admin_post_nopriv_{$action}", [static::$instance, 'handle']
+		self::$app->addAction(
+			"admin_post_nopriv_{$action}", [self::$instance, 'handle']
 		);
 
-		return static::$instance;
+		return self::$instance;
 	}
 
 	/**
@@ -80,7 +83,7 @@ class Async
 	 */
 	public function makeAsyncHookAction()
 	{
-		$slug = static::$app->config->get('app.slug');
+		$slug = self::$app->config->get('app.slug');
 
 		return  "wpfluent_async_hook_{$slug}";
 	}
@@ -92,9 +95,9 @@ class Async
 	 */
 	public function handle()
 	{
-		$post = static::$app->request->post();
+		$post = self::$app->request->post();
 
-		$this->verifyRequest(static::$app, $post);
+		$this->verifyRequest(self::$app, $post);
 		
 		$handlers = Arr::get($post, 'handlers', []);
 
@@ -102,7 +105,7 @@ class Async
 			try {
 				[$class, $action] = $this->resolveHandler($handler);
 
-				$this->execute(static::$app, $class, $action['params'] ?? []);
+				$this->execute(self::$app, $class, $action['params'] ?? []);
 
 			} catch (Exception $e) {
 				error_log($e->getMessage());
@@ -113,7 +116,7 @@ class Async
 	/**
 	 * Verify the request by checking the nonce.
 	 * 
-	 * @param  NinjaTables\Framework\Foundation\Application $app
+	 * @param  \NinjaTables\Framework\Foundation\Application $app
 	 * @param  array $data
 	 * @return void
 	 */
@@ -132,7 +135,7 @@ class Async
 	/**
 	 * Resolve the action handler.
 	 * 
-	 * @param  JSON $handler
+	 * @param  array $action
 	 * @return array
 	 */
 	protected function resolveHandler($action)
@@ -174,21 +177,21 @@ class Async
 	 * Add the async handler and register the shutdown handler
 	 * All the handlers will be dispatched in a separate request
 	 * 
-	 * @param  string (Class@handler or with __invoke method) $handler
+	 * @param  string $handler (Class@handler or with __invoke method) $handler
 	 * @return self
 	 * @throws \InvalidArgumentException
 	 */
 	public static function call($handler, array $params = [])
 	{
-		if (!static::$instance) {
+		if (!self::$instance) {
 			static::init();
 		}
 
-		static::$handlers[] = static::$instance->validate(
+		self::$handlers[] = self::$instance->validate(
 			$handler, $params, static::sign(debug_backtrace(false, 1)[0])
 		);
 		
-		return static::$instance->maybeRegisterShutDownHandler();
+		return self::$instance->maybeRegisterShutDownHandler();
 	}
 
 	/**
@@ -207,7 +210,7 @@ class Async
 	public static function queue(
 		$handler, $params = [], $name = 'default'
 	) {
-		if (!static::$instance) {
+		if (!self::$instance) {
 			static::init();
 		}
 		
@@ -216,11 +219,11 @@ class Async
 			$params = [];
 		}
 
-		static::$queue[$name][] = static::$instance->validate(
+		self::$queue[$name][] = self::$instance->validate(
 			$handler, $params, static::sign(debug_backtrace(false, 1)[0])
 		);
 		
-		return static::$instance->maybeRegisterShutDownHandler();
+		return self::$instance->maybeRegisterShutDownHandler();
 	}
 
 	/**
@@ -237,7 +240,7 @@ class Async
 	/**
 	 * Validate the handler and add a sign to mark as dispatched.
 	 * 
-	 * @param  string (Class@handler or with __invoke method) $handler
+	 * @param  string $handler (Class@handler or with __invoke method) $handler
 	 * @return array
 	 * @throws \InvalidArgumentException
 	 */
@@ -280,17 +283,17 @@ class Async
 	/**
 	 * Register the shutdown handler
 	 * 
-	 * @return void
+	 * @return self
 	 */
 	protected function maybeRegisterShutDownHandler()
 	{
-		$handler = [static::$instance, 'dispatch'];
+		$handler = [self::$instance, 'dispatch'];
 
-		if (!static::$app->hasAction('shutdown', $handler)) {
-			static::$app->addAction('shutdown', $handler);
+		if (!self::$app->hasAction('shutdown', $handler)) {
+			self::$app->addAction('shutdown', $handler);
 		}
 
-		return static::$instance;
+		return self::$instance;
 	}
 
 	/**
@@ -301,8 +304,8 @@ class Async
 	public function dispatch()
 	{
 		$stacks = array_filter([
-			array_filter(static::$queue),
-			array_filter(static::$handlers),
+			array_filter(self::$queue),
+			array_filter(self::$handlers),
 		]);
 
 		// At first we need to mark all the handlers from all
@@ -336,7 +339,7 @@ class Async
 			if (isset($handler['sign'])) {
 				$isDispatched = in_array(
 					$handler['sign'],
-					static::$app->request->post('dispatched', [])
+					self::$app->request->post('dispatched', [])
 				);
 
 				if (!$isDispatched) {
@@ -387,12 +390,12 @@ class Async
 	 */
 	protected function data($handler)
 	{
-		$post = static::$app->request->post();
+		$post = self::$app->request->post();
 
 		$data = [
 	        'handlers' => $handler,
 	        'wpfluent_async_nonce' => wp_create_nonce(
-	        	static::$app->config->get('app.slug')
+	        	self::$app->config->get('app.slug')
 	        ),
 	        'dispatched' => array_unique(array_merge(
 	        	Arr::get($post, 'dispatched', []),
@@ -414,7 +417,7 @@ class Async
 	{
 		return admin_url('admin-post.php') . '?' . http_build_query(
 			array_merge(
-				static::$app->request->query(),
+				self::$app->request->query(),
 				['action' => $this->makeAsyncHookAction()]
 			)
 		);

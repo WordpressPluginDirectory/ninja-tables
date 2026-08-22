@@ -52,7 +52,7 @@ class File
         }
 
         if (
-            !isset($wp_filesystem) ||
+            $wp_filesystem === null ||
             !($wp_filesystem instanceof \WP_Filesystem_Base)
         ) {
             throw new \Exception(

@@ -17,6 +17,11 @@ use NinjaTables\Framework\Database\UniqueConstraintViolationException;
 use NinjaTables\Framework\Database\Orm\Relations\Concerns\InteractsWithDictionary;
 use NinjaTables\Framework\Database\Orm\Relations\Concerns\InteractsWithPivotTable;
 
+/**
+ * @template TRelatedModel of Model
+ * @template TDeclaringModel of Model
+ */
+
 class BelongsToMany extends Relation
 {
     use InteractsWithDictionary, InteractsWithPivotTable;
@@ -136,7 +141,8 @@ class BelongsToMany extends Relation
     /**
      * Create a new belongs to many relationship instance.
      *
-     * @param  \NinjaTables\Framework\Database\Eloquent\Builder<TRelatedModel>  $query
+     *
+     * @param  \NinjaTables\Framework\Database\Orm\Builder<TRelatedModel>  $query
      * @param  TDeclaringModel  $parent
      * @param  string|class-string<TRelatedModel>  $table
      * @param  string  $foreignPivotKey
@@ -144,7 +150,6 @@ class BelongsToMany extends Relation
      * @param  string  $parentKey
      * @param  string  $relatedKey
      * @param  string|null  $relationName
-     * @return void
      */
     public function __construct(
         Builder $query,
@@ -208,7 +213,7 @@ class BelongsToMany extends Relation
     /**
      * Set the join clause for the relation query.
      *
-     * @param  \NinjaTables\Framework\Database\Eloquent\Builder<TRelatedModel>|null  $query
+     * @param  \NinjaTables\Framework\Database\Orm\Builder<TRelatedModel>|null  $query
      * @return $this
      */
     protected function performJoin($query = null)
@@ -288,8 +293,8 @@ class BelongsToMany extends Relation
     /**
      * Build model dictionary keyed by the relation's foreign key.
      *
-     * @param  \NinjaTables\Framework\Database\Eloquent\Collection<int, TRelatedModel>  $results
-     * @return array<array<string, TRelatedModel>>
+     * @param  \NinjaTables\Framework\Database\Orm\Collection<int, TRelatedModel>  $results
+     * @return array<int|string, list<TRelatedModel>>
      */
     protected function buildDictionary(Collection $results)
     {
@@ -573,7 +578,7 @@ class BelongsToMany extends Relation
      *
      * @param  mixed  $id
      * @param  array  $columns
-     * @return ($id is (\NinjaTables\Framework\Support\ArrayableInterface<array-key, mixed>|array<mixed>) ? \NinjaTables\Framework\Database\Eloquent\Collection<int, TRelatedModel> : TRelatedModel)
+     * @return \NinjaTables\Framework\Database\Orm\Collection<int, TRelatedModel>|TRelatedModel
      */
     public function findOrNew($id, $columns = ['*'])
     {
@@ -586,7 +591,7 @@ class BelongsToMany extends Relation
 
     /**
      * Get the first related model record matching the attributes or instantiate it.
-     *
+     * 
      * @param  array  $attributes
      * @param  array  $values
      * @return TRelatedModel
@@ -683,7 +688,7 @@ class BelongsToMany extends Relation
      *
      * @param  mixed  $id
      * @param  array  $columns
-     * @return ($id is (\NinjaTables\Framework\Support\ArrayableInterface<array-key, mixed>|array<mixed>) ? \NinjaTables\Framework\Database\Eloquent\Collection<int, TRelatedModel> : TRelatedModel|null)
+     * @return \NinjaTables\Framework\Database\Orm\Collection<int, TRelatedModel>|TRelatedModel|null
      */
     public function find($id, $columns = ['*'])
     {
@@ -701,7 +706,7 @@ class BelongsToMany extends Relation
      *
      * @param  \NinjaTables\Framework\Support\ArrayableInterface|array  $ids
      * @param  array  $columns
-     * @return \NinjaTables\Framework\Database\Eloquent\Collection<int, TRelatedModel>
+     * @return \NinjaTables\Framework\Database\Orm\Collection<int, TRelatedModel>
      */
     public function findMany($ids, $columns = ['*'])
     {
@@ -721,9 +726,9 @@ class BelongsToMany extends Relation
      *
      * @param  mixed  $id
      * @param  array  $columns
-     * @return ($id is (\NinjaTables\Framework\Support\ArrayableInterface<array-key, mixed>|array<mixed>) ? \NinjaTables\Framework\Database\Eloquent\Collection<int, TRelatedModel> : TRelatedModel)
+     * @return \NinjaTables\Framework\Database\Orm\Collection<int, TRelatedModel>|TRelatedModel
      *
-     * @throws \NinjaTables\Framework\Database\Eloquent\ModelNotFoundException<TRelatedModel>
+     * @throws \NinjaTables\Framework\Database\Orm\ModelNotFoundException<TRelatedModel>
      */
     public function findOrFail($id, $columns = ['*'])
     {
@@ -750,13 +755,9 @@ class BelongsToMany extends Relation
      * @param  mixed  $id
      * @param  (\Closure(): TValue)|list<string>|string  $columns
      * @param  (\Closure(): TValue)|null  $callback
-     * @return (
-     *     $id is (\NinjaTables\Framework\Support\ArrayableInterface<array-key, mixed>|array<mixed>)
-     *     ? \NinjaTables\Framework\Database\Eloquent\Collection<int, TRelatedModel>|TValue
-     *     : TRelatedModel|TValue
-     * )
+     * @return \NinjaTables\Framework\Database\Orm\Collection<int, TRelatedModel>|TRelatedModel|TValue
      */
-    public function findOr($id, $columns = ['*'], Closure $callback = null)
+    public function findOr($id, $columns = ['*'], ?Closure $callback = null)
     {
         if ($columns instanceof Closure) {
             $callback = $columns;
@@ -812,7 +813,7 @@ class BelongsToMany extends Relation
      * @param  array  $columns
      * @return TRelatedModel
      *
-     * @throws \NinjaTables\Framework\Database\Eloquent\ModelNotFoundException<TRelatedModel>
+     * @throws \NinjaTables\Framework\Database\Orm\ModelNotFoundException<TRelatedModel>
      */
     public function firstOrFail($columns = ['*'])
     {
@@ -827,12 +828,11 @@ class BelongsToMany extends Relation
      * Execute the query and get the first result or call a callback.
      *
      * @template TValue
-     *
      * @param  (\Closure(): TValue)|list<string>  $columns
      * @param  (\Closure(): TValue)|null  $callback
      * @return TRelatedModel|TValue
      */
-    public function firstOr($columns = ['*'], Closure $callback = null)
+    public function firstOr($columns = ['*'], ?Closure $callback = null)
     {
         if ($columns instanceof Closure) {
             $callback = $columns;
@@ -1153,7 +1153,7 @@ class BelongsToMany extends Relation
     /**
      * Prepare the query builder for query execution.
      *
-     * @return \NinjaTables\Framework\Database\Eloquent\Builder<TRelatedModel>
+     * @return \NinjaTables\Framework\Database\Orm\Builder<TRelatedModel>
      */
     protected function prepareQueryBuilder()
     {
@@ -1398,10 +1398,10 @@ class BelongsToMany extends Relation
     /**
      * Add the constraints for a relationship query on the same table.
      *
-     * @param  \NinjaTables\Framework\Database\Eloquent\Builder<TRelatedModel>  $query
-     * @param  \NinjaTables\Framework\Database\Eloquent\Builder<TDeclaringModel>  $parentQuery
+     * @param  \NinjaTables\Framework\Database\Orm\Builder<TRelatedModel>  $query
+     * @param  \NinjaTables\Framework\Database\Orm\Builder<TDeclaringModel>  $parentQuery
      * @param  array|mixed  $columns
-     * @return \NinjaTables\Framework\Database\Eloquent\Builder<TRelatedModel>
+     * @return \NinjaTables\Framework\Database\Orm\Builder<TRelatedModel>
      */
     public function getRelationExistenceQueryForSelfJoin(Builder $query, Builder $parentQuery, $columns = ['*'])
     {
@@ -1443,7 +1443,7 @@ class BelongsToMany extends Relation
             $grammar = $this->query->getQuery()->getGrammar();
 
             if ($grammar instanceof MySqlGrammar && $grammar->useLegacyGroupLimit($this->query->getQuery())) {
-                $column = 'pivot_'.last(explode('.', $column));
+                $column = 'pivot_'.Helper::last(explode('.', $column));
             }
 
             $this->query->groupLimit($value, $column);

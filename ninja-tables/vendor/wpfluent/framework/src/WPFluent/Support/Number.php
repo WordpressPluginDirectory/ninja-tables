@@ -3,7 +3,8 @@
 namespace NinjaTables\Framework\Support;
 
 use RangeException;
-use TypeError;
+use NinjaTables\Framework\Foundation\App;
+use NinjaTables\Framework\Support\InvalidArgumentException;
 
 class Number
 {
@@ -12,31 +13,27 @@ class Number
 	 * 
 	 * @param  int|float $value
 	 * @param  integer $dec
-	 * @return Formatted number
+	 * @return string Formatted number
 	 * @see    https://developer.wordpress.org/reference/functions/number_format_i18n
 	 */
 	public static function format($value, $dec = 0)
 	{
 		$locale = Locale::init();
 
-		if (isset($locale)) {
-			$formatted = number_format(
-				$value,
-				absint($dec),
-				$locale->number_format['decimal_point'],
-				$locale->number_format['thousands_sep']
-			);
-		} else {
-			$formatted = number_format($value, absint($dec));
-		}
-
-		return $formatted;
+		return number_format(
+			$value,
+			absint($dec),
+			// @phpstan-ignore-next-line
+			$locale->number_format['decimal_point'],
+			// @phpstan-ignore-next-line
+			$locale->number_format['thousands_sep']
+		);
 	}
 
 	/**
 	 * Format a number as int
 	 * 
-	 * @param  int|float $value
+	 * @param  int|float $val
 	 * @return int
 	 */
 	public static function toInt($val)
@@ -45,39 +42,44 @@ class Number
 	}
 
 	/**
-	 * Format a number as float
-	 * 
-	 * @param  int|float $value
-	 * @param  integer $dec
+	 * Cast to float, optionally rounding to $dec decimals.
+	 *
+	 * Default rounds to 2 decimals (preserved for backwards compatibility).
+	 * Pass $dec = null to skip rounding entirely and return the raw cast.
+	 *
+	 * @param  int|float|string $val
+	 * @param  int|null $dec  Decimal places to round to, or null to skip rounding
 	 * @return float
 	 */
 	public static function toFloat($val, $dec = 2)
 	{
-	    return round((float) $val, $dec);
+	    $val = (float) $val;
+
+	    return $dec === null ? $val : round($val, $dec);
 	}
 
 	/**
-	 * Convert a number to bool
-	 * 
-	 * @param  int $val
+	 * Convert a value to bool.
+	 *
+	 * Standard PHP cast semantics: 0, 0.0, '', '0' → false; everything else → true.
+	 *
+	 * @param  mixed $val
 	 * @return bool
 	 */
 	public static function toBool($val)
 	{
-		return boolval(intval($val));
+	    return (bool) $val;
 	}
 
 	/**
 	 * Format a number to currency depending on the locale
 	 * 
 	 * @param  int|float $value
-	 * @param  array $before Options fpr formatting
-	 * @return Formatted number with currency symbol
+	 * @param  array $options
+	 * @return string Formatted number with currency symbol
 	 */
 	public static function toCurrency($value, $options = [])
 	{
-		$locale = Locale::init();
-
 	    $defaults = [
 	        'currency_symbol' => '$',
 	        'number_of_decimals' => 2,
@@ -87,23 +89,40 @@ class Number
 
 	    $args = wp_parse_args($options, $defaults);
 
-	    // Format the number with the
-	    // specified number of decimals
+	    // Format the absolute number; the negative sign is prepended
+	    // separately below so it lands outside the currency symbol
+	    // (-$1,234.56 rather than $-1,234.56).
+	    $isNegative = $value < 0;
+
 	    $formattedNumber = static::format(
-	    	$value, $args['number_of_decimals']
+	    	abs($value), $args['number_of_decimals']
 	    );
 
 	    // Prepare the currency symbol and spacing
 	    $symbol = $args['currency_symbol'];
+
+	    // Apply the framework's plugin-prefixed `currency_symbol` filter
+	    // so each plugin can wire its own ecommerce integration without
+	    // colliding across plugins on the same site (each gets its own
+	    // hook namespace via app.hook_prefix).
+	    if ($app = App::getInstance()) {
+	        $symbol = $app->applyCustomFilters(
+	            '_currency_symbol', $symbol, $value, $args
+	        );
+	    }
+
 	    $space = $args['space_with_currency'] ? ' ' : '';
 
-	    // Return the formatted currency string based
-	    // on the position of the currency symbol
+	    // Build the body based on symbol position, then prepend the
+	    // negative sign in front of the whole thing so it reads
+	    // -$1,234.56 (left) or -1,234.56$ (right).
 	    if ($args['currency_position'] === 'left') {
-	        return $symbol . $space . $formattedNumber;
+	        $body = $symbol . $space . $formattedNumber;
 	    } else {
-	        return $formattedNumber . $space . $symbol;
+	        $body = $formattedNumber . $space . $symbol;
 	    }
+
+	    return $isNegative ? '-' . $body : $body;
 	}
 
 	/**
@@ -112,38 +131,91 @@ class Number
 	 * This function transforms the php.ini notation
 	 * for numbers (like '2M') to an integer.
 	 *
-	 * @param  string $size Size value.
+	 * @param  string $num
 	 * @return int
 	 */
 	public static function notationToNum($num)
 	{
-		$l = substr($num, -1);
-	    $ret = (int) substr($num, 0, -1);
+	    $num = trim($num);
 
-	    switch (strtoupper($l)) {
-	        case 'P':
-	            $ret *= 1024;
-	            // No break.
-	        case 'T':
-	            $ret *= 1024;
-	            // No break.
-	        case 'G':
-	            $ret *= 1024;
-	            // No break.
-	        case 'M':
-	            $ret *= 1024;
-	            // No break.
-	        case 'K':
-	            $ret *= 1024;
-	            break; // Added for clarity
+	    if ($num === '') {
+	        throw new InvalidArgumentException(
+	        	'Input cannot be empty.'
+	        );
 	    }
 
-	    return $ret;
+	    // Normalize: uppercase, drop interior whitespace, strip optional
+	    // trailing 'B' or 'IB' so 'KB', 'MB', 'GB', 'KiB', 'MiB', 'GiB',
+	    // and '2 M' all parse identically to the bare 'K'/'M'/'G' form.
+	    $normalized = preg_replace('/\s+/', '', strtoupper($num));
+	    $normalized = preg_replace('/I?B$/', '', $normalized);
+
+	    if ($normalized === '') {
+	        throw new InvalidArgumentException(
+	        	'Invalid numeric value in notation.'
+	        );
+	    }
+
+	    $unit = substr($normalized, -1);
+
+	    // Determine if the last char is a recognized unit
+	    $units = ['P', 'T', 'G', 'M', 'K'];
+
+	    if (in_array($unit, $units, true)) {
+	        // Numeric part without the unit
+	        $numberPart = substr($normalized, 0, -1);
+
+	        if (!is_numeric($numberPart)) {
+	            throw new InvalidArgumentException(
+	            	'Invalid numeric value in notation.'
+	            );
+	        }
+
+	        $value = (float) $numberPart;
+
+	        // Multiply based on unit with fall-through logic
+	        switch ($unit) {
+	            case 'P':
+	                $value *= 1024;
+	                // no break
+	            case 'T':
+	                $value *= 1024;
+	                // no break
+	            case 'G':
+	                $value *= 1024;
+	                // no break
+	            case 'M':
+	                $value *= 1024;
+	                // no break
+	            case 'K':
+	                $value *= 1024;
+	                break;
+	        }
+	    } else {
+	        // No unit, just parse the number directly
+	        if (!is_numeric($normalized)) {
+	            throw new InvalidArgumentException(
+	            	'Invalid numeric value without unit.'
+	            );
+	        }
+
+	        $value = (float) $normalized;
+	    }
+
+	    // Guard against silent integer overflow (esp. on 32-bit builds).
+	    if ($value > PHP_INT_MAX || $value < PHP_INT_MIN) {
+	        throw new RangeException(
+	            'Value exceeds PHP_INT_MAX.'
+	        );
+	    }
+
+	    // Return as integer (bytes)
+	    return (int) round($value);
 	}
 
 	/**
 	 * Calculates the percentage/$percent from the $value/$total
-	 * 
+	 *
 	 * @param  int|float $percent
 	 * @param  int|float $total
 	 * @return int|float
@@ -154,12 +226,38 @@ class Number
 	}
 
 	/**
+	 * Calculate what percentage $value is of $total.
+	 *
+	 * Returns 0.0 when $total is 0 (avoids divide-by-zero) — useful for
+	 * dashboards and reports where "0 out of 0" should display as 0%.
+	 *
+	 * Examples:
+	 *   percentageOf(50, 200)  → 25.0
+	 *   percentageOf(150, 100) → 150.0
+	 *   percentageOf(0, 0)     → 0.0
+	 *
+	 * @param  int|float|string $value
+	 * @param  int|float|string $total
+	 * @return float
+	 */
+	public static function percentageOf($value, $total)
+	{
+		$total = (float) $total;
+
+		if ($total === 0.0) {
+			return 0.0;
+		}
+
+		return ((float) $value / $total) * 100;
+	}
+
+	/**
 	 * Converts a number of bytes to human readable format
 	 * using the maximum unit available to convert the bytes.
 	 * 
 	 * @param  int|float $bytes
 	 * @param  integer $decimals
-	 * @return Formatted size units of bytes, i.e: 1mb/1gb e.t.c.
+	 * @return string Formatted size units of bytes, i.e: 1mb/1gb e.t.c.
 	 */
 	public static function formatBytes($bytes, $decimals = 0)
 	{
@@ -167,10 +265,14 @@ class Number
 	}
 
 	/**
-	 * Makes an ordinal number from the integer
-	 * 
-	 * @param  int $number
-	 * @return The ordinal number, i.e: 1st, 5th e.t.c.
+	 * Makes an ordinal number from the integer.
+	 *
+	 * Floats are truncated toward zero (2.7 → 2nd, -2.7 → -2nd).
+	 * Negatives keep their sign (-21 → -21st, -11 → -11th).
+	 * Non-numeric input is returned unchanged.
+	 *
+	 * @param  int|float|string $number
+	 * @return string The ordinal number, i.e: 1st, 5th e.t.c.
 	 */
 	public static function toOrdinal($number)
 	{
@@ -178,10 +280,14 @@ class Number
 	        return $number;
 	    }
 
-	    if (($number % 100) >= 11 && ($number % 100) <= 13) {
+	    $int  = (int) $number;
+	    $abs  = abs($int);
+	    $sign = $int < 0 ? '-' : '';
+
+	    if (($abs % 100) >= 11 && ($abs % 100) <= 13) {
 	        $suffix = 'th';
 	    } else {
-	        switch ($number % 10) {
+	        switch ($abs % 10) {
 	            case 1:
 	                $suffix = 'st';
 	                break;
@@ -197,7 +303,7 @@ class Number
 	        }
 	    }
 
-	    return $number . $suffix;
+	    return $sign . $abs . $suffix;
 	}
 
 	/**
@@ -213,17 +319,19 @@ class Number
     )
     {
         return static::summarize($number, $precision, $maxPrecision, $abbr ? [
-            3 => 'K',
-            6 => 'M',
-            9 => 'B',
+            3  => 'K',
+            6  => 'M',
+            9  => 'B',
             12 => 'T',
             15 => 'Q',
+            18 => 'Qi',
         ] : [
-            3 => ' thousand',
-            6 => ' million',
-            9 => ' billion',
+            3  => ' thousand',
+            6  => ' million',
+            9  => ' billion',
             12 => ' trillion',
             15 => ' quadrillion',
+            18 => ' quintillion',
         ]);
     }
 
@@ -242,21 +350,34 @@ class Number
     {
         if (empty($units)) {
             $units = [
-                3 => 'K',
-                6 => 'M',
-                9 => 'B',
+                3  => 'K',
+                6  => 'M',
+                9  => 'B',
                 12 => 'T',
                 15 => 'Q',
+                18 => 'Qi',
             ];
         }
 
+        // Recursion threshold = the smallest exponent above the highest
+        // mapped unit. Numbers at or beyond this fall through the table
+        // and get composite naming (e.g. '1KQi' for 1e21 = 1 sextillion).
+        $topExponent = max(array_keys($units));
+        $overflow    = pow(10, $topExponent + 3);
+
         switch (true) {
             case floatval($number) === 0.0:
-                return $precision > 0 ? static::format(0, $precision, $maxPrecision) : '0';
+                return $precision > 0 ? static::format(0, $precision) : '0';
+
             case $number < 0:
-                return sprintf('-%s', static::summarize(abs($number), $precision, $maxPrecision, $units));
-            case $number >= 1e15:
-                return sprintf('%s'.end($units), static::summarize($number / 1e15, $precision, $maxPrecision, $units));
+                return sprintf('-%s', static::summarize(
+                	abs($number), $precision, $maxPrecision, $units
+                ));
+
+            case $number >= $overflow:
+                return sprintf('%s'.end($units), static::summarize(
+                	$number / pow(10, $topExponent), $precision, $maxPrecision, $units
+                ));
         }
 
         $numberExponent = floor(log10($number));
@@ -265,244 +386,8 @@ class Number
 
         return trim(
         	sprintf('%s%s', static::format(
-        		$number, $precision, $maxPrecision
+        		$number, $precision
         	), $units[$displayExponent] ?? '')
         );
     }
-
-	/**
-	 * Converts a numeric number in words
-	 * 
-	 * @param  int|float $number
-	 * @param  boolean $round whether to round (float to int)
-	 * @param  boolean $inCents whether the result should say
-	 * "and n cents" for the fraction.
-	 * 
-	 * @return string number in words (in human readable words),
-	 * i.e: from 199900010500.91 to:
-	 * one hundred and ninety nine billion nine hundred million
-	 * ten thousand five hundred and ninety one cents.
-	 * 
-	 * @throws \RangeException
-	 */
-	public static function inWords($number, $options = [])
-	{
-		return (new NumberToWords)->inWords($number, $options);
-	}
-
-	/**
-	 * Make words from integers
-	 * 
-	 * @param  int $number
-	 * @param  array $numberWords
-	 * @param  array $tensWords
-	 * @return string
-	 */
-	protected static function spellInteger($number, $numberWords, $tensWords)
-	{
-	    $result = '';
-
-	    $result .= static::convertToWords($number, $numberWords, $tensWords);
-
-	    return trim($result);
-	}
-
-	/**
-	 * Make words from fraction part
-	 * 
-	 * @param  int $number
-	 * @param  array $numberWords
-	 * @return string
-	 */
-	protected static function spellDecimal($number, $numberWords, $decimalSeparator)
-	{
-	    $result = '';
-
-	    $decimalPosition = strpos($number, $decimalSeparator);
-	    
-	    if ($decimalPosition !== false) {
-	        
-	        $decimalAsString = substr($number, $decimalPosition + 1);
-	        
-	        for ($i = 0; $i < strlen($decimalAsString); $i++) {
-
-	            $digit = intval($decimalAsString[$i]);
-
-	            $result .= $numberWords[$digit] . ' ';
-	        }
-	    } else {
-	        $result .= 'zero';
-	    }
-
-	    return trim($result);
-	}
-
-	/**
-	 * Main function to make the unit words
-	 * 
-	 * @param  int|float $number
-	 * @param  array $numberWords
-	 * @param  array $tensWords
-	 * @return string
-	 */
-	protected static function convertToWords($number, $numberWords, $tensWords)
-	{
-	    if ($number < 20) {
-	        return $numberWords[$number];
-
-	    } elseif ($number < 100) {
-
-	        $result = $tensWords[intval($number / 10)];
-
-			if (intval($number) % 10 !== 0) {
-			    $result .= ' ' . static::convertToWords(
-			    	intval($number) % 10, $numberWords, $tensWords
-			    );
-			}
-
-			return $result;
-
-	    } elseif ($number < 1000) {
-
-	        $result = $numberWords[intval($number / 100)] . ' hundred';
-
-			if (intval($number) % 100 !== 0) {
-			    $result .= ' and ' . static::convertToWords(
-			    	intval($number) % 100, $numberWords, $tensWords
-			    );
-			}
-
-			return $result;
-
-	    } elseif ($number < 1000000) {
-	        
-	        $result = static::convertToWords(
-	        	intval($number / 1000), $numberWords, $tensWords
-	        );
-
-	        $result .= ' thousand';
-
-			if (intval($number) % 1000 !== 0) {
-			    $result .= ' ' . static::convertToWords(
-			    	intval($number) % 1000, $numberWords, $tensWords
-			    );
-			}
-
-			return $result;
-
-	    } elseif ($number < 1000000000) {
-	        
-	        $result = static::convertToWords(
-	        	intval($number / 1000000), $numberWords, $tensWords
-	        );
-
-	        $result .= ' million';
-
-			if (intval($number) % 1000000 !== 0) {
-			    $result .= ' ' . static::convertToWords(
-			    	intval($number) % 1000000, $numberWords, $tensWords
-			    );
-			}
-
-			return $result;
-
-	    } elseif ($number < 1000000000000) {
-	        
-	        $result = static::convertToWords(
-	        	intval($number / 1000000000), $numberWords, $tensWords
-	        );
-
-	        $result .= ' billion';
-
-			if (intval($number) % 1000000000 !== 0) {
-			    $result .= ' ' . static::convertToWords(
-			    	intval($number) % 1000000000, $numberWords, $tensWords
-			    );
-			}
-
-			return $result;
-
-	    } elseif ($number < 1000000000000000) {
-
-	        $result = static::convertToWords(
-	        	intval($number / 1000000000000), $numberWords, $tensWords
-	        );
-
-	        $result .= ' trillion';
-
-			if (intval($number) % 1000000000000 !== 0) {
-			    $result .= ' ' . static::convertToWords(
-			    	intval($number) % 1000000000000, $numberWords, $tensWords
-			    );
-			}
-
-			return $result;
-
-	    } elseif (intval($number) < 1000000000000000000) {
-
-		    $result = static::convertToWords(
-		    	intval($number / 1000000000000000), $numberWords, $tensWords
-		    );
-
-		    $result .= ' quadrillion';
-
-			if (intval($number) % 1000000000000000 !== 0) {
-			    $result .= ' ' . static::convertToWords(
-			    	intval($number) % 1000000000000000, $numberWords, $tensWords
-			    );
-			}
-
-			return $result;
-
-		} elseif (intval($number) < 1000000000000000000000) {
-
-		    $result = static::convertToWords(
-		    	intval($number / 1000000000000000000), $numberWords, $tensWords
-		    );
-
-		    $result .= ' quintillion';
-
-			if (intval($number) % 1000000000000000000 !== 0) {
-			    $result .= ' ' . static::convertToWords(
-			    	intval($number) % 1000000000000000000, $numberWords, $tensWords
-			    );
-			}
-
-			return $result;
-		} else {
-			throw new RangeException('Out of range', 500);
-		}
-	}
-
-	/**
-	 * Make words for cents
-	 * 
-	 * @param  int|float $cents
-	 * @param  array $numberWords
-	 * @param  array $tensWords
-	 * @return string
-	 */
-    protected static function toCents($cents, $numberWords, $tensWords)
-    {
-	    if (array_key_exists($cents, $numberWords)) {
-	    	return $numberWords[$cents];
-	    } elseif (array_key_exists($cents, $tensWords)) {
-	    	return $tensWords[$cents];
-	    }
-
-	    $result = '';
-	    $tens = substr(floor($cents / 10) * 10, 0, 1);
-	    $unitsPart = $cents % 10;
-
-	    if (array_key_exists($tens, $tensWords)) {
-	        $result .= $tensWords[$tens];
-	        if ($unitsPart > 0) {
-	            $result .= ' ' . $numberWords[$unitsPart];
-	        }
-	    } elseif (array_key_exists($unitsPart, $numberWords)) {
-	        $result .= $numberWords[$unitsPart];
-	    }
-
-	    return $result;
-	}
 }

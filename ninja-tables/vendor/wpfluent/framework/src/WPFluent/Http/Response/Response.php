@@ -84,14 +84,11 @@ class Response
      * @return \WP_REST_Response
      */
     public function send($data = null, $code = 200, $headers = [])
-    {   
-        // disable litespeed cache
-        do_action( 'litespeed_control_set_nocache', 'fluent plugin api request' );
-
+    {
         $response = new WP_REST_Response($data, $code, $headers);
 
         return $this->maybeMergeHeaders(
-            $this->MaybeMergeCookies($response)
+            $this->maybeMergeCookies($response)
         );
     }
 
@@ -115,9 +112,7 @@ class Response
      */
     public function sendError($data = null, $code = 422, $headers = [])
     {
-        if (!$code || $code < 400 ) {
-            $code = 422;
-        }
+        $code = $code < 400 ? 422 : $code;
 
         return $this->send($data, $code, $headers);
     }
@@ -142,25 +137,25 @@ class Response
     public function withHeader($key, $value = null)
     {
         if (is_array($key) && !$value) {
-            $this->headers = $key;
+            $this->headers = array_merge($this->headers, (array) $key);
         } else {
-            $this->headers = [$key => $value];
+            $this->headers[$key] = $value;
         }
-
         return $this;
     }
 
     /**
      * Set response cookie
      * 
-     * @param  string $name
-     * @param  mixed $value
-     * @param  int $minutes
-     * @param  string $path
-     * @param  string|null $domain
-     * @param  bool $secure
-     * @param  bool $httpOnly
-     * @return self
+     * @param  string       $name
+     * @param  mixed        $value
+     * @param  int          $minutes
+     * @param  string       $path
+     * @param  string|null  $domain
+     * @param  bool         $secure
+     * @param  bool         $httpOnly
+     * @param string        $samesite
+     * @return              self
      */
     public function withCookie(
         $name,
@@ -169,11 +164,19 @@ class Response
         $path = '/',
         $domain = null,
         $secure = false,
-        $httpOnly = true
+        $httpOnly = true,
+        $samesite = 'Lax'
     )
     {
         $cookie = $this->buildCookie(
-            $name, $value, $minutes, $path, $domain, $secure, $httpOnly
+            $name,
+            $value,
+            $minutes,
+            $path,
+            $domain,
+            $secure,
+            $httpOnly,
+            $samesite
         );
 
         $this->cookies[] = $cookie;
@@ -182,16 +185,58 @@ class Response
     }
 
     /**
-     * Build cookie header for response
-     * 
-     * @param  string $name
-     * @param  mixed $value
-     * @param  int $minutes
-     * @param  string $path
-     * @param  string|null $domain
-     * @param  bool $secure
-     * @param  bool $httpOnly
-     * @return string
+     * Attach a response cookie whose value is base64(json($value)).
+     *
+     * Pairs with Request::cookie(), which auto-detects this exact format
+     * and decodes back to the original value on read. Use this when you
+     * need to attach arrays/objects to a Response — strings, numbers, and
+     * scalars work fine through plain withCookie() and don't need encoding.
+     *
+     * @param  string       $name
+     * @param  mixed        $value     Anything json_encode can serialize
+     * @param  int          $minutes
+     * @param  string       $path
+     * @param  string|null  $domain
+     * @param  bool         $secure
+     * @param  bool         $httpOnly
+     * @param  string       $samesite
+     * @return              self
+     */
+    public function withEncodedCookie(
+        $name,
+        $value,
+        $minutes,
+        $path = '/',
+        $domain = null,
+        $secure = false,
+        $httpOnly = true,
+        $samesite = 'Lax'
+    )
+    {
+        return $this->withCookie(
+            $name,
+            base64_encode(json_encode($value)),
+            $minutes,
+            $path,
+            $domain,
+            $secure,
+            $httpOnly,
+            $samesite
+        );
+    }
+
+    /**
+     * Set response cookie
+     *
+     * @param  string       $name
+     * @param  mixed        $value
+     * @param  int          $minutes
+     * @param  string       $path
+     * @param  string|null  $domain
+     * @param  bool         $secure
+     * @param  bool         $httpOnly
+     * @param string        $samesite
+     * @return              string
      */
     protected function buildCookie(
         $name,
@@ -200,14 +245,20 @@ class Response
         $path,
         $domain,
         $secure,
-        $httpOnly
+        $httpOnly,
+        $samesite = 'Lax'
     ) {
         $expiration = static::expiresAt($minutes);
 
         $cookieHeader = "{$name}=" . rawurlencode($value);
 
-        $cookieHeader .= "; Expires=" . gmdate('D, d-M-Y H:i:s T', $expiration);
+        if ($expiration !== 0) {
+            $cookieHeader .= "; Expires=" . gmdate(
+                'D, d-M-Y H:i:s T', $expiration
+            );
+        }
 
+        $path = $path ?: '/';
         $cookieHeader .= "; Path=" . $path;
 
         if ($domain) {
@@ -220,6 +271,10 @@ class Response
 
         if ($httpOnly) {
             $cookieHeader .= "; HttpOnly";
+        }
+
+        if ($samesite) {
+            $cookieHeader .= "; SameSite=" . ucfirst(strtolower($samesite));
         }
 
         return $cookieHeader;
@@ -248,7 +303,7 @@ class Response
      * 
      * @param \WP_REST_Response $response
      */
-    protected function MaybeMergeCookies(WP_REST_Response $response)
+    protected function maybeMergeCookies(WP_REST_Response $response)
     {
         if ($this->cookies) {
             foreach ($this->cookies as $cookie) {
@@ -269,21 +324,19 @@ class Response
      */
     protected static function expiresAt($minutes = 0)
     {
+        if ($minutes === 0) {
+            return 0;
+        }
+
         if (is_int($minutes)) {
-            if ($minutes === 0) {
-                return $minutes;
-            }
-
-            $minutes = new DateTime('+' . $minutes . ' minutes');
+            $minutes = new DateTime("+{$minutes} minutes");
         }
 
-        if (!($minutes instanceof DateTimeInterface)) {
-            throw new InvalidArgumentException(
-                'Invalid expiration time provided.'
-            );
+        if ($minutes instanceof DateTimeInterface) {
+            return $minutes->getTimestamp();
         }
 
-        return $minutes->getTimestamp();
+        throw new InvalidArgumentException('Invalid expiration time provided.');
     }
 
     /**
@@ -293,13 +346,47 @@ class Response
      */
     public function toArray()
     {
-        $response = new WP_REST_Response(
-            $this->data, $this->code
-        );
+        if ($this->data instanceof WP_Rest_Response) {
+            $response = $this->data;
+        } else {
+            $response = new WP_REST_Response(
+                $this->data, $this->code
+            );
+        }
 
-        return $this->MaybeMergeCookies(
-            $this->maybeMergeHeaders($response)
+        return $this->maybeMergeHeaders(
+            $this->maybeMergeCookies($response)
         );
+    }
+
+    /**
+     * Get data from response.
+     * 
+     * @return mixed
+     */
+    public function getData()
+    {
+        if ($this->data instanceof WP_Rest_Response) {
+            return $this->data->get_data();
+        }
+
+        return $this->data;
+    }
+
+    /**
+     * Set data to response.
+     * 
+     * @param  mixed $data
+     * @return void
+     */
+    public function SetData($data)
+    {
+        if ($data instanceof WP_Rest_Response) {
+            $this->data->set_data($data);
+            return;
+        }
+
+        $this->data = $data;
     }
 
      /**
@@ -314,7 +401,7 @@ class Response
         if ($filePath instanceof File) {
             $array = $filePath->toArray();
             $filePath = $array['tmp_name'];
-            $fileName ??= $fileName ?? $array['name'];
+            $fileName = $fileName ?? ($array['name'] ?? null);
         }
 
         if (!file_exists($filePath) || !is_readable($filePath)) {
@@ -356,6 +443,7 @@ class Response
      */
     public static function redirect($route, $status = 303)
     {
+        // @phpstan-ignore-next-line
         [$ns, $ver] = App::config()->only('rest_namespace', 'rest_version');
         
         $baseUrl = rest_url("{$ns}/{$ver}");
@@ -367,6 +455,8 @@ class Response
         parse_str($parsedUrl['query'] ?? '', $queryParams);
 
         $queryParams['x_redirect_to'] = $path;
+        
+        // @phpstan-ignore-next-line
         $queryParams['x_redirected_from'] = App::request()->url();
 
         $location = "{$baseUrl}/{$path}?" . http_build_query($queryParams);

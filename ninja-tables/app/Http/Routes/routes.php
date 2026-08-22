@@ -36,7 +36,7 @@ $router->withPolicy('UserPolicy')->group(function ($router) {
                 $route->get('/', [TableItemsController::class, 'index'])->int('id');
                 $route->post('/', [TableItemsController::class, 'store'])->int('id');
                 $route->post('/update', [TableItemsController::class, 'update'])->int('id');
-                $route->get('/delete', [TableItemsController::class, 'delete'])->int('id');
+                $route->post('/delete', [TableItemsController::class, 'delete'])->int('id');
             });
         });
     });

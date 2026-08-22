@@ -52,6 +52,8 @@ class Post extends Model
             }
             $dataSourceType        = ninja_table_get_data_provider($table->ID);
             $table->dataSourceType = $dataSourceType;
+            $tableSettings         = ninja_table_get_table_settings($table->ID, 'admin');
+            $table->tableType      = Arr::get($tableSettings, 'library', 'footable');
             if ($dataSourceType == 'fluent-form') {
                 $fluentFormFormId = get_post_meta($table->ID, '_ninja_tables_data_provider_ff_form_id', true);
                 if ($fluentFormFormId) {

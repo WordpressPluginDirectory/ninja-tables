@@ -23,15 +23,15 @@ class PendingHasThroughRelationship
     /**
      * The local relationship.
      *
-     * @var \NinjaTables\Framework\Database\Orm\Relations\HasMany<TIntermediateModel, TDeclaringModel>|\NinjaTables\Framework\Database\Orm\Relations\HasOne<TIntermediateModel, TDeclaringModel>
+     * @var \NinjaTables\Framework\Database\Orm\Relations\HasMany|\NinjaTables\Framework\Database\Orm\Relations\HasOne
      */
     protected $localRelationship;
 
     /**
      * Create a pending has-many-through or has-one-through relationship.
      *
-     * @param  TDeclaringModel  $rootModel
-     * @param  \NinjaTables\Framework\Database\Orm\Relations\HasMany<TIntermediateModel, TDeclaringModel>|\NinjaTables\Framework\Database\Orm\Relations\HasOne<TIntermediateModel, TDeclaringModel>  $localRelationship
+     * @param mixed $rootModel
+     * @param \NinjaTables\Framework\Database\Orm\Relations\HasMany|\NinjaTables\Framework\Database\Orm\Relations\HasOne $localRelationship
      */
     public function __construct($rootModel, $localRelationship)
     {
@@ -43,18 +43,9 @@ class PendingHasThroughRelationship
     /**
      * Define the distant relationship that this model has.
      *
-     * @template TRelatedModel of \NinjaTables\Framework\Database\Orm\Model
-     *
-     * @param  string|(callable(TIntermediateModel): (\NinjaTables\Framework\Database\Orm\Relations\HasOne<TRelatedModel, TIntermediateModel>|\NinjaTables\Framework\Database\Orm\Relations\HasMany<TRelatedModel, TIntermediateModel>|\NinjaTables\Framework\Database\Orm\Relations\MorphOneOrMany<TRelatedModel, TIntermediateModel>))  $callback
-     * @return (
-     *     $callback is string
-     *     ? \NinjaTables\Framework\Database\Orm\Relations\HasManyThrough<\NinjaTables\Framework\Database\Orm\Model, TIntermediateModel, TDeclaringModel>|\NinjaTables\Framework\Database\Orm\Relations\HasOneThrough<\NinjaTables\Framework\Database\Orm\Model, TIntermediateModel, TDeclaringModel>
-     *     : (
-     *         $callback is callable(TIntermediateModel): \NinjaTables\Framework\Database\Orm\Relations\HasOne<TRelatedModel, TIntermediateModel>
-     *         ? \NinjaTables\Framework\Database\Orm\Relations\HasOneThrough<TRelatedModel, TIntermediateModel, TDeclaringModel>
-     *         : \NinjaTables\Framework\Database\Orm\Relations\HasManyThrough<TRelatedModel, TIntermediateModel, TDeclaringModel>
-     *     )
-     * )
+     * @param string|callable $callback Either the distant relationship name or a callback returning the local relation.
+     * @return \NinjaTables\Framework\Database\Orm\Relations\HasManyThrough|\NinjaTables\Framework\Database\Orm\Relations\HasOneThrough
+     *         The distant relationship instance.
      */
     public function has($callback)
     {

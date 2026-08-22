@@ -10,6 +10,8 @@ class TranslationService
             'search_in'      => __('Search in', 'ninja-tables'),
             'search'         => __('Search', 'ninja-tables'),
             'empty_text'     => __('No Result Found', 'ninja-tables'),
+            // {0} is replaced by SumoSelect with the typed search term
+            'no_match'       => __('No matches for "{0}"', 'ninja-tables'),
             'clear_all'      => __('Clear All', 'ninja-tables'),
             'caption_format' => __('Selected', 'ninja-tables'),
             'pikaday'        => [
@@ -47,6 +49,8 @@ class TranslationService
                     __('Fri', 'ninja-tables'),
                     __('Sat', 'ninja-tables'),
                 ],
+                'midnight'      => __('12 AM', 'ninja-tables'),
+                'noon'          => __('12 PM', 'ninja-tables'),
             ],
         ];
     }

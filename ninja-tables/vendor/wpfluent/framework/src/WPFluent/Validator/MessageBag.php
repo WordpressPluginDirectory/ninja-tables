@@ -19,6 +19,10 @@ trait MessageBag
         'email'       => 'The :attribute must be a valid email address.',
         'date_format' => 'Unable to format the :attribute field from the :value format string.',
         'exists'      => 'The selected :attribute is invalid.',
+        'gt'          => 'The :attribute must be greater than :value.',
+        'lt'          => 'The :attribute must be less than :value.',
+        'gte'          => 'The :attribute must be greater than or equal to :value.',
+        'lte'          => 'The :attribute must be less than or equal to :value.',
         'in'          => 'The selected :attribute is invalid.',
         'not_in'          => 'The selected :attribute is invalid.',
         'max'         => [
@@ -39,7 +43,12 @@ trait MessageBag
         'integer'     => 'The :attribute must be an integer.',
         'numeric'     => 'The :attribute must be a number.',
         'required'    => 'The :attribute field is required.',
+        'required_array_keys'    => 'The :attribute must be an array and should contain :keys.',
         'required_if' => 'The :attribute field is required when :other is :value.',
+        'required_with' => 'The :attribute field is required when the :other field is present.',
+        'required_with_all' => 'The :attribute field is required when the :other field is present.',
+        'required_without' => 'The :attribute field is required when the :other field is not present.',
+        'required_without_all' => 'The :attribute field is required when the :other fields are not present.',
         'same'        => 'The :attribute and :other must match.',
         'size'        => [
             'numeric' => 'The :attribute must be :size.',
@@ -278,6 +287,295 @@ trait MessageBag
         return str_replace([
             ':attribute', ':other', ':value'],
             [$attribute, $parameters[0], $value],
+            $text
+        );
+    }
+
+    /**
+     * Replace all place-holders for the required with rule.
+     *
+     * @param $attribute
+     * @param $parameters
+     * @param $originalKey
+     *
+     * @return string
+     */
+    protected function replaceRequiredWith($attribute, $parameters,  $originalKey)
+    {
+        if (preg_match('/\.\d\./', $attribute, $matches)) {
+            $parameters[0] = str_replace(['.*.'], $matches, $parameters[0]);
+        }
+
+        $text = $this->getReplacementText($attribute.'.required_with', 'required_with', $originalKey);
+
+        $other = '';
+
+        if (count($parameters) === 1) {
+            $other = $parameters[0];
+        } elseif (count($parameters) === 2) {
+            $other = implode(' or ', $parameters);
+        } else {
+            $last = array_pop($parameters);
+            $other = implode(', ', $parameters) . ' or ' . $last;
+        }
+
+        return str_replace([
+            ':attribute', ':other'],
+            [$attribute, $other],
+            $text
+        );
+    }
+
+    /**
+     * Replace all place-holders for the required with all rule.
+     *
+     * @param $attribute
+     * @param $parameters
+     * @param $originalKey
+     *
+     * @return string
+     */
+    protected function replaceRequiredWithAll($attribute, $parameters,  $originalKey)
+    {
+        if (preg_match('/\.\d\./', $attribute, $matches)) {
+            $parameters[0] = str_replace(['.*.'], $matches, $parameters[0]);
+        }
+
+        $text = $this->getReplacementText($attribute.'.required_with_all', 'required_with_all', $originalKey);
+
+        $other = '';
+
+        if (count($parameters) === 1) {
+            $other = $parameters[0];
+        } elseif (count($parameters) === 2) {
+            $other = $parameters[0] . ' and ' . $parameters[1];
+        } else {
+            $last = array_pop($parameters);
+            $other = 'all ' . implode(', ', $parameters) . ' and ' . $last;
+        }
+
+        $text = 'The :attribute field is required when :other field(s) are present.';
+
+        return str_replace(
+            [':attribute', ':other'],
+            [$attribute, $other],
+            $text
+        );
+    }
+
+        /**
+     * Replace all place-holders for the required without rule.
+     *
+     * @param string $attribute
+     * @param array $parameters
+     * @param string $originalKey
+     * @return string
+     */
+    protected function replaceRequiredWithout($attribute, $parameters, $originalKey)
+    {
+        if (preg_match('/\.\d\./', $attribute, $matches)) {
+            $parameters[0] = str_replace(['.*.'], $matches, $parameters[0]);
+        }
+
+        $text = $this->getReplacementText($attribute . '.required_without', 'required_without', $originalKey);
+
+        $other = '';
+
+        if (count($parameters) === 1) {
+            $other = $parameters[0];
+        } elseif (count($parameters) === 2) {
+            $other = implode(' or ', $parameters);
+        } else {
+            $last = array_pop($parameters);
+            $other = implode(', ', $parameters) . ' or ' . $last;
+        }
+
+        // Default message
+        $text = 'The :attribute field is required when :other field(s) are not present.';
+
+        return str_replace(
+            [':attribute', ':other'],
+            [$attribute, $other],
+            $text
+        );
+    }
+
+    /**
+     * Replace all place-holders for the required without all rule.
+     *
+     * @param string $attribute
+     * @param array $parameters
+     * @param string $originalKey
+     * @return string
+     */
+    protected function replaceRequiredWithoutAll($attribute, $parameters, $originalKey)
+    {
+        if (preg_match('/\.\d\./', $attribute, $matches)) {
+            $parameters[0] = str_replace(['.*.'], $matches, $parameters[0]);
+        }
+
+        $text = $this->getReplacementText($attribute . '.required_without_all', 'required_without_all', $originalKey);
+
+        $other = '';
+
+        if (count($parameters) === 1) {
+            $other = $parameters[0];
+        } elseif (count($parameters) === 2) {
+            $other = $parameters[0] . ' and ' . $parameters[1];
+        } else {
+            $last = array_pop($parameters);
+            $other = 'all ' . implode(', ', $parameters) . ' and ' . $last;
+        }
+
+        // Default message
+        $text = 'The :attribute field is required when :other field(s) are all missing.';
+
+        return str_replace(
+            [':attribute', ':other'],
+            [$attribute, $other],
+            $text
+        );
+    }
+
+    /**
+     * Replace placeholders in a validation message for required array keys.
+     *
+     * @param string $attribute
+     * @param array  $parameters
+     * @param string $originalKey
+     *
+     * @return string
+     */
+    protected function replaceRequiredArrayKeys(
+        $attribute,
+        $parameters, 
+        $originalKey
+    )
+    {
+        if (preg_match('/\.\d\./', $attribute, $matches)) {
+            $parameters[0] = str_replace(['.*.'], $matches, $parameters[0]);
+        }
+
+        $text = $this->getReplacementText($attribute.'.required_array_keys', 'required_array_keys', $originalKey);
+
+        $other = '';
+
+        if (count($parameters) === 1) {
+            $other = $parameters[0] . ' key';
+        } elseif (count($parameters) === 2) {
+            $other = $parameters[0] . ' and ' . $parameters[1] . ' keys';
+        } else {
+            $last = array_pop($parameters);
+            $other = 'all ' . implode(', ', $parameters) . ' and ' . $last . ' keys';
+        }
+
+        return str_replace(
+            [':attribute', ':keys'],
+            [$attribute, $other],
+            $text
+        );
+    }
+
+    /**
+     * Replace all place-holders for the gt rule.
+     *
+     * @param $attribute
+     * @param $parameters
+     * @param $originalKey
+     *
+     * @return string
+     */
+    protected function replaceGt($attribute, $parameters,  $originalKey)
+    {
+        if (preg_match('/\.\d\./', $attribute, $matches)) {
+            $parameters[0] = str_replace(['.*.'], $matches, $parameters[0]);
+        }
+
+        $text = $this->getReplacementText($attribute.'.gt', 'gt', $originalKey);
+
+        $value = end($parameters);
+
+        return str_replace([
+            ':attribute', ':value'],
+            [$attribute, $value],
+            $text
+        );
+    }
+
+    /**
+     * Replace all place-holders for the lt rule.
+     *
+     * @param $attribute
+     * @param $parameters
+     * @param $originalKey
+     *
+     * @return string
+     */
+    protected function replaceLt($attribute, $parameters,  $originalKey)
+    {
+        if (preg_match('/\.\d\./', $attribute, $matches)) {
+            $parameters[0] = str_replace(['.*.'], $matches, $parameters[0]);
+        }
+
+        $text = $this->getReplacementText($attribute.'.lt', 'lt', $originalKey);
+
+        $value = end($parameters);
+
+        return str_replace([
+            ':attribute', ':value'],
+            [$attribute, $value],
+            $text
+        );
+    }
+
+    /**
+     * Replace all place-holders for the gte rule.
+     *
+     * @param $attribute
+     * @param $parameters
+     * @param $originalKey
+     *
+     * @return string
+     */
+    protected function replaceGte($attribute, $parameters,  $originalKey)
+    {
+        if (preg_match('/\.\d\./', $attribute, $matches)) {
+            $parameters[0] = str_replace(['.*.'], $matches, $parameters[0]);
+        }
+
+        $text = $this->getReplacementText($attribute.'.gte', 'gte', $originalKey);
+
+        $value = end($parameters);
+
+        return str_replace([
+            ':attribute', ':value'],
+            [$attribute, $value],
+            $text
+        );
+    }
+
+    /**
+     * Replace all place-holders for the lte rule.
+     *
+     * @param $attribute
+     * @param $parameters
+     * @param $originalKey
+     *
+     * @return string
+     */
+    protected function replaceLte($attribute, $parameters,  $originalKey)
+    {
+        if (preg_match('/\.\d\./', $attribute, $matches)) {
+            $parameters[0] = str_replace(['.*.'], $matches, $parameters[0]);
+        }
+
+        $text = $this->getReplacementText($attribute.'.lte', 'lte', $originalKey);
+
+        $value = end($parameters);
+
+        return str_replace([
+            ':attribute', ':value'],
+            [$attribute, $value],
             $text
         );
     }

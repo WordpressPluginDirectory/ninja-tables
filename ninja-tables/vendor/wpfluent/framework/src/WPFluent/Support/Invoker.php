@@ -84,6 +84,7 @@ class Invoker
     public static function get($object, $property)
     {
         return static::invoke($object, function () use ($property) {
+            // @phpstan-ignore-next-line
             return $this->$property;
         });
     }
@@ -99,6 +100,7 @@ class Invoker
     public static function set($object, $property, $value)
     {
         static::invoke($object, function () use ($property, $value) {
+            // @phpstan-ignore-next-line
             $this->$property = $value;
         });
     }
@@ -114,6 +116,7 @@ class Invoker
     public static function call($object, $method, $args = [])
     {
         return static::invoke($object, function () use ($method, $args) {
+            // @phpstan-ignore-next-line
             return call_user_func_array([$this, $method], $args);
         });
     }
@@ -148,7 +151,7 @@ class Invoker
         $ref = new ReflectionClass($class);
         $prop = $ref->getProperty($property);
         $prop->setAccessible(true);
-        $prop->setValue($value);
+        $prop->setValue(null, $value);
     }
 
     /**

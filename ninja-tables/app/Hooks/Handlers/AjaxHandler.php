@@ -26,6 +26,11 @@ class AjaxHandler
         $request = ninjaTablesRequest();
 
         $tableId = intval(Arr::get($request, 'table_id'));
+        $table = get_post($tableId);
+        if (!$table || $table->post_type !== 'ninja-table' || $table->post_status !== 'publish') {
+            wp_send_json([], 200);
+        }
+
         do_action('ninja_table_doing_ajax_table_data', $tableId);
         $defaultSorting = sanitize_text_field(Arr::get($request, 'default_sorting'));
         $tableSettings  = ninja_table_get_table_settings($tableId, 'public');

@@ -383,7 +383,7 @@ trait BuildsQueries
      * @param  array|string  $columns
      * @param  string  $cursorName
      * @param  \NinjaTables\Framework\Pagination\Cursor|string|null  $cursor
-     * @return \NinjaTables\Framework\Contracts\Pagination\CursorPaginator
+     * @return \NinjaTables\Framework\Pagination\CursorPaginator
      */
     protected function paginateUsingCursor($perPage, $columns = ['*'], $cursorName = 'cursor', $cursor = null)
     {
