@@ -7,6 +7,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 use NinjaTables\App\App;
+use NinjaTables\App\Services\Render\AbstractTableRenderer;
+use NinjaTables\App\Services\Render\CssGenerator;
+use NinjaTables\App\Services\Render\InlineScript;
+use NinjaTables\App\Services\Vite;
 use NinjaTables\App\Models\NinjaTableItem;
 use NinjaTables\App\Modules\DataProviders\NinjaFooTable;
 use NinjaTables\App\Modules\DataTables\Handlers\PublicRenderer;
@@ -14,6 +18,14 @@ use NinjaTables\Framework\Support\Arr;
 
 class PublicDataHandler
 {
+    public function register()
+    {
+        add_action('init', [$this, 'registerTableRenderFunctions']);
+        add_action('wp_enqueue_scripts', [$this, 'enqueueNinjaTableScript'], 100);
+        add_action('ninja_tables-render-table-footable', [$this, 'runFooTable']);
+        add_action('ninja_tables_inside_table_render', [$this, 'renderTableInsideTable'], 10, 2);
+    }
+
     public function runFooTable($tableArray)
     {
         NinjaFooTable::run($tableArray);
@@ -171,6 +183,22 @@ class PublicDataHandler
 
     public function tableCellShortcode($atts)
     {
+        // Re-entrancy guard: a cell that renders itself would recurse until the PHP stack overflows.
+        static $depth = 0;
+        $maxDepth = apply_filters('ninja_tables_cell_shortcode_max_depth', 5);
+        if ($depth >= $maxDepth) {
+            return '';
+        }
+        $depth++;
+        try {
+            return $this->renderTableCellShortcode($atts);
+        } finally {
+            $depth--;
+        }
+    }
+
+    private function renderTableCellShortcode($atts)
+    {
         if (is_preview() && is_user_logged_in()) {
             $role = ninja_table_admin_role();
             if (!current_user_can($role)) {
@@ -198,6 +226,8 @@ class PublicDataHandler
             return 'Sorry! The table is not available.';
         }
 
+        $executeShortcodes = ninja_tables_provider_executes_shortcodes($id);
+
         $tableSettings = ninja_table_get_table_settings($id, 'public');
 
         if ($row_id) {
@@ -214,7 +244,7 @@ class PublicDataHandler
                     $value = $this->processCellInfoArray($value, $column, $id);
                 }
 
-                return do_shortcode($value);
+                return ninja_tables_render_cell_shortcode($value, $executeShortcodes);
             } else {
                 $dataArray = array_values($data);
 
@@ -224,7 +254,7 @@ class PublicDataHandler
                         $value = $this->processCellInfoArray($value, $column, $id);
                     }
 
-                    return do_shortcode($value);
+                    return ninja_tables_render_cell_shortcode($value, $executeShortcodes);
                 }
             }
 
@@ -253,7 +283,7 @@ class PublicDataHandler
             $content = $this->processCellInfoArray($content, $column, $id);
         }
 
-        return do_shortcode($content);
+        return ninja_tables_render_cell_shortcode($content, $executeShortcodes);
     }
 
     /**
@@ -279,31 +309,21 @@ class PublicDataHandler
 
         $library = Arr::get($tableArray, 'settings.library', 'footable');
 
-        // For DataTables, delegate CSS to PublicRenderer
+        // Print once per request, whichever engine renders later.
+        if (AbstractTableRenderer::isCssPrinted($tableId)) {
+            return;
+        }
+        AbstractTableRenderer::markCssPrinted($tableId);
+
         if ($library === 'datatables') {
-            if (isset(PublicRenderer::$tableCssStatuses[$tableId])) return;
-            PublicRenderer::$tableCssStatuses[$tableId] = true;
             PublicRenderer::generateCustomColorCSSForTable($tableArray);
             return;
         }
 
-        // FooTable CSS (existing behavior)
-        if (isset(NinjaFooTable::$tableCssStatuses[$tableId])) return;
-
         $columnContentCss = NinjaFooTable::getColumnsCss($tableArray['table_id'], $tableArray['columns']);
+        $css              = NinjaFooTable::generateCustomColorCSS($tableArray, $columnContentCss);
 
-        $css = NinjaFooTable::generateCustomColorCSS($tableArray, $columnContentCss);
-
-        // Keep a flag that this css has been loaded so that we won't duplicate assets.
-        NinjaFooTable::$tableCssStatuses[$tableId] = true;
-
-        add_action('wp_head', function () use ($css, $tableId) {
-            ?>
-            <style id='ninja_table_custom_css_<?php echo esc_attr($tableId); ?>' type='text/css'>
-                <?php echo ninjaTablesEscCss($css); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-            </style>
-            <?php
-        }, 99);
+        CssGenerator::inject($css, 'ninja_table_custom_css_' . $tableId, 'wp_head', 99);
     }
 
     public function ninjaTableBuilderShortCode($atts = [], $content = null, $tag = '')
@@ -334,18 +354,11 @@ class PublicDataHandler
         $ninja_table_builder_setting = get_post_meta($table->ID, '_ninja_table_builder_table_settings', true);
         $ninja_table_builder_responsive = get_post_meta($table->ID, '_ninja_table_builder_table_responsive', true);
         
-        // Add the instance to window object via wp_footer
-        add_action('wp_footer', function () use ($tableInstance, $table_id, $ninja_table_builder_responsive, $ninja_table_builder_setting) {
-            ?>
-            <script type="text/javascript">
-                window.<?php echo esc_js($tableInstance); ?> = {
-                    tableId: <?php echo absint($table_id); ?>,
-                    responsive: <?php echo wp_json_encode($ninja_table_builder_responsive); ?>,
-                    settings: <?php echo wp_json_encode($ninja_table_builder_setting); ?>
-                };
-            </script>
-            <?php
-        });
+        InlineScript::window($tableInstance, [
+            'tableId'    => absint($table_id),
+            'responsive' => $ninja_table_builder_responsive,
+            'settings'   => $ninja_table_builder_setting,
+        ]);
 
         $html = do_shortcode($ninja_table_builder_html);
         $this->enqueueNinjaTableBuilderScript();
@@ -368,17 +381,7 @@ class PublicDataHandler
         global $post;
 
         if (is_a($post, 'WP_Post') && $ids = get_post_meta($post->ID, '_has_ninja_tables', true)) {
-            $styleSrc = NINJA_TABLES_DIR_URL . "assets/css/ninjatables-public.css";
-            if (is_rtl()) {
-                $styleSrc = NINJA_TABLES_DIR_URL . "assets/css/ninjatables-public-rtl.css";
-            }
-            wp_enqueue_style(
-                'footable_styles',
-                $styleSrc,
-                [],
-                NINJA_TABLES_VERSION,
-                'all'
-            );
+            Vite::enqueueStyle('footable_styles', is_rtl() ? 'css/ninjatables-public-rtl.css' : 'css/ninjatables-public.css');
 
             // We have the parsed table IDs from the shortcodes.
             // We should prerender the table assets here.
@@ -468,22 +471,8 @@ class PublicDataHandler
 
     public function enqueueNinjaTableBuilderScript()
     {
-        $styleSrc = NINJA_TABLES_DIR_URL . "assets/js/ninja-table-builder-public.js";
-        wp_enqueue_script(
-            'ninja_table_builder_js',
-            $styleSrc,
-            ['jquery'],
-            NINJA_TABLES_VERSION,
-            'all'
-        );
-        $styleSrc = NINJA_TABLES_DIR_URL . "assets/css/ninja-table-builder-public.css";
-        wp_enqueue_style(
-            'ninja_table_builder_style',
-            $styleSrc,
-            [],
-            NINJA_TABLES_VERSION,
-            'all'
-        );
+        Vite::enqueueScript('ninja_table_builder_js', 'js/ninja-table-builder-public.js', ['jquery']);
+        Vite::enqueueStyle('ninja_table_builder_style', 'css/ninja-table-builder-public.css');
     }
 
     public function renderTableInsideTable($table, $tableVars)

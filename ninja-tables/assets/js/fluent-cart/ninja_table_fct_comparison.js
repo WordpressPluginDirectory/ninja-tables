@@ -1,1 +1,257 @@
-(()=>{"use strict";function n(t){return n="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(n){return typeof n}:function(n){return n&&"function"==typeof Symbol&&n.constructor===Symbol&&n!==Symbol.prototype?"symbol":typeof n},n(t)}function t(n,t){for(var a=0;a<t.length;a++){var o=t[a];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(n,e(o.key),o)}}function e(t){var e=function(t,e){if("object"!=n(t)||!t)return t;var a=t[Symbol.toPrimitive];if(void 0!==a){var o=a.call(t,e||"default");if("object"!=n(o))return o;throw new TypeError("@@toPrimitive must return a primitive value.")}return("string"===e?String:Number)(t)}(t,"string");return"symbol"==n(e)?e:e+""}var a=window.jQuery;const o=function(){function n(){!function(n,t){if(!(n instanceof t))throw new TypeError("Cannot call a class as a function")}(this,n)}return e=n,r=[{key:"init",value:function(n,t){this.$table=n,this.settings=t,this.bindEvents(n,t)}},{key:"bindEvents",value:function(n,t){this.bindVariationChange(n),this.bindQuantity(n),this.bindAddToCart(n,t)}},{key:"bindEventsFor",value:function(n,t){this.bindEvents(n,t)}},{key:"getNewUrl",value:function(n,t,e){var a=new URL(n);return a.searchParams.set("item_id",t),a.searchParams.set("quantity",e),a.toString()}},{key:"bindVariationChange",value:function(t){t.on("change",".nt_fct_variations_select",function(t){var e=a(this),o=e.find(":selected"),r=e.closest("tr"),i=e.closest(".nt_fct_variations_wrapper").data("product_id"),c=o.data("variation_id")||0,d=o.data("formatted_price")||"",l=o.data("compared_price")||"",p=o.data("image_src")||"",u=o.data("stock")||0,s=e.closest(".nt_fct_variations_wrapper").data("product_type")||"",f=r.data("is_compare_row")||!1,_=r.data("row_id")||!1,b=function(n){var t=r.find(n);return t.length?t:r.parent().find(n)},v=b(".nt_fct_product_price_wrapper");f&&(v=b('[data-pid="'+i+'"] .nt_fct_product_price_wrapper')),v.find(".nt_fct_product_price").text(d);var m=v.find(".nt-fct-compared-price");l?m.text(l).show():m.hide();var h=b(".fct_product_image");_?h=b('[data-row_id="'.concat(r.data("row_id"),'"] .fct_product_image')):f&&(h=b('[data-pid="'.concat(i,'"] .fct_product_image'))),p&&h&&h.attr("src",p);var y=b(".nt_fct_product_stock");f&&(y=b('[data-pid="'+i+'"] .nt_fct_product_stock')),y.length&&y.attr("data-product_stock",u).text(u);var g=b(".nt_fct_add_to_cart_".concat(i));if(g.attr("data-variation_id",c),"digital"===s){(g=b(".nt_fct_buy_now_".concat(i))).attr("data-variation_id",c);var x=r.find(".nt_fct_add_cart_wrapper a"),k=x.data("quantity")||1,w=n.getNewUrl(x.attr("href"),c,k);x.attr("href",w)}})}},{key:"bindQuantity",value:function(t){t.on("change",".nt_fct_quantity",function(){var e=a(this),o=e.data("product_type"),r=e.data("product_id"),i=Math.max(1,parseInt(e.val(),10)||1);e.val(i);var c=t.find(".nt_fct_add_to_cart_".concat(r));"digital"===o&&(c=t.find(".nt_fct_buy_now_".concat(r))),c.attr("data-quantity",i);var d=c.data("variation_id");if("digital"===o){var l=n.getNewUrl(c.attr("href"),d,i);c.attr("href",l)}})}},{key:"bindAddToCart",value:function(t,e){t.on("click",'[class*="nt_fct_add_to_cart_"]:not(.loading)',function(t){var o;t.preventDefault();var r=a(this),i=r.parent();if(!r.data("processing")){r.data("processing",!0),i.addClass("loading"),r.prop("disabled",!0);var c=null===(o=t.target)||void 0===o?void 0:o.dataset;if(c){var d={product_id:c.product_id,variation_id:parseInt(c.variation_id),quantity:c.quantity};n._ajaxAdd([d],r,i,e)}}})}},{key:"_ajaxAdd",value:function(n,t,e,o){var r=window.ninja_footables||{},i=r.ajax_url,c=r.ninja_table_public_nonce;a.post(i,{action:"ninja_table_wp_fct_add_to_cart",nonce:c,table_id:(null==o?void 0:o.table_id)||this.settings.table_id,products:n}).done(function(n){null!=n&&n.success&&n.cart_html?(a(".ninjatable_cart_wrapper.fluent-cart").length?a(".ninjatable_cart_wrapper.fluent-cart").replaceWith(n.cart_html):a(".ninja_table_wrapper").append(n.cart_html),e&&e.addClass("added").removeClass("loading"),setTimeout(function(){e&&e.removeClass("loading"),t&&t.prop("disabled",!1).removeData("processing")},1e3)):(e&&e.removeClass("loading"),t&&t.prop("disabled",!1).removeData("processing"))}).fail(function(){e&&e.removeClass("loading"),t&&t.prop("disabled",!1).removeData("processing")})}}],(o=null)&&t(e.prototype,o),r&&t(e,r),Object.defineProperty(e,"prototype",{writable:!1}),e;var e,o,r}();function r(n){return r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(n){return typeof n}:function(n){return n&&"function"==typeof Symbol&&n.constructor===Symbol&&n!==Symbol.prototype?"symbol":typeof n},r(n)}function i(n,t){for(var e=0;e<t.length;e++){var a=t[e];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(n,c(a.key),a)}}function c(n){var t=function(n,t){if("object"!=r(n)||!n)return n;var e=n[Symbol.toPrimitive];if(void 0!==e){var a=e.call(n,t||"default");if("object"!=r(a))return a;throw new TypeError("@@toPrimitive must return a primitive value.")}return("string"===t?String:Number)(n)}(n,"string");return"symbol"==r(t)?t:t+""}var d=window.jQuery;const l=function(){return n=function n(){!function(n,t){if(!(n instanceof t))throw new TypeError("Cannot call a class as a function")}(this,n)},e=[{key:"init",value:function(n,t){this.$table=n,this.settings=t,this.appendStyles()}},{key:"createComparisonModal",value:function(n,t){var e=this;if(n.length<2||n.length>5)return alert("Select 2–5 products");var a="nt_cmp_".concat(t.table_id);d("#".concat(a)).remove(),d("body").append('\n            <div id="'.concat(a,'" class="nt_cmp_overlay">\n                <div class="nt_cmp_content">\n                    <div class="nt_cmp_header">\n                        <h3>Compare (').concat(n.length,')</h3>\n                        <button class="nt_cmp_close">×</button>\n                    </div>\n                    <div class="nt_cmp_body">\n                        <div id="cmp_').concat(a,'" class="loading">Loading comparison...</div>\n                    </div>\n                    <div class="nt_cmp_footer">\n                        <button class="nt_btn nt_btn_sec" id="close_cmp">Close</button>\n                    </div>\n                </div>\n            </div>')),d("#".concat(a)).fadeIn(),setTimeout(function(){return e.render(n,t,a)},80),d("#".concat(a)).on("click",".nt_cmp_close, #close_cmp",function(){return e.close(a)}),d("#".concat(a)).on("click",function(n){return n.target===n.currentTarget&&e.close(a)}),d(document).on("keydown.cmp",function(n){return"Escape"===n.key&&e.close(a)})}},{key:"close",value:function(n){d("#".concat(n)).fadeOut(function(){d("#".concat(n)).remove(),d(document).off("keydown.cmp")})}},{key:"render",value:function(n,t,e){var a='\n            <div class="cmp_wrap">\n                <table class="nt_cmp_table">\n                    <thead>\n                        <tr>\n                            <th class="prop">Feature</th>\n                            '.concat(n.map(function(t){return"<th>Product ".concat(n.indexOf(t)+1,"</th>")}).join(""),"\n                        </tr>\n                    </thead>\n                    <tbody>");(t.columns||[]).forEach(function(t){t.visible&&!t.key.includes("editing")&&n.some(function(n){return n[t.key]})&&(a+='<tr data-is_compare_row="true">\n                                <td class="prop">'.concat(t.title,"</td>"),n.forEach(function(n){var e=n.cart.product_id,o=n[t.key]||"",r=/buy|add_to_cart/.test(t.key)?"act":/quantity/.test(t.key)?"qty":/image/.test(t.key)?"img":/price/.test(t.key)?"price":"val";a+='<td class="'.concat(r,'" data-pid="').concat(e,'" data-key="').concat(t.key,'">').concat(o,"</td>")}),a+="</tr>")}),a+="</tbody>\n                </table>\n            </div>",d("#cmp_".concat(e)).html(a),this.bindEvents(d("#".concat(e)),t)}},{key:"bindEvents",value:function(n,t){var e=n.find(".nt_cmp_table");o.init(e,t)}},{key:"appendStyles",value:function(){d("#nt_cmp_style").length||d("head").append('\n            <style id="nt_cmp_style">\n                /* Overlay & Modal */\n                .nt_cmp_overlay {\n                    position: fixed;\n                    top: 0; left: 0;\n                    width: 100%; height: 100%;\n                    background: rgba(0,0,0,0.6);\n                    z-index: 10000;\n                    display: none;\n                    overflow: auto;\n                    padding: 20px;\n                    box-sizing: border-box;\n                }\n\n                .nt_cmp_content {\n                    margin: 40px auto;\n                    background: #fff;\n                    border-radius: 12px;\n                    max-width: 95%;\n                    width: 1200px;\n                    max-height: 90vh;\n                    overflow: hidden;\n                    box-shadow: 0 15px 40px rgba(0,0,0,0.3);\n                    display: flex;\n                    flex-direction: column;\n                }\n\n                /* Header - Compact */\n                .nt_cmp_header {\n                    padding: 14px 20px;\n                    background: #f8f9fa;\n                    border-bottom: 1px solid #eee;\n                    display: flex;\n                    justify-content: space-between;\n                    align-items: center;\n                    flex-shrink: 0;\n                }\n\n                .nt_cmp_header h3 {\n                    margin: 0;\n                    font-size: 18px;\n                    font-weight: 600;\n                    color: #333;\n                }\n\n                .nt_cmp_close {\n                    background: none;\n                    border: none;\n                    font-size: 28px;\n                    cursor: pointer;\n                    color: #999;\n                    padding: 0;\n                    width: 36px;\n                    height: 36px;\n                    display: flex;\n                    align-items: center;\n                    justify-content: center;\n                }\n\n                .nt_cmp_close:hover {\n                    color: #333;\n                }\n\n                /* Body - Scrollable */\n                .nt_cmp_body {\n                    flex: 1;\n                    overflow: auto;\n                    padding: 0;\n                }\n\n                .cmp_wrap {\n                    overflow: auto;\n                    min-width: 800px;\n                }\n\n                /* Table Styling */\n                .nt_cmp_table {\n                    width: 100%;\n                    border-collapse: collapse;\n                    font-size: 14px;\n                    background: #fff;\n                }\n\n                .nt_cmp_table th,\n                .nt_cmp_table td {\n                    padding: 12px 16px;\n                    border: 1px solid #e0e0e0;\n                    text-align: left;\n                    vertical-align: top;\n                }\n\n                .nt_cmp_table th {\n                    background: #f5f5f5;\n                    font-weight: 600;\n                    color: #333;\n                    position: sticky;\n                    top: 0;\n                    z-index: 10;\n                    font-size: 13px;\n                    text-transform: uppercase;\n                    letter-spacing: 0.5px;\n                }\n\n                .prop {\n                    width: 180px;\n                    min-width: 180px;\n                    background: #f8f9fa !important;\n                    font-weight: 600;\n                    position: sticky;\n                    left: 0;\n                    z-index: 11;\n                    box-shadow: 2px 0 5px rgba(0,0,0,0.05);\n                }\n\n                /* Cell Types */\n                .act a, .act button {\n                    display: inline-block;\n                    padding: 8px 14px;\n                    background: #a46497;\n                    color: #fff;\n                    border: none;\n                    border-radius: 6px;\n                    font-size: 13px;\n                    cursor: pointer;\n                    text-decoration: none;\n                    font-weight: 500;\n                }\n\n                .act a:hover, .act button:hover {\n                    background: #8b3f7a;\n                }\n\n                .act a.loading, .act button.loading {\n                    opacity: 0.7;\n                    cursor: not-allowed;\n                }\n\n                .act a.added {\n                    background: #28a745;\n                }\n\n                .img img {\n                    max-width: 80px;\n                    max-height: 80px;\n                    object-fit: cover;\n                    border-radius: 6px;\n                    border: 1px solid #eee;\n                }\n\n                .qty input {\n                    width: 70px;\n                    padding: 6px 8px;\n                    text-align: center;\n                    border: 1px solid #ddd;\n                    border-radius: 4px;\n                }\n\n                .price {\n                    font-weight: 600;\n                    color: #e91e63;\n                    font-size: 15px;\n                }\n\n                /* Footer */\n                .nt_cmp_footer {\n                    padding: 16px 20px;\n                    border-top: 1px solid #eee;\n                    text-align: right;\n                    background: #f8f9fa;\n                    flex-shrink: 0;\n                }\n\n                .nt_btn_sec {\n                    padding: 10px 20px;\n                    background: #6c757d;\n                    color: #fff;\n                    border: none;\n                    border-radius: 6px;\n                    cursor: pointer;\n                    font-size: 14px;\n                }\n\n                .nt_btn_sec:hover {\n                    background: #5a6268;\n                }\n\n                /* Responsive */\n                @media (max-width: 768px) {\n                    .nt_cmp_content {\n                        margin: 10px auto;\n                        width: calc(100% - 20px);\n                        max-height: 95vh;\n                    }\n\n                    .nt_cmp_header {\n                        padding: 12px 16px;\n                    }\n\n                    .nt_cmp_header h3 {\n                        font-size: 16px;\n                    }\n\n                    .nt_cmp_table th,\n                    .nt_cmp_table td {\n                        padding: 10px 12px;\n                        font-size: 13px;\n                    }\n\n                    .prop {\n                        width: 140px;\n                        min-width: 140px;\n                    }\n\n                    .cmp_wrap {\n                        min-width: 600px;\n                    }\n                }\n\n                @media (max-width: 480px) {\n                    .cmp_wrap {\n                        min-width: 500px;\n                    }\n\n                    .act a, .act button {\n                        padding: 6px 10px;\n                        font-size: 12px;\n                    }\n                }\n            </style>\n        ')}}],(t=null)&&i(n.prototype,t),e&&i(n,e),Object.defineProperty(n,"prototype",{writable:!1}),n;var n,t,e}();function p(n){return p="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(n){return typeof n}:function(n){return n&&"function"==typeof Symbol&&n.constructor===Symbol&&n!==Symbol.prototype?"symbol":typeof n},p(n)}function u(n,t){var e=Object.keys(n);if(Object.getOwnPropertySymbols){var a=Object.getOwnPropertySymbols(n);t&&(a=a.filter(function(t){return Object.getOwnPropertyDescriptor(n,t).enumerable})),e.push.apply(e,a)}return e}function s(n,t,e){return(t=function(n){var t=function(n,t){if("object"!=p(n)||!n)return n;var e=n[Symbol.toPrimitive];if(void 0!==e){var a=e.call(n,t||"default");if("object"!=p(a))return a;throw new TypeError("@@toPrimitive must return a primitive value.")}return("string"===t?String:Number)(n)}(n,"string");return"symbol"==p(t)?t:t+""}(t))in n?Object.defineProperty(n,t,{value:e,enumerable:!0,configurable:!0,writable:!0}):n[t]=e,n}jQuery(document).ready(function(n){var t={},e={},a=null,r=function(n){var t;return null===(t=n.attr("class"))||void 0===t||null===(t=t.match(/nt_row_id_(\S+)/))||void 0===t?void 0:t[1]},i=function(t){return t.find("tbody tr:visible").map(function(t,e){var a=n(e),o=r(a);return o&&a.find(".ninja-compare-checkbox:checked").length?o:null}).get().filter(Boolean)},c=function(e,r,i){var c=e.closest(".ninja_table_wrapper").find(".ninja-bulk-actions-tr");c.length&&(c.off("change.bulk").off("click.bulk"),c.on("change.bulk",".ninja-bulk-action-select",function(){var t=n(this).val();n(this).data("action",t),p(e,r,t)}),c.on("click.bulk",".ninja-bulk-apply-btn",function(){var n=c.find(".ninja-bulk-action-select").data("action");if(n&&t[r].length){var d=f(e,r);if("compare"===n)l.createComparisonModal(d,a),_(e,r);else if("add_to_cart"===n){var p=d.map(function(n){return n.cart});o._ajaxAdd(p,null,"",i),_(e,r)}}}),c.find(".ninja-bulk-apply-btn").attr("data-table-id",r))},d=function(a,o){a.off("change.bulk").on("change.bulk",".ninja-compare-checkbox",function(){if(!e[o]){var c=n(this),d=c.closest("tr");if(!r(d))return c.prop("checked",!1);var l=a.find(".ninja-compare-checkbox:checked").length;c.prop("checked")&&l>20?c.prop("checked",!1):(t[o]=i(a),b(a,o))}}),a.off("click.toggle").on("click.toggle",".ninja-compare-checkbox-toggle",function(c){c.stopPropagation();var d=n(this);setTimeout(function(){var c=d.prop("checked"),l=a.find("tbody tr:visible").filter(function(t,e){return r(n(e))});if(e[o]=!0,l.find(".ninja-compare-checkbox").prop("checked",!1),c&&t[o].length<20){var p=0;l.each(function(){if(p>=20)return!1;var t=n(this).find(".ninja-compare-checkbox");t.is(":visible")&&(t.prop("checked",!0),p++)})}e[o]=!1,t[o]=i(a),b(a,o)},0)})},p=function(n,a,o){var r=FooTable.get(n);r&&(e[a]=!0,r.rows.all.forEach(function(n){var t=n.$el,e=t.find(".ninja-compare-checkbox");if(e.length){var a=t.find(".nt_fct_variations_wrapper"),r=a.length>0,i=r&&a.find(".nt_fct_variations_select").val()||0,c="add_to_cart"!==o||(!r||i&&parseInt(i,10)>0);e.css("visibility",c?"visible":"hidden").prop("checked",!!c&&e.prop("checked"))}}),e[a]=!1,t[a]=i(n),b(n,a))},f=function(n,e){var a=[],o=FooTable.get(n);return o?(o.rows.all.forEach(function(n){var o,i=r(n.$el);if(t[e].includes(i)){var c,d=n.$el,l=(c=".nt_fct_add_cart_wrapper .nt_button",d.find(c).length?d.find(c):d.next().find(c)),p={product_id:parseInt(l.data("product_id"))||0,variation_id:parseInt(l.data("variation_id")||0,10),quantity:parseInt(l.data("quantity")||1,10)},f=null===(o=d.attr("class").match(/nt_row_id_(\S+)/))||void 0===o?void 0:o[1];a.push(function(n){for(var t=1;t<arguments.length;t++){var e=null!=arguments[t]?arguments[t]:{};t%2?u(Object(e),!0).forEach(function(t){s(n,t,e[t])}):Object.getOwnPropertyDescriptors?Object.defineProperties(n,Object.getOwnPropertyDescriptors(e)):u(Object(e)).forEach(function(t){Object.defineProperty(n,t,Object.getOwnPropertyDescriptor(e,t))})}return n}({cart:p,row_id:f},n.value))}}),a):a},_=function(n,a){e[a]=!0,n.find(".ninja-compare-checkbox").prop("checked",!1),e[a]=!1,t[a]=[],b(n,a)},b=function(n,e){var a=n.closest(".ninja_table_wrapper"),o=n.find(".ninja-compare-checkbox-toggle"),r=n.find("tbody tr:visible .ninja-compare-checkbox"),i=r.filter(":checked").length,c=r.length;o.prop({indeterminate:i>0&&i<c&&i<20,checked:i>0&&(i>=20||i===c)});var d=t[e].length>0,l=a.find(".ninja-bulk-action-select").data("action");a.find(".ninja-bulk-action-select").prop("disabled",!d),a.find(".ninja-bulk-apply-btn").prop("disabled",!d||!l)};n(document).on("ninja_table_loaded",function(n,o,r){try{!function(n,o){var r;if("wp_fct"===o.provider&&"yes"===(null===(r=o.settings)||void 0===r||null===(r=r.appearance_settings)||void 0===r?void 0:r.show_bulk_actions)){l.init(n,o);var p=o.table_id;t[p]=[],e[p]=!1,a=o,c(n,p,o),d(n,p),t[p]=i(n),b(n,p)}}(o,r)}catch(n){console.error("Bulk Compare Init Error:",n)}})})})();
+(function(){"use strict";const w=window.jQuery;class k{static init(o,e){this.$table=o,this.settings=e,this.bindEvents(o,e)}static bindEvents(o,e){this.bindVariationChange(o),this.bindQuantity(o),this.bindAddToCart(o,e)}static bindEventsFor(o,e){this.bindEvents(o,e)}static getNewUrl(o,e,n){const i=new URL(o);return i.searchParams.set("item_id",e),i.searchParams.set("quantity",n),i.toString()}static bindVariationChange(o){o.on("change",".nt_fct_variations_select",function(e){const n=w(this),i=n.find(":selected"),r=n.closest("tr"),s=n.closest(".nt_fct_variations_wrapper").data("product_id"),h=i.data("variation_id")||0,m=i.data("formatted_price")||"",v=i.data("compared_price")||"",j=i.data("image_src")||"",$=i.data("stock")||0,C=n.closest(".nt_fct_variations_wrapper").data("product_type")||"",x=r.data("is_compare_row")||!1,a=r.data("row_id")||!1,t=l=>{const u=r.find(l);return u.length?u:r.parent().find(l)};let c=t(".nt_fct_product_price_wrapper");x&&(c=t('[data-pid="'+s+'"] .nt_fct_product_price_wrapper')),c.find(".nt_fct_product_price").text(m);const _=c.find(".nt-fct-compared-price");v?_.text(v).show():_.hide();let d=t(".fct_product_image");a?d=t(`[data-row_id="${r.data("row_id")}"] .fct_product_image`):x&&(d=t(`[data-pid="${s}"] .fct_product_image`)),j&&d&&d.attr("src",j);let p=t(".nt_fct_product_stock");x&&(p=t('[data-pid="'+s+'"] .nt_fct_product_stock')),p.length&&p.attr("data-product_stock",$).text($);let f=t(`.nt_fct_add_to_cart_${s}`);if(f.attr("data-variation_id",h),C==="digital"){f=t(`.nt_fct_buy_now_${s}`),f.attr("data-variation_id",h);const l=r.find(".nt_fct_add_cart_wrapper a"),u=l.data("quantity")||1,y=k.getNewUrl(l.attr("href"),h,u);l.attr("href",y)}})}static bindQuantity(o){o.on("change",".nt_fct_quantity",function(){const e=w(this),n=e.data("product_type"),i=e.data("product_id"),r=Math.max(1,parseInt(e.val(),10)||1);e.val(r);let s=o.find(`.nt_fct_add_to_cart_${i}`);n==="digital"&&(s=o.find(`.nt_fct_buy_now_${i}`)),s.attr("data-quantity",r);const h=s.data("variation_id");if(n==="digital"){const m=k.getNewUrl(s.attr("href"),h,r);s.attr("href",m)}})}static bindAddToCart(o,e){o.on("click",'[class*="nt_fct_add_to_cart_"]:not(.loading)',function(n){var m;n.preventDefault();const i=w(this),r=i.parent();if(i.data("processing"))return;i.data("processing",!0),r.addClass("loading"),i.prop("disabled",!0);const s=(m=n.target)==null?void 0:m.dataset;if(!s)return;const h={product_id:s.product_id,variation_id:parseInt(s.variation_id),quantity:s.quantity};k._ajaxAdd([h],i,r,e)})}static _ajaxAdd(o,e,n,i){const{ajax_url:r,ninja_table_public_nonce:s}=window.ninja_footables||{};w.post(r,{action:"ninja_table_wp_fct_add_to_cart",nonce:s,table_id:(i==null?void 0:i.table_id)||this.settings.table_id,products:o}).done(h=>{h!=null&&h.success&&h.cart_html?(w(".ninjatable_cart_wrapper.fluent-cart").length?w(".ninjatable_cart_wrapper.fluent-cart").replaceWith(h.cart_html):w(".ninja_table_wrapper").append(h.cart_html),n&&n.addClass("added").removeClass("loading"),setTimeout(()=>{n&&n.removeClass("loading"),e&&e.prop("disabled",!1).removeData("processing")},1e3)):(n&&n.removeClass("loading"),e&&e.prop("disabled",!1).removeData("processing"))}).fail(()=>{n&&n.removeClass("loading"),e&&e.prop("disabled",!1).removeData("processing")})}}const b=window.jQuery;class E{static init(o,e){this.$table=o,this.settings=e,this.appendStyles()}static createComparisonModal(o,e){if(o.length<2||o.length>5)return alert("Select 2–5 products");const n=`nt_cmp_${e.table_id}`;b(`#${n}`).remove(),b("body").append(`
+            <div id="${n}" class="nt_cmp_overlay">
+                <div class="nt_cmp_content">
+                    <div class="nt_cmp_header">
+                        <h3>Compare (${o.length})</h3>
+                        <button class="nt_cmp_close">×</button>
+                    </div>
+                    <div class="nt_cmp_body">
+                        <div id="cmp_${n}" class="loading">Loading comparison...</div>
+                    </div>
+                    <div class="nt_cmp_footer">
+                        <button class="nt_btn nt_btn_sec" id="close_cmp">Close</button>
+                    </div>
+                </div>
+            </div>`),b(`#${n}`).fadeIn(),setTimeout(()=>this.render(o,e,n),80),b(`#${n}`).on("click",".nt_cmp_close, #close_cmp",()=>this.close(n)),b(`#${n}`).on("click",i=>i.target===i.currentTarget&&this.close(n)),b(document).on("keydown.cmp",i=>i.key==="Escape"&&this.close(n))}static close(o){b(`#${o}`).fadeOut(()=>{b(`#${o}`).remove(),b(document).off("keydown.cmp")})}static render(o,e,n){let i=`
+            <div class="cmp_wrap">
+                <table class="nt_cmp_table">
+                    <thead>
+                        <tr>
+                            <th class="prop">Feature</th>
+                            ${o.map(r=>`<th>Product ${o.indexOf(r)+1}</th>`).join("")}
+                        </tr>
+                    </thead>
+                    <tbody>`;(e.columns||[]).forEach(r=>{!r.visible||r.key.includes("editing")||o.some(s=>s[r.key])&&(i+=`<tr data-is_compare_row="true">
+                                <td class="prop">${r.title}</td>`,o.forEach(s=>{const h=s.cart.product_id,m=s[r.key]||"",v=/buy|add_to_cart/.test(r.key)?"act":/quantity/.test(r.key)?"qty":/image/.test(r.key)?"img":/price/.test(r.key)?"price":"val";i+=`<td class="${v}" data-pid="${h}" data-key="${r.key}">${m}</td>`}),i+="</tr>")}),i+=`</tbody>
+                </table>
+            </div>`,b(`#cmp_${n}`).html(i),this.bindEvents(b(`#${n}`),e)}static bindEvents(o,e){const n=o.find(".nt_cmp_table");k.init(n,e)}static appendStyles(){b("#nt_cmp_style").length||b("head").append(`
+            <style id="nt_cmp_style">
+                /* Overlay & Modal */
+                .nt_cmp_overlay {
+                    position: fixed;
+                    top: 0; left: 0;
+                    width: 100%; height: 100%;
+                    background: rgba(0,0,0,0.6);
+                    z-index: 10000;
+                    display: none;
+                    overflow: auto;
+                    padding: 20px;
+                    box-sizing: border-box;
+                }
+
+                .nt_cmp_content {
+                    margin: 40px auto;
+                    background: #fff;
+                    border-radius: 12px;
+                    max-width: 95%;
+                    width: 1200px;
+                    max-height: 90vh;
+                    overflow: hidden;
+                    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                /* Header - Compact */
+                .nt_cmp_header {
+                    padding: 14px 20px;
+                    background: #f8f9fa;
+                    border-bottom: 1px solid #eee;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    flex-shrink: 0;
+                }
+
+                .nt_cmp_header h3 {
+                    margin: 0;
+                    font-size: 18px;
+                    font-weight: 600;
+                    color: #333;
+                }
+
+                .nt_cmp_close {
+                    background: none;
+                    border: none;
+                    font-size: 28px;
+                    cursor: pointer;
+                    color: #999;
+                    padding: 0;
+                    width: 36px;
+                    height: 36px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .nt_cmp_close:hover {
+                    color: #333;
+                }
+
+                /* Body - Scrollable */
+                .nt_cmp_body {
+                    flex: 1;
+                    overflow: auto;
+                    padding: 0;
+                }
+
+                .cmp_wrap {
+                    overflow: auto;
+                    min-width: 800px;
+                }
+
+                /* Table Styling */
+                .nt_cmp_table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    font-size: 14px;
+                    background: #fff;
+                }
+
+                .nt_cmp_table th,
+                .nt_cmp_table td {
+                    padding: 12px 16px;
+                    border: 1px solid #e0e0e0;
+                    text-align: left;
+                    vertical-align: top;
+                }
+
+                .nt_cmp_table th {
+                    background: #f5f5f5;
+                    font-weight: 600;
+                    color: #333;
+                    position: sticky;
+                    top: 0;
+                    z-index: 10;
+                    font-size: 13px;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                }
+
+                .prop {
+                    width: 180px;
+                    min-width: 180px;
+                    background: #f8f9fa !important;
+                    font-weight: 600;
+                    position: sticky;
+                    left: 0;
+                    z-index: 11;
+                    box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+                }
+
+                /* Cell Types */
+                .act a, .act button {
+                    display: inline-block;
+                    padding: 8px 14px;
+                    background: #a46497;
+                    color: #fff;
+                    border: none;
+                    border-radius: 6px;
+                    font-size: 13px;
+                    cursor: pointer;
+                    text-decoration: none;
+                    font-weight: 500;
+                }
+
+                .act a:hover, .act button:hover {
+                    background: #8b3f7a;
+                }
+
+                .act a.loading, .act button.loading {
+                    opacity: 0.7;
+                    cursor: not-allowed;
+                }
+
+                .act a.added {
+                    background: #28a745;
+                }
+
+                .img img {
+                    max-width: 80px;
+                    max-height: 80px;
+                    object-fit: cover;
+                    border-radius: 6px;
+                    border: 1px solid #eee;
+                }
+
+                .qty input {
+                    width: 70px;
+                    padding: 6px 8px;
+                    text-align: center;
+                    border: 1px solid #ddd;
+                    border-radius: 4px;
+                }
+
+                .price {
+                    font-weight: 600;
+                    color: #e91e63;
+                    font-size: 15px;
+                }
+
+                /* Footer */
+                .nt_cmp_footer {
+                    padding: 16px 20px;
+                    border-top: 1px solid #eee;
+                    text-align: right;
+                    background: #f8f9fa;
+                    flex-shrink: 0;
+                }
+
+                .nt_btn_sec {
+                    padding: 10px 20px;
+                    background: #6c757d;
+                    color: #fff;
+                    border: none;
+                    border-radius: 6px;
+                    cursor: pointer;
+                    font-size: 14px;
+                }
+
+                .nt_btn_sec:hover {
+                    background: #5a6268;
+                }
+
+                /* Responsive */
+                @media (max-width: 768px) {
+                    .nt_cmp_content {
+                        margin: 10px auto;
+                        width: calc(100% - 20px);
+                        max-height: 95vh;
+                    }
+
+                    .nt_cmp_header {
+                        padding: 12px 16px;
+                    }
+
+                    .nt_cmp_header h3 {
+                        font-size: 16px;
+                    }
+
+                    .nt_cmp_table th,
+                    .nt_cmp_table td {
+                        padding: 10px 12px;
+                        font-size: 13px;
+                    }
+
+                    .prop {
+                        width: 140px;
+                        min-width: 140px;
+                    }
+
+                    .cmp_wrap {
+                        min-width: 600px;
+                    }
+                }
+
+                @media (max-width: 480px) {
+                    .cmp_wrap {
+                        min-width: 500px;
+                    }
+
+                    .act a, .act button {
+                        padding: 6px 10px;
+                        font-size: 12px;
+                    }
+                }
+            </style>
+        `)}}jQuery(document).ready(g=>{const e={},n={};let i=null;const r=a=>{var t,c;return(c=(t=a.attr("class"))==null?void 0:t.match(/nt_row_id_(\S+)/))==null?void 0:c[1]},s=a=>a.find("tbody tr:visible").map((t,c)=>{const _=g(c),d=r(_);return d&&_.find(".ninja-compare-checkbox:checked").length?d:null}).get().filter(Boolean),h=(a,t)=>{var _,d;if(t.provider!=="wp_fct"||((d=(_=t.settings)==null?void 0:_.appearance_settings)==null?void 0:d.show_bulk_actions)!=="yes")return;E.init(a,t);const c=t.table_id;e[c]=[],n[c]=!1,i=t,m(a,c,t),v(a,c),e[c]=s(a),x(a,c)},m=(a,t,c)=>{const d=a.closest(".ninja_table_wrapper").find(".ninja-bulk-actions-tr");d.length&&(d.off("change.bulk").off("click.bulk"),d.on("change.bulk",".ninja-bulk-action-select",function(){const p=g(this).val();g(this).data("action",p),j(a,t,p)}),d.on("click.bulk",".ninja-bulk-apply-btn",function(){const p=d.find(".ninja-bulk-action-select").data("action");if(!p||!e[t].length)return;const f=$(a,t);if(p==="compare")E.createComparisonModal(f,i),C(a,t);else if(p==="add_to_cart"){const l=f.map(u=>u.cart);k._ajaxAdd(l,null,"",c),C(a,t)}}),d.find(".ninja-bulk-apply-btn").attr("data-table-id",t))},v=(a,t)=>{a.off("change.bulk").on("change.bulk",".ninja-compare-checkbox",function(){if(n[t])return;const c=g(this),_=c.closest("tr");if(!r(_))return c.prop("checked",!1);const p=a.find(".ninja-compare-checkbox:checked").length;if(c.prop("checked")&&p>20){c.prop("checked",!1);return}e[t]=s(a),x(a,t)}),a.off("click.toggle").on("click.toggle",".ninja-compare-checkbox-toggle",function(c){c.stopPropagation();const _=g(this);setTimeout(()=>{const d=_.prop("checked"),p=a.find("tbody tr:visible").filter((f,l)=>r(g(l)));if(n[t]=!0,p.find(".ninja-compare-checkbox").prop("checked",!1),d&&e[t].length<20){let f=0;p.each(function(){if(f>=20)return!1;const l=g(this).find(".ninja-compare-checkbox");l.is(":visible")&&(l.prop("checked",!0),f++)})}n[t]=!1,e[t]=s(a),x(a,t)},0)})},j=(a,t,c)=>{const _=FooTable.get(a);_&&(n[t]=!0,_.rows.all.forEach(d=>{const p=d.$el,f=p.find(".ninja-compare-checkbox");if(!f.length)return;const l=p.find(".nt_fct_variations_wrapper"),u=l.length>0,y=u&&l.find(".nt_fct_variations_select").val()||0,q=c==="add_to_cart"?!u||y&&parseInt(y,10)>0:!0;f.css("visibility",q?"visible":"hidden").prop("checked",q?f.prop("checked"):!1)}),n[t]=!1,e[t]=s(a),x(a,t))},$=(a,t)=>{const c=[],_=FooTable.get(a);return _&&_.rows.all.forEach(d=>{var I;const p=r(d.$el);if(!e[t].includes(p))return;const f=z=>l.find(z).length?l.find(z):l.next().find(z),l=d.$el,u=f(".nt_fct_add_cart_wrapper .nt_button"),y=parseInt(u.data("product_id"))||0,q=parseInt(u.data("variation_id")||0,10),A=parseInt(u.data("quantity")||1,10),M={product_id:y,variation_id:q,quantity:A},S=(I=l.attr("class").match(/nt_row_id_(\S+)/))==null?void 0:I[1];c.push({cart:M,row_id:S,...d.value})}),c},C=(a,t)=>{n[t]=!0,a.find(".ninja-compare-checkbox").prop("checked",!1),n[t]=!1,e[t]=[],x(a,t)},x=(a,t)=>{const c=a.closest(".ninja_table_wrapper"),_=a.find(".ninja-compare-checkbox-toggle"),d=a.find("tbody tr:visible .ninja-compare-checkbox"),p=d.filter(":checked").length,f=d.length;_.prop({indeterminate:p>0&&p<f&&p<20,checked:p>0&&(p>=20||p===f)});const l=e[t].length>0,u=c.find(".ninja-bulk-action-select").data("action");c.find(".ninja-bulk-action-select").prop("disabled",!l),c.find(".ninja-bulk-apply-btn").prop("disabled",!l||!u)};g(document).on("ninja_table_loaded",(a,t,c)=>{try{h(t,c)}catch(_){console.error("Bulk Compare Init Error:",_)}})})})();

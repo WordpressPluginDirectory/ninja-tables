@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ninja Tables 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/ninja-tables\n"
-"POT-Creation-Date: 2026-07-23T12:13:04+00:00\n"
+"POT-Creation-Date: 2026-08-26T06:45:22+00:00\n"
 "PO-Revision-Date: 2023-01-12 06:38+0000\n"
 "Last-Translator: Shahjahan Jewel <cep.jewel@gmail.com>\n"
 "Language-Team: Basque\n"
@@ -29,8 +29,7 @@ msgstr "https://wpmanageninja.com/downloads/ninja-tables-pro-add-on/"
 #: ninja-tables.php
 msgid ""
 "The Easiest & Fastest Responsive Table Plugin on WordPress. Multiple "
-"templates, drag-&-drop live table builder, multiple color scheme, and "
-"styles."
+"templates, drag-&-drop live table builder, multiple color scheme, and styles."
 msgstr ""
 "WorPressen Responsive Taula Plugin Errazena eta Azkarrena.Hainbat "
 "txantiloitan, arrastatu & askatu ezazu zuzeneko taula eraikitzailea, kolore "
@@ -63,13 +62,13 @@ msgstr "Gehitu Taula"
 msgid "Add New Table"
 msgstr "Gehitu Taula Berria"
 
-#: app/CPT/NinjaTable.php:27 app/Views/admin/preview/default-table.php:32
+#: app/CPT/NinjaTable.php:27 app/Modules/I18nStrings.php:314
+#: app/Views/admin/preview/default-table.php:32
 #: app/Views/admin/preview/drag-and-drop.php:32
 msgid "Edit"
 msgstr "Editatu"
 
-#: app/CPT/NinjaTable.php:28
-#: app/Views/public/datatables/ninja-datatable.php:67
+#: app/CPT/NinjaTable.php:28 app/Views/public/datatables/ninja-datatable.php:67
 #: app/Views/public/drag-and-drop-html.php:41
 #: app/Views/public/ninja-footable.php:45
 msgid "Edit Table"
@@ -80,7 +79,7 @@ msgid "New Table"
 msgstr "Taula Berria"
 
 #: app/CPT/NinjaTable.php:30 app/CPT/NinjaTable.php:31
-#: app/Modules/I18nStrings.php:1047
+#: app/Modules/I18nStrings.php:1097
 msgid "View Table"
 msgstr "Ikusi Taula"
 
@@ -102,7 +101,7 @@ msgstr "Ez da Taularik Topatu Zaborrontzian"
 msgid "Parent Table"
 msgstr "Taula Gurasoa"
 
-#: app/Hooks/filters.php:26 app/Modules/I18nStrings.php:61
+#: app/Hooks/filters.php:26 app/Modules/I18nStrings.php:63
 msgid "All Tables"
 msgstr "Taula Guztiak"
 
@@ -110,7 +109,7 @@ msgstr "Taula Guztiak"
 msgid "Tables"
 msgstr ""
 
-#: app/Hooks/Handlers/AdminMenuHandler.php:50 app/Modules/I18nStrings.php:499
+#: app/Hooks/Handlers/AdminMenuHandler.php:50 app/Modules/I18nStrings.php:518
 msgid "Import"
 msgstr "Inportazio"
 
@@ -123,7 +122,7 @@ msgstr ""
 msgid "Add Chart"
 msgstr ""
 
-#: app/Hooks/Handlers/AdminMenuHandler.php:78 app/Modules/I18nStrings.php:420
+#: app/Hooks/Handlers/AdminMenuHandler.php:78 app/Modules/I18nStrings.php:438
 msgid "Get Pro"
 msgstr ""
 
@@ -215,8 +214,7 @@ msgid ""
 "%1$sPlease update to the latest version%2$s"
 msgstr ""
 
-#. translators: %1$s/%2$s: link tags around "documentation", %3$s/%4$s: link
-#. tags around "tutorial videos"
+#. translators: %1$s/%2$s: link tags around "documentation", %3$s/%4$s: link tags around "tutorial videos"
 #: app/Hooks/Handlers/NoticeHandler.php:290
 #, php-format
 msgid ""
@@ -237,8 +235,8 @@ msgstr ""
 #: app/Hooks/Handlers/NoticeHandler.php:302
 #, php-format
 msgid ""
-"Looks like you're having fun using Advanced mode for your tables.<br>Did you"
-" know Ninja Tables makes things even easier in Drag and Drop mode? See the "
+"Looks like you're having fun using Advanced mode for your tables.<br>Did you "
+"know Ninja Tables makes things even easier in Drag and Drop mode? See the "
 "%1$sdocumentation%2$s and try it!"
 msgstr ""
 
@@ -267,7 +265,7 @@ msgid "This table does not exist or has been permanently deleted."
 msgstr ""
 
 #: app/Hooks/Handlers/PublicDataHandler.php:68
-#: app/Modules/DataTables/Handlers/PublicRenderer.php:50
+#: app/Modules/DataTables/Handlers/PublicRenderer.php:51
 msgid ""
 "This table has no columns configured. Please add columns to display the "
 "table."
@@ -333,7 +331,7 @@ msgstr ""
 
 #: app/Http/Controllers/ImportController.php:203
 #: app/Http/Controllers/ImportController.php:294
-#: app/Modules/I18nStrings.php:500
+#: app/Modules/I18nStrings.php:519
 msgid "Import completed successfully."
 msgstr ""
 
@@ -348,8 +346,8 @@ msgstr "Kargatu baliozko CSV"
 #: app/Http/Controllers/ImportController.php:346
 #: app/Http/Controllers/ImportController.php:460
 #: app/Http/Controllers/ImportController.php:494
-#: app/Http/Controllers/ImportController.php:681
-#: app/Traits/ImportTrait.php:105 app/Traits/ImportTrait.php:128
+#: app/Http/Controllers/ImportController.php:681 app/Traits/ImportTrait.php:105
+#: app/Traits/ImportTrait.php:128
 msgid "Invalid file upload."
 msgstr ""
 
@@ -373,7 +371,7 @@ msgstr ""
 #: app/Http/Controllers/ImportController.php:398
 #: app/Http/Controllers/ImportController.php:483
 #: app/Http/Controllers/ImportController.php:601
-#: app/Modules/I18nStrings.php:902
+#: app/Modules/I18nStrings.php:943
 msgid "Successfully added a table."
 msgstr "Taula ondo gehitu da."
 
@@ -404,8 +402,8 @@ msgstr ""
 #, php-format
 msgid ""
 "This table uses the \"%s\" data provider which is not supported by the "
-"DataTables engine. Only tables with the \"default\" provider can be imported"
-" as DataTables."
+"DataTables engine. Only tables with the \"default\" provider can be imported "
+"as DataTables."
 msgstr ""
 
 #: app/Http/Controllers/ImportController.php:646
@@ -417,8 +415,7 @@ msgid ""
 "Successfully imported. Please go to all tables and review your newly "
 "imported table."
 msgstr ""
-"Ondo inportatu da. Joan tauletara eta berriki inportatutako taulak "
-"berrikusi."
+"Ondo inportatu da. Joan tauletara eta berriki inportatutako taulak berrikusi."
 
 #: app/Http/Controllers/ImportController.php:702
 msgid "Please set table configuration first"
@@ -441,8 +438,8 @@ msgstr ""
 
 #: app/Http/Controllers/ImportController.php:905
 msgid ""
-"Import failed because the server ran out of memory. Try a smaller "
-"file/chunked import or increase PHP memory_limit."
+"Import failed because the server ran out of memory. Try a smaller file/"
+"chunked import or increase PHP memory_limit."
 msgstr ""
 
 #: app/Http/Controllers/ImportController.php:912
@@ -478,8 +475,7 @@ msgid "Selected media file is not a valid CSV type."
 msgstr ""
 
 #: app/Http/Controllers/ImportController.php:967
-msgid ""
-"Please select a CSV file from WordPress Media Library for large import."
+msgid "Please select a CSV file from WordPress Media Library for large import."
 msgstr ""
 
 #: app/Http/Controllers/ImportController.php:977
@@ -514,8 +510,7 @@ msgstr ""
 
 #: app/Http/Controllers/PluginInstallerController.php:44
 msgid ""
-"There was an error to install the plugin. Please install the plugin "
-"manually."
+"There was an error to install the plugin. Please install the plugin manually."
 msgstr ""
 
 #: app/Http/Controllers/PluginInstallerController.php:78
@@ -543,20 +538,20 @@ msgid "Successfully deleted data."
 msgstr "Datuak ondo ezabatu dira."
 
 #: app/Http/Controllers/TableItemsController.php:97
-#: app/Http/Controllers/TableItemsController.php:131
-#: app/Http/Controllers/TableItemsController.php:152
-#: app/Http/Controllers/TableItemsController.php:169
+#: app/Http/Controllers/TableItemsController.php:135
+#: app/Http/Controllers/TableItemsController.php:156
+#: app/Http/Controllers/TableItemsController.php:173
 #: app/Modules/DataTables/Handlers/ItemsHandler.php:81
 #: app/Modules/DataTables/Handlers/ItemsHandler.php:162
 msgid "Row not found."
 msgstr ""
 
-#: app/Http/Controllers/TableItemsController.php:139
+#: app/Http/Controllers/TableItemsController.php:143
 #: app/Modules/DataTables/Handlers/ItemsHandler.php:134
 msgid "Successfully saved the data."
 msgstr "Datuak ondo gorde dira."
 
-#: app/Http/Controllers/TableItemsController.php:191
+#: app/Http/Controllers/TableItemsController.php:195
 #: app/Modules/DataTables/Handlers/ItemsHandler.php:183
 msgid "Cell successfully updated"
 msgstr ""
@@ -683,27 +678,45 @@ msgid "You may edit your table settings here."
 msgstr ""
 
 #: app/Modules/DataProviders/NinjaFooTable.php:267
-#: app/Modules/DataTables/Handlers/PublicRenderer.php:92
-#: app/Services/TranslationService.php:10
+#: app/Modules/DataTables/Handlers/PublicRenderer.php:93
+#: app/Services/TranslationService.php:53
 msgid "Search in"
 msgstr "Bilatu honela"
 
 #: app/Modules/DataProviders/NinjaFooTable.php:269
-#: app/Modules/DataTables/Handlers/PublicRenderer.php:94
-#: app/Modules/I18nStrings.php:769 app/Services/TranslationService.php:11
+#: app/Modules/DataTables/Handlers/PublicRenderer.php:95
+#: app/Modules/I18nStrings.php:806 app/Services/TranslationService.php:54
 msgid "Search"
 msgstr "Bilatu"
 
 #: app/Modules/DataProviders/NinjaFooTable.php:271
-#: app/Modules/DataTables/Handlers/PublicRenderer.php:96
-#: app/Services/TranslationService.php:12
+#: app/Modules/DataTables/Handlers/PublicRenderer.php:97
+#: app/Services/TranslationService.php:55
 msgid "No Result Found"
 msgstr "Ez da emaitzarik aurkitu"
+
+#: app/Modules/DataProviders/NinjaFooTable.php:272
+#: app/Modules/DataTables/Handlers/PublicRenderer.php:98
+#: app/Services/TranslationService.php:17
+msgid "Row Details"
+msgstr "Errenkadaren xehetasunak"
+
+#: app/Modules/DataProviders/NinjaFooTable.php:273
+#: app/Modules/DataTables/Handlers/PublicRenderer.php:99
+#: app/Modules/I18nStrings.php:160
+msgid "Close"
+msgstr ""
+
+#: app/Modules/DataProviders/NinjaFooTable.php:274
+#: app/Modules/DataTables/Handlers/PublicRenderer.php:100
+msgid "Press Enter to view the details of this row in a dialog."
+msgstr "Sakatu Sartu errenkada honen xehetasunak elkarrizketa-koadro batean ikusteko"
 
 #. translators: %s is the reserved column key name
 #: app/Modules/DataTables/DataTablesModule.php:51
 #, php-format
-msgid "Column key \"%s\" is reserved for system use. Please use a different key."
+msgid ""
+"Column key \"%s\" is reserved for system use. Please use a different key."
 msgstr ""
 
 #: app/Modules/DataTables/Handlers/ItemsHandler.php:18
@@ -733,7 +746,7 @@ msgstr ""
 msgid "Failed to delete row(s)."
 msgstr ""
 
-#: app/Modules/DragAndDrop/InitConfig.php:180 app/Modules/I18nStrings.php:931
+#: app/Modules/DragAndDrop/InitConfig.php:180 app/Modules/I18nStrings.php:973
 #: config/table-builder/component.php:27
 msgid "Text"
 msgstr ""
@@ -806,64 +819,64 @@ msgid "Buy Now"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:18
-msgid " Have a new license key? Please "
-msgstr ""
-
-#: app/Modules/I18nStrings.php:19
 msgid " will be replaced with your table ID dynamically."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:20
+#: app/Modules/I18nStrings.php:19
 msgid "( Already Imported )"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:21
+#: app/Modules/I18nStrings.php:20
 msgid "10/page"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:22
+#: app/Modules/I18nStrings.php:21
 msgid "100/page"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:23
+#: app/Modules/I18nStrings.php:22
 msgid "15/page"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:24
+#: app/Modules/I18nStrings.php:23
 msgid "20/page"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:25
+#: app/Modules/I18nStrings.php:24
 msgid "50/page"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:26
+#: app/Modules/I18nStrings.php:25
 msgid "A powerful jQuery DataTables based rendering engine"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:27
+#: app/Modules/I18nStrings.php:26
 msgid "A responsive table plugin built on jQuery"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:28
+#: app/Modules/I18nStrings.php:27
 msgid ""
 "A special faster form of table rendering that does not resize table cells "
 "based on content."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:29
+#: app/Modules/I18nStrings.php:28
 msgid ""
 "A table can specify that its cell contents should remain on a single line, "
 "and not wrap."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:30
+#: app/Modules/I18nStrings.php:29
 msgid "Action"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:31
+#: app/Modules/I18nStrings.php:30
 msgid "Action canceled"
 msgstr ""
+
+#: app/Modules/I18nStrings.php:31
+msgid "Actions"
+msgstr "Ekintzak"
 
 #: app/Modules/I18nStrings.php:32
 msgid "Activate Ninja Tables Pro plugin to unlock this feature"
@@ -902,2657 +915,2759 @@ msgid "Add Data"
 msgstr "Gehitu datuak"
 
 #: app/Modules/I18nStrings.php:41
+msgid "Add data after this row"
+msgstr "Errenkada honen ondoren datuak gehitu"
+
+#: app/Modules/I18nStrings.php:42
 msgid ""
 "Add extra classes to this column. This will be applied for the entire column"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:42
+#: app/Modules/I18nStrings.php:43
 msgid "Add Media (pro)"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:43
+#: app/Modules/I18nStrings.php:44
 msgid "Add Media to Your Table Cells"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:44
+#: app/Modules/I18nStrings.php:45
 msgid "Add Meta Query"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:45
+#: app/Modules/I18nStrings.php:46
 msgid "Add New Column"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:46
+#: app/Modules/I18nStrings.php:47
 msgid "Add New Custom Filter"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:47
+#: app/Modules/I18nStrings.php:48
 msgid "Add New Filter"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:48
+#: app/Modules/I18nStrings.php:49
 msgid "Add Popup Heading"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:49
+#: app/Modules/I18nStrings.php:50
+msgid "Add Row"
+msgstr "Errenkada gehitu"
+
+#: app/Modules/I18nStrings.php:51
 msgid "Add Row Button Label"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:50
+#: app/Modules/I18nStrings.php:52
 msgid "Add Table Column"
-msgstr ""
+msgstr "Taula-zutabea gehitu"
 
-#: app/Modules/I18nStrings.php:51
+#: app/Modules/I18nStrings.php:53
 msgid "Add Your Custom CSS"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:52
+#: app/Modules/I18nStrings.php:54
 msgid "Add Your Custom JS"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:53
+#: app/Modules/I18nStrings.php:55
 msgid "Add zebra-striping to any table row"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:54
+#: app/Modules/I18nStrings.php:56
 msgid "Advanced - Better performance for large datasets"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:55
+#: app/Modules/I18nStrings.php:57
 msgid "Advanced Column Settings"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:56
+#: app/Modules/I18nStrings.php:58
 msgid "Advanced Settings"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:57
+#: app/Modules/I18nStrings.php:59
 msgid "After Search Box"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:58
+#: app/Modules/I18nStrings.php:60
 msgid "Align"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:59
+#: app/Modules/I18nStrings.php:61
 msgid "Alignment"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:60
+#: app/Modules/I18nStrings.php:62
 msgid "All"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:62
+#: app/Modules/I18nStrings.php:64
 msgid "Always Show Edit Icons"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:63
+#: app/Modules/I18nStrings.php:65
 msgid "Always show in all devices"
 msgstr "Always show in all devices"
 
-#: app/Modules/I18nStrings.php:64
+#: app/Modules/I18nStrings.php:66
 msgid "And Many More features"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:65
+#: app/Modules/I18nStrings.php:67
 msgid "Appearance"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:66
+#: app/Modules/I18nStrings.php:68
 msgid "Appearance Settings"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:67
+#: app/Modules/I18nStrings.php:69
 msgid "Apply"
 msgstr "Apply"
 
-#: app/Modules/I18nStrings.php:68
+#: app/Modules/I18nStrings.php:70
 msgid "Apply Semantic UI styles in the table"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:69
+#: app/Modules/I18nStrings.php:71
 msgid "Apply Twitter Bootstrap 3 styles in the table"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:70
+#: app/Modules/I18nStrings.php:72
 msgid "Apply Twitter Bootstrap 4 styles in the table"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:71
+#: app/Modules/I18nStrings.php:73
 msgid "Approved"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:72
+#: app/Modules/I18nStrings.php:74
 msgid "Are you sure to delete this column?"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:73
+#: app/Modules/I18nStrings.php:75
 msgid "Are you sure to delete this?"
 msgstr "Are you sure to delete this?"
 
-#: app/Modules/I18nStrings.php:74
+#: app/Modules/I18nStrings.php:76
 msgid "Are you sure, you want to delete this table"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:75
+#: app/Modules/I18nStrings.php:77
 msgid "As Numeric Basis"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:76
+#: app/Modules/I18nStrings.php:78
 msgid "As Text Basis"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:77
+#: app/Modules/I18nStrings.php:79
 msgid ""
 "as your css selector prefix to target this specific table. Alternatively, "
 "you can use"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:78
+#: app/Modules/I18nStrings.php:80
 msgid "Ascending"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:79
+#: app/Modules/I18nStrings.php:81
 msgid "Ascending Way"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:80
+#: app/Modules/I18nStrings.php:82
 msgid ""
 "Auto-sync your published Google Sheet and display the entries on a "
 "customized table in Ninja Tables Pro."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:81
+#: app/Modules/I18nStrings.php:83
 msgid "Available Columns"
 msgstr "Available Columns"
 
-#: app/Modules/I18nStrings.php:82
+#: app/Modules/I18nStrings.php:84
 msgid "Available Dynamic Placeholders:"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:83 config/table-builder/setting.php:77
+#: app/Modules/I18nStrings.php:85 config/table-builder/setting.php:77
 msgid "Background"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:84
+#: app/Modules/I18nStrings.php:86
 msgid "Background color"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:85
+#: app/Modules/I18nStrings.php:87
 msgid "Background Color"
-msgstr ""
+msgstr "Atzeko planoaren kolorea"
 
-#: app/Modules/I18nStrings.php:86
+#: app/Modules/I18nStrings.php:88
 msgid "Basic Settings"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:87
+#: app/Modules/I18nStrings.php:89
 msgid "Better for SEO"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:88
+#: app/Modules/I18nStrings.php:90
 msgid "Between (Min & Max Values)"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:89
+#: app/Modules/I18nStrings.php:91
 msgid "Blogs"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:90
+#: app/Modules/I18nStrings.php:92
 msgid "Bootstrap 3"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:91
+#: app/Modules/I18nStrings.php:93
 msgid "Bootstrap 4"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:92 config/table-builder/setting.php:158
+#: app/Modules/I18nStrings.php:94 config/table-builder/setting.php:158
 msgid "Border"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:93
+#: app/Modules/I18nStrings.php:95
 msgid "Border color"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:94
+#: app/Modules/I18nStrings.php:96
 msgid "Border Radius"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:95
+#: app/Modules/I18nStrings.php:97
 msgid "Border Size"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:96
+#: app/Modules/I18nStrings.php:98
 msgid "Bordered table"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:97
+#: app/Modules/I18nStrings.php:99
 msgid "Borders on all sides of the table and cells"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:98
+#: app/Modules/I18nStrings.php:100
 msgid "Bottom"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:99
+#: app/Modules/I18nStrings.php:101
 msgid "Bottom of the Table"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:100
+#: app/Modules/I18nStrings.php:102
 msgid "Browse and locate a CSV / JSON file you backed up before"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:101
+#: app/Modules/I18nStrings.php:103
 msgid "Bulk Actions"
 msgstr "Bulk Actions"
 
-#: app/Modules/I18nStrings.php:102
+#: app/Modules/I18nStrings.php:104
 msgid "Button Alignment"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:103
+#: app/Modules/I18nStrings.php:105
 msgid "Button Background Color"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:104
+#: app/Modules/I18nStrings.php:106
 msgid "Button BG Color"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:105
+#: app/Modules/I18nStrings.php:107
 msgid "Button Border Color"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:106
+#: app/Modules/I18nStrings.php:108
 msgid "Button Hover"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:107
-msgid ""
-"Button on Table is a pro Feature. It will not work without Pro Version."
-msgstr ""
-
-#: app/Modules/I18nStrings.php:108
-msgid "Button Options"
-msgstr ""
-
 #: app/Modules/I18nStrings.php:109
-msgid "Button Position In Frontend"
+msgid "Button on Table is a pro Feature. It will not work without Pro Version."
 msgstr ""
 
 #: app/Modules/I18nStrings.php:110
-msgid "Button Size"
+msgid "Button Options"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:111
-msgid "Button Text"
+msgid "Button Position In Frontend"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:112
-msgid "Button Text (HTML supported)"
+msgid "Button Size"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:113
-msgid "Button Text Color"
+msgid "Button Text"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:114
-msgid "Button/Link"
+msgid "Button Text (HTML supported)"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:115
-msgid "Buttons (CSV/Print)"
+msgid "Button Text Color"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:116
-msgid "Buttons Placement"
+msgid "Button/Link"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:117
-msgid "Buy Now Button Text"
+msgid "Buttons (CSV/Print)"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:118
-msgid "By Column"
+msgid "Buttons Placement"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:119
+msgid "Buy Now Button Text"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:120
+msgid "By Column"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:121
 msgid ""
 "By default, Only Administrator have access to manage the tables. By "
 "selecting additional roles below, you can give access to manage your Tables "
 "to other user roles."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:120
+#: app/Modules/I18nStrings.php:122
 msgid "Caching Configuration"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:121
+#: app/Modules/I18nStrings.php:123
 msgid "Caching Interval (In Minutes)"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:122
+#: app/Modules/I18nStrings.php:124
 msgid "cancel"
 msgstr "cancel"
 
-#: app/Modules/I18nStrings.php:123
+#: app/Modules/I18nStrings.php:125
 msgid "Cancel"
 msgstr "Utzi"
 
-#: app/Modules/I18nStrings.php:124
+#: app/Modules/I18nStrings.php:126
 msgid "Cart Text"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:125
+#: app/Modules/I18nStrings.php:127
+msgid "Cell Color Customization"
+msgstr "Gelaxken koloreen pertsonalizazioa"
+
+#: app/Modules/I18nStrings.php:128
 msgid "Cell Options"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:126
+#: app/Modules/I18nStrings.php:129
 msgid "Center"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:127
+#: app/Modules/I18nStrings.php:130
 msgid "Change"
-msgstr ""
+msgstr "Aldatu"
 
-#: app/Modules/I18nStrings.php:128
+#: app/Modules/I18nStrings.php:131
 msgid "Change the button background color"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:129
+#: app/Modules/I18nStrings.php:132
 msgid "Change the button border color"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:130
+#: app/Modules/I18nStrings.php:133
 msgid "Change the button text color"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:131
+#: app/Modules/I18nStrings.php:134
 msgid "Check out some more WPManageNinja’s finest plugins made for you."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:132
+#: app/Modules/I18nStrings.php:135
 msgid "Check the documentation for advanced use cases:"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:133
+#: app/Modules/I18nStrings.php:136
 msgid "Check tutorial for importing data from CSV file"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:134
+#: app/Modules/I18nStrings.php:137
 msgid "Check tutorial for importing Table from JSON file"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:135
+#: app/Modules/I18nStrings.php:138
 msgid "Checkbox"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:136
+#: app/Modules/I18nStrings.php:139
 msgid "Checkout Text"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:137
+#: app/Modules/I18nStrings.php:140
 msgid "Choose a CSV file or drag & drop it here."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:138
+#: app/Modules/I18nStrings.php:141
 msgid "Choose a file or drag & drop it here."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:139
+#: app/Modules/I18nStrings.php:142
 msgid "Choose a Template"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:140
+#: app/Modules/I18nStrings.php:143
 msgid "Choose CSV from Media Library"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:141
+#: app/Modules/I18nStrings.php:144
 msgid "Choose Form"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:142
+#: app/Modules/I18nStrings.php:145
 msgid "Choose how your table will be rendered on the frontend."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:143
+#: app/Modules/I18nStrings.php:146
 msgid "Choose Icon"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:144
+#: app/Modules/I18nStrings.php:147
 #, php-format
 msgid ""
 "Choose responsive breakpoints of your table columns. For more details check "
 "%1$sdocumentation%2$s."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:145
+#: app/Modules/I18nStrings.php:148
 msgid "Choose the data type of the column."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:146
+#: app/Modules/I18nStrings.php:149
 msgid "Choose the date format of the column."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:147
+#: app/Modules/I18nStrings.php:150
 msgid "Choose the text alignment for Column Rows"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:148
+#: app/Modules/I18nStrings.php:151
 msgid "Choose the text alignment. This will be applied only for header"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:149
+#: app/Modules/I18nStrings.php:152
 msgid "Clear Cache"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:150
+#: app/Modules/I18nStrings.php:153
 msgid "Clear External Caches"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:151
+#: app/Modules/I18nStrings.php:154
 msgid "Clear Table Cache"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:152
+#: app/Modules/I18nStrings.php:155
 msgid "click here"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:153
+#: app/Modules/I18nStrings.php:156
 msgid "Click here"
 msgstr "Klikatu hemen"
 
-#: app/Modules/I18nStrings.php:154
-msgid "click here to check again."
-msgstr ""
-
-#: app/Modules/I18nStrings.php:155
+#: app/Modules/I18nStrings.php:157
 msgid ""
 "Click on a cell to get cell-specific options. Selected cells will be "
 "highlighted."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:156
+#: app/Modules/I18nStrings.php:158
 msgid "Click to copy shortcode"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:157
+#: app/Modules/I18nStrings.php:159
 msgid "click to upload"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:158
-msgid "Close"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:159 config/table-builder/setting.php:237
+#: app/Modules/I18nStrings.php:161 config/table-builder/setting.php:237
 msgid "Color"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:160
+#: app/Modules/I18nStrings.php:162
 msgid ""
 "Color customization is a PRO feature. Please upgrade to pro apply this "
 "feature."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:161
+#: app/Modules/I18nStrings.php:163
 msgid "Colspan ( Cell-Merge )"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:162
+#: app/Modules/I18nStrings.php:164
 msgid "Colspan/Cell Merging Feature"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:163
+#: app/Modules/I18nStrings.php:165
 msgid "Column"
-msgstr ""
+msgstr "Zutabea"
 
-#: app/Modules/I18nStrings.php:164
+#: app/Modules/I18nStrings.php:166
 msgid "Column Background Color"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:165
+#: app/Modules/I18nStrings.php:167
 msgid "Column Key"
 msgstr "Column Key"
 
-#: app/Modules/I18nStrings.php:166
+#: app/Modules/I18nStrings.php:168
 msgid "Column key is for data mapping, export and import table data."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:167
+#: app/Modules/I18nStrings.php:169
 msgid "Column Key is required"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:168
-msgid ""
-"Column Key needs to be unique. Please add a suffix / prefix to make it "
-"unique"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:169
-msgid "Column Name"
-msgstr "Column Name"
-
 #: app/Modules/I18nStrings.php:170
-msgid "Column Options"
+msgid ""
+"Column Key needs to be unique. Please add a suffix / prefix to make it unique"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:171
-msgid "Column Text Color"
-msgstr ""
+msgid "Column Name"
+msgstr "Column Name"
 
 #: app/Modules/I18nStrings.php:172
-msgid "Column Title"
+msgid "Column Options"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:173
-msgid "Column Width"
+msgid "Column Text Color"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:174
-msgid "Columns"
+msgid "Column Title"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:175
-msgid "Compact Table"
+msgid "Column Width"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:176
-msgid "Compact View"
+msgid "Columns"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:177
-msgid "Completed"
+msgid "Compact Table"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:178
-msgid "Condensed table"
+msgid "Compact View"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:179
-msgid "Conditional Formatting"
+msgid "Completed"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:180
-msgid "Conditions"
+msgid "Condensed table"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:181
-msgid "confirm"
-msgstr "berretsi"
+msgid "Conditional Formatting"
+msgstr ""
 
 #: app/Modules/I18nStrings.php:182
-msgid "Connect External CSV"
+msgid "Conditions"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:183
-msgid "Connect Fluent Forms"
-msgstr ""
+msgid "confirm"
+msgstr "berretsi"
 
 #: app/Modules/I18nStrings.php:184
-msgid "Connect Google Sheets"
+msgid "Connect External CSV"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:185
-msgid "Connect with the Ninja Tables community on Social Media."
+msgid "Connect Fluent Forms"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:186
-msgid "Console Log JS Errors Silently"
+msgid "Connect Google Sheets"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:187
-msgid "Construct Table from Custom SQL Query"
+msgid "Connect with the Ninja Tables community on Social Media."
 msgstr ""
 
 #: app/Modules/I18nStrings.php:188
-msgid "Construct Table from Fluent Forms Entries"
+msgid "Console Log JS Errors Silently"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:189
-msgid "Construct Table from Posts / CPTs"
+msgid "Construct Table from Custom SQL Query"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:190
+msgid "Construct Table from Fluent Forms Entries"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:191
+msgid "Construct Table from Posts / CPTs"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:192
 msgid ""
 "Construct table from remote CSV file. Whenever your remote CSV data changes "
 "it will automatically sync here."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:191
+#: app/Modules/I18nStrings.php:193
 msgid "Construct Table from Your FluentCart Products"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:192
+#: app/Modules/I18nStrings.php:194
 msgid "Construct Table from Your WooCommerce Product Reviews"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:193
+#: app/Modules/I18nStrings.php:195
 msgid "Construct Table from Your WooCommerce Products"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:194
+#: app/Modules/I18nStrings.php:196
 msgid "Contains"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:195
+#: app/Modules/I18nStrings.php:197
 msgid "Content Alignment"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:196
+#: app/Modules/I18nStrings.php:198
 msgid "Content Text Alignment"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:197
+#: app/Modules/I18nStrings.php:199
 msgid "Continue Adding"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:198
-msgid ""
-"Convert to UTF-8 format ( Check this if your csv is non-unicode format)"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:199
-msgid "Convert to UTF-8 format (Check this if your CSV is non-unicode format)"
-msgstr ""
-
 #: app/Modules/I18nStrings.php:200
-msgid "Create"
+msgid "Convert to UTF-8 format ( Check this if your csv is non-unicode format)"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:201
-msgid "Create a Drag & Drop Table"
+msgid "Convert to UTF-8 format (Check this if your CSV is non-unicode format)"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:202
-msgid "Create a table by generating a sql query to any custom SQL database."
+msgid "Could not check your license"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:203
+msgid "Could not reach Ninja Tables Pro. Please try again."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:204
+msgid "Create"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:205
+msgid "Create a Drag & Drop Table"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:206
+msgid "Create a table by generating a sql query to any custom SQL database."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:207
 msgid ""
 "Create communities in WordPress with user profiles, forums, activity feeds, "
 "and messaging - all from your dashboard with 0 server issues."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:204
+#: app/Modules/I18nStrings.php:208
 msgid "Create Custom Filter UI in Table"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:205
+#: app/Modules/I18nStrings.php:209
+msgid "Create Date"
+msgstr "Sortze-data"
+
+#: app/Modules/I18nStrings.php:210
 msgid "Create New Table"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:206
+#: app/Modules/I18nStrings.php:211
 msgid "Create Products Table"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:207
+#: app/Modules/I18nStrings.php:212
 msgid ""
-"Create responsive and customizable WP posts tables from your existing "
-"posts/pages/custom post types with Ninja Tables pro."
+"Create responsive and customizable WP posts tables from your existing posts/"
+"pages/custom post types with Ninja Tables pro."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:208
+#: app/Modules/I18nStrings.php:213
 msgid "Create Reviews Table"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:209
+#: app/Modules/I18nStrings.php:214
 msgid ""
 "Create tables fast using drag & drop table mode. Add columns and rows "
 "manually, import, or pick a template. Learn more about drag & drop table."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:210
+#: app/Modules/I18nStrings.php:215
 msgid ""
 "Create visually impressive and dynamic data charts with this free WordPress "
 "charts plugin."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:211
+#: app/Modules/I18nStrings.php:216
 msgid "Create WordPress tables fast"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:212
+#: app/Modules/I18nStrings.php:217
 msgid "Create Your First Table"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:213
+#: app/Modules/I18nStrings.php:218
 msgid "Create your metadata on your FluentCart platform"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:214
+#: app/Modules/I18nStrings.php:219
 msgid "Create your metadata on your WooCommerce platform"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:215
+#: app/Modules/I18nStrings.php:220
 msgid "Created At"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:216
+#: app/Modules/I18nStrings.php:221
+msgid "Created By"
+msgstr "Sortzailea"
+
+#: app/Modules/I18nStrings.php:222
 msgid "CSV - Comma-separated values"
 msgstr "CSV - Comma-separated values"
 
-#: app/Modules/I18nStrings.php:217
+#: app/Modules/I18nStrings.php:223
 msgid "CSV Export / Print Button Settings for Frontend"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:218
+#: app/Modules/I18nStrings.php:224
 msgid "CSV or JSON"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:219
+#: app/Modules/I18nStrings.php:225
 msgid "Current Caching Interval:"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:220
+#: app/Modules/I18nStrings.php:226
 msgid "Current Page"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:221
+#: app/Modules/I18nStrings.php:227
 msgid "Current SQL Query:"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:222
+#: app/Modules/I18nStrings.php:228
 msgid "Custom"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:223 config/table-builder/setting.php:99
+#: app/Modules/I18nStrings.php:229 config/table-builder/setting.php:99
 msgid "Custom CSS"
 msgstr "CSS pertsonalizatua"
 
-#: app/Modules/I18nStrings.php:224
+#: app/Modules/I18nStrings.php:230
 msgid "Custom CSS/JS"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:225
-msgid "Custom Filters"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:226
-msgid ""
-"Custom Filters is introduced in version 2.4.0. Please update <b>Ninja tables"
-" pro</b> plugin to use this feature"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:227
-msgid "Custom Html Options"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:228
-msgid ""
-"Custom Javascript feature is a pro feature along with many awesome features."
-msgstr ""
-
-#: app/Modules/I18nStrings.php:229 config/table-builder/setting.php:105
-msgid "Custom JS"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:230
-msgid "Custom Scheme"
-msgstr ""
-
 #: app/Modules/I18nStrings.php:231
-msgid "Custom Search Filters"
+msgid "Custom Filters"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:232
 msgid ""
-"Custom Search Filters is useful if you want to add select box / Radio Button"
-" to show a group of rows of your table."
+"Custom Filters is introduced in version 2.4.0. Please update <b>Ninja tables "
+"pro</b> plugin to use this feature"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:233
-msgid "Custom SQL Query"
+msgid "Custom Html Options"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:234
+msgid ""
+"Custom Javascript feature is a pro feature along with many awesome features."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:235 config/table-builder/setting.php:105
+msgid "Custom JS"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:236
+msgid "Custom Scheme"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:237
+msgid "Custom Search Filters"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:238
+msgid ""
+"Custom Search Filters is useful if you want to add select box / Radio Button "
+"to show a group of rows of your table."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:239
+msgid "Custom SQL Query"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:240
 msgid ""
 "Customize table appearance based on the cell value. Add as many conditions "
 "as you like. Conditional formatting is a pro feature."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:235
+#: app/Modules/I18nStrings.php:241
 msgid "Customize Your Language Preferences"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:236
+#: app/Modules/I18nStrings.php:242
 msgid ""
 "Customize your table's column width, custom CSS class, column styling with "
 "this Pro feature."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:237
+#: app/Modules/I18nStrings.php:243
+msgid "Data Create Date"
+msgstr "Datuen sortze-data"
+
+#: app/Modules/I18nStrings.php:244
 msgid "Data Source"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:238
+#: app/Modules/I18nStrings.php:245
 msgid "Data Source URL"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:239
+#: app/Modules/I18nStrings.php:246
 msgid ""
 "Data Transformer is a powerful tool where you can concat any column values "
 "easily into any valid html and show as computed value."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:240
+#: app/Modules/I18nStrings.php:247
 msgid "Data Type"
 msgstr "Datu mota"
 
-#: app/Modules/I18nStrings.php:241
+#: app/Modules/I18nStrings.php:248
 msgid "DataTable"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:242
+#: app/Modules/I18nStrings.php:249
 msgid "DataTables"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:243
+#: app/Modules/I18nStrings.php:250
 msgid ""
 "DataTables CSV import reads selected Media CSV in chunks for better "
 "stability."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:244
+#: app/Modules/I18nStrings.php:251
 msgid "Date After 10 Days:"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:245
+#: app/Modules/I18nStrings.php:252
 msgid "Date Before 10 Days:"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:246
+#: app/Modules/I18nStrings.php:253
 msgid "Date Field"
 msgstr "Date Field"
 
-#: app/Modules/I18nStrings.php:247
+#: app/Modules/I18nStrings.php:254
 msgid "Date Filter Operator"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:248
+#: app/Modules/I18nStrings.php:255
 msgid "Date Format"
 msgstr "Date Format"
 
-#: app/Modules/I18nStrings.php:249
+#: app/Modules/I18nStrings.php:256
 msgid "Date Picker"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:250
+#: app/Modules/I18nStrings.php:257
 msgid "Date Range"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:251
+#: app/Modules/I18nStrings.php:258
 msgid "DB Host"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:252
+#: app/Modules/I18nStrings.php:259
 msgid "DB Host Port"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:253
+#: app/Modules/I18nStrings.php:260
 msgid "DB Name"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:254
+#: app/Modules/I18nStrings.php:261
 msgid "DB User Password"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:255
+#: app/Modules/I18nStrings.php:262
 msgid "DB username"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:256
-msgid "Deactivate License"
-msgstr "Lizentzia desaktibatu"
-
-#: app/Modules/I18nStrings.php:257
-msgid "Default"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:258
-msgid "Default - Lightweight and responsive"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:259
-msgid "Default DataTables styles"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:260
-msgid "Default Features"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:261
-msgid "Default Font Setting"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:262
-msgid "Default Pagination Setting"
-msgstr ""
-
 #: app/Modules/I18nStrings.php:263
-msgid "Default Placeholder"
+msgid "Deactivate"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:264
-msgid "Default Styling Library"
+msgid "Default"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:265
-msgid "Default Table Color"
+msgid "Default - Lightweight and responsive"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:266
-msgid "Default Value"
+msgid "Default DataTables styles"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:267
-msgid "Default WP SQL Table"
+msgid "Default Features"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:268
-msgid "Default: 10,20,50,100"
+msgid "Default Font Setting"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:269
-msgid "Delete"
-msgstr "ezabatu"
+msgid "Default Pagination Setting"
+msgstr ""
 
 #: app/Modules/I18nStrings.php:270
-msgid "Delete canceled"
+msgid "Default Placeholder"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:271
-msgid "Delete Column"
+msgid "Default Styling Library"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:272
-msgid "Delete Entries"
-msgstr "Ezabatu sarrerak"
+msgid "Default Table Color"
+msgstr ""
 
 #: app/Modules/I18nStrings.php:273
-msgid "Delete Tables"
+msgid "Default Value"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:274
-msgid "Demo"
+msgid "Default WP SQL Table"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:275
-msgid "Descending"
+msgid "Default: 10,20,50,100"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:276
-msgid "Descending Way"
-msgstr ""
+msgid "Delete"
+msgstr "ezabatu"
 
 #: app/Modules/I18nStrings.php:277
-msgid "Description"
+msgid "Delete canceled"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:278
-msgid "Description For Footer"
+msgid "Delete Column"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:279
-msgid "Description For Header"
-msgstr ""
+msgid "Delete Entries"
+msgstr "Ezabatu sarrerak"
 
 #: app/Modules/I18nStrings.php:280
-msgid "Deselect All"
+msgid "Delete Tables"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:281
-msgid "Disable automatic filter value sorting"
+msgid "Demo"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:282
-msgid "Disable Caching"
+msgid "Descending"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:283
-msgid "Disable frontend search for this column data"
+msgid "Descending Way"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:284
-msgid "Disable frontend sorting for this column"
+msgid "Description"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:285
-msgid "Disable Sticky header for mobile "
+msgid "Description For Footer"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:286
-msgid "Display Frontend Loader"
+msgid "Description For Header"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:287
-msgid "Displays products content in a searchable, sortable with Ninja Tables."
+msgid "Deselect All"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:288
+msgid "Disable automatic filter value sorting"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:289
+msgid "Disable Caching"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:290
+msgid "Disable frontend search for this column data"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:291
+msgid "Disable frontend sorting for this column"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:292
+msgid "Disable Sticky header for mobile "
+msgstr ""
+
+#: app/Modules/I18nStrings.php:293
+msgid "Disabled"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:294
+msgid "Display Frontend Loader"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:295
+msgid "Displays products content in a searchable, sortable with Ninja Tables."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:296
 msgid ""
 "Displays WooCommerce product reviews in a searchable, sortable, customized "
 "table."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:289
+#: app/Modules/I18nStrings.php:297
 msgid "Documentation"
 msgstr "Dokumentazio"
 
-#: app/Modules/I18nStrings.php:290
+#: app/Modules/I18nStrings.php:298
 msgid "Does Not Contain"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:291
+#: app/Modules/I18nStrings.php:299
 msgid "Don't Handle Global Javascript Errors (Default)"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:292
+#: app/Modules/I18nStrings.php:300
 msgid "Download Button Text / HTML"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:293
+#: app/Modules/I18nStrings.php:301
 msgid "Download Sample CSV"
 msgstr "Deskargatu Sample CSV"
 
-#: app/Modules/I18nStrings.php:294
+#: app/Modules/I18nStrings.php:302
 msgid "Drag & Drop Table"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:295
+#: app/Modules/I18nStrings.php:303
 msgid "Drag and Drop Table Data Sorting"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:296
+#: app/Modules/I18nStrings.php:304
 msgid "Drop file here or "
 msgstr ""
 
-#: app/Modules/I18nStrings.php:297
+#: app/Modules/I18nStrings.php:305
 msgid "Duplicate"
 msgstr "bikoiztua"
 
-#: app/Modules/I18nStrings.php:298
+#: app/Modules/I18nStrings.php:306
 msgid "Duplicate column"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:299
+#: app/Modules/I18nStrings.php:307
+msgid "Duplicate Data"
+msgstr "Datuak bikoiztu"
+
+#: app/Modules/I18nStrings.php:308
 msgid "Duplicate row"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:300
+#: app/Modules/I18nStrings.php:309
 msgid "Dynamic Column Data Settings"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:301
+#: app/Modules/I18nStrings.php:310
 msgid "Dynamic Data from Table Column"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:302
+#: app/Modules/I18nStrings.php:311
 msgid "Dynamic Fields Settings"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:303
+#: app/Modules/I18nStrings.php:312
 msgid "Dynamic Post Data Settings"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:304
-msgid "Edit Custom Filter"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:305
-msgid "Edit Popup Heading"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:306
-msgid "Edit Row Button Label"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:307
-msgid "Elements"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:308
-msgid "Empty Star Color"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:309
-msgid "Enable a hover state on table rows"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:310
-msgid "Enable click to copy for this column cells"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:311
-msgid "Enable CSV Export Button"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:312
-msgid "Enable Excel Formula support for Transform Value"
-msgstr ""
-
 #: app/Modules/I18nStrings.php:313
-msgid "Enable first column sticky for table"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:314
-msgid "Enable Frontend Copy Cell"
+msgid "e.g. 203.0.113.10 or db.example.com"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:315
-msgid "Enable Frontend Editing"
+msgid "Edit Custom Filter"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:316
-msgid "Enable Full HTML Cache"
+msgid "Edit Popup Heading"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:317
-msgid "Enable HTML Cache"
-msgstr ""
+msgid "Edit Row"
+msgstr "Errenkada editatu"
 
 #: app/Modules/I18nStrings.php:318
-msgid "Enable HTML Table Header Content"
+msgid "Edit Row Button Label"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:319
-msgid "Enable Icon"
-msgstr ""
+msgid "Edit Table Column"
+msgstr "Taula-zutabea editatu"
 
 #: app/Modules/I18nStrings.php:320
-msgid "Enable Multi-Select"
+msgid "Elements"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:321
-msgid "Enable Multi-Selection"
+msgid "Empty Star Color"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:322
-msgid "Enable Ninja Charts"
+msgid "Enable a hover state on table rows"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:323
-msgid "Enable Print Button"
+msgid "Enable click to copy for this column cells"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:324
-msgid "Enable Progressive filter for dynamic filter options"
+msgid "Enable CSV Export Button"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:325
-msgid "Enable Row Details Modal"
+msgid "Enable Excel Formula support for Transform Value"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:326
-msgid "Enable sorting of the table by the visitor"
-msgstr "Gaitu bisitariaren taula ordenatzea"
+msgid "Enable first column sticky for table"
+msgstr ""
 
 #: app/Modules/I18nStrings.php:327
-msgid "Enable SQL-Module Permission for selected user roles"
+msgid "Enable Frontend Copy Cell"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:328
-msgid "Enable Stackable Table"
+msgid "Enable Frontend Editing"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:329
-msgid "Enable sticky header for table"
+msgid "Enable Full HTML Cache"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:330
+msgid "Enable HTML Cache"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:331
+msgid "Enable HTML Table Header Content"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:332
+msgid "Enable Icon"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:333
+msgid "Enable Multi-Select"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:334
+msgid "Enable Multi-Selection"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:335
+msgid "Enable Ninja Charts"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:336
+msgid "Enable Print Button"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:337
+msgid "Enable Progressive filter for dynamic filter options"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:338
+msgid "Enable Row Details Modal"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:339
+msgid "Enable sorting of the table by the visitor"
+msgstr "Gaitu bisitariaren taula ordenatzea"
+
+#: app/Modules/I18nStrings.php:340
+msgid "Enable SQL-Module Permission for selected user roles"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:341
+msgid "Enable Stackable Table"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:342
+msgid "Enable sticky header for table"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:343
 msgid ""
 "Enable Strict Mode (If Enable, Ninja Tables will try to match exact value)"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:331
+#: app/Modules/I18nStrings.php:344
 msgid "Enable the visitor to filter or search the table."
 msgstr "Gaitu bisitaria taula iragazi edo bilatzeko."
 
-#: app/Modules/I18nStrings.php:332
+#: app/Modules/I18nStrings.php:345
 msgid "Enable this if you want to link to post/Author permalink"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:333
+#: app/Modules/I18nStrings.php:346
 msgid "Enable this if you want to link to Taxonomy permalink"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:334
+#: app/Modules/I18nStrings.php:347
 msgid ""
 "Enable this if you want to make the author as table filter action. So when "
 "user click on those filters then they will see only the selected author "
 "posts."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:335
+#: app/Modules/I18nStrings.php:348
 msgid ""
 "Enable this if you want to make the taxonomies as table filter action. So "
-"when user click on those filters then they will see only those type of "
-"posts."
-msgstr ""
-
-#: app/Modules/I18nStrings.php:336
-msgid "Enable this if you want to open the links to new tab"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:337
-msgid "Enable this if you want to show table description in frontend"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:338
-msgid "Enable this if you want to show table title in frontend"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:339
-msgid "Enable this to show rating value alongside stars"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:340
-msgid "engine"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:341
-msgid "Enter a colum key"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:342
-msgid "Enter a column name to set the header title"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:343
-msgid "Enter a column name to set the header title."
-msgstr ""
-
-#: app/Modules/I18nStrings.php:344
-msgid "Enter a table caption if you want to show"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:345
-msgid "Enter a title to identify your table"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:346
-msgid "Enter cart button text"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:347
-msgid "Enter checkout button text"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:348
-msgid "enter comma separated value"
+"when user click on those filters then they will see only those type of posts."
 msgstr ""
 
 #: app/Modules/I18nStrings.php:349
-msgid "Enter Filter Label"
+msgid "Enable this if you want to open the links to new tab"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:350
-msgid "Enter Filter Title"
+msgid "Enable this if you want to show table description in frontend"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:351
-msgid "Enter Filter Value"
+msgid "Enable this if you want to show table title in frontend"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:352
-msgid "Enter here"
+msgid "Enable this to show rating value alongside stars"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:353
-msgid "Enter moment.js supported format"
+msgid "engine"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:354
-msgid "Enter placeholder"
+msgid "Enter a colum key"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:355
-msgid "Enter Select items one per line"
+msgid "Enter a column name to set the header title"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:356
-msgid "Enter table name here...."
+msgid "Enter a column name to set the header title."
 msgstr ""
 
 #: app/Modules/I18nStrings.php:357
-msgid "Enter the button text you want to show on the button."
+msgid "Enter a table caption if you want to show"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:358
-msgid "Enter the selection placeholder, default: Select"
+msgid "Enter a title to identify your table"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:359
-msgid "Enter Value"
+msgid "Enter cart button text"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:360
-msgid "Enter your license key"
-msgstr "Enter your license key"
+msgid "Enter checkout button text"
+msgstr ""
 
 #: app/Modules/I18nStrings.php:361
-msgid "Enter your source URL"
+msgid "enter comma separated value"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:362
-msgid "Entry Type:"
+msgid "Enter Filter Label"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:363
-msgid "Equal"
+msgid "Enter Filter Title"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:364
-msgid "European Style - decimal comma (123.234,01)"
+msgid "Enter Filter Value"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:365 config/table-builder/setting.php:87
-msgid "Even Row Background"
+#: app/Modules/I18nStrings.php:365
+msgid "Enter here"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:366
-msgid "Even Row Colors"
+msgid "Enter moment.js supported format"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:367
-msgid "Example Usage"
+msgid "Enter placeholder"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:368
-msgid "Expand All"
+msgid "Enter Select items one per line"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:369
-msgid "Expand First"
+msgid "Enter table name here...."
 msgstr ""
 
 #: app/Modules/I18nStrings.php:370
-msgid "Export"
+msgid "Enter the button text you want to show on the button."
 msgstr ""
 
 #: app/Modules/I18nStrings.php:371
-msgid "Export Table"
-msgstr "Esportatu taula"
+msgid "Enter the selection placeholder, default: Select"
+msgstr ""
 
 #: app/Modules/I18nStrings.php:372
-msgid "Extra Classes"
-msgstr "Extra Classes"
+msgid "Enter Value"
+msgstr ""
 
 #: app/Modules/I18nStrings.php:373
-msgid "Extra CSS Class for the table"
-msgstr "Extra CSS Class for the table"
+msgid "Enter your license key"
+msgstr "Enter your license key"
 
 #: app/Modules/I18nStrings.php:374
-msgid "Features"
+msgid "Enter your source URL"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:375
-msgid "Fetch Columns"
+msgid "Entry Type:"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:376
-msgid "Field Type"
+msgid "Equal"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:377
-msgid "Field Value"
+msgid "European Style - decimal comma (123.234,01)"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:378
-msgid "File upload failed"
+#: app/Modules/I18nStrings.php:378 config/table-builder/setting.php:87
+msgid "Even Row Background"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:379
-msgid "Filled Star Color"
+msgid "Even Row Colors"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:380
-msgid "Filter Appearance"
+msgid "Example Usage"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:381
-msgid "Filter Columns"
+msgid "Expand All"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:382
-msgid "Filter Label"
+msgid "Expand First"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:383
-msgid "Filter Options"
+msgid "Expired"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:384
-msgid "Filter Prefix"
+#, php-format
+msgid "expired %1$s days ago"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:385
-msgid "Filter Title"
+msgid "Expires"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:386
-msgid "Filter UI"
+msgid "Export"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:387
-msgid "Filter UI Type"
-msgstr ""
+msgid "Export Table"
+msgstr "Esportatu taula"
 
 #: app/Modules/I18nStrings.php:388
-msgid "Filterable"
-msgstr "Filterable"
+msgid "Extra Classes"
+msgstr "Extra Classes"
 
 #: app/Modules/I18nStrings.php:389
-msgid "First Column"
-msgstr ""
+msgid "Extra CSS Class for the table"
+msgstr "Extra CSS Class for the table"
 
 #: app/Modules/I18nStrings.php:390
-msgid "First Day"
+msgid "Features"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:391
-msgid "First day of the week"
+msgid "Fetch Columns"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:392
-msgid "First page"
+msgid "Fetching license information, please wait…"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:393
-msgid "Fixed Layout"
+msgid "Field Type"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:394
-msgid "Fluent Form Entries"
+msgid "Field Value"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:395
-msgid "Fluent Forms Integration"
+msgid "File upload failed"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:396
-msgid "FluentCart Table"
+msgid "Filled Star Color"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:397
-msgid "Font color"
+msgid "Filter Appearance"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:398 config/table-builder/setting.php:242
-msgid "Font Family"
+#: app/Modules/I18nStrings.php:398
+msgid "Filter Columns"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:399 config/table-builder/setting.php:230
-msgid "Font Size"
+#: app/Modules/I18nStrings.php:399
+msgid "Filter Label"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:400
-msgid "Font Style"
+msgid "Filter Options"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:401
-msgid "Font X Offset"
+msgid "Filter Prefix"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:402
-msgid "Font Y Offset"
+msgid "Filter Title"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:403
-msgid "FooTable"
+msgid "Filter UI"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:404
-msgid "Footer Colors"
-msgstr "Oinarrizko koloreak"
+msgid "Filter UI Type"
+msgstr ""
 
 #: app/Modules/I18nStrings.php:405
-msgid "Footer in each page"
-msgstr ""
+msgid "Filterable"
+msgstr "Filterable"
 
-#: app/Modules/I18nStrings.php:406
-msgid ""
-"For security reason, Custom SQL module is enabled only for Administrator "
-"user role. Please ask your site administrator to enable SQL module for other"
-" user roles."
-msgstr ""
+#: app/Modules/I18nStrings.php:406 app/Services/TranslationService.php:38
+msgid "First"
+msgstr "Lehena"
 
 #: app/Modules/I18nStrings.php:407
-msgid ""
-"For Stackable Tables, Live preview is disabled here. Please check on preview"
-" url"
+msgid "First Column"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:408
-msgid "Format"
+msgid "First Day"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:409
-msgid "Four Columns"
+msgid "First day of the week"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:410
-msgid "Free table templates"
+msgid "First page"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:411
-msgid "From Placeholder"
+msgid "Fixed Layout"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:412
-msgid "Frontend Editing"
+msgid "Fluent Form Entries"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:413
+msgid "Fluent Forms Integration"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:414
+msgid "FluentCart Table"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:415
+msgid "Font color"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:416 config/table-builder/setting.php:242
+msgid "Font Family"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:417 config/table-builder/setting.php:230
+msgid "Font Size"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:418
+msgid "Font Style"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:419
+msgid "Font X Offset"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:420
+msgid "Font Y Offset"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:421
+msgid "FooTable"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:422
+msgid "Footer Colors"
+msgstr "Oinarrizko koloreak"
+
+#: app/Modules/I18nStrings.php:423
+msgid "Footer in each page"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:424
+msgid ""
+"For security reason, Custom SQL module is enabled only for Administrator "
+"user role. Please ask your site administrator to enable SQL module for other "
+"user roles."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:425
+msgid ""
+"For Stackable Tables, Live preview is disabled here. Please check on preview "
+"url"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:426
+msgid "Format"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:427
+msgid "Four Columns"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:428
+msgid "Free table templates"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:429
+msgid "From Placeholder"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:430
+msgid "Frontend Editing"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:431
 msgid ""
 "Frontend Editing is a pro only feature. Please purchase <b>&quot;Ninja "
 "Tables Pro&quot;</b> to use this feature."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:414
+#: app/Modules/I18nStrings.php:432
 msgid "Frontend Editing Settings"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:415
+#: app/Modules/I18nStrings.php:433
 msgid "Full Width"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:416 config/table-builder/component.php:23
+#: app/Modules/I18nStrings.php:434 config/table-builder/component.php:23
 #: config/table-builder/responsive.php:9 config/table-builder/setting.php:9
 msgid "General"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:417
+#: app/Modules/I18nStrings.php:435
 msgid "General Color Options"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:418
+#: app/Modules/I18nStrings.php:436
 msgid "Get In Touch"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:419
+#: app/Modules/I18nStrings.php:437
 msgid "Get Priority Support for any Issue"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:421
+#: app/Modules/I18nStrings.php:439
 msgid ""
 "Get smart, fast, and free email delivery with the most efficient WordPress "
-"plugin for transactional emails using secure, authenticated SMTP "
-"connections."
-msgstr ""
-
-#: app/Modules/I18nStrings.php:422
-msgid "Get Support"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:423
-msgid ""
-"Get the best payment and donation plugin for your WordPress website. It's an"
-" ideal solution for businesses, fundraising, or membership programs."
-msgstr ""
-
-#: app/Modules/I18nStrings.php:424
-msgid ""
-"Get the fastest email newsletter and CRM solution in WordPress for smart and"
-" effective email marketing. Join 60k+ users for happy emailing!"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:425
-msgid ""
-"Get this WordPress social tool to embed live social feeds, reviews, and chat"
-" widgets directly into your website to boost engagement and social proof."
-msgstr ""
-
-#: app/Modules/I18nStrings.php:426
-msgid "Getting started with Ninja Tables"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:427
-msgid "Global Appearance"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:428
-msgid "Global Appearance Settings"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:429
-msgid "Global Javascript Error Handling"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:430
-msgid "Global Settings"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:431
-msgid "Greater Than"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:432
-msgid "Greater Than Equal"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:433
-msgid "Greater Than Or Equal To"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:434
-msgid "Handle Error But don't Log"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:435 config/table-builder/setting.php:82
-msgid "Header Background"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:436
-msgid "Header HTML Content"
-msgstr "Goiburuko HTML edukia"
-
-#: app/Modules/I18nStrings.php:437
-msgid "Header in each page"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:438
-msgid "Header Text Align"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:439
-msgid "Header Text Alignment"
+"plugin for transactional emails using secure, authenticated SMTP connections."
 msgstr ""
 
 #: app/Modules/I18nStrings.php:440
-msgid "Help & Documentation"
+msgid "Get Support"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:441
-msgid "here"
+msgid ""
+"Get the best payment and donation plugin for your WordPress website. It's an "
+"ideal solution for businesses, fundraising, or membership programs."
 msgstr ""
 
 #: app/Modules/I18nStrings.php:442
-msgid "Hidden On Desktop"
+msgid ""
+"Get the fastest email newsletter and CRM solution in WordPress for smart and "
+"effective email marketing. Join 60k+ users for happy emailing!"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:443
-msgid "Hide <b>out of stocks</b> items"
+msgid ""
+"Get this WordPress social tool to embed live social feeds, reviews, and chat "
+"widgets directly into your website to boost engagement and social proof."
 msgstr ""
 
 #: app/Modules/I18nStrings.php:444
-msgid "Hide All Borders"
+msgid "Getting started with Ninja Tables"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:445
-msgid "Hide column headings"
+msgid "Global Appearance"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:446
-msgid "Hide empty items on responsive breakdown"
+msgid "Global Appearance Settings"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:447
-msgid "Hide Header Row"
+msgid "Global Javascript Error Handling"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:448
-msgid "Hide Horizontal Borders"
+msgid "Global Settings"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:449
-msgid "Hide internal borders"
+msgid "Grace Period"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:450
-msgid "Hide Labels on responsive breakdown"
+msgid "Greater Than"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:451
-msgid "Hide Pagination (Show all data at once)"
+msgid "Greater Than Equal"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:452
-msgid "Hide Vertical Borders"
+msgid "Greater Than Or Equal To"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:453
-msgid "Highlight Column"
+msgid "Handle Error But don't Log"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:454
+msgid "Have a new license key?"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:455 config/table-builder/setting.php:82
+msgid "Header Background"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:456
+msgid "Header HTML Content"
+msgstr "Goiburuko HTML edukia"
+
+#: app/Modules/I18nStrings.php:457
+msgid "Header in each page"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:458
+msgid "Header Text Align"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:459
+msgid "Header Text Alignment"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:460
+msgid "Help & Documentation"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:461
+msgid "here"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:462
+msgid "Hidden On Desktop"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:463
+msgid "Hide <b>out of stocks</b> items"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:464
+msgid "Hide All Borders"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:465
+msgid "Hide column headings"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:466
+msgid "Hide empty items on responsive breakdown"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:467
+msgid "Hide Header Row"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:468
+msgid "Hide Horizontal Borders"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:469
+msgid "Hide internal borders"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:470
+msgid "Hide Labels on responsive breakdown"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:471
+msgid "Hide Pagination (Show all data at once)"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:472
+msgid "Hide Vertical Borders"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:473
+msgid "Highlight Column"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:474
 msgid "Highlighted Column Height"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:455
+#: app/Modules/I18nStrings.php:475
 msgid ""
 "Hold \"SHIFT\" and click on cells to select multiple cells for merge cells."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:456
+#: app/Modules/I18nStrings.php:476
 msgid "Hover"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:457
+#: app/Modules/I18nStrings.php:477
 msgid "Hover Background"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:458
+#: app/Modules/I18nStrings.php:478
 msgid "Hover rows"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:459
+#: app/Modules/I18nStrings.php:479
 msgid "How does the Ninja Tables Custom filter work?"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:460
+#: app/Modules/I18nStrings.php:480
 msgid "How To Create a WooCommerce Product Table with Ninja Tables?"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:461
+#: app/Modules/I18nStrings.php:481
 msgid "How to create Google Sheets integrated tables with Ninja Tables?"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:462
+#: app/Modules/I18nStrings.php:482
 msgid "How to export-import tables in Ninja Tables?"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:463
+#: app/Modules/I18nStrings.php:483
 msgid "How to make a WP Post Table?"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:464
+#: app/Modules/I18nStrings.php:484
 msgid "How would you like to create your table?"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:465
+#: app/Modules/I18nStrings.php:485
 msgid "HTML Field"
 msgstr "HTML Field"
 
-#: app/Modules/I18nStrings.php:466 config/table-builder/component.php:86
+#: app/Modules/I18nStrings.php:486 config/table-builder/component.php:86
 msgid "Icon"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:467
+#: app/Modules/I18nStrings.php:487
 msgid "Icon Color"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:468
+#: app/Modules/I18nStrings.php:488
 msgid "Icon Options"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:469
+#: app/Modules/I18nStrings.php:489
 msgid "Icon Position"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:470
+#: app/Modules/I18nStrings.php:490
 msgid "Icon Size"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:471
+#: app/Modules/I18nStrings.php:491
 msgid "ID"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:472
+#: app/Modules/I18nStrings.php:492
 msgid "If Cell Value"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:473
-msgid "If you already renewed your license then please"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:474
+#: app/Modules/I18nStrings.php:493
 msgid ""
 "If You enable this then columns headings will not show into responsive "
 "drawer / Stackable View"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:475
+#: app/Modules/I18nStrings.php:494
 msgid ""
 "If you enable this then ninja tables will cache the full html of the table "
 "and render that without interact with database. You can set the time how "
 "many minutes it will cache each iteration."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:476
+#: app/Modules/I18nStrings.php:495
 msgid ""
 "If you enable this then on pagination change, the table will be scrolled to "
 "top"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:477
+#: app/Modules/I18nStrings.php:496
 msgid ""
-"If You enable this then the empty items will not show into responsive drawer"
-" / Stackable View"
+"If You enable this then the empty items will not show into responsive "
+"drawer / Stackable View"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:478
+#: app/Modules/I18nStrings.php:497
 msgid ""
 "If You enable this then this column data will not be filterable at the "
 "frontend."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:479
+#: app/Modules/I18nStrings.php:498
 msgid ""
 "If You enable this then this column data will not be sortable at the "
 "frontend."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:480
-msgid ""
-"If you enable this then Users can change the items per page on frontend"
+#: app/Modules/I18nStrings.php:499
+msgid "If you enable this then Users can change the items per page on frontend"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:481
-msgid ""
-"If You enable this then users can click on cells to copy their content."
+#: app/Modules/I18nStrings.php:500
+msgid "If You enable this then users can click on cells to copy their content."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:482
+#: app/Modules/I18nStrings.php:501
 msgid ""
 "If You enable this, Then the search input will take all the available space "
 "(100% width)"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:483
+#: app/Modules/I18nStrings.php:502
 msgid "If you select yes, Then admin can select multiple item on create data"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:484
+#: app/Modules/I18nStrings.php:503
 msgid "If you select yes, then time picker will be available"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:485
+#: app/Modules/I18nStrings.php:504
 msgid ""
 "If you use responsive breakdown then the '+' icon will show at the last "
 "visible column"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:486
+#: app/Modules/I18nStrings.php:505
 msgid ""
-"If you want to clear all the Ninja tables cache, please click on the \"Clear"
-" Table Cache\" button or if you want to clear the cache by popular external "
+"If you want to clear all the Ninja tables cache, please click on the \"Clear "
+"Table Cache\" button or if you want to clear the cache by popular external "
 "plugins please click \"Clear External Caches\"."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:487
+#: app/Modules/I18nStrings.php:506
 msgid "Iframe Lightbox"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:488
+#: app/Modules/I18nStrings.php:507
 msgid "Iframe URL (Only The URL)"
-msgstr ""
+msgstr "Iframe URLa (URLa soilik)"
 
-#: app/Modules/I18nStrings.php:489
+#: app/Modules/I18nStrings.php:508
 msgid "Image Alternative Text"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:490
+#: app/Modules/I18nStrings.php:509
 msgid "Image Lightbox"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:491
+#: app/Modules/I18nStrings.php:510
 msgid "Image Link"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:492
+#: app/Modules/I18nStrings.php:511
 msgid "Image Linkable?"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:493
+#: app/Modules/I18nStrings.php:512
 msgid "Image Only"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:494
+#: app/Modules/I18nStrings.php:513
 msgid "Image Options"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:495
+#: app/Modules/I18nStrings.php:514
 msgid "Image Shape"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:496
+#: app/Modules/I18nStrings.php:515
 msgid "Image Size"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:497
+#: app/Modules/I18nStrings.php:516
 msgid "Image Upload"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:498
+#: app/Modules/I18nStrings.php:517
 msgid ""
-"Image upload with lightbox, download link is a pro feature. It will not work"
-" without Pro Version"
+"Image upload with lightbox, download link is a pro feature. It will not work "
+"without Pro Version"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:501
+#: app/Modules/I18nStrings.php:520
 msgid ""
 "Import CSV data into the existing table. Please note that, your CSV data "
 "structure need to follow the sample CSV. Download the sample CSV to ensure "
 "correct data formatting."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:502
+#: app/Modules/I18nStrings.php:521
 msgid "Import CSV/JSON from URL"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:503
+#: app/Modules/I18nStrings.php:522
 msgid "Import data:"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:504
+#: app/Modules/I18nStrings.php:523
 msgid "Import failed. Please try again."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:505
+#: app/Modules/I18nStrings.php:524
 msgid "Import Format"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:506
+#: app/Modules/I18nStrings.php:525
 msgid "Import Format:"
 msgstr "Import Format:"
 
-#: app/Modules/I18nStrings.php:507
+#: app/Modules/I18nStrings.php:526
 msgid "Import From Other WP Table Plugin"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:508
+#: app/Modules/I18nStrings.php:527
 msgid "Import initialization failed."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:509
+#: app/Modules/I18nStrings.php:528
 msgid "Import Progress"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:510
+#: app/Modules/I18nStrings.php:529
 msgid ""
 "Import stopped: too many chunk requests. Please check the imported data."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:511
+#: app/Modules/I18nStrings.php:530
 msgid "Import Table"
 msgstr "Inportatu taula"
 
-#: app/Modules/I18nStrings.php:512
+#: app/Modules/I18nStrings.php:531
 msgid "Import Table from CSV / JSON File"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:513
+#: app/Modules/I18nStrings.php:532
 msgid "Import table from existing CSV or JSON file."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:514
+#: app/Modules/I18nStrings.php:533
 msgid "Import table from here"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:515
+#: app/Modules/I18nStrings.php:534
 msgid "Import/Export"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:516
+#: app/Modules/I18nStrings.php:535
 msgid "Imported successfully."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:517
+#: app/Modules/I18nStrings.php:536
 msgid "Importing the table, please wait a bit ..."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:518
+#: app/Modules/I18nStrings.php:537
 msgid "Importing..."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:519
-msgid "Incremental New Premium Features"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:520
-msgid "Initial Hidden Mobile"
-msgstr "Initial Hidden Mobile"
-
-#: app/Modules/I18nStrings.php:521
-msgid "Initial Hidden Mobile and Tab"
-msgstr "Initial Hidden Mobile and Tab"
-
-#: app/Modules/I18nStrings.php:522
-msgid "Initial Hidden Mobile, Tab and Regular Computers"
-msgstr "Initial Hidden Mobile, Tab and Regular Computers"
-
-#: app/Modules/I18nStrings.php:523
-msgid "Initial Order By"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:524
-msgid "Insert bottom row"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:525
-msgid "Insert column after"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:526
-msgid "Insert column before"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:527
-msgid "Insert left column"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:528
-msgid "Insert right column"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:529
-msgid "Insert row after"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:530
-msgid "Insert row before"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:531
-msgid "Insert top row"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:532
-msgid "Install Fluent Forms Now"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:533
-msgid "Installing WP Fluent From..."
-msgstr ""
-
-#: app/Modules/I18nStrings.php:534
-msgid "Introduction"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:535
-msgid "Invalid License Key"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:536
-msgid "Is Editable?"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:537
-msgid "Is Required?"
-msgstr ""
-
 #: app/Modules/I18nStrings.php:538
-msgid "Item Spacing"
+#, php-format
+msgid "in %1$s days"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:539
-msgid "Item Spacing Vertically"
+msgid "Incremental New Premium Features"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:540
-msgid "items"
-msgstr ""
+msgid "Initial Hidden Mobile"
+msgstr "Initial Hidden Mobile"
 
 #: app/Modules/I18nStrings.php:541
-msgid "Items Per Page"
-msgstr ""
+msgid "Initial Hidden Mobile and Tab"
+msgstr "Initial Hidden Mobile and Tab"
 
 #: app/Modules/I18nStrings.php:542
-msgid "JSON - Exported From Ninja Tables"
-msgstr "JSON - Exported From Ninja Tables"
+msgid "Initial Hidden Mobile, Tab and Regular Computers"
+msgstr "Initial Hidden Mobile, Tab and Regular Computers"
 
 #: app/Modules/I18nStrings.php:543
-msgid "JSON - Javascript Object Notation"
+msgid "Initial Order By"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:544
-msgid "JSON/CSV - Exported From Drag & Drop Tables"
+msgid "Insert bottom row"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:545
-msgid "Just a Name to identify your Filter"
+msgid "Insert column after"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:546
-msgid "Keep Blank or 0 to disable caching for table data"
+msgid "Insert column before"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:547
-msgid "Keep it blank if you don't need any filter instruction."
+msgid "Insert left column"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:548
-msgid "Language Settings"
+msgid "Insert right column"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:549
-msgid "Laptop"
+msgid "Insert row after"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:550
-msgid "Large Devices (imac)"
+msgid "Insert row before"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:551
-msgid "Large File Source"
+msgid "Insert top row"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:552
-msgid "Last Column"
+msgid "Install Fluent Forms Now"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:553
-msgid "Last page"
+msgid "Installing WP Fluent From..."
 msgstr ""
 
 #: app/Modules/I18nStrings.php:554
-msgid "Leave a Review"
+msgid "Introduction"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:555
-msgid "Left"
+msgid "Invalid"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:556
-msgid "Legacy"
+msgid "Is Editable?"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:557
-msgid "Less Than"
+msgid "Is Required?"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:558
-msgid "Less Than Equal"
+msgid "Item Spacing"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:559
-msgid "Less Than Or Equal To"
+msgid "Item Spacing Vertically"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:560
-msgid "Library"
+msgid "items"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:561
-msgid "License"
-msgstr "License"
-
-#: app/Modules/I18nStrings.php:562
-msgid "License Key"
+msgid "Items Per Page"
 msgstr ""
 
+#: app/Modules/I18nStrings.php:562
+msgid "JSON - Exported From Ninja Tables"
+msgstr "JSON - Exported From Ninja Tables"
+
 #: app/Modules/I18nStrings.php:563
-msgid "Licensing"
-msgstr "Lizentzia"
+msgid "JSON - Javascript Object Notation"
+msgstr ""
 
 #: app/Modules/I18nStrings.php:564
-msgid "Licensing has been expired"
+msgid "JSON/CSV - Exported From Drag & Drop Tables"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:565
-msgid "Link"
+msgid "Just a Name to identify your Filter"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:566
-msgid "Link rel attributes"
+msgid "Keep Blank or 0 to disable caching for table data"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:567
-msgid "Link to Author Permalink"
+msgid "Keep it blank if you don't need any filter instruction."
 msgstr ""
 
 #: app/Modules/I18nStrings.php:568
-msgid "Link to post permalink"
+msgid "Language Settings"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:569
-msgid "Link to Post/Author Permalink"
+msgid "Laptop"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:570
-msgid "Link to Product page"
+msgid "Large Devices (imac)"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:571
-msgid "Link to Taxonomy"
+msgid "Large File Source"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:572
-msgid "Link to Taxonomy Permalink"
-msgstr ""
+#: app/Modules/I18nStrings.php:572 app/Services/TranslationService.php:39
+msgid "Last"
+msgstr "Azkena"
 
 #: app/Modules/I18nStrings.php:573
-msgid "Link to URL"
+msgid "Last checked"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:574
-msgid "Link With Rel Attribute"
+msgid "Last Column"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:575 config/table-builder/component.php:116
-msgid "List"
+#: app/Modules/I18nStrings.php:575
+msgid "Last page"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:576
-msgid "List Icon"
+msgid "Leave a Review"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:577
-msgid "List Options"
+msgid "Leave as is to keep the current password."
 msgstr ""
 
 #: app/Modules/I18nStrings.php:578
-msgid "List Type"
+msgid "Left"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:579
-msgid "Logged in user posts"
+msgid "Legacy"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:580
-msgid "Make Button as rounded corner"
+msgid "Less Than"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:581
-msgid "Make cell contents vertically centered"
+msgid "Less Than Equal"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:582
-msgid "Make Force download"
+msgid "Less Than Or Equal To"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:583
-msgid "Make image as lightbox"
+msgid "Library"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:584
-msgid "Make search input as full width"
-msgstr ""
+msgid "License"
+msgstr "License"
 
 #: app/Modules/I18nStrings.php:585
-msgid "Make tables more compact by cutting cell padding in half"
+msgid "License activated"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:586
-msgid "Make Taxonomies as Table Filter"
+msgid "License deactivated"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:587
-msgid "Manage cell"
+msgid "License Key"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:588
-msgid "Manage Cells"
+msgid "Licensed To"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:589
-msgid "Manual Data"
+msgid "Lifetime"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:590
-msgid "Manual Sort"
+msgid "Link"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:591
-msgid "Margin"
+msgid "Link rel attributes"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:592
-msgid "Max Records:"
+msgid "Link to Author Permalink"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:593
-msgid "Max Value"
+msgid "Link to post permalink"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:594
+msgid "Link to Post/Author Permalink"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:595
+msgid "Link to Product page"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:596
+msgid "Link to Taxonomy"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:597
+msgid "Link to Taxonomy Permalink"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:598
+msgid "Link to URL"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:599
+msgid "Link With Rel Attribute"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:600 config/table-builder/component.php:116
+msgid "List"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:601
+msgid "List Icon"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:602
+msgid "List Options"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:603
+msgid "List Type"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:604
+msgid "Logged in user posts"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:605
+msgid "Make Button as rounded corner"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:606
+msgid "Make cell contents vertically centered"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:607
+msgid "Make Force download"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:608
+msgid "Make image as lightbox"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:609
+msgid "Make search input as full width"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:610
+msgid "Make tables more compact by cutting cell padding in half"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:611
+msgid "Make Taxonomies as Table Filter"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:612
+msgid "Manage cell"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:613
+msgid "Manage Cells"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:614
+msgid "Manual Data"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:615
+msgid "Manual Sort"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:616
+msgid "Margin"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:617
+msgid "Max Records:"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:618
+msgid "Max Value"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:619
 msgid ""
 "Maximize Amazon affiliate earnings on WordPress by showcasing products in "
 "stylish, responsive, and customizable tables and grids that convert.\n"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:595
+#: app/Modules/I18nStrings.php:620
 msgid "Maximum records to show in frontend, keep empty to show all."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:596
+#: app/Modules/I18nStrings.php:621
 msgid "Maximum Star"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:597
+#: app/Modules/I18nStrings.php:622
 msgid "Merge"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:598
+#: app/Modules/I18nStrings.php:623
 msgid "Meta Key"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:599
+#: app/Modules/I18nStrings.php:624
 msgid "Meta Query"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:600
+#: app/Modules/I18nStrings.php:625
+msgid "Min value"
+msgstr "Gutxieneko balioa"
+
+#: app/Modules/I18nStrings.php:626
 msgid "Mobile Device"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:601
+#: app/Modules/I18nStrings.php:627
+msgid "More"
+msgstr "Gehiago"
+
+#: app/Modules/I18nStrings.php:628
 msgid "Move to Trash"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:602
+#: app/Modules/I18nStrings.php:629
 msgid "Multiple Selection"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:603
+#: app/Modules/I18nStrings.php:630
 msgid "MYSQL Connection Details"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:604
+#: app/Modules/I18nStrings.php:631
 msgid "Name"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:605
+#: app/Modules/I18nStrings.php:632
 msgid "Name is required"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:606
+#: app/Modules/I18nStrings.php:633
 msgid "Need Expert Support"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:607
+#: app/Modules/I18nStrings.php:634 app/Services/TranslationService.php:40
 msgid "Next"
-msgstr ""
+msgstr "Hurrengoa"
 
-#: app/Modules/I18nStrings.php:608
+#: app/Modules/I18nStrings.php:635
 msgid "Next page"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:609
+#: app/Modules/I18nStrings.php:636
 msgid "Ninja Tables Advanced Mode"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:610
+#: app/Modules/I18nStrings.php:637
 msgid ""
 "Ninja Tables can import tables from existing data, like from a CSV or JSON "
 "file. You can also import existing tables from the other WordPress table "
 "plugins."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:611
+#: app/Modules/I18nStrings.php:638
 msgid "Ninja Tables Demo"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:612
+#: app/Modules/I18nStrings.php:639
 msgid "Ninja Tables Drag and Drop"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:613
+#: app/Modules/I18nStrings.php:640
 msgid "Ninja Tables Features"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:614
+#: app/Modules/I18nStrings.php:641
 msgid "Ninja Tables Guide"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:615
+#: app/Modules/I18nStrings.php:642
 msgid "Ninja Tables SQL Integration Documentation"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:616
+#: app/Modules/I18nStrings.php:643
 msgid "No"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:617
+#: app/Modules/I18nStrings.php:644
 msgid "No Data found based on your data source configuration"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:618
+#: app/Modules/I18nStrings.php:645
 msgid ""
 "No product metadata available for this type. Please create them in "
 "FluentCart to use here"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:619
+#: app/Modules/I18nStrings.php:646
 msgid ""
 "No product metadata available for this type. Please create them in "
 "WooCommerce to use here"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:620
+#: app/Modules/I18nStrings.php:647
 msgid "No rating"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:621
+#: app/Modules/I18nStrings.php:648
 msgid "No Review Text"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:622
+#: app/Modules/I18nStrings.php:649
 msgid "No reviews yet"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:623
+#: app/Modules/I18nStrings.php:650
 msgid "None"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:624
+#: app/Modules/I18nStrings.php:651
+msgid "Not Activated"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:652
 msgid "Not Equal"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:625
+#: app/Modules/I18nStrings.php:653
 msgid "Note:"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:626
+#: app/Modules/I18nStrings.php:654
 msgid ""
-"Note: Excel formula is an experimental feature so all formulas may not work."
-" We are improving this feature day by day so please don't be mad if some "
+"Note: Excel formula is an experimental feature so all formulas may not work. "
+"We are improving this feature day by day so please don't be mad if some "
 "formulas don't work properly."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:627
+#: app/Modules/I18nStrings.php:655
 msgid "Number Range"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:628
+#: app/Modules/I18nStrings.php:656
 msgid "Numeric Value"
 msgstr "Numeric Value"
 
-#: app/Modules/I18nStrings.php:629 config/table-builder/setting.php:92
+#: app/Modules/I18nStrings.php:657 config/table-builder/setting.php:92
 msgid "Odd Row Background"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:630
+#: app/Modules/I18nStrings.php:658
 msgid "Odd Row Colors"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:631
+#: app/Modules/I18nStrings.php:659
 msgid "of"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:632
+#: app/Modules/I18nStrings.php:660
 msgid "Open in another tab"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:633
+#: app/Modules/I18nStrings.php:661
 msgid "Open in new tab"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:634
+#: app/Modules/I18nStrings.php:662
 msgid "Open Link in new tab"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:635
+#: app/Modules/I18nStrings.php:663
 msgid "Open Link in new window"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:636
+#: app/Modules/I18nStrings.php:664
 msgid "Open link to new tab"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:637
+#: app/Modules/I18nStrings.php:665
 msgid "Open Link To New tab"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:638
+#: app/Modules/I18nStrings.php:666
 msgid "Opt-in and Continue"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:639
+#: app/Modules/I18nStrings.php:667
 msgid "Options"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:640
+#: app/Modules/I18nStrings.php:668
 msgid "Options (Optional)"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:641
+#: app/Modules/I18nStrings.php:669
 msgid "or"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:642
+#: app/Modules/I18nStrings.php:670
 msgid "OR"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:643
+#: app/Modules/I18nStrings.php:671
 msgid "Order By"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:644
+#: app/Modules/I18nStrings.php:672
 msgid "Order By Column"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:645
+#: app/Modules/I18nStrings.php:673
 msgid "Order By Type"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:646
+#: app/Modules/I18nStrings.php:674
 msgid "Ordered List"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:647
+#: app/Modules/I18nStrings.php:675
 msgid "Other"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:648
+#: app/Modules/I18nStrings.php:676
 msgid ""
 "Our EXPERTS would like to assist you for your query and any customization."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:649
+#: app/Modules/I18nStrings.php:677
 msgid "Our Products"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:650
+#: app/Modules/I18nStrings.php:678
 msgid "Own Data Only"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:651
+#: app/Modules/I18nStrings.php:679
 msgid "Padding"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:652
+#: app/Modules/I18nStrings.php:680
 msgid "Page Sizes (Number as Comma Separated)"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:653
+#: app/Modules/I18nStrings.php:681
 msgid ""
 "Pagination is enabled by default in this preview. You can set the number of "
-"rows per page or disable it by selecting 'Hide pagination'. Front-end styles"
-" may vary due to theme CSS. Custom filters and inline row styling are not "
+"rows per page or disable it by selecting 'Hide pagination'. Front-end styles "
+"may vary due to theme CSS. Custom filters and inline row styling are not "
 "supported in this view. Check the live preview or embedded page for full "
 "functionality."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:654
+#: app/Modules/I18nStrings.php:682
 msgid "Pagination Items Per Page"
 msgstr "Orrialde orri bakoitzeko orrialdea"
 
-#: app/Modules/I18nStrings.php:655
+#: app/Modules/I18nStrings.php:683
 msgid "Pagination Position"
 msgstr "Paginazio-posizioa"
 
-#: app/Modules/I18nStrings.php:656
+#: app/Modules/I18nStrings.php:684
 msgid "Parse Comma Separated Words"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:657
+#: app/Modules/I18nStrings.php:685
 msgid "Permalink Action"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:658
+#: app/Modules/I18nStrings.php:686
 msgid "Permalink Action Type"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:659
+#: app/Modules/I18nStrings.php:687
 msgid "Permanently Delete"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:660
+#: app/Modules/I18nStrings.php:688
 msgid "Permission"
 msgstr "Permission"
 
-#: app/Modules/I18nStrings.php:661
+#: app/Modules/I18nStrings.php:689
 msgid "Pick a date"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:662
+#: app/Modules/I18nStrings.php:690
 msgid "Placeholder"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:663
+#: app/Modules/I18nStrings.php:691
 msgid "Please check some FAQs people search for."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:664
+#: app/Modules/I18nStrings.php:692
 msgid ""
 "Please check the Tutorials and Documentation for the Ninja Tables Plugin!"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:665
+#: app/Modules/I18nStrings.php:693
 msgid "Please configure the table columns before importing data."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:666
+#: app/Modules/I18nStrings.php:694
 msgid "Please configure the table columns before viewing the table design."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:667
+#: app/Modules/I18nStrings.php:695
 #, php-format
 msgid "Please don't include %1$s tag"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:668
+#: app/Modules/I18nStrings.php:696
 msgid ""
-"Please give positive/negative number or you can provide jquery element "
-"object"
+"Please give positive/negative number or you can provide jquery element object"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:669
+#: app/Modules/I18nStrings.php:697
 msgid "Please Input Transform Values (HTML and Excel Formula are supported)"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:670
+#: app/Modules/I18nStrings.php:698
 msgid "Please Input Transform Values (HTML supported)"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:671
+#: app/Modules/I18nStrings.php:699
+msgid "Please provide a license key"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:700
 msgid "Please Provide The Thousand/Decimal Separator If Any."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:672
+#: app/Modules/I18nStrings.php:701
 msgid "Please provide valid URL"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:673
+#: app/Modules/I18nStrings.php:702
 msgid "Please select a CSV file from Media Library."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:674
+#: app/Modules/I18nStrings.php:703
 msgid "Please select a CSV file."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:675
+#: app/Modules/I18nStrings.php:704
 msgid "Please select action"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:676
+#: app/Modules/I18nStrings.php:705
 msgid "Please select columns to delete"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:677
+#: app/Modules/I18nStrings.php:706
 msgid "Please select tables"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:678
+#: app/Modules/I18nStrings.php:707
 msgid ""
 "Please select the settings for your table render method. Using Legacy table "
 "you can use shortcodes in your cells and it will render the full table from "
@@ -3560,1816 +3675,1931 @@ msgid ""
 "need Ajax Table which is recommended settings."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:679
+#: app/Modules/I18nStrings.php:708
 msgid ""
-"Please specify how many posts/CPTs you want to show in total, Leave blank to"
-" show all"
+"Please specify how many posts/CPTs you want to show in total, Leave blank to "
+"show all"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:680
+#: app/Modules/I18nStrings.php:709
 msgid ""
 "Please specify order by column. The script will order by with the selected "
 "column"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:681
+#: app/Modules/I18nStrings.php:710
 msgid ""
 "Please specify order by type. The script will order with your selected type"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:682
+#: app/Modules/I18nStrings.php:711
 msgid ""
 "Please specify user roles to be able to edit/delete this table. Only "
 "selected user roles can edit/delete the data."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:683
+#: app/Modules/I18nStrings.php:712
 msgid ""
 "Please specify which columns should be editable from the front-end. You can "
 "also define which columns are required."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:684
+#: app/Modules/I18nStrings.php:713
 msgid ""
 "Please take a moment to review it, share your feedback, and spread the love "
 "to keep us motivated and moving forward."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:685
+#: app/Modules/I18nStrings.php:714
+msgid "Please update Ninja Tables Pro"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:715
 msgid ""
 "Please update Ninja Tables Pro Plugin to latest version. Required Ninja "
 "Tables Version: 3.3 or later"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:686
+#: app/Modules/I18nStrings.php:716
 msgid "Please use english letters only"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:687
+#: app/Modules/I18nStrings.php:717
 msgid "Please wait while installing WP Fluent From"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:688
+#: app/Modules/I18nStrings.php:718
 #, php-format
 msgid ""
 "Please write valid SQL query. Your written SQL query will be passed to %1$s "
 "function"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:689
+#: app/Modules/I18nStrings.php:719
 msgid "Popular Searches"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:690
+#: app/Modules/I18nStrings.php:720
 msgid "positive or negative number"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:691
+#: app/Modules/I18nStrings.php:721
 msgid "Pre Defined Scheme"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:692
+#: app/Modules/I18nStrings.php:722
 msgid ""
 "Prepare your table from your existing WP Fluent Forms submissions. Click "
 "here to learn more about Fluent Forms integration"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:693
+#: app/Modules/I18nStrings.php:723
 msgid ""
-"Prepare your table from your existing WP Fluent Forms submissions. It can be"
-" used to easily showcase your form submissions. Click here to learn more "
-"about"
+"Prepare your table from your existing WP Fluent Forms submissions. It can be "
+"used to easily showcase your form submissions. Click here to learn more about"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:694
+#: app/Modules/I18nStrings.php:724
 msgid "Preview"
 msgstr "Aurreikusi"
 
-#: app/Modules/I18nStrings.php:695
+#: app/Modules/I18nStrings.php:725 app/Services/TranslationService.php:41
 msgid "Previous"
-msgstr ""
+msgstr "Aurrekoa"
 
-#: app/Modules/I18nStrings.php:696
+#: app/Modules/I18nStrings.php:726
 msgid "Previous page"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:697
+#: app/Modules/I18nStrings.php:727
 msgid "Print Screen Footer"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:698
+#: app/Modules/I18nStrings.php:728
 msgid "Print Screen Header"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:699
+#: app/Modules/I18nStrings.php:729
 msgid "Pro"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:700
+#: app/Modules/I18nStrings.php:730 app/Services/TranslationService.php:35
 msgid "Processing..."
-msgstr ""
+msgstr "Prozesatzen..."
 
-#: app/Modules/I18nStrings.php:701
+#: app/Modules/I18nStrings.php:731
 msgid "Progress Bar Color"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:702
+#: app/Modules/I18nStrings.php:732
 msgid "Progress Bar Type"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:703
+#: app/Modules/I18nStrings.php:733
 msgid "Progress Options"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:704
+#: app/Modules/I18nStrings.php:734
 msgid "Progress Type"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:705
+#: app/Modules/I18nStrings.php:735
 msgid "Progressbar Percentage"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:706
+#: app/Modules/I18nStrings.php:736
 msgid "Progressbar Thickness"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:707
+#: app/Modules/I18nStrings.php:737
 msgid "Progressbar Width"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:708
+#: app/Modules/I18nStrings.php:738
 msgid "Progressive Filter"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:709
+#: app/Modules/I18nStrings.php:739
 msgid "Provide Buy Now Button Text"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:710
+#: app/Modules/I18nStrings.php:740
 msgid ""
 "Provide content for table column header if you want to show html content."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:711
+#: app/Modules/I18nStrings.php:741
 msgid "Provide the column value for your corresponding value type select"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:712
+#: app/Modules/I18nStrings.php:742
 msgid ""
 "Provide the values that you want to show on the frontend.Your values should "
 "match your table cell data"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:713
+#: app/Modules/I18nStrings.php:743
 msgid "Query Limit"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:714
+#: app/Modules/I18nStrings.php:744
 msgid "Query Limit for Frontend"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:715
+#: app/Modules/I18nStrings.php:745
 msgid "Query Settings"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:716
+#: app/Modules/I18nStrings.php:746
 msgid "Radio"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:717
+#: app/Modules/I18nStrings.php:747
 msgid "Read"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:718
+#: app/Modules/I18nStrings.php:748
 msgid "Recommended settings for advanced features"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:719
+#: app/Modules/I18nStrings.php:749
+msgid "Reference Date"
+msgstr "Erreferentzia-data"
+
+#: app/Modules/I18nStrings.php:750
 msgid "Reference Shortcode"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:720
+#: app/Modules/I18nStrings.php:751
+msgid "Refresh"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:752
 msgid "Remote URL..."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:721
+#: app/Modules/I18nStrings.php:753
 msgid "Remote/External SQL"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:722
+#: app/Modules/I18nStrings.php:754
 msgid "Remove"
-msgstr ""
+msgstr "Kendu"
 
-#: app/Modules/I18nStrings.php:723
+#: app/Modules/I18nStrings.php:755
 msgid "Remove all borders from the table"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:724
+#: app/Modules/I18nStrings.php:756
 msgid "Remove cell CSS class"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:725
+#: app/Modules/I18nStrings.php:757
 msgid "Remove column"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:726
+#: app/Modules/I18nStrings.php:758
 msgid "Remove column CSS class"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:727
+#: app/Modules/I18nStrings.php:759
 msgid "Remove row"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:728
+#: app/Modules/I18nStrings.php:760
 msgid "Remove row CSS class"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:729
+#: app/Modules/I18nStrings.php:761
 msgid "Remove the selected Media file first."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:730
+#: app/Modules/I18nStrings.php:762
 msgid "Remove the selected upload file first."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:731
+#: app/Modules/I18nStrings.php:763
 msgid "Render shortcode into table cells"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:732
+#: app/Modules/I18nStrings.php:764
 msgid "Rendering Engine"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:733
+#: app/Modules/I18nStrings.php:765
 msgid ""
 "Rendering engine is locked after table creation for default data provider "
 "tables."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:734
+#: app/Modules/I18nStrings.php:766
 msgid "Rendering Settings"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:735
-msgid "Replace Existing Data"
-msgstr "Ordeztu Datu Existitzen"
-
-#: app/Modules/I18nStrings.php:736
-msgid "Replace Image"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:737
-msgid "reset"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:738
-msgid "Reset cell background color to default"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:739
-msgid "Reset cell color to default"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:740
-msgid "Reset Filter Button"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:741
-msgid "Reset row background color to default"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:742
-msgid "Reset row color to default"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:743
-msgid "Responsive Breakpoint"
-msgstr "Responsive Breakpoint"
-
-#: app/Modules/I18nStrings.php:744
-msgid "Responsiveness"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:745
-msgid "Restore"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:746
-msgid "Reviews Status"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:747
-msgid "Ribbon Height"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:748
-msgid "Ribbon Options"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:749
-msgid "Ribbon Position"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:750
-msgid "Ribbon Text"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:751
-msgid "Ribbon Type"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:752
-msgid "Ribbon Width"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:753
-msgid "Right"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:754
-msgid "Round"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:755
-msgid "Row and Cell Color Customization"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:756
-msgid "Row Content Text Align"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:757
-msgid "Row Details (Responsive drawer)"
-msgstr "Errenkaden xehetasunak (tiradera sentikorra)"
-
-#: app/Modules/I18nStrings.php:758
-msgid "Row height"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:759
-msgid "Row Options"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:760
-msgid "Sample CSV downloaded successfully"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:761
-msgid "Sample Header Structure"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:762
-msgid "Save"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:763
-msgid "Save Custom CSS"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:764
-msgid "Save Custom JS"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:765
-msgid "Save Settings"
-msgstr ""
-
-#: app/Modules/I18nStrings.php:766
-msgid "Save Table"
-msgstr ""
-
 #: app/Modules/I18nStrings.php:767
-msgid "Scale"
+msgid "Renew License"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:768
-msgid "Scroll to table top for pagination change"
+msgid "Replace Existing Data"
+msgstr "Ordeztu Datu Existitzen"
+
+#: app/Modules/I18nStrings.php:769
+msgid "Replace Image"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:770
-msgid "Search Bar Colors"
+msgid "reset"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:771
-msgid "Search Bar Position"
+msgid "Reset cell background color to default"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:772
-msgid "Search Box Placeholder Text"
+msgid "Reset cell color to default"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:773
-msgid "Search Dropdown Heading"
+msgid "Reset Filter Button"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:774
-msgid "Search Empty Results Text"
+msgid "Reset row background color to default"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:775
-msgid "Search Icon"
+msgid "Reset row color to default"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:776
-msgid "See the form in action:"
-msgstr ""
+msgid "Responsive Breakpoint"
+msgstr "Responsive Breakpoint"
 
 #: app/Modules/I18nStrings.php:777
-msgid "Select"
+msgid "Responsiveness"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:778
-msgid "Select a Form"
+msgid "Restore"
 msgstr ""
 
 #: app/Modules/I18nStrings.php:779
+msgid "Reviews Status"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:780
+msgid "Ribbon Height"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:781
+msgid "Ribbon Options"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:782
+msgid "Ribbon Position"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:783
+msgid "Ribbon Text"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:784
+msgid "Ribbon Type"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:785
+msgid "Ribbon Width"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:786
+msgid "Right"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:787
+msgid "Round"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:788
+msgid "Row and Cell Color Customization"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:789
+msgid "Row Background Color"
+msgstr "Errenkadaren atzeko planoaren kolorea"
+
+#: app/Modules/I18nStrings.php:790
+msgid "Row Content Text Align"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:791
+msgid "Row Details (Responsive drawer)"
+msgstr "Errenkaden xehetasunak (tiradera sentikorra)"
+
+#: app/Modules/I18nStrings.php:792
+msgid "Row height"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:793
+msgid "Row ID"
+msgstr "Errenkadaren IDa"
+
+#: app/Modules/I18nStrings.php:794
+msgid "Row Options"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:795
+msgid "Row Settings"
+msgstr "Errenkadaren ezarpenak"
+
+#: app/Modules/I18nStrings.php:796
+msgid "Row Text Color"
+msgstr "Errenkadaren testuaren kolorea"
+
+#: app/Modules/I18nStrings.php:797
+msgid "Sample CSV downloaded successfully"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:798
+msgid "Sample Header Structure"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:799
+msgid "Save"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:800
+msgid "Save Custom CSS"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:801
+msgid "Save Custom JS"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:802
+msgid "Save Settings"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:803
+msgid "Save Table"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:804
+msgid "Scale"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:805
+msgid "Scroll to table top for pagination change"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:807
+msgid "Search Bar Colors"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:808
+msgid "Search Bar Position"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:809
+msgid "Search Box Placeholder Text"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:810
+msgid "Search Dropdown Heading"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:811
+msgid "Search Empty Results Text"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:812
+msgid "Search Icon"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:813
+msgid "See the form in action:"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:814
+msgid "Select"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:815
+msgid "Select a Form"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:816
 msgid "Select a Format"
 msgstr "Aukeratu formatua"
 
-#: app/Modules/I18nStrings.php:780
+#: app/Modules/I18nStrings.php:817
 msgid ""
 "Select a row/column/cell to change their background properties. Hold "
 "\"SHIFT\" and click on cells to select multiple cells."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:781
+#: app/Modules/I18nStrings.php:818
 msgid "Select all"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:782
+#: app/Modules/I18nStrings.php:819
 msgid "Select All"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:783
+#: app/Modules/I18nStrings.php:820
 msgid "Select bulk action"
 msgstr "Select bulk action"
 
-#: app/Modules/I18nStrings.php:784
+#: app/Modules/I18nStrings.php:821
 msgid "Select Color"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:785
+#: app/Modules/I18nStrings.php:822
 msgid "Select Color Scheme"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:786
+#: app/Modules/I18nStrings.php:823
 msgid "Select Column"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:787
+#: app/Modules/I18nStrings.php:824
 msgid "Select Column That you want to populate data"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:788
+#: app/Modules/I18nStrings.php:825
 msgid "Select columns"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:789
+#: app/Modules/I18nStrings.php:826
 msgid "Select CSV File"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:790
+#: app/Modules/I18nStrings.php:827
 msgid "Select Data Type"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:791
+#: app/Modules/I18nStrings.php:828
 msgid "Select Data Type of this column"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:792
+#: app/Modules/I18nStrings.php:829
+msgid "Select date and time"
+msgstr "Hautatu data eta ordua"
+
+#: app/Modules/I18nStrings.php:830
 msgid "Select Dropdown"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:793
+#: app/Modules/I18nStrings.php:831
 msgid "Select Entry Fields"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:794
+#: app/Modules/I18nStrings.php:832
 msgid "Select Field"
 msgstr "Hautatu eremua"
 
-#: app/Modules/I18nStrings.php:795
+#: app/Modules/I18nStrings.php:833
 msgid "Select file:"
 msgstr "Select file:"
 
-#: app/Modules/I18nStrings.php:796
+#: app/Modules/I18nStrings.php:834
 msgid "Select first day of the week"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:797
+#: app/Modules/I18nStrings.php:835
 msgid "Select Font"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:798
+#: app/Modules/I18nStrings.php:836
 msgid "Select Form Fields"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:799
+#: app/Modules/I18nStrings.php:837
 msgid "Select Format"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:800
+#: app/Modules/I18nStrings.php:838
 msgid "Select How the value will be populated to the select dropdown"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:801
+#: app/Modules/I18nStrings.php:839
 msgid "Select HTML Field if you want to add Link, media or any type of html"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:802
+#: app/Modules/I18nStrings.php:840
 msgid "Select Items"
 msgstr "Hautatu elementuak"
 
-#: app/Modules/I18nStrings.php:803
+#: app/Modules/I18nStrings.php:841
 msgid "Select Responsive Breakpoint"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:804
+#: app/Modules/I18nStrings.php:842
 msgid "Select Sorting Method"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:805
+#: app/Modules/I18nStrings.php:843
 msgid "Select the columns that you want to apply this filter"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:806
+#: app/Modules/I18nStrings.php:844
 msgid ""
 "Select the device by width in where the stackable tables will be enabled"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:807
+#: app/Modules/I18nStrings.php:845
 msgid "Select The field type you want to populate for each row"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:808
-msgid ""
-"Select the filter type that you want to show the filter in the frontend"
+#: app/Modules/I18nStrings.php:846
+msgid "Select the filter type that you want to show the filter in the frontend"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:809
+#: app/Modules/I18nStrings.php:847
 msgid ""
-"Select the format in which you want to export your table data. CSV format is"
-" suitable for spreadsheet applications, while JSON format preserves all "
-"table settings for importing into another Ninja Tables installation."
+"Select the format in which you want to export your table data. CSV format is "
+"suitable for spreadsheet applications, while JSON format preserves all table "
+"settings for importing into another Ninja Tables installation."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:810
+#: app/Modules/I18nStrings.php:848
 msgid ""
-"Select the intended format and click <strong>Import</strong> button, we will"
-" do the rest for you."
+"Select the intended format and click <strong>Import</strong> button, we will "
+"do the rest for you."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:811
+#: app/Modules/I18nStrings.php:849
 msgid "Select what type of entries you want to show from Fluent Forms."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:812
+#: app/Modules/I18nStrings.php:850
 msgid "Selected Cell Background"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:813
+#: app/Modules/I18nStrings.php:851
 msgid "Selected Cell Column Background"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:814
+#: app/Modules/I18nStrings.php:852
 msgid "Selected Cell Row Background"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:815
+#: app/Modules/I18nStrings.php:853
 msgid "Selected Color Options"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:816
+#: app/Modules/I18nStrings.php:854
 msgid ""
 "Selection feature is only available on Pro version Please upgrade to pro to "
 "unlock this feature"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:817
+#: app/Modules/I18nStrings.php:855
 msgid "Semantic UI"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:818
+#: app/Modules/I18nStrings.php:856
 msgid "Separator Style"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:819
+#: app/Modules/I18nStrings.php:857
 msgid ""
 "Server returned an unexpected HTML error response. Import may already be "
 "completed; please check the table rows."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:820
+#: app/Modules/I18nStrings.php:858
 msgid ""
 "Server returned an unexpected HTML error response. Import may already be "
 "completed; please verify imported rows."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:821
+#: app/Modules/I18nStrings.php:859
 msgid "Server Side Dom-Generation"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:822
+#: app/Modules/I18nStrings.php:860
 msgid "Set cell background color"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:823
+#: app/Modules/I18nStrings.php:861
 msgid "Set cell color"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:824
+#: app/Modules/I18nStrings.php:862
 msgid "Set cell content"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:825
+#: app/Modules/I18nStrings.php:863
 msgid "Set cell CSS class"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:826
+#: app/Modules/I18nStrings.php:864
 msgid "Set column background color"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:827
+#: app/Modules/I18nStrings.php:865
 msgid "Set column color"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:828
+#: app/Modules/I18nStrings.php:866
 msgid "Set row background color"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:829
+#: app/Modules/I18nStrings.php:867
 msgid "Set row color"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:830
+#: app/Modules/I18nStrings.php:868
 msgid "Set row CSS class"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:831
+#: app/Modules/I18nStrings.php:869
 msgid "Set the color for empty/inactive rating stars"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:832
+#: app/Modules/I18nStrings.php:870
 msgid "Set the color for filled/active rating stars"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:833
+#: app/Modules/I18nStrings.php:871
 msgid "Set the column width. This will be applied for the entire column"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:834
+#: app/Modules/I18nStrings.php:872
+msgid "Set the date of the data creation."
+msgstr "Ezarri datuen sortze-data."
+
+#: app/Modules/I18nStrings.php:873
 msgid "Set up custom filters to find the data you want! It’s a Pro feature."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:835
+#: app/Modules/I18nStrings.php:874
 msgid "Set your action icon position"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:836
+#: app/Modules/I18nStrings.php:875
 msgid "Settings"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:837
+#: app/Modules/I18nStrings.php:876
 msgid "Shadow Color"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:838
+#: app/Modules/I18nStrings.php:877
 msgid "Shadow Effect (Blur Radius)"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:839
+#: app/Modules/I18nStrings.php:878
 msgid "Shadow Effect (X-Axis)"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:840
+#: app/Modules/I18nStrings.php:879
 msgid "Shadow Effect (Y-Axis)"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:841
+#: app/Modules/I18nStrings.php:880
 msgid "ShortCode"
 msgstr "ShortCode"
 
-#: app/Modules/I18nStrings.php:842
+#: app/Modules/I18nStrings.php:881
 msgid "Shortcode Options"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:843
+#: app/Modules/I18nStrings.php:882
 msgid "Show All the responsive columns data into the responsive drawer"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:844
+#: app/Modules/I18nStrings.php:883
 msgid "Show Bulk Action"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:845
+#: app/Modules/I18nStrings.php:884
 msgid "Show Bulk Actions"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:846
+#: app/Modules/I18nStrings.php:885
 msgid "Show Cart Details After Table"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:847
+#: app/Modules/I18nStrings.php:886
 msgid "Show Cart Details Before Table"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:848
+#: app/Modules/I18nStrings.php:887
 msgid "Show Checkout Button"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:849
+#: app/Modules/I18nStrings.php:888
 msgid "Show current user submissions only at frontend"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:850
+#: app/Modules/I18nStrings.php:889
 msgid "Show filter inputs as Columns"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:851
+#: app/Modules/I18nStrings.php:890
 msgid "Show filter inputs as inline"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:852
+#: app/Modules/I18nStrings.php:891
 msgid "Show Formulas"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:853
+#: app/Modules/I18nStrings.php:892
 msgid "Show Go to Cart Button"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:854
+#: app/Modules/I18nStrings.php:893
 msgid "Show New Items First"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:855
+#: app/Modules/I18nStrings.php:894
 msgid "Show Old Items First"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:856
+#: app/Modules/I18nStrings.php:895
 msgid "Show Page sizes change option"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:857
+#: app/Modules/I18nStrings.php:896
 msgid "Show Rating"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:858
+#: app/Modules/I18nStrings.php:897
 msgid "Show Rating Value"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:859
+#: app/Modules/I18nStrings.php:898
 msgid "Show Table Description"
 msgstr "Erakutsi taula deskribapena"
 
-#: app/Modules/I18nStrings.php:860
+#: app/Modules/I18nStrings.php:899
 msgid "Show Table Title"
 msgstr "Erakutsi taula izenburua"
 
-#: app/Modules/I18nStrings.php:861
+#: app/Modules/I18nStrings.php:900
 msgid "Show Time"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:862
+#: app/Modules/I18nStrings.php:901
 msgid "Show Your Love"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:863
+#: app/Modules/I18nStrings.php:902
 msgid "Single Line Cells"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:864
+#: app/Modules/I18nStrings.php:903
 msgid "Single Line Text Field"
 msgstr "Single Line Text Field"
 
-#: app/Modules/I18nStrings.php:865
+#: app/Modules/I18nStrings.php:904
 msgid "Skip"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:866
+#: app/Modules/I18nStrings.php:905
 msgid "Small table"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:867
+#: app/Modules/I18nStrings.php:906
 msgid "Something is wrong! Please try again"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:868
+#: app/Modules/I18nStrings.php:907
+msgid ""
+"Something went wrong when contacting the license server. Please try again."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:908
 msgid "Something went wrong, please try again."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:869
+#: app/Modules/I18nStrings.php:909
 msgid ""
 "Sorry, No corresponding columns found based on your selection and column's "
 "data type"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:870
+#: app/Modules/I18nStrings.php:910
+msgid "Sorry, something went wrong! Please try again."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:911
 msgid ""
 "Sorry! You can not export the data as the table data is configured as "
 "external source"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:871
+#: app/Modules/I18nStrings.php:912
 msgid ""
 "Sorry! You can not import any data as the table data is configured as "
 "external source"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:872
+#: app/Modules/I18nStrings.php:913
 msgid "Sort Algorithm "
 msgstr ""
 
-#: app/Modules/I18nStrings.php:873
+#: app/Modules/I18nStrings.php:914
 msgid "Sort Dynamic Value as: "
 msgstr ""
 
-#: app/Modules/I18nStrings.php:874
+#: app/Modules/I18nStrings.php:915
 msgid "Sort Manually"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:875
+#: app/Modules/I18nStrings.php:916
 msgid "Sort Type"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:876
+#: app/Modules/I18nStrings.php:917
 msgid "Sortable"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:877
+#: app/Modules/I18nStrings.php:918
 msgid "Space Between Icon and Text"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:878
+#: app/Modules/I18nStrings.php:919
 msgid "Spacing"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:879
+#: app/Modules/I18nStrings.php:920
 msgid "Split"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:880
+#: app/Modules/I18nStrings.php:921
 msgid "Sponsored, Nofollow, NoReferrer & Noopener"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:881
+#: app/Modules/I18nStrings.php:922
 msgid "SQL Connection Details"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:882
+#: app/Modules/I18nStrings.php:923
 msgid "SQL Connection Type:"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:883
+#: app/Modules/I18nStrings.php:924
 msgid "SQL Error"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:884
+#: app/Modules/I18nStrings.php:925
 msgid "Square"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:885
+#: app/Modules/I18nStrings.php:926
 msgid "Stackable Table Configuration"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:886
+#: app/Modules/I18nStrings.php:927
 msgid "Stacked Appearance"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:887
+#: app/Modules/I18nStrings.php:928
 msgid "Standard"
 msgstr "Standard"
 
-#: app/Modules/I18nStrings.php:888
+#: app/Modules/I18nStrings.php:929
 msgid "Star Rating Options"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:889
+#: app/Modules/I18nStrings.php:930
 msgid "Star Size"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:890
+#: app/Modules/I18nStrings.php:931
 msgid ""
-"Start your journey to modern eCommerce and sell products "
-"(digital/physical/hybrid) much faster. It's practical, intuitive, and "
-"lightweight."
+"Start your journey to modern eCommerce and sell products (digital/physical/"
+"hybrid) much faster. It's practical, intuitive, and lightweight."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:891
+#: app/Modules/I18nStrings.php:932
 msgid ""
-"Start your own affiliate program; onboard affiliates, track visits, disburse"
-" commissions and more. Run your affiliate program successfully!"
+"Start your own affiliate program; onboard affiliates, track visits, disburse "
+"commissions and more. Run your affiliate program successfully!"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:892
+#: app/Modules/I18nStrings.php:933
 msgid "Step 1"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:893
+#: app/Modules/I18nStrings.php:934
 msgid "Step 2"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:894
+#: app/Modules/I18nStrings.php:935
 msgid ""
 "Step into the future of WordPress project management! Organize tasks, "
 "projects, and workflows visually with drag and drop, kanban-style boards."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:895
+#: app/Modules/I18nStrings.php:936
 msgid "Sticky First Column"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:896
+#: app/Modules/I18nStrings.php:937
 msgid "Sticky Header"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:897
+#: app/Modules/I18nStrings.php:938
 msgid "Sticky Top Offset"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:898
+#: app/Modules/I18nStrings.php:939
 msgid "Striped rows"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:899
+#: app/Modules/I18nStrings.php:940
 msgid "Styles"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:900
+#: app/Modules/I18nStrings.php:941
 msgid "Styling"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:901
+#: app/Modules/I18nStrings.php:942
 msgid "Stylist List Options"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:903
+#: app/Modules/I18nStrings.php:944
 msgid "Supported Excel Formulas"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:904
+#: app/Modules/I18nStrings.php:945
 msgid "Table Body Colors"
 msgstr "Taula Gorputzaren Koloreak"
 
-#: app/Modules/I18nStrings.php:905
+#: app/Modules/I18nStrings.php:946
 msgid "Table Caption"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:906
+#: app/Modules/I18nStrings.php:947
 msgid "Table Colors"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:907
+#: app/Modules/I18nStrings.php:948
 msgid "Table Column Settings"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:908
+#: app/Modules/I18nStrings.php:949
 msgid "Table Configuration"
 msgstr "Table Configuration"
 
-#: app/Modules/I18nStrings.php:909
+#: app/Modules/I18nStrings.php:950
 msgid "Table Configuration Required"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:910
+#: app/Modules/I18nStrings.php:951
 msgid "Table created successfully."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:911
+#: app/Modules/I18nStrings.php:952
 msgid "Table data saved successfully."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:912
+#: app/Modules/I18nStrings.php:953
 msgid "Table Description"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:913
+#: app/Modules/I18nStrings.php:954
 msgid "Table Design"
 msgstr "Table Design"
 
-#: app/Modules/I18nStrings.php:914
+#: app/Modules/I18nStrings.php:955
 msgid "Table Font Setting"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:915
+#: app/Modules/I18nStrings.php:956
 msgid "Table Header Colors"
 msgstr "Taularen goiburuko koloreak"
 
-#: app/Modules/I18nStrings.php:916
+#: app/Modules/I18nStrings.php:957
 msgid "Table List"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:917
+#: app/Modules/I18nStrings.php:958
 msgid "Table margin top"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:918
+#: app/Modules/I18nStrings.php:959
 msgid "Table name field is required"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:919
+#: app/Modules/I18nStrings.php:960
 msgid "Table Query Settings and New Column"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:920
+#: app/Modules/I18nStrings.php:961
 msgid "Table Render Settings"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:921
+#: app/Modules/I18nStrings.php:962
 msgid "Table Rows"
 msgstr "Table Rows"
 
-#: app/Modules/I18nStrings.php:922
+#: app/Modules/I18nStrings.php:963
 msgid "Table Title"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:923
+#: app/Modules/I18nStrings.php:964
+msgid "Table updated successfully."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:965
 msgid "Tablet Device"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:924
+#: app/Modules/I18nStrings.php:966
 msgid "Target Column"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:925
+#: app/Modules/I18nStrings.php:967
 msgid "Target Columns"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:926
+#: app/Modules/I18nStrings.php:968
 msgid "Target Devices"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:927
+#: app/Modules/I18nStrings.php:969
 msgid "Target URL"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:928
+#: app/Modules/I18nStrings.php:970
 msgid "Taxonomy Separator"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:929
+#: app/Modules/I18nStrings.php:971
 msgid "Taxonomy Separator for Multiple Items"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:930
+#: app/Modules/I18nStrings.php:972
 msgid "Templates"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:932
+#: app/Modules/I18nStrings.php:974
 msgid "Text Align"
 msgstr "Testua lerrokatu"
 
-#: app/Modules/I18nStrings.php:933
+#: app/Modules/I18nStrings.php:975
 msgid "Text Area"
 msgstr "Text Area"
 
-#: app/Modules/I18nStrings.php:934
+#: app/Modules/I18nStrings.php:976
 msgid "Text Color"
-msgstr ""
+msgstr "Testuaren kolorea"
 
-#: app/Modules/I18nStrings.php:935
+#: app/Modules/I18nStrings.php:977
 msgid "Text Font Size"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:936
+#: app/Modules/I18nStrings.php:978
 msgid "Text Icon Options"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:937
+#: app/Modules/I18nStrings.php:979
 msgid "Text Input"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:938
+#: app/Modules/I18nStrings.php:980
 msgid "Text Options"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:939
+#: app/Modules/I18nStrings.php:981
 msgid "Text to display when there are no reviews"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:940
+#: app/Modules/I18nStrings.php:982
 msgid ""
 "Thank you for installing Ninja Tables - Best Responsive Table Plugin for "
 "WordPress"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:941
+#: app/Modules/I18nStrings.php:983
 msgid "The configuration object of the table."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:942
+#: app/Modules/I18nStrings.php:984
 msgid "The first day of the week, e.g. Sunday, Monday, etc."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:943
+#: app/Modules/I18nStrings.php:985
 msgid "The Following Javascript variables are available that you can use:"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:944
+#: app/Modules/I18nStrings.php:986
 msgid ""
 "The following settings will be applied to the newly created tables. Of "
 "course, you can customize the appearance settings to each table level."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:945
+#: app/Modules/I18nStrings.php:987
 msgid ""
 "The global style will be applied if the component individual style is not "
 "applied."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:946
+#: app/Modules/I18nStrings.php:988
 msgid "The Javascript DOM object of the table"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:947
+#: app/Modules/I18nStrings.php:989
+msgid ""
+"The remote host must allow connections from this site's IP: open \"Remote "
+"MySQL\" / \"Remote Database Access\" on that host and add it. If you see "
+"\"Access denied for user 'x'@'1.2.3.4'\", 1.2.3.4 is the IP to add."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:990
+msgid ""
+"The server where the database lives — not localhost (that is this site). On "
+"cPanel hosts use the Shared/Dedicated IP shown on the cPanel home page."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:991
 msgid ""
 "The ultimate WordPress scheduling solution for appointments, events, "
 "webinars, meetings, sales calls etc. Start scheduling smarter today!"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:948
+#: app/Modules/I18nStrings.php:992
 msgid "Then"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:949
+#: app/Modules/I18nStrings.php:993
 msgid ""
-"This is a Premium feature. Auto-sync your published Google Sheet and display"
-" the entries on a customized table in Ninja Tables Pro."
+"This is a Premium feature. Auto-sync your published Google Sheet and display "
+"the entries on a customized table in Ninja Tables Pro."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:950
+#: app/Modules/I18nStrings.php:994
 msgid ""
 "This is a Premium feature. Construct table from remote CSV file. Whenever "
 "your remote CSV data changes it will automatically sync here."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:951
+#: app/Modules/I18nStrings.php:995
 msgid ""
 "This is a Premium feature. Create a table by generating a sql query to any "
 "custom SQL database."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:952
+#: app/Modules/I18nStrings.php:996
 msgid ""
 "This is a Premium feature. Create responsive and customizable WP posts "
 "tables from your existing posts/pages/custom post types with Ninja Tables "
 "pro."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:953
+#: app/Modules/I18nStrings.php:997
 msgid ""
 "This is a Premium feature. Displays product Reviews in a searchable, "
 "sortable with Ninja Tables."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:954
+#: app/Modules/I18nStrings.php:998
 msgid ""
 "This is a Premium feature. Displays products content in a searchable, "
 "sortable with Ninja Tables."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:955
+#: app/Modules/I18nStrings.php:999
 msgid "This is a Pro feature."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:956
+#: app/Modules/I18nStrings.php:1000
+msgid "This is useful when you want to sort the data by date"
+msgstr "Erabilgarria datuak dataren arabera ordenatu nahi dituzunean"
+
+#: app/Modules/I18nStrings.php:1001
 msgid ""
 "This table can not be editable on frontend. Only \"Default\" data source "
 "tables can be editable"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:957
+#: app/Modules/I18nStrings.php:1002
 msgid ""
 "This table data is created from wp-posts. Use the \"Query Settings\" and "
 "\"Add New Column\" tab to customize the columns and query."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:958
+#: app/Modules/I18nStrings.php:1003
 msgid "This table is being rendered with the "
 msgstr ""
 
-#: app/Modules/I18nStrings.php:959
+#: app/Modules/I18nStrings.php:1004
+msgid "This usually means a refund or a chargeback. Please contact support."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1005
 msgid ""
 "This will automatically expand all rows of the table when displayed on a "
 "device that hides any columns."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:960
+#: app/Modules/I18nStrings.php:1006
 msgid ""
 "This will automatically expand the first row of the table when displayed on "
 "a device that hides any columns."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:961
+#: app/Modules/I18nStrings.php:1007
 msgid "This will hide horizontal borders of table body rows"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:962
+#: app/Modules/I18nStrings.php:1008
 msgid "This will hide vertical borders of table body rows"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:963
+#: app/Modules/I18nStrings.php:1009
 msgid "This will hide Vertical borders of table body rows"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:964
+#: app/Modules/I18nStrings.php:1010
 msgid "This will move the selected tables to trash. Continue?"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:965
+#: app/Modules/I18nStrings.php:1011
 msgid "This will permanently delete the selected rows. Continue?"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:966
+#: app/Modules/I18nStrings.php:1012
 msgid "This will permanently delete the selected tables. Continue?"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:967
+#: app/Modules/I18nStrings.php:1013
 msgid "This will restore the selected tables. Continue?"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:968
-msgid ""
-"This will show on as default placeholder to reset the label ( Ex: All )"
+#: app/Modules/I18nStrings.php:1014
+msgid "This will show on as default placeholder to reset the label ( Ex: All )"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:969
+#: app/Modules/I18nStrings.php:1015
 msgid ""
 "This will show on your Table Filter. Keep it blank if you don't need any "
 "filter instruction at the frontend"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:970
+#: app/Modules/I18nStrings.php:1016
 msgid "Thousand Separator"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:971
+#: app/Modules/I18nStrings.php:1017
 msgid "Three Columns"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:972
+#: app/Modules/I18nStrings.php:1018
 msgid "Title"
 msgstr "Izenburua"
 
-#: app/Modules/I18nStrings.php:973
+#: app/Modules/I18nStrings.php:1019
 msgid "To get started please add table columns"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:974
+#: app/Modules/I18nStrings.php:1020
 msgid ""
-"To import from other WordPress plugins click the respective "
-"<strong>Import</strong> button."
+"To import from other WordPress plugins click the respective <strong>Import</"
+"strong> button."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:975
+#: app/Modules/I18nStrings.php:1021
 msgid "To learn more about this"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:976
+#: app/Modules/I18nStrings.php:1022
 msgid ""
 "To optimize and load faster, we cache the table contents. It's not "
 "recommended to disable caching unless you know what you are doing."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:977
+#: app/Modules/I18nStrings.php:1023
 msgid "To Placeholder"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:978
+#: app/Modules/I18nStrings.php:1024
 msgid ""
 "To use this feature your WP Fluent Forms need to be updated. Please update "
 "WP Fluent From from plugins screen"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:979
+#: app/Modules/I18nStrings.php:1025
 msgid "to view the upgrade guide."
 msgstr "to view the upgrade guide."
 
-#: app/Modules/I18nStrings.php:980
+#: app/Modules/I18nStrings.php:1026
 msgid "Today's Date:"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:981
+#: app/Modules/I18nStrings.php:1027
 msgid "Toggle Position"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:982
+#: app/Modules/I18nStrings.php:1028
 msgid "Tomorrow's Date:"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:983
+#: app/Modules/I18nStrings.php:1029
 msgid "Toolbar Button Settings"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:984
+#: app/Modules/I18nStrings.php:1030
 msgid "Tools and Settings"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:985
+#: app/Modules/I18nStrings.php:1031
 msgid "Top"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:986
+#: app/Modules/I18nStrings.php:1032
 msgid "Top of the Table"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:987
+#: app/Modules/I18nStrings.php:1033
 msgid "Totally hidden on all devices"
 msgstr "Totally hidden on all devices"
 
-#: app/Modules/I18nStrings.php:988
+#: app/Modules/I18nStrings.php:1034
 msgid "Transform Column Value"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:989
+#: app/Modules/I18nStrings.php:1035
 msgid "Transform Value"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:990
+#: app/Modules/I18nStrings.php:1036
 msgid "Trash"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:991
+#: app/Modules/I18nStrings.php:1037
 msgid "Trashed Tables"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:992
+#: app/Modules/I18nStrings.php:1038
 msgid "Try AzonPress"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:993
+#: app/Modules/I18nStrings.php:1039
 msgid "Try Fluent Forms"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:994
+#: app/Modules/I18nStrings.php:1040
 msgid "Try Fluent Support"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:995
+#: app/Modules/I18nStrings.php:1041
 msgid "Try FluentAffiliate"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:996
+#: app/Modules/I18nStrings.php:1042
 msgid "Try FluentBoards"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:997
+#: app/Modules/I18nStrings.php:1043
 msgid "Try FluentBooking"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:998
+#: app/Modules/I18nStrings.php:1044
 msgid "Try FluentCart"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:999
+#: app/Modules/I18nStrings.php:1045
 msgid "Try FluentCommunity"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1000
+#: app/Modules/I18nStrings.php:1046
 msgid "Try FluentCRM"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1001
+#: app/Modules/I18nStrings.php:1047
 msgid "Try FluentSMTP"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1002
+#: app/Modules/I18nStrings.php:1048
 msgid "Try Paymattic"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1003
+#: app/Modules/I18nStrings.php:1049
 msgid ""
 "Try the best contact form plugin in WordPress and create forms faster than "
 "ever! 500k+ users worldwide enjoy this plugin to build smart forms everyday."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1004
+#: app/Modules/I18nStrings.php:1050
 msgid "Try WP Social Ninja"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1005
+#: app/Modules/I18nStrings.php:1051
 msgid ""
 "Turn your support agents into superheroes with the best WordPress helpdesk "
 "plugin. Streamline customer support with this intuitive and powerful tool."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1006
+#: app/Modules/I18nStrings.php:1052
 msgid "Two Columns"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1007
+#: app/Modules/I18nStrings.php:1053
 msgid "Type"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1008
+#: app/Modules/I18nStrings.php:1054
 msgid "Unapproved"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1009
+#: app/Modules/I18nStrings.php:1055
 msgid "Unlock in Pro"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1010
+#: app/Modules/I18nStrings.php:1056
 msgid "Unlock the NinjaTable Pro Features"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1011
+#: app/Modules/I18nStrings.php:1057
 msgid "Unordered List"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1012
+#: app/Modules/I18nStrings.php:1058
 msgid "Unread"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1013
+#: app/Modules/I18nStrings.php:1059
 msgid "Update"
 msgstr "eguneratzearen"
 
-#: app/Modules/I18nStrings.php:1014
+#: app/Modules/I18nStrings.php:1060
 msgid "Update Global Settings"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1015
+#: app/Modules/I18nStrings.php:1061
+msgid "Update Row"
+msgstr "Errenkada eguneratu"
+
+#: app/Modules/I18nStrings.php:1062
 msgid "Update Settings"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1016
+#: app/Modules/I18nStrings.php:1063
 msgid "Update SQL Connection"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1017
+#: app/Modules/I18nStrings.php:1064
 msgid "Update SQL Query"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1018
+#: app/Modules/I18nStrings.php:1065
 msgid "Update Table Info"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1019
+#: app/Modules/I18nStrings.php:1066
+msgid ""
+"Updates have stopped. Renew your license to get updates and support again."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1067
 msgid "Upgrade Notice"
 msgstr "Berritze oharra"
 
-#: app/Modules/I18nStrings.php:1020
+#: app/Modules/I18nStrings.php:1068
 msgid "URL"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1021
+#: app/Modules/I18nStrings.php:1069
 msgid "US Style - decimal point (123,234.01)"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1022
+#: app/Modules/I18nStrings.php:1070
+msgid "Use a database user with SELECT-only privileges."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1071
 msgid "Use Advanced Customization Features"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1023
+#: app/Modules/I18nStrings.php:1072
 msgid "Use Advanced Data Filtering"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1024
+#: app/Modules/I18nStrings.php:1073
 msgid "Use Advanced Data Sorting"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1025
+#: app/Modules/I18nStrings.php:1074
 msgid "Use Alternate Color Schema for Table Rows"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1026
+#: app/Modules/I18nStrings.php:1075
 msgid "Use margin top only for horizontal ribbon positioning."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1027
+#: app/Modules/I18nStrings.php:1076
 msgid "Use Select Field to add data in your table from predefined list"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1028
+#: app/Modules/I18nStrings.php:1077
 msgid "Use Shortcode in your table cell"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1029
+#: app/Modules/I18nStrings.php:1078
 msgid ""
 "Use simple HTML code to transform a column’s data value. Transform value is "
 "a Pro feature."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1030
+#: app/Modules/I18nStrings.php:1079
 msgid "Use this file"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1031
+#: app/Modules/I18nStrings.php:1080
 msgid ""
 "Use this settings if you have lots of data and don't need cell merge "
 "features. It will load your data over ajax. Please note that, shortcodes in "
 "table will not work here."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1032
+#: app/Modules/I18nStrings.php:1081
 msgid "Use Unlimited Colors in Your Tables"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1033
+#: app/Modules/I18nStrings.php:1082
 msgid "User Guide"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1034
+#: app/Modules/I18nStrings.php:1083
 msgid "User Roles and Data Editing Permissions"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1035
+#: app/Modules/I18nStrings.php:1084
 msgid "User Roles for Deleting Table Rows"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1036
+#: app/Modules/I18nStrings.php:1085
 msgid "User Roles for Edit/Add Table Rows"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1037
+#: app/Modules/I18nStrings.php:1086
 msgid "Users can see and edit/delete only own data"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1038
+#: app/Modules/I18nStrings.php:1087
 msgid ""
 "Using this module, you can let your frontend users to add/edit/delete "
 "records based on user role. Also, you can separate the records by user "
 "submission."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1039
+#: app/Modules/I18nStrings.php:1088
 msgid ""
 "Using this module, You can set cell and row level colors of your data, It's "
 "a pro feature, Please purchase pro to unlock this feature"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1040
+#: app/Modules/I18nStrings.php:1089
+msgid "Valid button URL"
+msgstr "Botoiaren URL baliozkoa"
+
+#: app/Modules/I18nStrings.php:1090
 msgid "Value"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1041
+#: app/Modules/I18nStrings.php:1091
 msgid "Value Type"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1042
+#: app/Modules/I18nStrings.php:1092
 msgid "Vertically centered table cell contents"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1043
+#: app/Modules/I18nStrings.php:1093
 msgid "View documentation"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1044
+#: app/Modules/I18nStrings.php:1094
 msgid "View Documentation"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1045
+#: app/Modules/I18nStrings.php:1095
 msgid "View documentation."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1046
+#: app/Modules/I18nStrings.php:1096
 msgid "View Documentation."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1048
+#: app/Modules/I18nStrings.php:1098
 msgid "Visual"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1049
+#: app/Modules/I18nStrings.php:1099
 msgid "Watch Video."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1050
+#: app/Modules/I18nStrings.php:1100
 msgid "Welcome to Ninja Charts"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1051
+#: app/Modules/I18nStrings.php:1101
 msgid "Welcome to Ninja Tables"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1052
+#: app/Modules/I18nStrings.php:1102
 msgid "What are Ninja Tables Advanced Shortcodes?"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1053
+#: app/Modules/I18nStrings.php:1103
 msgid ""
 "When enabled, clicking a table row on the frontend opens its details in a "
 "pop-up view."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1054
+#: app/Modules/I18nStrings.php:1104
 msgid "where"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1055
+#: app/Modules/I18nStrings.php:1105
 msgid "WooCommerce Reviews"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1056
+#: app/Modules/I18nStrings.php:1106
 msgid "WooCommerce Table"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1057
+#: app/Modules/I18nStrings.php:1107
 msgid "WordPress media manager is not available."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1058
+#: app/Modules/I18nStrings.php:1108
 msgid ""
 "WP Editor is only available on WordPress version 4.8 or later. Please "
 "Upgrade Your WordPress Core"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1059
+#: app/Modules/I18nStrings.php:1109
 msgid "WP Posts"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1060
+#: app/Modules/I18nStrings.php:1110
 msgid "write html"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1061
+#: app/Modules/I18nStrings.php:1111
 msgid "X Offset"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1062
+#: app/Modules/I18nStrings.php:1112
 msgid "Y Offset"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1063
+#: app/Modules/I18nStrings.php:1113
 msgid "Yes"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1064
+#: app/Modules/I18nStrings.php:1114
 msgid "Yes, Delete"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1065
+#: app/Modules/I18nStrings.php:1115
 msgid "Yes, Proceed"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1066
+#: app/Modules/I18nStrings.php:1116
 msgid "Yesterday's Date:"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1067
+#: app/Modules/I18nStrings.php:1117
+msgid ""
+"You are in a grace period, so everything keeps working for now. Updates and "
+"support will end soon — renew your license to keep them."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1118
 msgid "You are using free version of ninja-tables"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1068
+#: app/Modules/I18nStrings.php:1119
 msgid "You can add additional conditions/where clauses here."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1069
+#: app/Modules/I18nStrings.php:1120
 msgid "You can add additional meta query here."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1070
+#: app/Modules/I18nStrings.php:1121
 msgid ""
 "You can configure global settings for Ninja Tables here. This settings will "
 "apply to all the tables."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1071
+#: app/Modules/I18nStrings.php:1122
 msgid "You can configure table language settings here."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1072
+#: app/Modules/I18nStrings.php:1123
 msgid "You can customize the appearance in stacked view of your table"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1073
+#: app/Modules/I18nStrings.php:1124
 msgid "You can download a sample CSV file to ensure correct data formatting."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1074
+#: app/Modules/I18nStrings.php:1125
 msgid ""
 "You can download the table in CSV or JSON format. If you download it as "
 "JSON, you can import the table into a Ninja Tables installation."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1075
+#: app/Modules/I18nStrings.php:1126
 msgid "You can enable/disable print and csv export settings here"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1076
+#: app/Modules/I18nStrings.php:1127
 msgid ""
 "You can only see the data and update other settings but can't alter the "
 "original SQL."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1077
+#: app/Modules/I18nStrings.php:1128
 msgid "You can set an offset value for the sticky table header."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1078
+#: app/Modules/I18nStrings.php:1129
 msgid ""
-"You can set Column Background color of this particular column that will show"
-" on the frontend table."
+"You can set Column Background color of this particular column that will show "
+"on the frontend table."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1079
+#: app/Modules/I18nStrings.php:1130
 msgid ""
 "You can set Column Text color of this particular column that will show on "
 "the frontend table."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1080
+#: app/Modules/I18nStrings.php:1131
 msgid "You can set the Editing Component Labels and Appearances"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1081
+#: app/Modules/I18nStrings.php:1132
 msgid ""
 "You can sort the table data from <b>Table Rows</b> Manually. Click Sort "
 "Manually checkbox to sort the data using drag and drop feature"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1082
+#: app/Modules/I18nStrings.php:1133
 msgid "You can use any Excel formula into the transform value box"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1083
+#: app/Modules/I18nStrings.php:1134
 msgid ""
-"You can use filter prefix to append the value of user inputed value. It will"
-" join with the value and perform the search"
+"You can use filter prefix to append the value of user inputed value. It will "
+"join with the value and perform the search"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1084
-msgid ""
-"You can use placeholder for dynamic dates to style your row/cell/column"
+#: app/Modules/I18nStrings.php:1135
+msgid "You can use placeholder for dynamic dates to style your row/cell/column"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1085
+#: app/Modules/I18nStrings.php:1136
 msgid ""
 "You can use the following Reference Shortcode Values to transform your cell "
 "value"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1086
+#: app/Modules/I18nStrings.php:1137
 msgid "You haven't added any conditions for the column yet!"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1087
+#: app/Modules/I18nStrings.php:1138
 #, php-format
 msgid "You may %1$scheck the documentation here.%2$s"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1088
+#: app/Modules/I18nStrings.php:1139
 msgid "You may add"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1089
+#: app/Modules/I18nStrings.php:1140
 #, php-format
 msgid ""
 "You may add %1$s as your css selector prefix to target this specific table."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1090
+#: app/Modules/I18nStrings.php:1141
 msgid "You may update the FluentCart query settings here."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1091
+#: app/Modules/I18nStrings.php:1142
 msgid "You may update the query settings here."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1092
+#: app/Modules/I18nStrings.php:1143
 #, php-format
 msgid "You may use %1$s to target this specific table."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1093
+#: app/Modules/I18nStrings.php:1144
 #, php-format
 msgid ""
 "You need to activate your Ninja Tables Pro by providing the license key "
 "below. If you don't have a license key please %1$sClick Here%2$s to get a "
-"license key from your purchase. Any questions or problems with your license?"
-" %3$sContact us!%4$s"
+"license key from your purchase. Any questions or problems with your license? "
+"%3$sContact us!%4$s"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1094
+#: app/Modules/I18nStrings.php:1145
+msgid "Your Account"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1146
 msgid ""
-"Your additional JS code will run after the table initialized. Please provide"
-" valid javascript code. Invalid JS code may break the table UI."
+"Your additional JS code will run after the table initialized. Please provide "
+"valid javascript code. Invalid JS code may break the table UI."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1095
+#: app/Modules/I18nStrings.php:1147
 msgid "Your CSV file should follow this column structure."
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1096
+#: app/Modules/I18nStrings.php:1148
 msgid "Your current tables"
 msgstr ""
 
-#: app/Modules/I18nStrings.php:1097
-msgid "Your License is Active"
-msgstr "Lizentzia aktiboa da"
+#: app/Modules/I18nStrings.php:1149
+#, php-format
+msgid "Your license expired on %1$s"
+msgstr ""
 
-#: app/Modules/I18nStrings.php:1098
-msgid "Your license is active! Enjoy Ninja Tables Pro Add On"
-msgstr "Zure lizentzia aktiboa da! Gozatu Ninja Tables Pro Add On"
+#: app/Modules/I18nStrings.php:1150
+msgid "Your license has been disabled"
+msgstr ""
 
-#: app/Modules/I18nStrings.php:1099
+#: app/Modules/I18nStrings.php:1151
+msgid "Your license has expired"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1152
+msgid "Your license key has been successfully deactivated"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1153
+msgid "Your license key has been successfully updated"
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1154
 msgid ""
 "Your Ninja Tables Pro plugin is outdated. Please upgrade to its latest "
 "version."
 msgstr ""
 "Zure Ninja Tables Pro plugina zaharkituta dago. Eguneratu azken bertsiora."
 
-#: app/Modules/I18nStrings.php:1100
+#: app/Modules/I18nStrings.php:1155
+msgid ""
+"Your Ninja Tables Pro version does not support this screen yet. Update Ninja "
+"Tables Pro to manage your license here."
+msgstr ""
+
+#: app/Modules/I18nStrings.php:1156
 msgid ""
 "Your Selected user roles only see their own data and manage those data. "
 "Other user roles can not see any data. If you want to show all the data "
@@ -5381,134 +5611,186 @@ msgid "Thank you"
 msgstr ""
 
 #: app/Services/TranslationService.php:14
-msgid "No matches for \"{0}\""
-msgstr ""
+msgid "Scrollable table"
+msgstr "Taula korrigarria"
 
 #: app/Services/TranslationService.php:15
+msgid "Search table"
+msgstr "Bilatu taulan"
+
+#: app/Services/TranslationService.php:16
+msgid "Clear search"
+msgstr "Garbitu bilaketa"
+
+#: app/Services/TranslationService.php:18
+msgid "Toggle row details"
+msgstr "Erakutsi edo ezkutatu errenkadaren xehetasunak"
+
+#: app/Services/TranslationService.php:19
+msgid "Select Month"
+msgstr "Hautatu hilabetea"
+
+#: app/Services/TranslationService.php:20
+msgid "Select Year"
+msgstr "Hautatu urtea"
+
+#: app/Services/TranslationService.php:31
+msgid "Showing _START_ to _END_ of _TOTAL_ entries"
+msgstr "_START_ - _END_ erakusten, _TOTAL_ sarreratik"
+
+#: app/Services/TranslationService.php:32
+msgid "Showing 0 to 0 of 0 entries"
+msgstr "0 - 0 erakusten, 0 sarreratik"
+
+#: app/Services/TranslationService.php:33
+msgid "(filtered from _MAX_ total entries)"
+msgstr "(_MAX_ sarreratik iragazita)"
+
+#: app/Services/TranslationService.php:34
+msgid "Show _MENU_ entries"
+msgstr "Erakutsi _MENU_ sarrera"
+
+#: app/Services/TranslationService.php:36
+msgid "Loading..."
+msgstr "Kargatzen..."
+
+#: app/Services/TranslationService.php:44
+msgid ": activate to sort column ascending"
+msgstr ": aktibatu zutabea goranzko ordenan antolatzeko"
+
+#: app/Services/TranslationService.php:45
+msgid ": activate to sort column descending"
+msgstr ": aktibatu zutabea beheranzko ordenan antolatzeko"
+
+#: app/Services/TranslationService.php:57
+msgid "No matches for \"{0}\""
+msgstr "Ez dago emaitzarik \"{0}\"-(r)entzat"
+
+#: app/Services/TranslationService.php:58
 msgid "Clear All"
 msgstr "Garbitu guztiak"
 
-#: app/Services/TranslationService.php:16
+#: app/Services/TranslationService.php:59
 msgid "Selected"
 msgstr "hautatua"
 
-#: app/Services/TranslationService.php:18
+#: app/Services/TranslationService.php:61
 msgid "Previous Month"
-msgstr ""
+msgstr "Aurreko hilabetea"
 
-#: app/Services/TranslationService.php:19
+#: app/Services/TranslationService.php:62
 msgid "Next Month"
-msgstr ""
+msgstr "Hurrengo hilabetea"
 
-#: app/Services/TranslationService.php:21
+#: app/Services/TranslationService.php:64
 msgid "January"
 msgstr ""
 
-#: app/Services/TranslationService.php:22
+#: app/Services/TranslationService.php:65
 msgid "February"
 msgstr ""
 
-#: app/Services/TranslationService.php:23
+#: app/Services/TranslationService.php:66
 msgid "March"
 msgstr ""
 
-#: app/Services/TranslationService.php:24
+#: app/Services/TranslationService.php:67
 msgid "April"
 msgstr ""
 
-#: app/Services/TranslationService.php:25
+#: app/Services/TranslationService.php:68
 msgid "May"
 msgstr ""
 
-#: app/Services/TranslationService.php:26
+#: app/Services/TranslationService.php:69
 msgid "June"
 msgstr ""
 
-#: app/Services/TranslationService.php:27
+#: app/Services/TranslationService.php:70
 msgid "July"
 msgstr ""
 
-#: app/Services/TranslationService.php:28
+#: app/Services/TranslationService.php:71
 msgid "August"
 msgstr ""
 
-#: app/Services/TranslationService.php:29
+#: app/Services/TranslationService.php:72
 msgid "September"
 msgstr ""
 
-#: app/Services/TranslationService.php:30
+#: app/Services/TranslationService.php:73
 msgid "October"
 msgstr ""
 
-#: app/Services/TranslationService.php:31
+#: app/Services/TranslationService.php:74
 msgid "November"
 msgstr ""
 
-#: app/Services/TranslationService.php:32
+#: app/Services/TranslationService.php:75
 msgid "December"
 msgstr ""
 
-#: app/Services/TranslationService.php:35
+#: app/Services/TranslationService.php:78
 msgid "Sunday"
 msgstr ""
 
-#: app/Services/TranslationService.php:36
+#: app/Services/TranslationService.php:79
 msgid "Monday"
 msgstr ""
 
-#: app/Services/TranslationService.php:37
+#: app/Services/TranslationService.php:80
 msgid "Tuesday"
 msgstr ""
 
-#: app/Services/TranslationService.php:38
+#: app/Services/TranslationService.php:81
 msgid "Wednesday"
 msgstr ""
 
-#: app/Services/TranslationService.php:39
+#: app/Services/TranslationService.php:82
 msgid "Thursday"
 msgstr ""
 
-#: app/Services/TranslationService.php:40
+#: app/Services/TranslationService.php:83
 msgid "Friday"
 msgstr ""
 
-#: app/Services/TranslationService.php:41
+#: app/Services/TranslationService.php:84
 msgid "Saturday"
 msgstr ""
 
-#: app/Services/TranslationService.php:44
+#: app/Services/TranslationService.php:87
 msgid "Sun"
 msgstr ""
 
-#: app/Services/TranslationService.php:45
+#: app/Services/TranslationService.php:88
 msgid "Mon"
 msgstr ""
 
-#: app/Services/TranslationService.php:46
+#: app/Services/TranslationService.php:89
 msgid "Tue"
 msgstr ""
 
-#: app/Services/TranslationService.php:47
+#: app/Services/TranslationService.php:90
 msgid "Wed"
 msgstr ""
 
-#: app/Services/TranslationService.php:48
+#: app/Services/TranslationService.php:91
 msgid "Thu"
 msgstr ""
 
-#: app/Services/TranslationService.php:49
+#: app/Services/TranslationService.php:92
 msgid "Fri"
 msgstr ""
 
-#: app/Services/TranslationService.php:50
+#: app/Services/TranslationService.php:93
 msgid "Sat"
 msgstr ""
 
-#: app/Services/TranslationService.php:52
+#: app/Services/TranslationService.php:95
 msgid "12 AM"
 msgstr ""
 
-#: app/Services/TranslationService.php:53
+#: app/Services/TranslationService.php:96
 msgid "12 PM"
 msgstr ""
 
@@ -5525,18 +5807,28 @@ msgstr "Zerbait gaizki dago CSV parekatzean"
 msgid "Preview Table"
 msgstr ""
 
-#: boot/app.php:34
+#: boot/app.php:36
 msgid ""
 "Ninja Tables Pro plugin is not compatible with the current version of Ninja "
 "Tables. Please update Ninja Tables Pro to the latest version."
 msgstr ""
 
-#: boot/ninja-tables-global-function.php:438
+#: boot/ninja-tables-global-function.php:449
 msgid "Auto Draft"
 msgstr ""
 
-#: boot/ninja-tables-global-function.php:1059
+#: boot/ninja-tables-global-function.php:1070
 msgid "Nonce verification failed, please try again."
+msgstr ""
+
+#: boot/ninja-tables-global-function.php:1274
+#, php-format
+msgid ""
+"<strong>Ninja Tables Pro has been deactivated for security reasons.</strong> "
+"Delete the existing plugin and install a fresh copy from your "
+"%1$sWPManageNinja dashboard%2$s. Your Ninja Tables data will remain intact. "
+"We recommend %3$sopening a support ticket%4$s so we can help clean up your "
+"site. Read the %5$sincident report%6$s for details."
 msgstr ""
 
 #: config/table-builder/component.php:47
@@ -5790,6 +6082,18 @@ msgstr ""
 #: database/Migrations/NinjaTablesSupsysticTableMigration.php:32
 msgid "No Table Found with the selected table"
 msgstr "Taula Ez da hautatutako taula batekin aurkitu"
+
+#~ msgid "Deactivate License"
+#~ msgstr "Lizentzia desaktibatu"
+
+#~ msgid "Licensing"
+#~ msgstr "Lizentzia"
+
+#~ msgid "Your License is Active"
+#~ msgstr "Lizentzia aktiboa da"
+
+#~ msgid "Your license is active! Enjoy Ninja Tables Pro Add On"
+#~ msgstr "Zure lizentzia aktiboa da! Gozatu Ninja Tables Pro Add On"
 
 #~ msgid " successfully."
 #~ msgstr "Arrakastaz."

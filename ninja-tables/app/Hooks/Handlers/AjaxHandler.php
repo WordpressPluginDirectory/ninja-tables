@@ -6,6 +6,12 @@ use NinjaTables\Framework\Support\Arr;
 
 class AjaxHandler
 {
+    public function register()
+    {
+        add_action('wp_ajax_wp_ajax_ninja_tables_public_action', [$this, 'registerAjaxRoutes'], 100);
+        add_action('wp_ajax_nopriv_wp_ajax_ninja_tables_public_action', [$this, 'registerAjaxRoutes'], 100);
+    }
+
     public function registerAjaxRoutes()
     {
         $validRoutes = array(
@@ -64,11 +70,13 @@ class AjaxHandler
             $limit = $maxRows;
         }
 
-        $ownOnly = false;
+        $ownOnly = sanitize_text_field(Arr::get($request, 'own_only', '')) == 'yes';
 
-        if (sanitize_text_field(Arr::get($request, 'own_only', '')) == 'yes') {
-            $ownOnly = true;
-        }
+        // A table configured "users see only their own rows" must be enforced on
+        // the server: a crafted request that omits own_only must not receive every
+        // row. Pro answers this from the table's front-end-editing settings; with
+        // Pro absent there is no own-data table and $ownOnly is unchanged.
+        $ownOnly = (bool) apply_filters('ninja_tables_public_force_own_only', $ownOnly, $tableId);
 
         $tableColumns   = ninja_table_get_table_columns($tableId);
         $formatted_data = ninjaTablesGetTablesDataByID(
@@ -83,9 +91,7 @@ class AjaxHandler
 
         $formatted_data = apply_filters('ninja_tables_get_public_data', $formatted_data, $tableId);
 
-        $dataProvider = ninja_table_get_data_provider($tableId);
-
-        if ($dataProvider == 'default') {
+        if (ninja_tables_provider_executes_shortcodes($tableId)) {
             $newStyledData = [];
             $counter       = $skip;
             foreach ($formatted_data as $index => $datum) {

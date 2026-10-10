@@ -7,6 +7,11 @@ use NinjaTables\App\CPT\NinjaTable;
 
 class CPTHandler
 {
+    public function register()
+    {
+        add_action('init', [$this, 'registerPostTypes']);
+    }
+
     /*
     * Add all Custom Post Type classes here to
     * register all of your Custom Post Types.

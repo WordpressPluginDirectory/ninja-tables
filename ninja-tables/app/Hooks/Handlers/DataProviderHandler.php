@@ -2,8 +2,11 @@
 
 namespace NinjaTables\App\Hooks\Handlers;
 
+if (!defined('ABSPATH')) {
+    exit;
+}
+
 use NinjaTables\App\Modules\DataProviders\DefaultProvider;
-use NinjaTables\App\Modules\DataProviders\FluentFormProvider;
 use NinjaTables\Framework\Foundation\Application;
 
 class DataProviderHandler
@@ -15,9 +18,13 @@ class DataProviderHandler
         $this->app = $app;
     }
 
+    public function register()
+    {
+        add_action('init', [$this, 'handle']);
+    }
+
     public function handle()
     {
-        $this->app->make(FluentFormProvider::class)->boot();
-        $this->app->make(DefaultProvider::class)->boot();
+        $this->app->make(DefaultProvider::class)->register();
     }
 }

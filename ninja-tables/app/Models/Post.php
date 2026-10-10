@@ -4,6 +4,8 @@ namespace NinjaTables\App\Models;
 
 use NinjaTables\Framework\Foundation\App;
 use NinjaTables\Framework\Support\Arr;
+use NinjaTables\App\Modules\DataTables\Database\DynamicTableManager;
+use NinjaTables\App\Services\Table\Engine;
 
 class Post extends Model
 {
@@ -104,21 +106,82 @@ class Post extends Model
         $oldPostId = (int)$oldPostId;
         $newPostId = (int)$newPostId;
 
-        // Duplicate table settings.
+        // Duplicate table settings. Caches belong to the source table (same list the
+        // exporter skips); the copy builds its own on first render.
+        $cacheMetaKeys = [
+            '_ninja_table_cache_object',
+            '_ninja_table_cache_html',
+            '_external_cached_data',
+            '_last_external_cached_time',
+            '__ninja_cached_table_html',
+            '__ninja_cached_table_html_policy',
+            '__last_ninja_table_last_cached_time',
+        ];
         $postMetas = get_post_meta($oldPostId);
 
         foreach ($postMetas as $metaKey => $metaValue) {
+            if (in_array($metaKey, $cacheMetaKeys, true)) {
+                continue;
+            }
             update_post_meta($newPostId, $metaKey, maybe_unserialize($metaValue[0]));
+        }
+
+        // DataTables keeps its rows in a per-table table, not in ninja_table_items.
+        if (Engine::isDataTables($oldPostId)) {
+            static::duplicateDynamicRows($oldPostId, $newPostId);
         }
 
         // Duplicate table rows.
         $itemsTable = $wpdb->prefix . esc_sql(ninja_tables_db_table_name());
 
-        $sql = "INSERT INTO $itemsTable (`position`, `table_id`, `owner_id`, `settings`, `attribute`, `value`, `created_at`, `updated_at`)";
-        $sql .= " SELECT `position`, $newPostId, `owner_id`, `settings`, `attribute`, `value`, `created_at`, `updated_at` FROM $itemsTable";
-        $sql .= " WHERE `table_id` = $oldPostId";
+        // Only the table name is interpolated (prefix + fixed name, esc_sql'd); %i needs WP 6.2.
+        // phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+        $copied = $wpdb->query( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.DirectQuery
+            $wpdb->prepare(
+                "INSERT INTO {$itemsTable} (`position`, `table_id`, `owner_id`, `settings`, `attribute`, `value`, `created_at`, `updated_at`)
+                 SELECT `position`, %d, `owner_id`, `settings`, `attribute`, `value`, `created_at`, `updated_at` FROM {$itemsTable}
+                 WHERE `table_id` = %d",
+                $newPostId,
+                $oldPostId
+            )
+        );
+        // phpcs:enable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+        if ($copied === false) {
+            // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- internal; the controller replies with its own message
+            throw new \RuntimeException('Could not copy the table rows: ' . $wpdb->last_error);
+        }
+    }
 
-        $wpdb->query($sql); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.NotPrepared
+    /**
+     * Copy a DataTables table's own row table (same columns and indexes) with all rows.
+     * Nothing to copy when the source never got one (columns not saved yet).
+     */
+    protected static function duplicateDynamicRows($oldPostId, $newPostId)
+    {
+        global $wpdb;
+
+        $source = new DynamicTableManager($oldPostId);
+        if (!$source->tableExists()) {
+            return;
+        }
+        $target = new DynamicTableManager($newPostId);
+        $from   = $source->getTableName();
+        $to     = $target->getTableName();
+
+        // Both names are the prefix + a fixed name + an int id; %i needs WP 6.2.
+        // phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.SchemaChange, PluginCheck.Security.DirectDB.UnescapedDBParameter
+        // Each step is checked: DDL can't be rolled back, so the caller removes the copy on failure.
+        if (!$target->tableExists() && $wpdb->query("CREATE TABLE `{$to}` LIKE `{$from}`") === false) {
+            $failed = 'Could not create the row table for the copy: ' . $wpdb->last_error;
+        } elseif ($wpdb->query("INSERT INTO `{$to}` SELECT * FROM `{$from}`") === false) {
+            $failed = 'Could not copy the table rows: ' . $wpdb->last_error;
+        }
+        // phpcs:enable WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.SchemaChange, PluginCheck.Security.DirectDB.UnescapedDBParameter
+
+        if (isset($failed)) {
+            // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- internal; the controller replies with its own message
+            throw new \RuntimeException($failed);
+        }
     }
 
     public static function updatedSettings($tableId, $rawColumns, $tablePreference)

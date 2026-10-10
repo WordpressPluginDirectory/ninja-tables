@@ -7,12 +7,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 use NinjaTables\App\App;
+use NinjaTables\App\Helper\Pro;
+use NinjaTables\App\Services\Vite;
 use NinjaTables\App\Modules\I18nStrings;
 use NinjaTables\Framework\Support\Arr;
 use NinjaTables\Framework\Support\Sanitizer;
 
 class AdminMenuHandler
 {
+    public function register()
+    {
+        add_action('admin_menu', [$this, 'add']);
+        add_action('admin_enqueue_scripts', [$this, 'enqueueAssets']);
+    }
+
     public function add()
     {
         global $submenu;
@@ -23,7 +31,7 @@ class AdminMenuHandler
         }
         // Top-level page
         $menuName = __('Ninja Tables', 'ninja-tables');
-        if (defined('NINJATABLESPRO')) {
+        if (Pro::active()) {
             $menuName .= ' Pro';
         }
 
@@ -74,7 +82,7 @@ class AdminMenuHandler
             );
         }
 
-        if (!defined('NINJATABLESPRO')) {
+        if (!Pro::active()) {
             $getPro = __('Get Pro', 'ninja-tables');
             $submenu['ninja_tables']['upgrade_pro'] = array(
                 '<span style="color:#f39c12;">' . $getPro . '</span>',
@@ -83,7 +91,7 @@ class AdminMenuHandler
                 '',
                 'ninja_table_upgrade_menu'
             );
-        } elseif (defined('NINJATABLESPRO_SORTABLE')) {
+        } elseif (Pro::sortable()) {
             $license = get_option('_ninjatables_pro_license_status');
             if ($license != 'valid' && is_multisite()) {
                 $license = get_network_option(get_main_network_id(), '_ninjatables_pro_license_status');
@@ -200,31 +208,12 @@ class AdminMenuHandler
      */
     public function enqueueStyles()
     {
-        $app = App::getInstance();
+        $slug = App::getInstance()->config->get('app.slug');
 
-        $assets = $app['url.assets'];
+        $vendorSrc = is_rtl() ? 'css/ninja-tables-vendor-rtl.css' : 'css/ninja-tables-vendor.css';
 
-        $slug = $app->config->get('app.slug');
-
-        $vendorSrc = $assets . "css/ninja-tables-vendor.css";
-
-        if (is_rtl()) {
-            $vendorSrc = $assets . "css/ninja-tables-vendor-rtl.css";
-        }
-
-        wp_enqueue_style(
-            $slug . '_admin_app',
-            $vendorSrc,
-            array(),
-            NINJA_TABLES_VERSION
-        );
-
-        wp_enqueue_style(
-            $slug,
-            $assets . "css/ninja-tables-admin.css",
-            array(),
-            NINJA_TABLES_VERSION
-        );
+        Vite::enqueueStyle($slug . '_admin_app', $vendorSrc);
+        Vite::enqueueStyle($slug, 'css/ninja-tables-admin.css');
     }
 
     /**
@@ -254,27 +243,15 @@ class AdminMenuHandler
             wp_enqueue_media();
         }
 
-        wp_enqueue_script(
-            $slug . '_admin_app',
-            $assets . "js/ninja-tables-boot.js",
-            array('jquery'),
-            NINJA_TABLES_VERSION,
-            true
-        );
+        Vite::enqueueScript($slug . '_admin_app', 'js/ninja-tables-boot.js', array('jquery'));
 
         $app->doAction('ninja_tables_loaded_boot_script');
 
-        wp_enqueue_script(
-            $slug,
-            $assets . "js/ninja-tables-admin.js",
-            array('jquery'),
-            NINJA_TABLES_VERSION,
-            true
-        );
+        Vite::enqueueScript($slug, 'js/ninja-tables-admin.js', array('jquery'));
 
         $fluentUrl = admin_url('plugin-install.php?s=FluentForm&tab=search&type=term');
 
-        $isInstalled   = defined('FLUENTFORM') || defined('NINJATABLESPRO');
+        $isInstalled   = defined('FLUENTFORM') || Pro::active();
         $dismissed     = false;
         $dismissedTime = get_option('_ninja_tables_plugin_suggest_dismiss');
 
@@ -361,17 +338,24 @@ class AdminMenuHandler
             'show_review_dialog'       => $reviewOptinStatus,
             'current_user_name'        => $currentUser->display_name,
             'isInstalled'              => $isInstalled,
-            'hasPro'                   => defined('NINJATABLESPRO'),
+            'hasPro'                   => Pro::active(),
             'hasFluentForm'            => $hasFluentFrom,
             'hasTablePress'            => $hasTablePress,
             'hasSupsystic'             => $hasSupsystic,
+            'maxUploadSize'            => size_format(wp_max_upload_size()), // shown next to the Excel import picker
+            'maxUploadBytes'           => wp_max_upload_size(),
+            'canExportXlsx'            => class_exists('ZipArchive'), // Excel export needs the PHP Zip extension
+            // Pro versions with a frontend Excel button return true; older Pro would draw
+            // the button with no click handler, so the setting stays hidden for them.
+            'hasXlsxFrontendButton'    => (bool) apply_filters('ninja_tables_frontend_xlsx_button_supported', false),
             'isFluentFormUpdated'      => $isFluentFromUpdated,
             'hasAdvancedFilters'       => class_exists('NinjaTablesPro\App\Hooks\Handlers\CustomFilterHandler'),
-            'hasSortable'              => defined('NINJATABLESPRO_SORTABLE'),
+            'hasSortable'              => Pro::sortable(),
             'ace_path_url'             => $assets . "libs/ace",
             'upgradeGuide'             => 'https://wpmanageninja.com/r/docs/ninja-tables/how-to-install-and-upgrade/#upgrade',
             'hasValidLicense'          => get_option('_ninjatables_pro_license_status'),
             'i18n'                     => I18nStrings::getStrings(),
+            'locale'                   => get_user_locale(),
             'published_tables'         => $totalPublishedTable,
             'trashed_tables'           => $totalTrashedTable,
             'preview_required_scripts' => array(
@@ -395,7 +379,7 @@ class AdminMenuHandler
                 'admin.php?page=ninja-charts#/chart-list'
             ) : null,
             'ninja_table_admin_nonce' => wp_create_nonce('ninja_table_admin_nonce'),
-            'ninja_tables_pro_url'    => defined('NINJATABLESPRO') ? NINJAPROPLUGIN_URL : null,
+            'ninja_tables_pro_url'    => Pro::url(),
             'max_upload_file_size'    => apply_filters('ninja_tables/max_upload_file_size', 1024),
             'dt_preview_required_scripts' => array(
                 $assets . "libs/datatables/datatables.min.css",
@@ -449,7 +433,7 @@ class AdminMenuHandler
 
     private function getIntegrity()
     {
-        if (defined('NINJATABLESPRO')) {
+        if (Pro::active()) {
             if (is_multisite()) {
                 return 'valid';
             }

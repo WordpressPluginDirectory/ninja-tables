@@ -2,14 +2,14 @@
 
 namespace NinjaTables\App\Http\Controllers;
 
-use NinjaTables\App\Modules\DragAndDrop\InitConfig;
+use NinjaTables\App\Modules\TableBuilder\InitConfig;
 use NinjaTables\App\Traits\WpPostTrait;
 use NinjaTables\Framework\Http\Request\Request;
 use NinjaTables\Framework\Http\Controller;
 use NinjaTables\Framework\Support\Arr;
 use NinjaTables\Framework\Support\Sanitizer;
-use NinjaTables\App\Modules\DynamicConfig;
-use NinjaTables\App\Modules\ReadyMadeTable;
+use NinjaTables\App\Modules\TableBuilder\DynamicConfig;
+use NinjaTables\App\Modules\TableBuilder\ReadyMadeTable;
 
 class TableBuilderController extends Controller
 {

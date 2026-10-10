@@ -7,6 +7,17 @@ use NinjaTables\Framework\Support\Arr;
 
 class DeactivationHandler
 {
+    public function register()
+    {
+        global $pagenow;
+
+        if ($pagenow === 'plugins.php') {
+            add_action('admin_footer', [$this, 'renderDeactivationFeedback']);
+        }
+
+        add_action('wp_ajax_ninja-tables_deactivate_feedback', [$this, 'saveDeactivationFeedback']);
+    }
+
     protected $slug = 'ninja-tables';
     protected $app = null;
     private static $apiUrl = 'https://wpmanageninja.com/?wpmn_api=product_users';

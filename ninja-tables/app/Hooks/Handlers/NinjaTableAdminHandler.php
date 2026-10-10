@@ -7,6 +7,13 @@ use NinjaTables\Framework\Support\Arr;
 
 class NinjaTableAdminHandler
 {
+    public function register()
+    {
+        add_action('init', [$this, 'remindMeLater']);
+        add_action('wp_head', [$this, 'addNinjaTableAdminScript']);
+        add_action('save_post', [$this, 'saveNinjaTableFlagOnShortCode']);
+    }
+
     public function addNinjaTableAdminScript()
     {
         $errorType = get_option('_ninja_suppress_error');

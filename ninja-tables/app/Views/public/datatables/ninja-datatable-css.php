@@ -66,6 +66,17 @@
     background-color: <?php echo esc_attr($colors['table_color_primary_hover']); ?> !important;
     color: <?php echo esc_attr($colors['table_color_secondary_hover']); ?> !important;
     }
+    /* A row and its responsive child row are one record: hovering either highlights both. */
+    <?php echo esc_attr($css_prefix); ?> tbody tr:not(.child):hover + tr.child,
+    <?php echo esc_attr($css_prefix); ?> tbody tr.child:hover {
+    background-color: <?php echo esc_attr($colors['table_color_primary_hover']); ?> !important;
+    color: <?php echo esc_attr($colors['table_color_secondary_hover']); ?> !important;
+    }
+    /* Separate rule: a browser without :has() drops only this one. */
+    <?php echo esc_attr($css_prefix); ?> tbody tr:not(.child):has(+ tr.child:hover) {
+    background-color: <?php echo esc_attr($colors['table_color_primary_hover']); ?> !important;
+    color: <?php echo esc_attr($colors['table_color_secondary_hover']); ?> !important;
+    }
 
     /* Alternating rows — overrides body colors on odd/even */
     <?php if(isset($colors['alternate_color_status']) && $colors['alternate_color_status'] == 'yes'): ?>
@@ -91,6 +102,23 @@
         <?php echo esc_attr($css_prefix); ?> tbody tr:not(.child):nth-child(odd) + tr.child {
         background-color: <?php echo esc_attr($colors['table_alt_2_color_primary']); ?> !important;
         color: <?php echo esc_attr($colors['table_alt_2_color_secondary']); ?> !important;
+        }
+        /* Child row hovers with its parent row's colour. */
+        <?php echo esc_attr($css_prefix); ?> tbody tr:not(.child):nth-child(even):hover + tr.child,
+        <?php echo esc_attr($css_prefix); ?> tbody tr:not(.child):nth-child(even) + tr.child:hover {
+        background-color: <?php echo esc_attr($colors['table_alt_color_hover']); ?> !important;
+        }
+        /* Separate rule: a browser without :has() drops only this one. */
+        <?php echo esc_attr($css_prefix); ?> tbody tr:not(.child):nth-child(even):has(+ tr.child:hover) {
+        background-color: <?php echo esc_attr($colors['table_alt_color_hover']); ?> !important;
+        }
+        <?php echo esc_attr($css_prefix); ?> tbody tr:not(.child):nth-child(odd):hover + tr.child,
+        <?php echo esc_attr($css_prefix); ?> tbody tr:not(.child):nth-child(odd) + tr.child:hover {
+        background-color: <?php echo esc_attr($colors['table_alt_2_color_hover']); ?> !important;
+        }
+        /* Separate rule: a browser without :has() drops only this one. */
+        <?php echo esc_attr($css_prefix); ?> tbody tr:not(.child):nth-child(odd):has(+ tr.child:hover) {
+        background-color: <?php echo esc_attr($colors['table_alt_2_color_hover']); ?> !important;
         }
     <?php endif; ?>
 

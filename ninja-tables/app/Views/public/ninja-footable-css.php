@@ -15,10 +15,12 @@
     background-color: <?php echo esc_attr($colors['table_color_secondary']); ?> !important;
     }
 
-    <?php echo esc_attr($css_prefix);?> tbody tr:hover td span.fooicon-plus:before {
+    <?php echo esc_attr($css_prefix);?> tbody tr:hover td span.fooicon-plus:before,
+    <?php echo esc_attr($css_prefix);?> tbody tr:focus-within td span.fooicon-plus:before {
     background-color: <?php echo esc_attr($colors['table_color_secondary_hover']) ?> !important;
     }
-    <?php echo esc_attr($css_prefix);?> tbody tr:hover td span.fooicon-minus:before {
+    <?php echo esc_attr($css_prefix);?> tbody tr:hover td span.fooicon-minus:before,
+    <?php echo esc_attr($css_prefix);?> tbody tr:focus-within td span.fooicon-minus:before {
     background-color: <?php echo esc_attr($colors['table_color_secondary_hover']) ?> !important;
     }
 
@@ -29,7 +31,7 @@
     <?php echo esc_attr($css_prefix); ?> table {
     background-color: <?php echo esc_attr($colors['table_color_primary']); ?> !important;
     color: <?php echo esc_attr($colors['table_color_secondary']); ?> !important;
-    border-color: <?php echo esc_attr($colors['table_color_border']); ?> !important;
+    <?php if(!empty($hasBorderedClass)): ?>border-color: <?php echo esc_attr($colors['table_color_border']); ?> !important;<?php endif; ?>
     }
     <?php echo esc_attr($css_prefix); ?> thead tr.footable-filtering th {
     background-color: <?php echo esc_attr($colors['table_search_color_primary']); ?> !important;
@@ -68,7 +70,7 @@
         <?php endif; ?>
     <?php endif; ?>
 
-    <?php if(isset($colors['table_color_border']) && $colors['table_color_border']) : ?>
+    <?php if(!empty($hasBorderedClass) && isset($colors['table_color_border']) && $colors['table_color_border']) : ?>
         <?php echo esc_attr($css_prefix); ?>:not(.hide_all_borders) tbody tr td {
         border-color: <?php echo esc_attr($colors['table_color_border']); ?> !important;
         }
@@ -79,6 +81,23 @@
     <?php echo esc_attr($css_prefix); ?> tbody tr:hover {
     background-color: <?php echo esc_attr($colors['table_color_primary_hover']); ?> !important;
     color: <?php echo esc_attr($colors['table_color_secondary_hover']); ?> !important;
+    }
+    /* A row and its responsive details row are one record: hovering either highlights both. */
+    <?php echo esc_attr($css_prefix); ?> tbody tr:hover + tr.footable-detail-row,
+    <?php echo esc_attr($css_prefix); ?> tbody tr:hover + tr.footable-detail-row table,
+    <?php echo esc_attr($css_prefix); ?> tbody tr:hover + tr.footable-detail-row table tr,
+    <?php echo esc_attr($css_prefix); ?> tbody tr.footable-detail-row:hover table,
+    <?php echo esc_attr($css_prefix); ?> tbody tr.footable-detail-row:hover table tr {
+    background-color: <?php echo esc_attr($colors['table_color_primary_hover']); ?> !important;
+    color: <?php echo esc_attr($colors['table_color_secondary_hover']); ?> !important;
+    }
+    /* Separate rule: a browser without :has() drops only this one. */
+    <?php echo esc_attr($css_prefix); ?> tbody tr:has(+ tr.footable-detail-row:hover) {
+    background-color: <?php echo esc_attr($colors['table_color_primary_hover']); ?> !important;
+    color: <?php echo esc_attr($colors['table_color_secondary_hover']); ?> !important;
+    }
+    <?php echo esc_attr($css_prefix); ?> tbody tr:has(+ tr.footable-detail-row:hover) td span.fooicon-minus:before {
+    background-color: <?php echo esc_attr($colors['table_color_secondary_hover']) ?> !important;
     }
 <!--    --><?php //if($colors['table_color_border_hover'] !== '') { ?>
 <!--        --><?php //echo esc_attr($css_prefix); ?><!-- tbody tr td {-->
@@ -115,6 +134,31 @@
         background-color: <?php echo esc_attr($colors['table_alt_color_hover']); ?> !important;
         }
         <?php echo esc_attr($css_prefix); ?> tbody tr:nth-child(odd):hover {
+        background-color: <?php echo esc_attr($colors['table_alt_2_color_hover']); ?> !important;
+        }
+        /* Details row hovers with its parent row's colour. */
+        <?php echo esc_attr($css_prefix); ?> tbody tr:nth-child(even):hover + tr.footable-detail-row,
+        <?php echo esc_attr($css_prefix); ?> tbody tr:nth-child(even):hover + tr.footable-detail-row table,
+        <?php echo esc_attr($css_prefix); ?> tbody tr:nth-child(even):hover + tr.footable-detail-row table tr,
+        <?php echo esc_attr($css_prefix); ?> tbody tr:nth-child(even) + tr.footable-detail-row:hover,
+        <?php echo esc_attr($css_prefix); ?> tbody tr:nth-child(even) + tr.footable-detail-row:hover table,
+        <?php echo esc_attr($css_prefix); ?> tbody tr:nth-child(even) + tr.footable-detail-row:hover table tr {
+        background-color: <?php echo esc_attr($colors['table_alt_color_hover']); ?> !important;
+        }
+        /* Separate rule: a browser without :has() drops only this one. */
+        <?php echo esc_attr($css_prefix); ?> tbody tr:nth-child(even):has(+ tr.footable-detail-row:hover) {
+        background-color: <?php echo esc_attr($colors['table_alt_color_hover']); ?> !important;
+        }
+        <?php echo esc_attr($css_prefix); ?> tbody tr:nth-child(odd):hover + tr.footable-detail-row,
+        <?php echo esc_attr($css_prefix); ?> tbody tr:nth-child(odd):hover + tr.footable-detail-row table,
+        <?php echo esc_attr($css_prefix); ?> tbody tr:nth-child(odd):hover + tr.footable-detail-row table tr,
+        <?php echo esc_attr($css_prefix); ?> tbody tr:nth-child(odd) + tr.footable-detail-row:hover,
+        <?php echo esc_attr($css_prefix); ?> tbody tr:nth-child(odd) + tr.footable-detail-row:hover table,
+        <?php echo esc_attr($css_prefix); ?> tbody tr:nth-child(odd) + tr.footable-detail-row:hover table tr {
+        background-color: <?php echo esc_attr($colors['table_alt_2_color_hover']); ?> !important;
+        }
+        /* Separate rule: a browser without :has() drops only this one. */
+        <?php echo esc_attr($css_prefix); ?> tbody tr:nth-child(odd):has(+ tr.footable-detail-row:hover) {
         background-color: <?php echo esc_attr($colors['table_alt_2_color_hover']); ?> !important;
         }
 
@@ -186,7 +230,7 @@
         <?php echo esc_attr($css_prefix); ?>.ninja_stacked_table .footable-details tbody {
         background-color: <?php echo esc_attr($colors['table_color_primary']); ?> !important;
         color: <?php echo esc_attr($colors['table_color_secondary']); ?> !important;
-        border-color: <?php echo esc_attr($colors['table_color_border']); ?> !important;
+        <?php if(!empty($hasBorderedClass)): ?>border-color: <?php echo esc_attr($colors['table_color_border']); ?> !important;<?php endif; ?>
         }
         <?php echo esc_attr($stackPrefix); ?> thead tr.footable-filtering th {
         background-color: <?php echo esc_attr($colors['table_search_color_primary']); ?> !important;
@@ -214,7 +258,7 @@
         }
     <?php endif; ?>
 
-    <?php if(isset($colors['table_color_border']) && $colors['table_color_border']) : ?>
+    <?php if(!empty($hasBorderedClass) && isset($colors['table_color_border']) && $colors['table_color_border']) : ?>
         <?php echo esc_attr($css_prefix); ?>:not(.hide_all_borders) tbody tr td table {
         border-color: <?php echo esc_attr($colors['table_color_border']); ?> !important;
         }

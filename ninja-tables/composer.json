@@ -1,7 +1,7 @@
 {
-    "name": "wpfluent/wpfluent",
-    "type": "project",
-    "description": "WPFluent - The best framework to build WordPress plugins.",
+    "name": "wpmanageninja/ninja-tables",
+    "type": "wordpress-plugin",
+    "description": "Ninja Tables - WordPress table builder plugin.",
     "keywords": [
         "WordPress",
         "framework",
@@ -26,6 +26,7 @@
     "autoload": {
         "psr-4": {
             "NinjaTables\\App\\": "app/",
+            "NinjaTables\\Dev\\": "dev/",
             "NinjaTables\\Framework\\": "vendor/wpfluent/framework/src/WPFluent"
         },
         "classmap": [
@@ -44,8 +45,11 @@
         }
     },
     "scripts": {
+        "post-install-cmd": [
+            "NinjaTables\\Dev\\ComposerScript::postInstall"
+        ],
         "post-update-cmd": [
-            "NinjaTables\\App\\ComposerScript::postUpdate"
+            "NinjaTables\\Dev\\ComposerScript::postUpdate"
         ]
     },
     "minimum-stability": "dev",

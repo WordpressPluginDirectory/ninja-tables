@@ -12,18 +12,6 @@ use NinjaTables\App\Models\NinjaTableItem;
 
 class TablesController extends Controller
 {
-    private $cptName = 'ninja-table';
-
-    private function assertNinjaTable($id)
-    {
-        if (get_post_type($id) !== $this->cptName) {
-            return $this->sendError([
-                'message' => __('Invalid table.', 'ninja-tables'),
-            ], 423);
-        }
-        return null;
-    }
-
     public function index(Request $request)
     {
         $perPage = intval(Arr::get($request->all(), 'per_page')) ?: 10;
@@ -39,7 +27,7 @@ class TablesController extends Controller
             'offset'         => $skip,
             'orderby'        => Sanitizer::sanitizeTextField(Arr::get($request->all(), 'orderBy')),
             'order'          => Sanitizer::sanitizeTextField(Arr::get($request->all(), 'order')),
-            'post_type'      => $this->cptName,
+            'post_type'      => self::TABLE_POST_TYPE,
             'post_status'    => $postStatus,
         );
 
@@ -70,7 +58,7 @@ class TablesController extends Controller
 
         $postId = intval(Arr::get($request->all(), 'tableId'));
 
-        if ($postId && get_post_type($postId) !== $this->cptName) {
+        if ($postId && get_post_type($postId) !== self::TABLE_POST_TYPE) {
             return $this->sendError([
                 'message' => __('Invalid table.', 'ninja-tables')
             ], 423);
@@ -82,7 +70,7 @@ class TablesController extends Controller
         $attributes = array(
             'post_title'   => Sanitizer::sanitizeTextField(Arr::get($request->all(), 'post_title')),
             'post_content' => wp_kses_post(Arr::get($request->all(), 'post_content')),
-            'post_type'    => $this->cptName,
+            'post_type'    => self::TABLE_POST_TYPE,
             'post_status'  => 'publish'
         );
 
@@ -142,10 +130,14 @@ class TablesController extends Controller
     {
         $oldPostId = intval($id);
 
-        if ( ! $oldPostId) {
-            $this->json(array(
-                'message' => __('Table not found.', 'ninja-tables')
-            ), 404);
+        // Only genuine Ninja Tables may be duplicated. Without this guard a user
+        // with delegated table permission could clone — and publish — any post,
+        // page, or CPT and its meta; the same guard delete()/bulkDelete apply.
+        // It also removes the null-deref on a non-existent id below.
+        if ( ! $oldPostId || get_post_type($oldPostId) !== 'ninja-table') {
+            return $this->sendError(array(
+                'message' => __('Invalid table to duplicate.', 'ninja-tables')
+            ), 423);
         }
 
         NinjaTableItemsMigrator::checkDBMigrations();
@@ -160,7 +152,12 @@ class TablesController extends Controller
             'post_status'  => 'publish'
         );
 
-        $newPostId = wp_insert_post($attributes);
+        $newPostId = wp_insert_post($attributes, true);
+        if (is_wp_error($newPostId)) {
+            return $this->json(array(
+                'message' => __('Could not duplicate the table. No copy was created; please try again.', 'ninja-tables')
+            ), 300);
+        }
 
         try {
             Post::makeDuplicate($oldPostId, $newPostId);
@@ -170,8 +167,12 @@ class TablesController extends Controller
                 'table_id' => $newPostId
             ), 200);
         } catch (\Exception $e) {
+            // Don't leave a published, incomplete copy behind: remove the post, its rows and
+            // any row table already created (dropped by the DataTables delete hook).
+            Post::destroyTable($newPostId);
+
             $this->json(array(
-                'message' => __('An error occurred while duplicating the table.', 'ninja-tables')
+                'message' => __('Could not duplicate the table. No copy was created; please try again.', 'ninja-tables')
             ), 300);
         }
     }
@@ -203,8 +204,9 @@ class TablesController extends Controller
         }
 
         return (string)$this->app->view->make('public/table-inner-html', array(
-            'table_columns' => $formattedColumns,
-            'table_rows'    => $formatted_data
+            'table_columns'      => $formattedColumns,
+            'table_rows'         => $formatted_data,
+            'execute_shortcodes' => ninja_tables_provider_executes_shortcodes($tableId)
         ));
     }
 

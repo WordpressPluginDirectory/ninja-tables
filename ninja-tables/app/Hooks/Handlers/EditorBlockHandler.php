@@ -11,6 +11,12 @@ use NinjaTables\Framework\Support\Arr;
 
 class EditorBlockHandler
 {
+    public function register()
+    {
+        add_action('init', [$this, 'addTablesToEditor']);
+        add_action('ninja_tables_will_render_table', [$this, 'addCustomCss']);
+    }
+
     public $cpt_name = 'ninja-table';
 
     public function addTablesToEditor()
@@ -26,19 +32,19 @@ class EditorBlockHandler
         if ( ! user_can_richedit()) {
             return;
         }
-        add_filter("mce_external_plugins", array($this, 'NinjaTablesAddButtons'));
-        add_filter('mce_buttons', array($this, 'NinjaTablesRegisterButton'));
+        add_filter("mce_external_plugins", array($this, 'addMceButtons'));
+        add_filter('mce_buttons', array($this, 'registerMceButton'));
         add_action('admin_footer', array($this, 'pushNinjaTablesToEditorFooter'));
     }
 
-    public function NinjaTablesAddButtons($plugin_array)
+    public function addMceButtons($plugin_array)
     {
         $plugin_array['ninja_table'] = NINJA_TABLES_DIR_URL . 'assets/js/ninja-table-tinymce-button.js';
 
         return $plugin_array;
     }
 
-    public function NinjaTablesRegisterButton($buttons)
+    public function registerMceButton($buttons)
     {
         array_push($buttons, 'ninja_table');
 

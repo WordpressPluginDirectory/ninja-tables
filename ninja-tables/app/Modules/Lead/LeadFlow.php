@@ -8,6 +8,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class LeadFlow
 {
+    public function register()
+    {
+        add_action('init', [$this, 'boot']);
+    }
+
     private $notices = [];
     private $assetStatus = false;
     private $options = array();
@@ -19,7 +24,6 @@ class LeadFlow
         }
 
         $this->options = get_option('_ninja_table_lead_options', array());
-        $this->loadDependencies();
 
         // Lead Filters
         add_filter('ninja_tables_show_lead', array($this, 'leadStatus'));
@@ -89,12 +93,6 @@ class LeadFlow
                 $reviewOptIn->addAssets();
             }
         }
-    }
-
-    public function loadDependencies()
-    {
-        include 'LeadOptIn.php';
-        include 'ReviewOptIn.php';
     }
 
     public function addNotice($message, $type = 'success', $id = '', $hasDismiss = true)

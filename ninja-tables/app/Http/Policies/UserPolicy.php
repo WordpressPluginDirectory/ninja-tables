@@ -2,20 +2,14 @@
 
 namespace NinjaTables\App\Http\Policies;
 
-use NinjaTables\Framework\Http\Request\Request;
-use NinjaTables\Framework\Foundation\Policy;
+if (!defined('ABSPATH')) {
+    exit;
+}
 
-class UserPolicy extends Policy
+/**
+ * Kept for backward compatibility; all admin routes now use AdminPolicy.
+ */
+class UserPolicy extends AdminPolicy
 {
-    /**
-     * Check user permission for any method
-     *
-     * @param NinjaTables\Framework\Http\Request\Request $request
-     *
-     * @return Boolean
-     */
-    public function verifyRequest(Request $request)
-    {
-        return current_user_can(ninja_table_admin_role());
-    }
+    //
 }

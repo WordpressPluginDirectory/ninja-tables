@@ -4,29 +4,18 @@ namespace NinjaTables\App\Http\Controllers;
 
 use NinjaTables\App\Models\NinjaTableItem;
 use NinjaTables\App\Modules\DataTables\Handlers\ItemsHandler;
+use NinjaTables\App\Services\Table\Engine;
 use NinjaTables\Framework\Http\Request\Request;
 use NinjaTables\Framework\Support\Arr;
 use NinjaTables\Framework\Support\Sanitizer;
 
 class TableItemsController extends Controller
 {
-    protected function isDataTablesTable($tableId)
-    {
-        $provider = ninja_table_get_data_provider($tableId);
-
-        if ($provider !== 'default') {
-            return false;
-        }
-
-        $settings = ninja_table_get_table_settings($tableId, 'public');
-        return isset($settings['library']) && $settings['library'] === 'datatables';
-    }
-
     public function index(Request $request, $id)
     {
         $tableId = intval($id);
 
-        if ($this->isDataTablesTable($tableId)) {
+        if (Engine::isDataTables($tableId)) {
             $result = ItemsHandler::getItems($tableId, $request->all());
 
             if (!$result['success']) {
@@ -56,7 +45,7 @@ class TableItemsController extends Controller
     {
         $tableId = intval($id);
 
-        if ($this->isDataTablesTable($tableId)) {
+        if (Engine::isDataTables($tableId)) {
             $ids = Arr::get($request->all(), 'id');
             $result = ItemsHandler::delete($tableId, $ids);
 
@@ -90,7 +79,7 @@ class TableItemsController extends Controller
     {
         $tableId = intval($id);
 
-        if ($this->isDataTablesTable($tableId)) {
+        if (Engine::isDataTables($tableId)) {
             $result = ItemsHandler::store($tableId, $request->all());
 
             if (!$result['success']) {
@@ -149,7 +138,7 @@ class TableItemsController extends Controller
     {
         $tableId = intval($id);
 
-        if ($this->isDataTablesTable($tableId)) {
+        if (Engine::isDataTables($tableId)) {
             $result = ItemsHandler::updateCell($tableId, $request->all());
 
             if (!$result['success']) {

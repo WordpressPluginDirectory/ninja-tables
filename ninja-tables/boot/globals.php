@@ -13,7 +13,7 @@ if (!defined('ABSPATH')) {
 
 if ($app->config->get('app.env') == 'dev') {
 
-    $ninjaTablesGlobalsDevFile = __DIR__ . '/globals_dev.php';
+    $ninjaTablesGlobalsDevFile = dirname(__DIR__) . '/dev/globals.php';
     
     is_readable($ninjaTablesGlobalsDevFile) && include $ninjaTablesGlobalsDevFile;
 }
@@ -30,4 +30,4 @@ if (!function_exists('dd')) {
     }
 }
 
-include_once __DIR__ . '/ninja-tables-global-function.php';
+include_once dirname(__DIR__) . '/app/Functions/globals.php';

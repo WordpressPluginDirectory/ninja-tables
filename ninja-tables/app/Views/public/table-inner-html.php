@@ -6,6 +6,8 @@ $ninja_tables_table_columns = array_reverse($table_columns);
 $ninja_tables_header_row = '';
 $ninja_tables_counter = 1;
 $ninja_tables_hasImageFunction = function_exists('nt_parse_image_column');
+// Untrusted unless the caller confirmed the data is admin-authored.
+$ninja_tables_execute_shortcodes = isset($execute_shortcodes) ? (bool)$execute_shortcodes : false;
 ?>
 <thead>
 <tr class="footable-header">
@@ -65,14 +67,14 @@ if ($table_rows && count($ninja_tables_table_columns)):
                     } else {
                         $ninja_tables_columnValueDataAtts = json_encode($ninja_tables_column_value);
                         $ninja_tables_column_value = implode(', ', $ninja_tables_column_value);
-                        $ninja_tables_column_value = do_shortcode($ninja_tables_column_value);
+                        $ninja_tables_column_value = ninja_tables_render_cell_shortcode($ninja_tables_column_value, $ninja_tables_execute_shortcodes);
                     }
                 } else if ($ninja_tables_columnType == 'button') {
                     if ($ninja_tables_hasImageFunction) {
                         $ninja_tables_column_value = nt_parse_button_column($ninja_tables_column_value, $ninja_tables_table_column);
                     }
                 } else if(is_string($ninja_tables_column_value)) {
-                    $ninja_tables_column_value = do_shortcode($ninja_tables_column_value);
+                    $ninja_tables_column_value = ninja_tables_render_cell_shortcode($ninja_tables_column_value, $ninja_tables_execute_shortcodes);
                 }
                 $ninja_tables_colspan = false;
                 if ($ninja_tables_index != $ninja_tables_columnLength) {
@@ -96,7 +98,7 @@ if ($table_rows && count($ninja_tables_table_columns)):
                 }
 
                 if ($ninja_tables_columnValueDataAtts) {
-                    $ninja_tables_row = '<td' . $ninja_tables_colspan . $ninja_tables_copyable_class . ' data-json_values=' . $ninja_tables_columnValueDataAtts . '>' . $ninja_tables_column_value . '</td>' . $ninja_tables_row;
+                    $ninja_tables_row = '<td' . $ninja_tables_colspan . $ninja_tables_copyable_class . ' data-json_values="' . esc_attr($ninja_tables_columnValueDataAtts) . '">' . $ninja_tables_column_value . '</td>' . $ninja_tables_row;
                 } else {
                     $ninja_tables_row = '<td' . $ninja_tables_colspan . $ninja_tables_copyable_class . '>' . $ninja_tables_column_value . '</td>' . $ninja_tables_row;
                 }

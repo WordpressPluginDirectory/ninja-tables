@@ -22,6 +22,7 @@ class SettingHandler
         $requestData              = Arr::get($data, 'request_data');
         $tableSettings            = ninjaTablesGetDefaultSettings();
         $tableSettings['library'] = Arr::get($requestData, 'rendering_engine', 'footable');
+        $tableSettings            = ninja_tables_normalize_dt_css_classes($tableSettings);
 
         update_post_meta($tableId, '_ninja_table_settings', $tableSettings);
     }

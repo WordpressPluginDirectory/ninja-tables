@@ -5,6 +5,7 @@ namespace NinjaTables\App\Modules\DataTables;
 defined('ABSPATH') || exit;
 
 use NinjaTables\App\Modules\DataTables\Database\DynamicTableManager;
+use NinjaTables\App\Modules\DataTables\Handlers\AjaxHandler;
 use NinjaTables\App\Modules\DataTables\Handlers\PublicRenderer;
 use NinjaTables\Framework\Support\Arr;
 
@@ -17,7 +18,8 @@ class DataTablesModule
         add_action('before_delete_post', [$this, 'onBeforeDeletePost'], 10, 1);
         add_action('delete_post', [$this, 'onDeletePost'], 10, 1);
 
-        PublicRenderer::register();
+        (new PublicRenderer())->register();
+        (new AjaxHandler())->register();
     }
 
     public function onTableCreated($tableId, $data)

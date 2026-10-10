@@ -191,7 +191,9 @@ trait Controls
      */
     public function setEscape($escape)
     {
-        if (!$this->isValidCsvControls($escape)) {
+        // Ninja Tables: '' is also accepted and means "no escape character" (RFC 4180,
+        // PHP 7.4+). The default stays '\\', so existing callers are unaffected.
+        if ($escape !== '' && !$this->isValidCsvControls($escape)) {
             throw new InvalidArgumentException('The escape character must be a single character');
         }
         $this->escape = $escape;

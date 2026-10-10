@@ -10,30 +10,16 @@ use NinjaTables\Framework\Support\Sanitizer;
 
 class SettingsController extends Controller
 {
-    private $cptName = 'ninja-table';
-
-    private function assertNinjaTable($id)
-    {
-        if (get_post_type($id) !== $this->cptName) {
-            return $this->sendError([
-                'message' => __('No Table Found', 'ninja-tables'),
-                'route'   => 'home',
-            ], 423);
-        }
-
-        return null;
-    }
-
     public function getTableSettings(Request $request, $id)
     {
         $tableID = intval($id);
         $table   = get_post($tableID);
 
-        if ( ! $table || $table->post_type != $this->cptName) {
-            $this->sendError(array(
+        if (!$table || $table->post_type != self::TABLE_POST_TYPE) {
+            return $this->sendError([
                 'message' => __('No Table Found', 'ninja-tables'),
-                'route'   => 'home'
-            ), 423);
+                'route'   => 'home',
+            ], 423);
         }
         $provider = ninja_table_get_data_provider($table->ID);
 
@@ -57,7 +43,7 @@ class SettingsController extends Controller
     {
         $tableId         = intval($id);
 
-        if ($response = $this->assertNinjaTable($tableId)) {
+        if ($response = $this->assertNinjaTable($tableId, __('No Table Found', 'ninja-tables'), ['route' => 'home'])) {
             return $response;
         }
 
@@ -72,7 +58,9 @@ class SettingsController extends Controller
         }
 
         if (Arr::get($request->all(), 'table_settings', [])) {
-            $tablePreference = ninja_tables_sanitize_array($request->table_settings);
+            $tablePreference = ninja_tables_normalize_dt_css_classes(
+                ninja_tables_sanitize_array($request->table_settings)
+            );
         }
 
         $data = Post::updatedSettings($tableId, $rawColumns, $tablePreference);
@@ -147,7 +135,7 @@ class SettingsController extends Controller
     {
         $tableId             = absint($id);
 
-        if ($response = $this->assertNinjaTable($tableId)) {
+        if ($response = $this->assertNinjaTable($tableId, __('No Table Found', 'ninja-tables'), ['route' => 'home'])) {
             return $response;
         }
 
@@ -155,6 +143,15 @@ class SettingsController extends Controller
             'csv'              => array(
                 'status'     => 'no',
                 'label'      => 'CSV',
+                'all_rows'   => 'no',
+                'bg_color'   => 'rgb(0,0,0)',
+                'text_color' => 'rgb(255,255,255)'
+            ),
+            // Frontend Excel button (rendered by Pro; offered in the admin only when
+            // Pro reports support via ninja_tables_frontend_xlsx_button_supported).
+            'xlsx'             => array(
+                'status'     => 'no',
+                'label'      => 'Excel',
                 'all_rows'   => 'no',
                 'bg_color'   => 'rgb(0,0,0)',
                 'text_color' => 'rgb(255,255,255)'
@@ -191,7 +188,7 @@ class SettingsController extends Controller
         ninja_tables_allowed_css_properties();
         $tableId        = absint($id);
 
-        if ($response = $this->assertNinjaTable($tableId)) {
+        if ($response = $this->assertNinjaTable($tableId, __('No Table Found', 'ninja-tables'), ['route' => 'home'])) {
             return $response;
         }
 
@@ -209,7 +206,7 @@ class SettingsController extends Controller
     {
         $tableId = intval($id);
 
-        if ($response = $this->assertNinjaTable($tableId)) {
+        if ($response = $this->assertNinjaTable($tableId, __('No Table Found', 'ninja-tables'), ['route' => 'home'])) {
             return $response;
         }
 
@@ -230,7 +227,7 @@ class SettingsController extends Controller
     {
         $tableId = intval($id);
 
-        if ($response = $this->assertNinjaTable($tableId)) {
+        if ($response = $this->assertNinjaTable($tableId, __('No Table Found', 'ninja-tables'), ['route' => 'home'])) {
             return $response;
         }
 

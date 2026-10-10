@@ -8,5 +8,6 @@ $baseDir = dirname($vendorDir);
 return array(
     'WPFluent\\' => array($vendorDir . '/wpfluent/framework/src/WPFluent'),
     'NinjaTables\\Framework\\' => array($vendorDir . '/wpfluent/framework/src/WPFluent'),
+    'NinjaTables\\Dev\\' => array($baseDir . '/dev'),
     'NinjaTables\\App\\' => array($baseDir . '/app'),
 );

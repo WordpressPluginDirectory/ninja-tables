@@ -4,6 +4,49 @@ namespace NinjaTables\App\Services;
 
 class TranslationService
 {
+    /**
+     * Labels the public table JS (both engines) reads from tableConfig.i18n.
+     * Mostly aria-labels and small UI text; the JS keeps English fallbacks.
+     */
+    public static function getPublicUiI18n()
+    {
+        return [
+            'scrollable_table'   => __('Scrollable table', 'ninja-tables'),
+            'search_table'       => __('Search table', 'ninja-tables'),
+            'clear_search'       => __('Clear search', 'ninja-tables'),
+            'row_details'        => __('Row Details', 'ninja-tables'),
+            'toggle_row_details' => __('Toggle row details', 'ninja-tables'),
+            'select_month'       => __('Select Month', 'ninja-tables'),
+            'select_year'        => __('Select Year', 'ninja-tables'),
+        ];
+    }
+
+    /**
+     * DataTables' own UI strings. _START_/_END_/_TOTAL_/_MAX_/_MENU_ are
+     * replaced by DataTables and must be kept in translations.
+     */
+    public static function getDataTablesLanguage()
+    {
+        return [
+            'info'           => __('Showing _START_ to _END_ of _TOTAL_ entries', 'ninja-tables'),
+            'infoEmpty'      => __('Showing 0 to 0 of 0 entries', 'ninja-tables'),
+            'infoFiltered'   => __('(filtered from _MAX_ total entries)', 'ninja-tables'),
+            'lengthMenu'     => __('Show _MENU_ entries', 'ninja-tables'),
+            'processing'     => __('Processing...', 'ninja-tables'),
+            'loadingRecords' => __('Loading...', 'ninja-tables'),
+            'paginate'       => [
+                'first'    => __('First', 'ninja-tables'),
+                'last'     => __('Last', 'ninja-tables'),
+                'next'     => __('Next', 'ninja-tables'),
+                'previous' => __('Previous', 'ninja-tables'),
+            ],
+            'aria'           => [
+                'sortAscending'  => __(': activate to sort column ascending', 'ninja-tables'),
+                'sortDescending' => __(': activate to sort column descending', 'ninja-tables'),
+            ],
+        ];
+    }
+
     public static function getSumoSelectI18n()
     {
         return [

@@ -4,6 +4,11 @@ namespace NinjaTables\App\Hooks\Handlers;
 
 class StyleHandler
 {
+    public function register()
+    {
+        add_action('admin_print_styles', [$this, 'adminMenuStyle']);
+    }
+
     public function adminMenuStyle()
     {
         ?>

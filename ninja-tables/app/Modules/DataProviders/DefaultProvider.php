@@ -9,12 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 use NinjaTables\App\Models\NinjaTableItem;
 use NinjaTables\Framework\Support\Arr;
 
-class DefaultProvider
+class DefaultProvider extends BaseProvider
 {
-    public function boot()
+    public function key()
     {
-        add_filter('ninja_tables_get_table_default', array($this, 'getTableSettings'));
-        add_filter('ninja_tables_fetching_table_rows_default', array($this, 'data'), 10, 6);
+        return 'default';
     }
 
     public function getTableSettings($table)

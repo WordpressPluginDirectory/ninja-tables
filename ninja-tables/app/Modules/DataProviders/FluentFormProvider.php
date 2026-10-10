@@ -11,13 +11,11 @@ use NinjaTables\Framework\Support\Collection;
 use NinjaTables\Framework\Support\Sanitizer;
 use FluentFormPro\Payments\PaymentHelper;
 
-class FluentFormProvider
+class FluentFormProvider extends BaseProvider
 {
-    public function boot()
+    public function key()
     {
-        add_filter('ninja_tables_get_table_fluent-form', array($this, 'getTableSettings'));
-        add_filter('ninja_tables_get_table_data_fluent-form', array($this, 'getTableData'), 10, 4);
-        add_filter('ninja_tables_fetching_table_rows_fluent-form', array($this, 'data'), 10, 5);
+        return 'fluent-form';
     }
 
     public function getFields($id)
@@ -213,7 +211,7 @@ class FluentFormProvider
                 );
             }
 
-            $entries = wpFluentForm('FluentForm\App\Modules\Entries\Entries')->_getEntries(
+            $entries = $this->fetchEntries(
                 intval($formId),
                 isset($_GET['page']) ? intval($_GET['page']) : 1, // phpcs:ignore WordPress.Security.NonceVerification.Recommended
                 $perPageLimit,
@@ -280,7 +278,7 @@ class FluentFormProvider
             $wheres = array(array('user_id', $userId));
         }
 
-        $entries = wpFluentForm('FluentForm\App\Modules\Entries\Entries')->_getEntries(
+        $entries = $this->fetchEntries(
             intval($formId),
             1,
             1,
@@ -364,7 +362,7 @@ class FluentFormProvider
             );
         }
 
-        $entries = wpFluentForm('FluentForm\App\Modules\Entries\Entries')->_getEntries(
+        $entries = $this->fetchEntries(
             intval($formId),
             -1,
             $entryLimit,
@@ -437,6 +435,77 @@ class FluentFormProvider
         }
 
         return $postId;
+    }
+
+
+    /**
+     * Query submissions directly. Replaces FluentForm's Entries::_getEntries(),
+     * deprecated in Fluent Forms 6.2.0 and slated for removal.
+     * Keeps the same return shape the callers already consume.
+     */
+    private function fetchEntries($formId, $currentPage, $perPage, $sortBy, $entryStatus, $search, $wheres = array())
+    {
+        $sortBy = strtoupper($sortBy) === 'DESC' ? 'DESC' : 'ASC';
+
+        $query = wpFluent()->table('fluentform_submissions')
+            ->where('form_id', $formId)
+            ->orderBy('id', $sortBy);
+
+        if ($perPage > 0) {
+            $query->limit($perPage);
+        }
+
+        if ($currentPage > 0 && $perPage > 0) {
+            $query->offset(($currentPage - 1) * $perPage);
+        }
+
+        if ($entryStatus === 'favorite') {
+            $query->where('is_favourite', 1)->where('status', '!=', 'trashed');
+        } elseif ($entryStatus && $entryStatus !== 'all') {
+            $query->where('status', $entryStatus);
+        } else {
+            $query->where('status', '!=', 'trashed');
+        }
+
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('id', 'LIKE', "%{$search}%")
+                  ->orWhere('response', 'LIKE', "%{$search}%")
+                  ->orWhere('status', 'LIKE', "%{$search}%")
+                  ->orWhere('created_at', 'LIKE', "%{$search}%");
+            });
+        }
+
+        foreach ($wheres as $where) {
+            if (!is_array($where) || count($where) < 2) {
+                continue;
+            }
+            list($column, $operator, $value) = count($where) > 2 ? $where : array($where[0], '=', $where[1]);
+            if (is_array($value)) {
+                $query->whereIn($column, $value);
+            } else {
+                $query->where($column, $operator, $value);
+            }
+        }
+
+        $total     = $query->count();
+        $responses = $query->get();
+        $responses = apply_filters('fluentform/get_raw_responses', $responses, $formId); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- intentionally fires Fluent Forms' own filter
+
+        $form = wpFluent()->table('fluentform_forms')->find($formId);
+        $data = \FluentForm\App\Modules\Form\FormDataParser::parseFormEntries($responses, $form);
+
+        return array(
+            'submissions' => array(
+                'data'     => $data,
+                'paginate' => array(
+                    'total'        => $total,
+                    'per_page'     => $perPage,
+                    'current_page' => $currentPage,
+                    'last_page'    => $perPage > 0 ? ceil($total / $perPage) : 1,
+                ),
+            ),
+        );
     }
 
     private function getOrderBy($tableId)

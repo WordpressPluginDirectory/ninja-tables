@@ -31,6 +31,25 @@ class NoticeHandler
         }
     }
 
+    /**
+     * Shown when an outdated Ninja Tables Pro is active alongside this core version.
+     */
+    public static function proUpdateRequired()
+    {
+        if (!current_user_can('edit_posts')) {
+            return;
+        }
+        ?>
+        <div class="notice notice-error">
+            <h3 style="margin: 15px 0 0; color: red;"><b><?php esc_html_e('Update Required:', 'ninja-tables'); ?></b> <?php esc_html_e('Ninja Tables Pro Plugin', 'ninja-tables'); ?></h3>
+            <p><?php esc_html_e('Ninja Tables Pro plugin is not compatible with the current version of Ninja Tables. Please update Ninja Tables Pro to the latest version.', 'ninja-tables'); ?></p>
+            <div style="margin-bottom: 20px;">
+                <a class="button button-primary" href="<?php echo esc_url(admin_url('plugins.php?s=ninja-tables&plugin_status=all')); ?>"><?php esc_html_e('Update Ninja Tables Pro', 'ninja-tables'); ?></a>
+            </div>
+        </div>
+        <?php
+    }
+
     public static function addAdminNotice($key, $config)
     {
         if (empty($key) || !is_string($key)) {

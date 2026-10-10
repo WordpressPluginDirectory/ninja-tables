@@ -22,7 +22,7 @@ class TableCssHelper
 
     public static function buildColorPalette(array $settings)
     {
-        if (Arr::get($settings, 'table_color_type') != 'custom_color' || !defined('NINJATABLESPRO')) {
+        if (Arr::get($settings, 'table_color_type') != 'custom_color' || !Pro::active()) {
             return false;
         }
 
@@ -85,7 +85,7 @@ class TableCssHelper
     {
         $css = '';
 
-        if (!defined('NINJATABLESPRO')) {
+        if (!Pro::active()) {
             return $css;
         }
 
